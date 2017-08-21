@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>避難場所マップ</title>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.4/"></script>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/layers/FeatureLayer",
+      "esri/renderers/UniqueValueRenderer",
+      "esri/symbols/SimpleMarkerSymbol",
+      "esri/PopupTemplate",
+      "dojo/domReady!"
+    ], function(Map, MapView, FeatureLayer, UniqueValueRenderer, SimpleMarkerSymbol, PopupTemplate) {
+
+      // Map の作成
+      var map = new Map({
+        basemap: "streets"
+      });
+
+      // View の作成
+      var view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [140.9805, 42.3434],
+        zoom: 13
+      });
+
+      // スタイルの設定
+
+      // シンボルの作成
+      var defaultSym = new SimpleMarkerSymbol({
+        color: "#aaaaaa",
+        outline: {
+          color: "#ffffff",
+          width: "1px"
+        }
+      });
+
+      var indoorSym = new SimpleMarkerSymbol({
+        color: "#ed5151",
+        outline: {
+          color: "#ffffff",
+          width: "1px"
+        }
+      });
+
+      var outdoorSym = new SimpleMarkerSymbol({
+        color: "#149ece",
+        outline: {
+          color: "#ffffff",
+          width: "1px"
+        }
+      });
+
+      // レンダラーの作成
+      var renderer = new UniqueValueRenderer({
+        field: "屋内屋外",
+        symbol: defaultSym,
+        uniqueValueInfos: [{
+          value: "屋内",
+          symbol: indoorSym
+        }, {
+          value: "屋外",
+          symbol: outdoorSym
+        }],
+        visualVariables: [{
+          type: "size",
+          field: "収容人数",
+          maxDataValue: 17868,
+          minDataValue: 10,
+          maxSize: "50px",
+          minSize: "8px"
+        }]
+      });
+
+      // ポップアップの構成
+      var popupTemplate = new PopupTemplate({
+        title: "避難場所",
+        content: [{
+          type: "fields",
+          fieldInfos: [{
+            fieldName: "施設名称",
+            label: "施設名称"
+          }, {
+            fieldName: "住所",
+            label: "住所",
+          }, {
+            fieldName: "施設電話番",
+            label: "施設電話番"
+          }, {
+            fieldName: "施設分類",
+            label: "施設分類"
+          }, {
+            fieldName: "屋内屋外",
+            label: "屋内屋外"
+          }, {
+            fieldName: "広域一時",
+            label: "広域一時",
+          }, {
+            fieldName: "津波避難所",
+            label: "津波避難所"
+          }, {
+            fieldName: "建築年",
+            label: "建築年"
+          }, {
+            fieldName: "構造",
+            label: "構造"
+          }, {
+            fieldName: "収容人数",
+            label: "収容人数"
+          }]
+        }]
+      });
+
+      // レイヤーの作成
+      var featureLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/Jv1EECU3IM4ZRUev/arcgis/rest/services/Muroran_Hinanbasyo/FeatureServer/0",
+        renderer: renderer,
+        //outFields: ["*"],
+        popupTemplate: popupTemplate
+      });
+
+      // レイヤーの追加
+      map.add(featureLayer);
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
