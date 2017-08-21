@@ -94,7 +94,9 @@ Web マップ ID は、アプリから Web マップを参照する際に使用�
 
 ## 2. アプリの作成
 
-[JS Bin])(https://jsbin.com/) を開き、以下をコピーします。
+### 1. HTML ファイルの作成
+
+[JS Bin](https://jsbin.com/) を開き、以下をコピーします。
 
 ```html
 <!DOCTYPE html>
@@ -115,21 +117,15 @@ Web マップ ID は、アプリから Web マップを参照する際に使用�
     }
   </style>
 
+  <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.4/"></script>
+
 </head>
 
 <body>
   <div id="viewDiv"></div>
 </body>
 </html>
-```
-
-### 1. ArcGIS API for JavaScript の読み込み
-
-ArcGIS API for JavaScript を読み込みます。
-
-```html
-<link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
-<script src="https://js.arcgis.com/4.4/"></script>
 ```
 
 ### 2. Web マップ の読み込み・表示
