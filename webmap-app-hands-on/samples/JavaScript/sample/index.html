@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <title>避難場所マップ</title>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.4/"></script>
+
+  <script>
+    require([
+      "esri/WebMap",
+      "esri/views/MapView",
+      "esri/tasks/ClosestFacilityTask",
+      "esri/tasks/support/ClosestFacilityParameters",
+      "esri/symbols/SimpleMarkerSymbol",
+      "esri/symbols/SimpleLineSymbol",
+      "esri/symbols/SimpleFillSymbol",
+      "esri/Graphic",
+      "esri/tasks/support/FeatureSet",
+      "esri/geometry/geometryEngine",
+      "dojo/domReady!"
+    ], function(WebMap, MapView, ClosestFacilityTask, ClosestFacilityParameters, SimpleMarkerSymbol, SimpleLineSymbol, SimpleFillSymbol, Graphic, FeatureSet, geometryEngine) {
+      // Web マップの作成
+      var webmap = new WebMap({
+        portalItem: {
+          id: "Web マップ ID"
+        }
+      });
+
+      // レイヤーの取得
+      var shelterLayer;
+      webmap.then(function(){
+        shelterLayer = webmap.layers.find(function(layer){
+          return layer.title === "室蘭市 - 避難場所";
+        });
+      });
+
+      // View の作成
+      var view = new MapView({
+        map: webmap,
+        container: "viewDiv"
+      });
+
+      // View のクリックイベントハンドラ
+      view.on("click", runClosestFacilityTask);
+
+      // 最寄り施設の検出解析の設定
+      var closestFacilityTask = new ClosestFacilityTask({
+        url: "https://route.arcgis.com/arcgis/rest/services/World/ClosestFacility/NAServer/ClosestFacility_World"
+      });
+
+      // パラメータの設定
+      var params = new ClosestFacilityParameters({
+        returnRoutes: true
+      });
+
+      // シンボルの作成
+      var incidentPointSymbol = new SimpleMarkerSymbol({
+        style: "circle",
+        color: [255, 0, 0],
+        size: 8
+      });
+
+      var bufferPolygonSymbol = new SimpleFillSymbol({
+        color: [255, 183, 51, 0.25],
+        style: "solid",
+        outline: {
+          color: [255, 183, 51],
+          width: 2
+        }
+      });
+
+      var routePolylineSymbol = new SimpleLineSymbol({
+        color: [89, 95, 35],
+        width: 4,
+        style: "solid"
+      });
+
+      // View をクリックした地点から最寄りの避難場所を検索
+      function runClosestFacilityTask(evt){
+        view.graphics.removeAll();
+
+        // クリック地点をマップに表示
+        var point = evt.mapPoint;
+        var location = new Graphic({
+          geometry: point,
+          symbol: incidentPointSymbol
+        });
+        view.graphics.add(location);
+
+        // クリック地点を解析のパラメーターに設定
+        var features = [];
+        features.push(location);
+        var incidents = new FeatureSet({
+          features: features
+        });
+        params.incidents = incidents;
+
+        // クリック地点から 1km のバッファーを作成
+        var buffer = geometryEngine.buffer(point, 1, "kilometers");
+        var area = new Graphic({
+          geometry: buffer,
+          symbol: bufferPolygonSymbol
+        });
+        view.graphics.add(area);
+
+        // バッファー内にある避難場所をクエリ
+        var queryParams = shelterLayer.createQuery();
+        queryParams.geometry = buffer;
+        // クエリの実行
+        shelterLayer.queryFeatures(queryParams).then(function(result){
+          // クエリ結果を解析対象として設定
+          params.facilities = result;
+        }).then(function(){
+          // 解析の実行
+          closestFacilityTask.solve(params).then(function(solveResult){
+            // 結果を表示
+            var routes = solveResult.routes.map(function(route){
+              route.symbol = routePolylineSymbol;
+              return route;
+            });
+            view.graphics.addMany(routes);
+          });
+        });
+      }
+    });
+  </script>
+</head>
+
+<body>      
+  <div id="viewDiv"></div>
+</body>
+</html>
