@@ -42,8 +42,8 @@ Microsoft .NET Framework 4.5.2（最小バージョン）
 
 ### 手順 2: Runtime コンテンツの作成して表示
 
-まずはじめにオフライン環境においてデータの参照や書き込みを行うために Runtime コンテンツ（*.geodatabase）を作成します。
-そして作成した Runtime コンテンツ（*.geodatabase）を地図に表示します。
+オフライン環境においてデータの参照や書き込みを行うために Runtime コンテンツ（*.geodatabase）を作成します。
+そして作成した Runtime コンテンツ（*.geodatabase）を参照して地図に表示します。
 
 地図を表示する部分 ユーザーインタフェースとして、**sample/MainWindow.xaml** に UI を作成していきます。
 地図表示（ユーザインタフェース）は **XAML**(ざむる)という、マークアップ言語で書いていきます。(Extensible Application Markup Language)
@@ -87,7 +87,134 @@ ArcGIS Runtime API のすべてのXAML要素は、http://schemas.esri.com/arcgis
 
 #### MainWindow.xaml.cs
 
+次に Runtime コンテンツ（*.geodatabase）作成して表示する部分を作成します。
 
+1. プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
+2. 以下のような内容で WebMap を呼び出す部分を作成していきます。
+
+```csharp
+using System;
+using System.Linq;
+using System.Windows;
+using System.Collections.Generic;
+
+using Esri.ArcGISRuntime;
+using Esri.ArcGISRuntime.Mapping;
+using Esri.ArcGISRuntime.Geometry;
+using Esri.ArcGISRuntime.Data;
+using Esri.ArcGISRuntime.UI.Controls;
+using Esri.ArcGISRuntime.Tasks;
+using Esri.ArcGISRuntime.Tasks.Offline;
+
+namespace sample
+{
+    /// <summary>
+    /// MainWindow.xaml の相互作用ロジック
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+
+        // ArcGIS Online フィーチャ レイヤーサービスの URL  
+        private const string FEATURELAYER_SERVICE_URL = "https://services7.arcgis.com/903opF9LxIC4unCH/arcgis/rest/services/yokohamaTripPoint/FeatureServer/";
+
+        private Map myMap;
+
+        private SyncGeodatabaseParameters syncParams;
+
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            Initialize();
+
+        }
+
+        public void Initialize()
+        {
+            myMap = new Map(BasemapType.LightGrayCanvas, 35.3312442, 139.6202471, 10);
+
+            MyMapView.Map = myMap;
+
+            // PC内の geodatabase ファイル作成パスを取得する
+            getGeodatabasePath();
+
+            // すでにランタイムコンテンツが作成されているかチェックする
+            chkGeodatabase();
+        }
+        
+        ////////////////////////////////////////////////////////////////////////////////////////
+        // 端末ローカルのパスまわり
+        ////////////////////////////////////////////////////////////////////////////////////////
+        /**
+         * geodatabaseファイル作成のパスを取得する
+         * */
+        private void getGeodatabasePath()
+        {
+            // カレントディレクトリの取得
+            string stCurrentDir = System.Environment.CurrentDirectory;
+
+            // カレントディレクトリを表示する
+            //MessageBox.Show(stCurrentDir);
+
+            mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
+
+        }
+
+       /**
+        * ローカルファイルをMapViewへ追加する
+        * */
+        private void chkGeodatabase()
+        {
+            // カレントディレクトリの取得
+            string stCurrentDir = System.Environment.CurrentDirectory;
+
+            mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
+
+            if (System.IO.File.Exists(mGeodatabasePath))
+            {
+                // 存在する場合は、既存のgeodatabaseから読み込む
+                readGeoDatabase();
+            }
+            else
+            {
+                // ファイル作成メソッドをcallする
+                createGeodatabaseSyncTask();
+            }
+
+        }
+        
+       /**
+        * 既存GeoDatabaseから読み込む
+        ****/
+        private GeodatabaseFeatureTable mGdbFeatureTable;
+        private FeatureLayer mFeatureLayer;
+        private Geodatabase geodatabase;
+        private async void readGeoDatabase()
+        {
+            geodatabase = await Geodatabase.OpenAsync(mGeodatabasePath);
+
+            if (geodatabase.GeodatabaseFeatureTables.Count > 0)
+            {
+                // データベース内の最初のテーブルを取得する
+                mGdbFeatureTable = geodatabase.GeodatabaseFeatureTables.FirstOrDefault();
+
+                await mGdbFeatureTable.LoadAsync();
+
+                if (mGdbFeatureTable.LoadStatus == LoadStatus.Loaded)
+                {
+                    mFeatureLayer = new FeatureLayer(mGdbFeatureTable);
+
+                    myMap.OperationalLayers.Add(mFeatureLayer);
+                }
+            }
+        }
+        
+        
+        
+    }
+}
+```
 
 
 ### 1. ポータルサイトへのアクセス
