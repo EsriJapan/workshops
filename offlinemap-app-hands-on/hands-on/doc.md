@@ -152,7 +152,7 @@ namespace sample
 #### MainWindow.xaml.cs
 
 1. プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
-2. Initialize 関数のなかに、getGeodatabasePath()、chkGeodatabase() 関数を作成します。
+2. `Initialize` 関数のなかに、`getGeodatabasePath()`、`chkGeodatabase()` 関数を作成します。
 
 ```csharp
 public void Initialize()
@@ -170,7 +170,7 @@ public void Initialize()
 }
 ```
 
-3. getGeodatabasePath()、chkGeodatabase() 関数をそれぞれ作成します。
+3. `getGeodatabasePath()`、`chkGeodatabase()` 関数をそれぞれ作成します。
 
 ```csharp
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -216,7 +216,7 @@ private void chkGeodatabase()
 }
 ```
 
-4. 存在する場合は、既存の geodatabase から読み込むため　readGeoDatabase() 関数を作成します。
+4. 存在する場合は、既存の geodatabase から読み込むため `readGeoDatabase()` 関数を作成します。
 
 ```csharp
 /**
@@ -248,6 +248,13 @@ private async void readGeoDatabase()
 
 5. ローカルフォルダにランタイムコンテンツ（*.geodatabase）を作成します。
 
+ランタイムコンテンツ（*.geodatabase）の作成は、ステップ①、②、③ の手順で行っていきます。
+- ① 同期させたいArcGIS Online の Feature Layer でタスクを作成する
+- ② 同期させたいArcGIS Online の Feature Layer のパラメータを取得する
+- ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する
+
+コードの TODO 箇所に処理を書いていきましょう。詳細は、[ランタイムコンテンツ（geodatabase）の作成](https://developers.arcgis.com/net/latest/wpf/guide/create-an-offline-layer.htm#ESRI_SECTION3_89544D1DCF1E49AB842CD20BA03255A4)を参考にしてください。
+
 ```csharp
 ////////////////////////////////////////////////////////////////
 // ローカルフォルダにランタイムコンテンツ(*.geodatabase)作成
@@ -261,14 +268,12 @@ private GeodatabaseSyncTask geodatabaseSyncTask;
 private GenerateGeodatabaseParameters generateParams;
 private GenerateGeodatabaseJob generateJob;
 /**
-    * GeoDatabaseを新規に作成する
-    * ① 同期させたいArcGIS Online の Feature Layer でタスクを作成する
-    * ***/
+ * GeoDatabaseを新規に作成する
+ * ① 同期させたいArcGIS Online の Feature Layer でタスクを作成する
+ * ***/
 private async void createGeodatabaseSyncTask()
 {
-
-    var featureServiceUri = new Uri(FEATURELAYER_SERVICE_URL);
-    geodatabaseSyncTask = await GeodatabaseSyncTask.CreateAsync(featureServiceUri);
+    // TODO 同期したいレイヤーで geodatabase 作成タスクオブジェクトを作成する    
 
     // ② 同期させたいArcGIS Online の Feature Layer のパラメータを取得する
     generateGeodatabaseParameters();
@@ -276,20 +281,16 @@ private async void createGeodatabaseSyncTask()
 }
 
 /**
-    * GeoDatabaseを新規に作成する
-    * ② 同期させたいArcGIS Online の Feature Layer のパラメータを取得する
-    * */
+ * GeoDatabaseを新規に作成する
+ * ② 同期させたいArcGIS Online の Feature Layer のパラメータを取得する
+ * */
 private async void generateGeodatabaseParameters()
 {
-    // geodatabase 作成のためのパラメータを取得する
-    Envelope extent = MyMapView.GetCurrentViewpoint(ViewpointType.BoundingGeometry).TargetGeometry as Envelope;
-    generateParams = await geodatabaseSyncTask.CreateDefaultGenerateGeodatabaseParametersAsync(extent);
+    // TODO geodatabase 作成のためのパラメータを取得する
 
-    // レイヤーごとに同期を設定する 
-    generateParams.SyncModel = SyncModel.Layer;
+    // TODO レイヤーごとに同期を設定する 
 
-    // 添付ファイルは返さない
-    generateParams.ReturnAttachments = false;
+    // TODO 添付ファイルは返さない
 
     // ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する
     generateGeodatabase();
@@ -297,24 +298,18 @@ private async void generateGeodatabaseParameters()
 }
 
 /**
-    * GeoDatabaseを新規に作成する
-    * ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する
-    * */
+ * GeoDatabaseを新規に作成する
+ * ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する
+ * */
 private void generateGeodatabase()
 {
+    // TODO geodatabaseファイル作成ジョブオブヘジェクトを作成する
 
-    // geodatabaseファイル作成ジョブオブヘジェクトを作成する
-    generateJob = geodatabaseSyncTask.GenerateGeodatabase(generateParams, mGeodatabasePath);
-
-
-    // JobChanged イベントを処理してジョブのステータスをチェックする
-    generateJob.JobChanged += OnGenerateJobChanged;
-
+    // TODO JobChanged イベントを処理してジョブのステータスをチェックする
 
     // ジョブを開始し、ジョブIDをコンソール上に表示
     generateJob.Start();
     Console.WriteLine("Submitted job #" + generateJob.ServerJobId + " to create local geodatabase");
-
 }
 
 // JobChangedイベントのハンドラ
@@ -322,7 +317,6 @@ private void OnGenerateJobChanged(object sender, EventArgs e)
 {
     // get the GenerateGeodatabaseJob that raised the event
     var job = sender as GenerateGeodatabaseJob;
-
 
     // report error (if any)
     if (job.Error != null)
