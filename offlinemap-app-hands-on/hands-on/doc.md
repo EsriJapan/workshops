@@ -62,6 +62,7 @@ ArcGIS Runtime API のすべてのXAML要素は、http://schemas.esri.com/arcgis
      <esri:MapView x:Name="MyMapView"/>
   </Grid>
 ```
+
 【確認】現在、`MainWindow.xaml`は、次のようになっているはずです。
 
 ```xml
@@ -86,8 +87,8 @@ ArcGIS Runtime API のすべてのXAML要素は、http://schemas.esri.com/arcgis
 
 次に背景地図を表示する部分を作成します。
 
-1. プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
-2. 以下のような内容で 背景地図 を呼び出す部分を作成していきます。
+#### 1. プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
+#### 2. 以下のような内容で 背景地図 を呼び出す部分を作成していきます。
 
 ```csharp
 using System;
@@ -151,8 +152,8 @@ namespace sample
 
 #### MainWindow.xaml.cs
 
-1. プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
-2. `Initialize` 関数のなかに、`getGeodatabasePath()`、`chkGeodatabase()` 関数を作成します。
+#### 1. プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
+#### 2. `Initialize` 関数のなかに、`getGeodatabasePath()`、`chkGeodatabase()` 関数を作成します。
 
 ```csharp
 public void Initialize()
@@ -170,7 +171,7 @@ public void Initialize()
 }
 ```
 
-3. `getGeodatabasePath()`、`chkGeodatabase()` 関数をそれぞれ作成します。
+#### 3. `getGeodatabasePath()`、`chkGeodatabase()` 関数をそれぞれ作成します。
 
 ```csharp
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -216,7 +217,7 @@ private void chkGeodatabase()
 }
 ```
 
-4. 存在する場合は、既存の geodatabase から読み込むため `readGeoDatabase()` 関数を作成します。
+#### 4. 存在する場合は、既存の geodatabase から読み込むため `readGeoDatabase()` 関数を作成します。
 
 ```csharp
 /**
@@ -246,7 +247,7 @@ private async void readGeoDatabase()
 }
 ```
 
-5. ローカルフォルダにランタイムコンテンツ（*.geodatabase）を作成します。
+#### 5. ローカルフォルダにランタイムコンテンツ（*.geodatabase）を作成します。
 
 ランタイムコンテンツ（*.geodatabase）の作成は、ステップ①、②、③ の手順で行っていきます。
 - ① 同期させたいArcGIS Online の Feature Layer でタスクを作成する
@@ -341,6 +342,74 @@ private void OnGenerateJobChanged(object sender, EventArgs e)
         // job is still running, report last message
         Console.WriteLine(job.Messages[job.Messages.Count - 1].Message);
     }
+}
+```
+
+#### 【確認】現在、`createGeodatabaseSyncTask()`、`generateGeodatabaseParameters()`、`generateGeodatabase()`は、次のようになっているはずです。
+
+```csharp
+////////////////////////////////////////////////////////////////
+// ローカルフォルダにランタイムコンテンツ(*.geodatabase)作成
+// 【概要】
+//　① 同期させたいArcGIS Online の Feature Layer でタスクを作成する
+//　② 同期させたいArcGIS Online の Feature Layer のパラメータを取得する
+//　③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する
+////////////////////////////////////////////////////////////////
+
+private GeodatabaseSyncTask geodatabaseSyncTask;
+private GenerateGeodatabaseParameters generateParams;
+private GenerateGeodatabaseJob generateJob;
+/**
+ * GeoDatabaseを新規に作成する
+ * ① 同期させたいArcGIS Online の Feature Layer でタスクを作成する
+ * ***/
+private async void createGeodatabaseSyncTask()
+{
+    // TODO 同期したいレイヤーで geodatabase 作成タスクオブジェクトを作成する    
+    var featureServiceUri = new Uri(FEATURELAYER_SERVICE_URL);
+    geodatabaseSyncTask = await GeodatabaseSyncTask.CreateAsync(featureServiceUri);
+            
+    // ② 同期させたいArcGIS Online の Feature Layer のパラメータを取得する
+    generateGeodatabaseParameters();
+
+}
+
+/**
+ * GeoDatabaseを新規に作成する
+ * ② 同期させたいArcGIS Online の Feature Layer のパラメータを取得する
+ * */
+private async void generateGeodatabaseParameters()
+{
+    // TODO geodatabase 作成のためのパラメータを取得する
+    Envelope extent = MyMapView.GetCurrentViewpoint(ViewpointType.BoundingGeometry).TargetGeometry as Envelope;
+    generateParams = await geodatabaseSyncTask.CreateDefaultGenerateGeodatabaseParametersAsync(extent);
+
+    // TODO レイヤーごとに同期を設定する 
+    generateParams.SyncModel = SyncModel.Layer;
+
+    // TODO 添付ファイルは返さない
+    generateParams.ReturnAttachments = false;
+
+    // ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する
+    generateGeodatabase();
+
+}
+
+/**
+ * GeoDatabaseを新規に作成する
+ * ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する
+ * */
+private void generateGeodatabase()
+{    
+    // TODO geodatabaseファイル作成ジョブオブヘジェクトを作成する
+    generateJob = geodatabaseSyncTask.GenerateGeodatabase(generateParams, mGeodatabasePath);
+
+    // TODO JobChanged イベントを処理してジョブのステータスをチェックする
+    generateJob.JobChanged += OnGenerateJobChanged;
+
+    // ジョブを開始し、ジョブIDをコンソール上に表示
+    generateJob.Start();
+    Console.WriteLine("Submitted job #" + generateJob.ServerJobId + " to create local geodatabase");
 }
 ```
 
