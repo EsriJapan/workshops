@@ -10,7 +10,7 @@ ArcGIS　Runtime SDK には　[iOS](https://developers.arcgis.com/ios/latest/) /
 
 ## 開発環境
 
-### Windows
+### サポート OS
 |サポート OS|最大バージョン|
 |----|----|
 |Windows 10||
@@ -164,7 +164,7 @@ public void Initialize()
 
     MyMapView.Map = myMap;
 
-    // PC内の geodatabase ファイル作成パスを取得する
+    // PC 内の geodatabase ファイル作成パスを取得する
     getGeodatabasePath();
 
     // すでにランタイムコンテンツが作成されているかチェックする
@@ -180,7 +180,7 @@ public void Initialize()
 // 端末ローカルのパスまわり
 ////////////////////////////////////////////////////////////////////////////////////////
 /**
-* geodatabaseファイル作成のパスを取得する
+* geodatabase ファイル作成のパスを取得する
 **/
 private String mGeodatabasePath;
 private void getGeodatabasePath()
@@ -196,7 +196,7 @@ private void getGeodatabasePath()
 }
 
 /**
-* ローカルファイルをMapViewへ追加する
+* ローカルファイル をMapViewへ追加する
 * */
 private void chkGeodatabase()
 {
@@ -219,7 +219,7 @@ private void chkGeodatabase()
 }
 ```
 
-4．存在する場合は、既存の geodatabase から読み込むため `readGeoDatabase()` 関数を作成します。
+4．既存の geodatabase から読み込むため `readGeoDatabase()` 関数を作成します。
 
 ```csharp
 /**
