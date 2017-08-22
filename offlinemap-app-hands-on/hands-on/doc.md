@@ -18,15 +18,14 @@ ArcGIS　Runtime SDK には　[iOS](https://developers.arcgis.com/ios/latest/) /
 |Windows 7| SP1|
 |Windows 10||
 
-|サポート開発環境|
-|----|
-|Visual Studio 2017|
-|Visual Studio 2015 Update 3|
-|Visual Studio Express 2015 for Windows Desktop Update 3|
-|Visual Studio 2013 Update 5|
-|Visual Studio Express 2013 for Windows Desktop Update 5|
-|Visual Studio 2012 Update 4|
-|Visual Studio Express 2012 for Windows Desktop Update 4|
+### サポート開発環境
+- Visual Studio 2017
+- Visual Studio 2015 Update 3
+- Visual Studio Express 2015 for Windows Desktop Update 3
+- Visual Studio 2013 Update 5
+- Visual Studio Express 2013 for Windows Desktop Update 5
+- Visual Studio 2012 Update 4
+- Visual Studio Express 2012 for Windows Desktop Update 4
 
 ### SDK の要件
 Microsoft .NET Framework 4.5.2（最小バージョン）
