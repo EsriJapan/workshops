@@ -90,7 +90,7 @@ ArcGIS Runtime API のすべてのXAML要素は、http://schemas.esri.com/arcgis
 次に背景地図を表示する部分を作成します。
 
 1．プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。<br/>
-2．以下のような内容で 背景地図 を呼び出す部分を作成していきます。
+2．以下のような内容で 背景地図 を呼び出す部分を書いていきます。
 
 ```csharp
 using System;
@@ -146,11 +146,11 @@ namespace sample
 ![オフラインアプリ](./img/3-1.png)
 
 
-### 手順 4: Runtime コンテンツの作成して表示
+### 手順 4: Runtime コンテンツを作成して表示する
 
-オフライン環境においてデータの参照や書き込みを行うために Runtime コンテンツ（*.geodatabase）を作成します。 そして作成した Runtime コンテンツ（*.geodatabase）を参照して地図に表示します。
+オフライン環境においてデータの参照や書き込みを行うために Runtime コンテンツ（*.geodatabase）を作成します。 作成した Runtime コンテンツ（*.geodatabase）を参照して地図を表示します。
 
-次に Runtime コンテンツ（*.geodatabase）作成して表示する部分を作成します。 Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込みます。
+ここでは Runtime コンテンツ（*.geodatabase）新規に作成して表示する部分を書いていきます。Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込みます。
 
 ### MainWindow.xaml.cs
 
