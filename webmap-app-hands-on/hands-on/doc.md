@@ -233,16 +233,12 @@ var incidentPointSymbol = new SimpleMarkerSymbol({
 });
 
 function runClosestFacilityTask(evt){
-  // クリック地点を取得
+  // クリック地点をマップに表示
   var point = evt.mapPoint;
-
-  // グラフィックを作成
   var location = new Graphic({
     geometry: point,
     symbol: incidentPointSymbol
   });
-
-  // マップに描画
   view.graphics.add(location);
 }
 ```
@@ -255,14 +251,6 @@ incidents に渡す値は、 [FeatureSet](https://developers.arcgis.com/javascri
 
 ```js
 function runClosestFacilityTask(evt){
-
-  // クリック地点をマップに表示
-  var point = evt.mapPoint;
-  var location = new Graphic({
-    geometry: evt.mapPoint,
-    symbol: incidentPointSymbol
-  });
-  view.graphics.add(location);
 
   // クリック地点を解析のパラメーターに設定
   var features = [];
@@ -298,22 +286,6 @@ var bufferPolygonSymbol = new SimpleFillSymbol({
 
 function runClosestFacilityTask(evt){
 
-  // クリック地点をマップに表示
-  var point = evt.mapPoint;
-  var location = new Graphic({
-    geometry: evt.mapPoint,
-    symbol: incidentPointSymbol
-  });
-  view.graphics.add(location);
-
-  // クリック地点を解析のパラメーターに設定
-  var features = [];
-  features.push(location);
-  var incidents = new FeatureSet({
-    features: features
-  });
-  params.incidents = incidents;
-
   // クリック地点から 1km のバッファーを作成
   var buffer = geometryEngine.buffer(point, 1, "kilometers");
   var area = new Graphic({
@@ -342,14 +314,6 @@ Web マップに含まれるすべてのレイヤーは、Web マップを読み
 
 ```js
 function runClosestFacilityTask(evt){
-
-  // クリック地点から 1km のバッファーを作成
-  var buffer = geometryEngine.buffer(point, 1, "kilometers");
-  var area = new Graphic({
-    geometry: buffer,
-    symbol: bufferPolygonSymbol
-  });
-  view.graphics.add(area);
 
   // バッファー内にある避難場所をクエリ
   var queryParams = shelterLayer.createQuery();
@@ -385,7 +349,7 @@ function runClosestFacilityTask(evt){
   shelterLayer.queryFeatures(queryParams).then(function(result){
     // クエリ結果を解析対象として設定
     params.facilities = result;
-  }).then(function(){
+    
     // 解析の実行
     closestFacilityTask.solve(params).then(function(solveResult){
       // 結果を表示
