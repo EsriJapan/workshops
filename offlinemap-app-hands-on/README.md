@@ -1,7 +1,5 @@
 # ハンズオン - オフラインアプリ開発
 
-[Web マップ](https://www.esrij.com/gis-guide/web-gis/web-map/)を活用したアプリ開発を体験するハンズオン資料です。  
-
 ArcGIS Runtime SDK と Esri のクラウドサービス　[ArcGIS Online](http://www.arcgis.com/features/index.html) を使用してオフラインアプリ開発を体験するハンズオン資料です。
 
 オフラインアプリの開発には [ArcGIS Runtime SDK for .NET](https://developers.arcgis.com/net/latest/) を利用してハンズオンを進めていきますが、[iOS](https://developers.arcgis.com/ios/latest/)、[Android](https://developers.arcgis.com/android/latest/)の環境のサンプルソースも用意しています。
