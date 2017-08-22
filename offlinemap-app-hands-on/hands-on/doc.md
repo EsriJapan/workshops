@@ -35,15 +35,12 @@ Microsoft .NET Framework 4.5.2（最小バージョン）
 それではここから実際に手を動かしながらやっていきましょう。
 
 ### 手順 1: プロジェクトの作成
+
  
 ### 手順 2: ArcGIS Runtime SDK NuGet パッケージのインストール
- 
 
 
-### 手順 3: Runtime コンテンツの作成して表示
-
-オフライン環境においてデータの参照や書き込みを行うために Runtime コンテンツ（*.geodatabase）を作成します。
-そして作成した Runtime コンテンツ（*.geodatabase）を参照して地図に表示します。
+### 手順 3: 地図表示
 
 地図を表示する部分 ユーザーインタフェースとして、**sample/MainWindow.xaml** に UI を作成していきます。
 地図表示（ユーザインタフェース）は **XAML**(ざむる)という、マークアップ言語で書いていきます。(Extensible Application Markup Language)
@@ -87,11 +84,10 @@ ArcGIS Runtime API のすべてのXAML要素は、http://schemas.esri.com/arcgis
 
 #### MainWindow.xaml.cs
 
-次に Runtime コンテンツ（*.geodatabase）作成して表示する部分を作成します。
-Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込みます。
+次に背景地図を表示する部分を作成します。
 
 1. プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
-2. はじめにベースとなる部分を作成します。
+2. 以下のような内容で 背景地図 を呼び出す部分を作成していきます。
 
 ```csharp
 using System;
@@ -125,57 +121,16 @@ namespace sample
         public MainWindow()
         {
             InitializeComponent();
+            
             Initialize();
         }
 
         public void Initialize()
         {
             myMap = new Map(BasemapType.LightGrayCanvas, 35.3312442, 139.6202471, 10);
-
+            
             MyMapView.Map = myMap;
-
-            // PC内の geodatabase ファイル作成パスを取得する
-            getGeodatabasePath();
-
-            // すでにランタイムコンテンツが作成されているかチェックする
-            chkGeodatabase();
-        }
-        
-        ////////////////////////////////////////////////////////////////////////////////////////
-        // 端末ローカルのパスまわり
-        ////////////////////////////////////////////////////////////////////////////////////////
-        /**
-         * geodatabase ファイル作成のパスを取得する
-         * */
-        private void getGeodatabasePath()
-        {
-            // カレントディレクトリの取得
-            string stCurrentDir = System.Environment.CurrentDirectory;
-
-            mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
-        }
-
-       /**
-        * ローカルファイルを MapView へ追加する
-        * */
-        private void chkGeodatabase()
-        {
-            // カレントディレクトリの取得
-            string stCurrentDir = System.Environment.CurrentDirectory;
-
-            mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
-
-            if (System.IO.File.Exists(mGeodatabasePath))
-            {
-                // 存在する場合は、既存のgeodatabaseから読み込む
-                // readGeoDatabase();
-            }
-            else
-            {
-                // ファイル作成メソッドをcallする
-                // createGeodatabaseSyncTask();
-            }
-        }        
+        }   
         
     }
 }
@@ -185,11 +140,82 @@ namespace sample
 ここでアプリを実行します。
 実行後の以下のような画面になります。
 
+![オフラインアプリ](./img/3-1.png)
 
 
+### 手順 4: Runtime コンテンツの作成して表示
+
+オフライン環境においてデータの参照や書き込みを行うために Runtime コンテンツ（*.geodatabase）を作成します。
+そして作成した Runtime コンテンツ（*.geodatabase）を参照して地図に表示します。
+
+次に Runtime コンテンツ（*.geodatabase）作成して表示する部分を作成します。
+Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込みます。
+
+#### MainWindow.xaml.cs
+
+1. プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
+2. Initialize 関数のなかに、getGeodatabasePath()、chkGeodatabase() 関数を作成していきます。
+
+```csharp
+public void Initialize()
+{
+    myMap = new Map(BasemapType.LightGrayCanvas, 35.3312442, 139.6202471, 10);
+
+    MyMapView.Map = myMap;
+
+    // PC内の geodatabase ファイル作成パスを取得する
+    getGeodatabasePath();
+
+    // すでにランタイムコンテンツが作成されているかチェックする
+    chkGeodatabase();
+
+}
+```
 
 
+```csharp
+////////////////////////////////////////////////////////////////////////////////////////
+// 端末ローカルのパスまわり
+////////////////////////////////////////////////////////////////////////////////////////
+/**
+    * geodatabaseファイル作成のパスを取得する
+    * */
+private String mGeodatabasePath;
+private void getGeodatabasePath()
+{
+    // カレントディレクトリの取得
+    string stCurrentDir = System.Environment.CurrentDirectory;
 
+    // カレントディレクトリを表示する
+    //MessageBox.Show(stCurrentDir);
+
+    mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
+
+}
+
+/**
+* ローカルファイルをMapViewへ追加する
+* */
+private void chkGeodatabase()
+{
+    // カレントディレクトリの取得
+    string stCurrentDir = System.Environment.CurrentDirectory;
+
+    mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
+
+    if (System.IO.File.Exists(mGeodatabasePath))
+    {
+        // 存在する場合は、既存のgeodatabaseから読み込む
+        readGeoDatabase();
+    }
+    else
+    {
+        // ファイル作成メソッドをcallする
+        createGeodatabaseSyncTask();
+    }
+
+}
+```
 
 ### 1. ポータルサイトへのアクセス
 
