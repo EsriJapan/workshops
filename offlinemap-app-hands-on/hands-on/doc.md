@@ -87,7 +87,7 @@ ArcGIS Runtime API のすべてのXAML要素は、http://schemas.esri.com/arcgis
 
 次に背景地図を表示する部分を作成します。
 
-1．プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
+1．プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。<br/>
 2．以下のような内容で 背景地図 を呼び出す部分を作成していきます。
 
 ```csharp
@@ -152,7 +152,7 @@ namespace sample
 
 ### MainWindow.xaml.cs
 
-1．プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
+1．プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。<br/>
 2．`Initialize` 関数のなかに、`getGeodatabasePath()`、`chkGeodatabase()` 関数を作成します。
 
 ```csharp
