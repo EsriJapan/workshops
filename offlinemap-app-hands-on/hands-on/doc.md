@@ -18,29 +18,20 @@ ArcGIS　Runtime SDK には　[iOS](https://developers.arcgis.com/ios/latest/) /
 |Windows 7| SP1|
 |Windows 10||
 
-|サポート開発環境SDK の要件|SDK の要件|
-|----|----|
-|Visual Studio 2017|Microsoft .NET Framework 4.5.2（最小バージョン）|
-|Visual Studio 2015 Update 3|　|
-|Visual Studio Express 2015 for Windows Desktop Update 3|　|
-|Visual Studio 2013 Update 5|　|
-|Visual Studio Express 2013 for Windows Desktop Update 5|　|
-|Visual Studio 2012 Update 4|　|
-|Visual Studio Express 2012 for Windows Desktop Update 4|　|
+|サポート開発環境|
+|----|
+|Visual Studio 2017|
+|Visual Studio 2015 Update 3|
+|Visual Studio Express 2015 for Windows Desktop Update 3|
+|Visual Studio 2013 Update 5|
+|Visual Studio Express 2013 for Windows Desktop Update 5|
+|Visual Studio 2012 Update 4|
+|Visual Studio Express 2012 for Windows Desktop Update 4|
+
+### SDK の要件
+Microsoft .NET Framework 4.5.2（最小バージョン）
 
 詳細については[システム要件](https://developers.arcgis.com/net/latest/forms/guide/system-requirements.htm)を参照してください。
-
-
-を使用するためには、オフライン環境に対応したアプリが必要です。
-
-
-この手順書では、避難場所を可視化した Web マップの作成、および作成した Web マップを ArcGIS API for JavaScript を使用したアプリで読み込む手順を説明します。 
-
-
-
-
-
-さらに、ArcGIS Online が公開している最寄り施設の検出解析サービスを利用して、マップをクリックした地点から最寄りの避難場所へのルートを表示する機能をアプリに実装します。
 
 ## 1. Web マップの作成
 
