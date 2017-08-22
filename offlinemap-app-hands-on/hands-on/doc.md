@@ -8,9 +8,7 @@ ArcGIS　Runtime SDK には　[iOS](https://developers.arcgis.com/ios/latest/) /
 ## 今回 作るものは？
 通信が制限されている状況で地図上にプロットしてポイントデータを作成し、作成したポイントデータをオンライン環境時に　ArcGIS Online のフィーチャ レイヤーと同期するオフラインアプリを作成します。
 
-
 ## 開発環境 (Windows)
-
 |サポート OS|最大バージョン|
 |----|----|
 |Windows 10||
@@ -32,9 +30,65 @@ Microsoft .NET Framework 4.5.2（最小バージョン）
 
 詳細については[システム要件](https://developers.arcgis.com/net/latest/forms/guide/system-requirements.htm)を参照してください。
 
-## 1. Web マップの作成
+## 手を動かそう
 
-ArcGIS for Developers へサインアップすると、作成されるポータルサイトへサインインし、[Web マップ](https://www.esrij.com/gis-guide/web-gis/web-map/)を作成します。
+それではここから実際に手を動かしながらやっていきましょう。
+
+### 手順 1: プロジェクトの作成
+ 
+### 手順 2: ArcGIS Runtime SDK NuGet パッケージのインストール
+ 
+
+
+### 手順 2: Runtime コンテンツの作成して表示
+
+まずはじめにオフライン環境においてデータの参照や書き込みを行うために Runtime コンテンツ（*.geodatabase）を作成します。
+そして作成した Runtime コンテンツ（*.geodatabase）を地図に表示します。
+
+地図を表示する部分 ユーザーインタフェースとして、**sample/MainWindow.xaml** に UI を作成していきます。
+地図表示（ユーザインタフェース）は **XAML**(ざむる)という、マークアップ言語で書いていきます。(Extensible Application Markup Language)
+
+#### MainWindow.xaml
+
+まず、MapView コントロールをページに追加するには、XAML 名前空間を割り当てる必要があります。
+次のように XML 名前空間の参照を WindowContentPage の XAML 要素に追加します。
+
+```xml
+  xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+```
+ArcGIS Runtime API のすべてのXAML要素は、http://schemas.esri.com/arcgis/runtime/2013 名前空間で使用できます。
+
+次に、Grid の中に MapView クラスを追加します：
+
+```xml
+  <Grid>
+     <esri:MapView x:Name="MyMapView"/>
+  </Grid>
+```
+【確認】現在、`MainWindow.xaml`は、次のようになっているはずです。
+
+```xml
+<Window x:Class="sample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+        xmlns:local="clr-namespace:sample"
+        mc:Ignorable="d"
+        Title="オフラインマップ" Height="450" Width="625">
+ 
+ <Grid>
+    <esri:MapView x:Name="MyMapView"/>
+ </Grid>
+
+</ContentPage>
+```
+
+#### MainWindow.xaml.cs
+
+
+
 
 ### 1. ポータルサイトへのアクセス
 
