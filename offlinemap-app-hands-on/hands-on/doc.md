@@ -347,7 +347,7 @@ private void OnGenerateJobChanged(object sender, EventArgs e)
 }
 ```
 
-【確認】現在、`createGeodatabaseSyncTask()`、`generateGeodatabaseParameters()`、`generateGeodatabase()`は、次のようになっているはずです。
+【確認】現在、`createGeodatabaseSyncTask()`関数、`generateGeodatabaseParameters()`関数、`generateGeodatabase()`関数は、次のようになっているはずです。
 
 ```csharp
 ////////////////////////////////////////////////////////////////
