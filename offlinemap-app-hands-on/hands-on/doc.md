@@ -40,7 +40,7 @@ Microsoft .NET Framework 4.5.2（最小バージョン）
  
 
 
-### 手順 2: Runtime コンテンツの作成して表示
+### 手順 3: Runtime コンテンツの作成して表示
 
 オフライン環境においてデータの参照や書き込みを行うために Runtime コンテンツ（*.geodatabase）を作成します。
 そして作成した Runtime コンテンツ（*.geodatabase）を参照して地図に表示します。
@@ -88,9 +88,10 @@ ArcGIS Runtime API のすべてのXAML要素は、http://schemas.esri.com/arcgis
 #### MainWindow.xaml.cs
 
 次に Runtime コンテンツ（*.geodatabase）作成して表示する部分を作成します。
+Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込みます。
 
 1. プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
-2. 以下のような内容で WebMap を呼び出す部分を作成していきます。
+2. はじめにベースとなる部分を作成します。
 
 ```csharp
 using System;
@@ -120,14 +121,11 @@ namespace sample
         private Map myMap;
 
         private SyncGeodatabaseParameters syncParams;
-
-
+        
         public MainWindow()
         {
             InitializeComponent();
-
             Initialize();
-
         }
 
         public void Initialize()
@@ -147,22 +145,18 @@ namespace sample
         // 端末ローカルのパスまわり
         ////////////////////////////////////////////////////////////////////////////////////////
         /**
-         * geodatabaseファイル作成のパスを取得する
+         * geodatabase ファイル作成のパスを取得する
          * */
         private void getGeodatabasePath()
         {
             // カレントディレクトリの取得
             string stCurrentDir = System.Environment.CurrentDirectory;
 
-            // カレントディレクトリを表示する
-            //MessageBox.Show(stCurrentDir);
-
             mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
-
         }
 
        /**
-        * ローカルファイルをMapViewへ追加する
+        * ローカルファイルを MapView へ追加する
         * */
         private void chkGeodatabase()
         {
@@ -174,47 +168,27 @@ namespace sample
             if (System.IO.File.Exists(mGeodatabasePath))
             {
                 // 存在する場合は、既存のgeodatabaseから読み込む
-                readGeoDatabase();
+                // readGeoDatabase();
             }
             else
             {
                 // ファイル作成メソッドをcallする
-                createGeodatabaseSyncTask();
+                // createGeodatabaseSyncTask();
             }
-
-        }
-        
-       /**
-        * 既存GeoDatabaseから読み込む
-        ****/
-        private GeodatabaseFeatureTable mGdbFeatureTable;
-        private FeatureLayer mFeatureLayer;
-        private Geodatabase geodatabase;
-        private async void readGeoDatabase()
-        {
-            geodatabase = await Geodatabase.OpenAsync(mGeodatabasePath);
-
-            if (geodatabase.GeodatabaseFeatureTables.Count > 0)
-            {
-                // データベース内の最初のテーブルを取得する
-                mGdbFeatureTable = geodatabase.GeodatabaseFeatureTables.FirstOrDefault();
-
-                await mGdbFeatureTable.LoadAsync();
-
-                if (mGdbFeatureTable.LoadStatus == LoadStatus.Loaded)
-                {
-                    mFeatureLayer = new FeatureLayer(mGdbFeatureTable);
-
-                    myMap.OperationalLayers.Add(mFeatureLayer);
-                }
-            }
-        }
-        
-        
+        }        
         
     }
 }
 ```
+#### アプリの実行
+
+ここでアプリを実行します。
+実行後の以下のような画面になります。
+
+
+
+
+
 
 
 ### 1. ポータルサイトへのアクセス
