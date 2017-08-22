@@ -98,7 +98,7 @@ ArcGIS API for JavaScript を使い、作成した Web マップをアプリで�
 
 ### 1. HTML ファイルの作成
 
-[JS Bin](https://jsbin.com/) を開き、以下をコピーし貼り付けます。
+[JS Bin](https://jsbin.com/) を開き、以下を貼り付けます。
 
 ```html
 <!DOCTYPE html>
@@ -141,8 +141,16 @@ ArcGIS API for JavaScript では、モジュールを読み込むことでクラ
   require([
     "esri/WebMap",
     "esri/views/MapView",
+    "esri/tasks/ClosestFacilityTask",
+    "esri/tasks/support/ClosestFacilityParameters",
+    "esri/tasks/support/FeatureSet",
+    "esri/symbols/SimpleMarkerSymbol",
+    "esri/symbols/SimpleLineSymbol",
+    "esri/symbols/SimpleFillSymbol",
+    "esri/Graphic",
+    "esri/geometry/geometryEngine",
     "dojo/domReady!"
-  ], function(WebMap, MapView) {
+  ], function(WebMap, MapView, ClosestFacilityTask, ClosestFacilityParameters, FeatureSet, SimpleMarkerSymbol, SimpleLineSymbol, SimpleFillSymbol, Graphic, geometryEngine) {
 
     var webmap = new WebMap({
       // Web マップの読み込み
@@ -183,23 +191,15 @@ incidents と facilities の設定は、次の手順で行います。
 ここでは、最寄りの避難場所へのルートを取得するため、returnRoutes の値を true に設定します。
 
 ```js
-require([
-  // モジュールの読み込み
-  "esri/tasks/ClosestFacilityTask",
-  "esri/tasks/support/ClosestFacilityParameters"
-], function(ClosestFacilityTask, ClosestFacilityParameters){
+// 最寄り施設の検出解析の設定
+ var closestFacilityTask = new ClosestFacilityTask({
+   url: "https://route.arcgis.com/arcgis/rest/services/World/ClosestFacility/NAServer/ClosestFacility_World"
+ });
 
-  // 最寄り施設の検出解析の設定
-  var closestFacilityTask = new ClosestFacilityTask({
-    url: "https://route.arcgis.com/arcgis/rest/services/World/ClosestFacility/NAServer/ClosestFacility_World"
-  });
-
-  // パラメータの設定
-  var params = new ClosestFacilityParameters({
-    returnRoutes: true
-  });
-
-});
+ // パラメータの設定
+ var params = new ClosestFacilityParameters({
+   returnRoutes: true
+ });
 ```
 
 #### incidents（解析を行う地点）の設定
@@ -225,34 +225,26 @@ function runClosestFacilityTask(evt){
 ポイントの描画には、[グラフィック](https://developers.arcgis.com/javascript/latest/api-reference/esri-Graphic.html)を使用します。
 
 ```js
-require([
-  // モジュールの読み込み
-  "esri/symbols/SimpleMarkerSymbol",
-  "esri/Graphic",
-], function(SimpleMarkerSymbol, Graphic){
+// クリック地点のシンボル
+var incidentPointSymbol = new SimpleMarkerSymbol({
+  style: "circle",
+  color: [255, 0, 0],
+  size: 8
+});
 
-  // クリック地点のシンボル
-  var incidentPointSymbol = new SimpleMarkerSymbol({
-    style: "circle",
-    color: [255, 0, 0],
-    size: 8
+function runClosestFacilityTask(evt){
+  // クリック地点を取得
+  var point = evt.mapPoint;
+
+  // グラフィックを作成
+  var location = new Graphic({
+    geometry: point,
+    symbol: incidentPointSymbol
   });
 
-  function runClosestFacilityTask(evt){
-    // クリック地点を取得
-    var point = evt.mapPoint;
-
-    // グラフィックを作成
-    var location = new Graphic({
-      geometry: point,
-      symbol: incidentPointSymbol
-    });
-
-    // マップに描画
-    view.graphics.add(location);
-  }
-
-});
+  // マップに描画
+  view.graphics.add(location);
+}
 ```
 
 ##### incidents の設定
@@ -262,32 +254,25 @@ incidents に渡す値は、 [FeatureSet](https://developers.arcgis.com/javascri
 マップのクリック地点を表示する際に作成したグラフィックをもとに、FeatureSet を作成し、パラメーターに追加します。
 
 ```js
-require([
-  // モジュールの読み込み
-  "esri/tasks/support/FeatureSet"
-], function(FeatureSet){
+function runClosestFacilityTask(evt){
 
-  function runClosestFacilityTask(evt){
+  // クリック地点をマップに表示
+  var point = evt.mapPoint;
+  var location = new Graphic({
+    geometry: evt.mapPoint,
+    symbol: incidentPointSymbol
+  });
+  view.graphics.add(location);
 
-    // クリック地点をマップに表示
-    var point = evt.mapPoint;
-    var location = new Graphic({
-      geometry: evt.mapPoint,
-      symbol: incidentPointSymbol
-    });
-    view.graphics.add(location);
+  // クリック地点を解析のパラメーターに設定
+  var features = [];
+  features.push(location);
+  var incidents = new FeatureSet({
+    features: features
+  });
+  params.incidents = incidents;
 
-    // クリック地点を解析のパラメーターに設定
-    var features = [];
-    features.push(location);
-    var incidents = new FeatureSet({
-      features: features
-    });
-    params.incidents = incidents;
-
-  }
-
-});
+}
 ```
 
 #### facilities（検索の対象となる施設）の設定
@@ -301,51 +286,43 @@ facilities には、検索対象の施設を渡します。
 対象のエリアを検索するため、クリック地点から半径 1km のバッファーを作成します。
 
 ```js
-require([
-  // モジュールの読み込み
-  "esri/symbols/SimpleFillSymbol",
-  "esri/geometry/geometryEngine",
-], function(SimpleFillSymbol, geometryEngine){
-
-  // バッファーシンボル
-  var bufferPolygonSymbol = new SimpleFillSymbol({
-    color: [255, 183, 51, 0.25],
-    style: "solid",
-    outline: {
-      color: [255, 183, 51],
-      width: 2
-    }
-  });
-
-  function runClosestFacilityTask(evt){
-
-    // クリック地点をマップに表示
-    var point = evt.mapPoint;
-    var location = new Graphic({
-      geometry: evt.mapPoint,
-      symbol: incidentPointSymbol
-    });
-    view.graphics.add(location);
-
-    // クリック地点を解析のパラメーターに設定
-    var features = [];
-    features.push(location);
-    var incidents = new FeatureSet({
-      features: features
-    });
-    params.incidents = incidents;
-
-    // クリック地点から 1km のバッファーを作成
-    var buffer = geometryEngine.buffer(point, 1, "kilometers");
-    var area = new Graphic({
-      geometry: buffer,
-     symbol: bufferPolygonSymbol
-    });
-    view.graphics.add(area);
-
+// バッファーシンボル
+var bufferPolygonSymbol = new SimpleFillSymbol({
+  color: [255, 183, 51, 0.25],
+  style: "solid",
+  outline: {
+    color: [255, 183, 51],
+    width: 2
   }
-
 });
+
+function runClosestFacilityTask(evt){
+
+  // クリック地点をマップに表示
+  var point = evt.mapPoint;
+  var location = new Graphic({
+    geometry: evt.mapPoint,
+    symbol: incidentPointSymbol
+  });
+  view.graphics.add(location);
+
+  // クリック地点を解析のパラメーターに設定
+  var features = [];
+  features.push(location);
+  var incidents = new FeatureSet({
+    features: features
+  });
+  params.incidents = incidents;
+
+  // クリック地点から 1km のバッファーを作成
+  var buffer = geometryEngine.buffer(point, 1, "kilometers");
+  var area = new Graphic({
+    geometry: buffer,
+   symbol: bufferPolygonSymbol
+  });
+  view.graphics.add(area);
+
+}
 ```
 
 バッファーを作成したら、バッファーに含まれる避難場所をクエリします。  
@@ -392,42 +369,35 @@ function runClosestFacilityTask(evt){
 最寄り施設の検出解析を実行して、解析結果に含まれる最寄り施設へのルートをマップに表示します。
 
 ```js
-require([
-  // モジュールの読み込み
-  "esri/symbols/SimpleLineSymbol"
-], function(SimpleLineSymbol){
+// ルートシンボル
+var routePolylineSymbol = new SimpleLineSymbol({
+  color: [89, 95, 35],
+  width: 4,
+  style: "solid"
+});
 
-  // ルートシンボル
-  var routePolylineSymbol = new SimpleLineSymbol({
-    color: [89, 95, 35],
-    width: 4,
-    style: "solid"
+function runClosestFacilityTask(evt){
+
+  // バッファー内にある避難場所をクエリ
+  var queryParams = shelterLayer.createQuery();
+  queryParams.geometry = buffer;
+  // クエリの実行
+  shelterLayer.queryFeatures(queryParams).then(function(result){
+    // クエリ結果を解析対象として設定
+    params.facilities = result;
+  }).then(function(){
+    // 解析の実行
+    closestFacilityTask.solve(params).then(function(solveResult){
+      // 結果を表示
+      var routes = solveResult.routes.map(function(route){
+        route.symbol = routePolylineSymbol;
+        return route;
+      });
+      view.graphics.addMany(routes);
+    });
   });
 
-  function runClosestFacilityTask(evt){
-
-    // バッファー内にある避難場所をクエリ
-    var queryParams = shelterLayer.createQuery();
-    queryParams.geometry = buffer;
-    // クエリの実行
-    shelterLayer.queryFeatures(queryParams).then(function(result){
-      // クエリ結果を解析対象として設定
-      params.facilities = result;
-    }).then(function(){
-      // 解析の実行
-      closestFacilityTask.solve(params).then(function(solveResult){
-        // 結果を表示
-        var routes = solveResult.routes.map(function(route){
-          route.symbol = routePolylineSymbol;
-          return route;
-        });
-        view.graphics.addMany(routes);
-      });
-    });
-
-  }
-
-});
+}
 ```
 
 最後に、クリック時に、以前の検索結果を削除するため、マップに表示されているすべてのグラフィックを削除するメソッドを追加します。
