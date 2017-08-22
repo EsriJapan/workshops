@@ -87,8 +87,8 @@ ArcGIS Runtime API のすべてのXAML要素は、http://schemas.esri.com/arcgis
 
 次に背景地図を表示する部分を作成します。
 
-#### 1. プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
-#### 2. 以下のような内容で 背景地図 を呼び出す部分を作成していきます。
+##### 1. プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
+##### 2. 以下のような内容で 背景地図 を呼び出す部分を作成していきます。
 
 ```csharp
 using System;
@@ -152,8 +152,8 @@ namespace sample
 
 #### MainWindow.xaml.cs
 
-#### 1. プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
-#### 2. `Initialize` 関数のなかに、`getGeodatabasePath()`、`chkGeodatabase()` 関数を作成します。
+##### 1. プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
+##### 2. `Initialize` 関数のなかに、`getGeodatabasePath()`、`chkGeodatabase()` 関数を作成します。
 
 ```csharp
 public void Initialize()
@@ -171,7 +171,7 @@ public void Initialize()
 }
 ```
 
-#### 3. `getGeodatabasePath()`、`chkGeodatabase()` 関数をそれぞれ作成します。
+##### 3. `getGeodatabasePath()`、`chkGeodatabase()` 関数をそれぞれ作成します。
 
 ```csharp
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -217,7 +217,7 @@ private void chkGeodatabase()
 }
 ```
 
-#### 4. 存在する場合は、既存の geodatabase から読み込むため `readGeoDatabase()` 関数を作成します。
+##### 4. 存在する場合は、既存の geodatabase から読み込むため `readGeoDatabase()` 関数を作成します。
 
 ```csharp
 /**
@@ -247,7 +247,7 @@ private async void readGeoDatabase()
 }
 ```
 
-#### 5. ローカルフォルダにランタイムコンテンツ（*.geodatabase）を作成します。
+##### 5. ローカルフォルダにランタイムコンテンツ（*.geodatabase）を作成します。
 
 ランタイムコンテンツ（*.geodatabase）の作成は、ステップ①、②、③ の手順で行っていきます。
 - ① 同期させたいArcGIS Online の Feature Layer でタスクを作成する
@@ -345,7 +345,7 @@ private void OnGenerateJobChanged(object sender, EventArgs e)
 }
 ```
 
-#### 【確認】現在、`createGeodatabaseSyncTask()`、`generateGeodatabaseParameters()`、`generateGeodatabase()`は、次のようになっているはずです。
+##### 【確認】現在、`createGeodatabaseSyncTask()`、`generateGeodatabaseParameters()`、`generateGeodatabase()`は、次のようになっているはずです。
 
 ```csharp
 ////////////////////////////////////////////////////////////////
