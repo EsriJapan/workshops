@@ -6,7 +6,12 @@
 ArcGIS Runtime SDK には　[iOS](https://developers.arcgis.com/ios/latest/) / [Android](https://developers.arcgis.com/android/latest/) / [.NET](https://developers.arcgis.com/net/latest/) の開発環境があります。今回のオフラインアプリの開発には [ArcGIS Runtime SDK for .NET](https://developers.arcgis.com/net/latest/) を利用します。
 
 ## 今回 作るものは？
-通信が制限されている状況で地図上にプロットしてポイントデータを作成し、作成したポイントデータをオンライン環境時に　ArcGIS Online のフィーチャ レイヤーと同期するオフラインアプリを作成します。
+通信が制限されている状況で地図上にプロットしてポイントデータを作成し、作成したポイントデータをオンライン環境時に ArcGIS Online のフィーチャ レイヤーと同期するオフラインアプリを作成します。
+
+今回使用するデータは、こちらの[フィーチャ レイヤー](https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/SampleDataHandsOn/FeatureServer/)に対して同期を行います。
+
+
+
 
 ## 開発環境
 
@@ -115,7 +120,7 @@ namespace sample
     {
 
         // ArcGIS Online フィーチャ レイヤーサービスの URL  
-        private const string FEATURELAYER_SERVICE_URL = "https://services7.arcgis.com/903opF9LxIC4unCH/arcgis/rest/services/yokohamaTripPoint/FeatureServer/";
+        private const string FEATURELAYER_SERVICE_URL = "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/SampleDataHandsOn/FeatureServer/";
 
         private Map myMap;
 
