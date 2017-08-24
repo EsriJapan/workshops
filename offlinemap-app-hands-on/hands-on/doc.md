@@ -480,7 +480,7 @@ private async void addFeature(MapPoint pPoint)
 
     // 項目にデータを入れる
     var attributes = new Dictionary<string, object>();
-    attributes.Add("BuildingName ", "ESRIジャパンnow！");
+    attributes.Add("BuildingName", "ESRIジャパンnow！");
 
     Feature addedFeature = mGdbFeatureTable.CreateFeature(attributes, pPoint);
 
@@ -490,7 +490,7 @@ private async void addFeature(MapPoint pPoint)
 
     foreach (var r in results)
     {
-        Console.WriteLine("add point geodatabase : '" + r.Attributes["BuildingName "]);
+        Console.WriteLine("add point geodatabase : '" + r.Attributes["BuildingName"]);
     }
 }
 ```
