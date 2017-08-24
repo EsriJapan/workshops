@@ -77,9 +77,6 @@ ArcGIS Runtime SDK のインストールを行います。
 
 ## 手順 3: 地図表示
 
-オフライン環境においてデータの参照や書き込みを行うために Runtime コンテンツ（*.geodatabase）を作成します。
-そして作成した Runtime コンテンツ（*.geodatabase）を参照して地図に表示します。
-
 地図を表示する部分 ユーザーインタフェースとして、**sample/MainWindow.xaml** に UI を作成していきます。
 地図表示（ユーザインタフェース）は **XAML**(ざむる)という、マークアップ言語で書いていきます。(Extensible Application Markup Language)
 
