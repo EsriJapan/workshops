@@ -12,7 +12,9 @@ ArcGIS Runtime SDK には　[iOS](https://developers.arcgis.com/ios/latest/) / [
 [ArcGIS Online 上で表示](http://www.arcgis.com/home/webmap/viewer.html?webmap=4e90d664e499454a831ec05250299522)
 
 ## 今回 作るものは？
-通信が制限されている状況で地図上にプロットしてポイントデータを作成し、作成したポイントデータをオンライン環境時に　ArcGIS Online のフィーチャ レイヤーと同期するオフラインアプリを作成します。
+通信が制限されている状況で地図上にプロットしてポイントデータを作成し、作成したポイントデータをオンライン環境時に ArcGIS Online のフィーチャ レイヤーと同期するオフラインアプリを作成します。
+
+<img src="./img/CreateApp.png" width="600px">
 
 ## 開発環境
 
