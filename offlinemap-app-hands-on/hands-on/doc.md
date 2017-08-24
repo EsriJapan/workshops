@@ -148,7 +148,7 @@ namespace sample
     public partial class MainWindow : Window
     {
         // ArcGIS Online フィーチャ レイヤーサービスの URL  
-        private const string FEATURELAYER_SERVICE_URL = "https://services7.arcgis.com/903opF9LxIC4unCH/arcgis/rest/services/yokohamaTripPoint/FeatureServer/";
+        private const string FEATURELAYER_SERVICE_URL = "https://services.arcgis.com/wlVTGRSYTzAbjjiC/ArcGIS/rest/services/SampleDataHandsOn/FeatureServer";
 
         private Map myMap;
 
