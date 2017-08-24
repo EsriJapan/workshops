@@ -348,6 +348,64 @@ private void OnGenerateJobChanged(object sender, EventArgs e)
 }
 ```
 
+【確認】現在`createGeodatabaseSyncTask()`、`generateGeodatabaseParameters()`、`generateGeodatabase()`関数は、次のようになっているはずです。
+
+```csharp
+/**
+ * GeoDatabaseを新規に作成する
+ * ① 同期させたいArcGIS Online の Feature Layer でタスクを作成する
+ ****/
+private async void createGeodatabaseSyncTask()
+{
+    // TODO 同期させたいレイヤーで geodatabase 作成 タスクオブジェクトを作成する
+    var featureServiceUri = new Uri(FEATURELAYER_SERVICE_URL);
+    geodatabaseSyncTask = await GeodatabaseSyncTask.CreateAsync(featureServiceUri);
+            
+    // ② 同期させたいArcGIS Online の Feature Layer のパラメータを取得する
+    generateGeodatabaseParameters();
+}
+
+/**
+ * GeoDatabaseを新規に作成する
+ * ② 同期させたいArcGIS Online の Feature Layer のパラメータを取得する
+ **/
+private async void generateGeodatabaseParameters()
+{
+    // TODO geodatabase 作成のためのパラメータを取得する
+    Envelope extent = MyMapView.GetCurrentViewpoint(ViewpointType.BoundingGeometry).TargetGeometry as Envelope;
+    generateParams = await geodatabaseSyncTask.CreateDefaultGenerateGeodatabaseParametersAsync(extent);
+
+    // TODO レイヤーごとに同期を設定する 
+    generateParams.SyncModel = SyncModel.Layer;
+
+    // TODO 添付ファイルは返さない
+    generateParams.ReturnAttachments = false;
+
+    // ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する
+    generateGeodatabase();
+}
+
+/**
+ * GeoDatabaseを新規に作成する
+ * ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する
+ **/
+private void generateGeodatabase()
+{
+    // TODO geodatabaseファイル作成ジョブオブヘジェクトを作成する
+    generateJob = geodatabaseSyncTask.GenerateGeodatabase(generateParams, mGeodatabasePath);
+
+    // TODO JobChanged イベントを処理してジョブのステータスをチェックする
+    generateJob.JobChanged += OnGenerateJobChanged;
+
+    // ジョブを開始し、ジョブIDをコンソール上に表示
+    generateJob.Start();
+    Console.WriteLine("Submitted job #" + generateJob.ServerJobId + " to create local geodatabase");
+}
+```
+
+
+
+
 ### 4. 動作確認
 
 それでは、アプリを起動してみましょう。  
