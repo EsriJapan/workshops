@@ -136,7 +136,7 @@ namespace sample
 
         public void Initialize()
         {
-            myMap = new Map(BasemapType.LightGrayCanvas, 35.3312442, 139.6202471, 10);
+            myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
             MyMapView.Map = myMap;
         }
     }
