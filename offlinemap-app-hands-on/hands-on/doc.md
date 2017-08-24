@@ -43,9 +43,26 @@ Microsoft .NET Framework 4.5.2（最小バージョン）
 それではここから実際に手を動かしながらやっていきましょう。
 
 ## 手順 1: プロジェクトの作成
- 
+
+1. Microsoft Visual Staudio を起動し、メニューの [新規作成] ⇒ [プロジェクト] をクリックして新しいプロジェクト画面を表示します。
+2. 新しいプロジェクトでは 画面左の メニューから Windows クラシック デスクトップを選択して、WPF アプリ（.NET Framework）を選択します。
+3. 保存場所は任意の場所を指定し、プロジェクトとソリューションの名前は sample とします。
+4. [OK] ボタンをクリックしてプロジェクトの作成を行います。
+
+
 ## 手順 2: ArcGIS Runtime SDK NuGet パッケージのインストール
- 
+
+ArcGIS Runtime SDK のインストールを行います。
+
+1. メニューの [ツール] ⇒ [NuGet パッケージ マネージャー] ⇒ [ソリューションの NuGet パッケージの管理]をクリックします。
+
+2. 参照を選択して、検索欄に esri と 入力して検索を行います。
+3. 検索されたパッケージから Esri.ArcGISRuntime.WPF を選択します。
+4. 画面右側の sample プロジェクトのチェックボックスを ON にし、[インストーラ]ボタンをクリックしてパッケージのインストールを行います。
+
+5. プレビュー画面が表示されますので、[OK]ボタンをクリックします。
+6. ライセンスへの同意画面がが表示されますので、[同意する]ボタンをクリックします。
+7．しばらくするとインストール処理が実行されます。これでインストールは完了です。
 
 
 ## 手順 3: 地図表示
@@ -348,7 +365,7 @@ private void OnGenerateJobChanged(object sender, EventArgs e)
 }
 ```
 
-【確認】現在`createGeodatabaseSyncTask()`、`generateGeodatabaseParameters()`、`generateGeodatabase()`関数は、次のようになっているはずです。
+【確認】現在、`createGeodatabaseSyncTask()`、`generateGeodatabaseParameters()`、`generateGeodatabase()`関数は、次のようになっているはずです。
 
 ```csharp
 /**
