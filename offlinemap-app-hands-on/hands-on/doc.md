@@ -523,6 +523,8 @@ private async void addFeature(MapPoint pPoint)
 }
 ```
 
+【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` の全体を確認したい方は [こちら](examples/手順5)にございます。
+
 ### アプリの実行
 
 ここでアプリを実行します。<br/>  
@@ -694,6 +696,8 @@ private void UpdateProgressBar()
     });
 }
 ```
+
+【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` の全体を確認したい方は [こちら](examples/手順6)にございます。
 
 ### アプリの実行
 
