@@ -14,7 +14,9 @@ ArcGIS Runtime SDK には　[iOS](https://developers.arcgis.com/ios/latest/) / [
 ## 今回 作るものは？
 通信が制限されている状況で地図上にプロットしてポイントデータを作成し、作成したポイントデータをオンライン環境時に　ArcGIS Online のフィーチャ レイヤーと同期するオフラインアプリを作成します。
 
-## 開発環境 (Windows)
+## 開発環境
+
+### Windows
 |サポート OS|最大バージョン|
 |----|----|
 |Windows 10||
