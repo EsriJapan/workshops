@@ -679,6 +679,6 @@ private void UpdateProgressBar()
 実際に ArcGIS Online にアクセスして新規に追加されたポイントデータが反映されているか確認しましょう。
 同期がうまくいった場合は新規のポイントデータが追加されています。
 
-<img src="./img/SampleData.png" width="500px">
+<img src="./img/AddData.png" width="500px">
 
 [ArcGIS Online 上で表示](http://www.arcgis.com/home/webmap/viewer.html?webmap=4e90d664e499454a831ec05250299522)
