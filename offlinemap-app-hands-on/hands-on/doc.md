@@ -429,7 +429,7 @@ private void generateGeodatabase()
 }
 ```
 
-【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちらに](examples/手順4)ございます。
+【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` の全体を確認したい方は [こちら](examples/手順4)にございます。
 
 ### アプリの実行
 
