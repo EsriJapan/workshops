@@ -97,7 +97,7 @@ ArcGIS Runtime API のすべてのXAML要素は、http://schemas.esri.com/arcgis
 
 次に背景地図を表示する部分を作成します。
 
-1. プロジェクトの中の `sample/MainWindow..xaml.cs` ファイルを開きます。
+1. プロジェクトの `sample/MainWindow..xaml.cs` ファイルを開きます。
 2. 以下のような内容で背景地図を呼び出す部分を書いていきます。
 
 ```csharp
@@ -200,10 +200,153 @@ namespace sample
 
 ここでは Runtime コンテンツ（*.geodatabase）を新規に作成し、作成した Runtime コンテンツ（*.geodatabase）を地図に表示する部分を書いていきます。また、Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込むようにします。
 
+### MainWindow.xaml
 
+1. プロジェクトの `sample/MainWindow..xaml.cs` ファイルを開きます。
+2. `Initialize` 関数に `getGeodatabasePath()`、`chkGeodatabase()` 関数を作成します。
 
+```csharp
+public void Initialize()
+{
+    myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
 
+    MyMapView.Map = myMap;
 
+    //MyMapView.GeoViewTapped += OnMapViewTapped;
+
+    // PC内の geodatabase ファイル作成パスを取得する
+    getGeodatabasePath();
+
+    // すでにランタイムコンテンツが作成されているかチェックする
+    chkGeodatabase();
+
+}
+```
+
+以下のような内容で背景地図を呼び出す部分を書いていきます。
+
+3. getGeodatabasePath()`、`chkGeodatabase()` 関数をそれぞれ作成します。
+
+```csharp
+////////////////////////////////////////////////////////////////////////////////////////
+// 端末ローカルのパスまわり
+////////////////////////////////////////////////////////////////////////////////////////
+/**
+* geodatabaseファイル作成のパスを取得する
+**/
+private String mGeodatabasePath;
+private void getGeodatabasePath()
+{
+    // カレントディレクトリの取得
+    string stCurrentDir = System.Environment.CurrentDirectory;
+
+    // カレントディレクトリを表示する
+    //MessageBox.Show(stCurrentDir);
+
+    mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
+
+}
+
+/**
+* ローカルファイルをMapViewへ追加する
+* */
+private void chkGeodatabase()
+{
+    // カレントディレクトリの取得
+    string stCurrentDir = System.Environment.CurrentDirectory;
+
+    mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
+
+    if (System.IO.File.Exists(mGeodatabasePath))
+    {
+        // 存在する場合は、既存のgeodatabaseから読み込む
+        readGeoDatabase();
+    }
+    else
+    {
+        // ファイル作成メソッドをcallする
+        createGeodatabaseSyncTask();
+    }
+}
+```
+
+4. `getGeodatabasePath()`、`chkGeodatabase()` 関数をそれぞれ作成します。
+
+```csharp
+////////////////////////////////////////////////////////////////////////////////////////
+// 端末ローカルのパスまわり
+////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * geodatabaseファイル作成のパスを取得する
+ **/
+private String mGeodatabasePath;
+private void getGeodatabasePath()
+{
+    // カレントディレクトリの取得
+    string stCurrentDir = System.Environment.CurrentDirectory;
+
+    // カレントディレクトリを表示する
+    //MessageBox.Show(stCurrentDir);
+
+    mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
+
+}
+
+/**
+ * ローカルファイルを MapView へ追加する
+ **/
+private void chkGeodatabase()
+{
+    // カレントディレクトリの取得
+    string stCurrentDir = System.Environment.CurrentDirectory;
+
+    mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
+
+    if (System.IO.File.Exists(mGeodatabasePath))
+    {
+        // 存在する場合は、既存のgeodatabaseから読み込む
+        readGeoDatabase();
+    }
+    else
+    {
+        // ファイル作成メソッドをcallする
+        createGeodatabaseSyncTask();
+    }
+}
+```
+
+4. 既存 GeoDatabase から読み込む、`readGeoDatabase()`関数を作成します。
+
+```csharp
+/**
+ * 既存 GeoDatabase から読み込む
+ ****/
+private GeodatabaseFeatureTable mGdbFeatureTable;
+private FeatureLayer mFeatureLayer;
+private Geodatabase geodatabase;
+private async void readGeoDatabase()
+{
+    geodatabase = await Geodatabase.OpenAsync(mGeodatabasePath);
+
+    if (geodatabase.GeodatabaseFeatureTables.Count > 0)
+    {
+        // データベース内の最初のテーブルを取得する
+        mGdbFeatureTable = geodatabase.GeodatabaseFeatureTables.FirstOrDefault();
+
+        await mGdbFeatureTable.LoadAsync();
+
+        if (mGdbFeatureTable.LoadStatus == LoadStatus.Loaded)
+        {
+            mFeatureLayer = new FeatureLayer(mGdbFeatureTable);
+
+            myMap.OperationalLayers.Add(mFeatureLayer);
+
+        }
+
+    }
+
+}
+```
 
 ### 4. 動作確認
 
