@@ -153,7 +153,8 @@ namespace sample
 
 オフライン環境においてデータの参照や書き込みを行うために Runtime コンテンツ（*.geodatabase）を作成します。作成した Runtime コンテンツ（*.geodatabase）を参照して地図に表示します。
 
-ここでは Runtime コンテンツ（*.geodatabase）を新規に作成し、作成した Runtime コンテンツ（*.geodatabase）を地図に表示する部分を書いていきます。また、Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込むようにします。
+ここでは Runtime コンテンツ（*.geodatabase）を新規に作成し、作成した Runtime コンテンツ（*.geodatabase）を地図に表示する部分を書いていきます。<br/>
+また、Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込むようにします。
 
 ### MainWindow.xaml
 
@@ -166,8 +167,6 @@ public void Initialize()
     myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
 
     MyMapView.Map = myMap;
-
-    //MyMapView.GeoViewTapped += OnMapViewTapped;
 
     // PC内の geodatabase ファイル作成パスを取得する
     getGeodatabasePath();
@@ -259,7 +258,8 @@ private async void readGeoDatabase()
 - ② 同期させたいArcGIS Online の Feature Layer のパラメータを取得する。
 - ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する。
 
- コードの TODO 箇所に処理を書いていきましょう。詳細は、 [Runtime コンテンツ（*.geodatabase）の作成](https://developers.arcgis.com/net/latest/wpf/guide/create-an-offline-layer.htm)を参考にしてください。
+ コードの TODO 箇所に処理を書いていきましょう。<br/>
+ 詳細は、 [Runtime コンテンツ（*.geodatabase）の作成](https://developers.arcgis.com/net/latest/wpf/guide/create-an-offline-layer.htm)を参考にしてください。
  
 ```csharp
 ////////////////////////////////////////////////////////////////
@@ -403,7 +403,97 @@ private void generateGeodatabase()
 }
 ```
 
+#### アプリの実行
 
+ここでアプリを実行します。
+実行後の以下のような画面になります。
+
+![](./img/4-1.png)
+
+### 手順 5: 新しいポイントを追加する
+
+新しいポイントを Runtime コンテンツ（*.geodatabase）に追加する処理を書いていきましょう。
+
+### MainWindow.xaml
+
+1. プロジェクトの `sample/MainWindow..xaml.cs` ファイルを開きます。
+2. `Initialize` 関数に `MyMapView.GeoViewTapped += OnMapViewTapped;` 追加します。これは地図をタップしたときのイベントを実行するための処理になります。
+
+```csharp
+public void Initialize()
+{
+    myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
+
+    MyMapView.Map = myMap;
+
+    MyMapView.GeoViewTapped += OnMapViewTapped;
+
+    // PC内の geodatabase ファイル作成パスを取得する
+    getGeodatabasePath();
+
+    // すでにランタイムコンテンツが作成されているかチェックする
+    chkGeodatabase();
+
+}
+```
+
+3. 地図をタップしたイベントの処理を作成していきます。地図をタップした箇所にポイントデータを作成して、作成したポイントデータは ローカル geodatabase に追加していきます。
+
+```csharp
+private void OnMapViewTapped(object sender, GeoViewInputEventArgs e)
+{
+    try
+    {
+        // get the click point in geographic coordinates
+        var mapClickPoint = e.Location;
+        addPoint(mapClickPoint);
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show("Sample error", ex.ToString());
+    }
+}
+
+////////////////////////////////////////////////////////////////
+// 追加
+////////////////////////////////////////////////////////////////
+/**
+ * 新しいポイントを追加する
+ * From touch eventから
+ **/
+private void addPoint(MapPoint structureLocation)
+{
+    MapPoint wgs84Point = (MapPoint)GeometryEngine.Project(structureLocation, SpatialReferences.Wgs84);
+    addFeature(wgs84Point);
+}
+
+/**
+ * ローカルgeodatabaseにポイントを追加する
+ **/
+private async void addFeature(MapPoint pPoint)
+{
+    if (!mGdbFeatureTable.CanAdd())
+    {
+        // Deal with indicated error
+        return;
+    }
+
+    // 項目にデータを入れる
+    var attributes = new Dictionary<string, object>();
+    attributes.Add("BuildingName ", "ESRIジャパンnow！");
+
+    Feature addedFeature = mGdbFeatureTable.CreateFeature(attributes, pPoint);
+
+    await mGdbFeatureTable.AddFeatureAsync(addedFeature);
+
+    FeatureQueryResult results = await mGdbFeatureTable.GetAddedFeaturesAsync();
+
+    foreach (var r in results)
+    {
+        Console.WriteLine("add point geodatabase : '" + r.Attributes["BuildingName "]);
+    }
+}
+```
 
 
 ### 4. 動作確認
