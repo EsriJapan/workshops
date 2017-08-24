@@ -124,7 +124,7 @@
         shelterLayer.queryFeatures(queryParams).then(function(result){
           // クエリ結果を解析対象として設定
           params.facilities = result;
-        }).then(function(){
+          
           // 解析の実行
           closestFacilityTask.solve(params).then(function(solveResult){
             // 結果を表示
