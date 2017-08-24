@@ -66,7 +66,7 @@ Microsoft .NET Framework 4.5.2（最小バージョン）
 ```
 ArcGIS Runtime API のすべてのXAML要素は、http://schemas.esri.com/arcgis/runtime/2013 名前空間で使用できます。
 
-次に、Grid の中に MapView クラスを追加します：
+次に、Grid の中に MapView クラスを追加します。
 
 ```xml
   <Grid>
@@ -97,7 +97,7 @@ ArcGIS Runtime API のすべてのXAML要素は、http://schemas.esri.com/arcgis
 
 次に背景地図を表示する部分を作成します。
 
-1. プロジェクトの `sample/MainWindow..xaml.cs` ファイルを開きます。
+1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
 2. 以下のような内容で背景地図を呼び出す部分を書いていきます。
 
 ```csharp
@@ -156,9 +156,9 @@ namespace sample
 ここでは Runtime コンテンツ（*.geodatabase）を新規に作成し、作成した Runtime コンテンツ（*.geodatabase）を地図に表示する部分を書いていきます。<br/>
 また、Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込むようにします。
 
-### MainWindow.xaml
+### MainWindow.xaml.cs
 
-1. プロジェクトの `sample/MainWindow..xaml.cs` ファイルを開きます。
+1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
 2. `Initialize` 関数に `getGeodatabasePath()`、`chkGeodatabase()` 関数を作成します。
 
 ```csharp
@@ -414,9 +414,9 @@ private void generateGeodatabase()
 
 新しいポイントを Runtime コンテンツ（*.geodatabase）に追加する処理を書いていきましょう。
 
-### MainWindow.xaml
+### MainWindow.xaml.cs
 
-1. プロジェクトの `sample/MainWindow..xaml.cs` ファイルを開きます。
+1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
 2. `Initialize` 関数に `MyMapView.GeoViewTapped += OnMapViewTapped;` 追加します。これは地図をタップしたときのイベントを実行するための処理になります。
 
 ```csharp
@@ -497,15 +497,180 @@ private async void addFeature(MapPoint pPoint)
 
 ### アプリの実行
 
-ここでアプリを実行します。
+ここでアプリを実行します。<br/>  
 実行後の以下のような画面になり、地図をタップすることでポイントが追加されます。
 
 ![](./img/5-1.png)
 
+## 手順 6: ArcGIS Online フィーチャ レイヤーとの同期
+
+最後に Runtime コンテンツ（*.geodatabase）に追加したポイントを フィーチャ レイヤーと同期する処理を書いていきましょう。
+
+### MainWindow.xaml
+
+1. プロジェクトの `sample/MainWindow.xaml` ファイルを開きます。
+2. 次に、Grid の中に次の要素を追加します。
+
+```xml
+<Border Name="uiPanel" 
+        Background="White" BorderBrush="Black" BorderThickness="1"
+        HorizontalAlignment="Right" VerticalAlignment="Top"
+        Margin="5" Width="100">
+    <StackPanel>
+        <TextBlock Text="AGOL 同期"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,0" 
+                   TextWrapping="Wrap" />
+        <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
+            <Button Content="同期"
+          HorizontalAlignment="Left"
+          Margin="10"
+                Padding="0"    
+          VerticalAlignment="Top"
+          Width="auto"
+          Click="OnButtonClick" 
+                ToolTip="サーバー(AGOL)との同期を行います"/>
+        </WrapPanel>
+        <ProgressBar x:Name="MyProgressBar" Visibility="Visible" MinHeight="15" />
+    </StackPanel>
+</Border>
+```
+
+【確認】現在、`MainWindow.xaml`は、次のようになっているはずです。
+
+```xml
+<Window x:Class="sample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+        xmlns:local="clr-namespace:sample"
+        mc:Ignorable="d"
+        Title="オフラインマップ" Height="450" Width="625">
+    <Grid>
+        <esri:MapView x:Name="MyMapView"/>
+
+        <Border Name="uiPanel" 
+                Background="White" BorderBrush="Black" BorderThickness="1"
+                HorizontalAlignment="Right" VerticalAlignment="Top"
+                Margin="5" Width="100">
+            <StackPanel>
+                <TextBlock Text="AGOL 同期"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,0" 
+                           TextWrapping="Wrap" />
+                <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
+                    <Button Content="同期"
+		                HorizontalAlignment="Left"
+		                Margin="10"
+                        Padding="0"    
+		                VerticalAlignment="Top"
+		                Width="auto"
+		                Click="OnButtonClick" 
+                        ToolTip="サーバー(AGOL)との同期を行います"/>
+                </WrapPanel>
+                <ProgressBar x:Name="MyProgressBar" Visibility="Visible" MinHeight="15" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
+```
+
+### MainWindow.xaml.cs
+
+1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
+2. 以下のようにフィーチャ レイヤーと同期する処理を書いていきましょう。
+
+```csharp
+////////////////////////////////////////////////////////////////
+// 同期
+////////////////////////////////////////////////////////////////
+/**
+ * サーバー(AGOL)と同期する
+ * ① 同期タスクを作成する
+ * ② 同期パラメータを取得する
+ **/
+private async void OnButtonClick(object sender, RoutedEventArgs e)
+{
+    // 同期したいレイヤーでタスクオブジェクトを作成する
+    geodatabaseSyncTask = await GeodatabaseSyncTask.CreateAsync(new Uri(FEATURELAYER_SERVICE_URL));
+
+    readGeoDatabase();
+
+    // タスクオブジェクトから同期するためのパラメータを作成する
+    syncParams = await geodatabaseSyncTask.CreateDefaultSyncGeodatabaseParametersAsync(geodatabase);
+
+    // パラーメータを使用してgeodatabaseを同期する
+    syncGeodatabase();
+}
+
+/**
+* サーバー(AGOL)と同期する
+* ③ 同期ジョブを作成する
+* ④ 同期する
+* */
+private SyncGeodatabaseJob syncJob;
+private void syncGeodatabase()
+{
+    // 同期ジョブオブヘジェクトを作成する
+    syncJob = geodatabaseSyncTask.SyncGeodatabase(syncParams, geodatabase);
+
+    syncJob.JobChanged += (s, e) =>
+    {
+        // 同期ジョブが終了したときのステータスを検査する
+        if (syncJob.Status == JobStatus.Succeeded)
+        {
+            // 同期完了から返された値を取得する
+            var result = syncJob.GetResultAsync();
+            if (result != null)
+            {
+                // 同期結果を確認して、例えばユーザに通知する処理を作成します
+                ShowStatusMessage(result.Status.ToString());
+            }
+        }
+        else if (syncJob.Status == JobStatus.Failed)
+        {
+            // エラーの場合
+            ShowStatusMessage(syncJob.Error.Message);
+        }
+        else
+        {
+            var statusMessage = "";
+            var m = from msg in syncJob.Messages select msg.Message;
+            statusMessage += ": " + string.Join<string>("\n", m);
+
+            Console.WriteLine(statusMessage);
+        }
+    };
+
+    syncJob.ProgressChanged += ((object sender, EventArgs e) =>
+    {
+        UpdateProgressBar();
+    });
+
+    // geodatabase 同期のジョブを開始します
+    syncJob.Start();
+}
+
+private void ShowStatusMessage(string message)
+{
+    MessageBox.Show(message);
+}
+
+private void UpdateProgressBar()
+{
+    this.Dispatcher.Invoke(() =>
+    {
+        MyProgressBar.Value = syncJob.Progress / 1.0;
+    });
+}
+```
+
 
 ### 4. 動作確認
 
-それでは、アプリを起動してみましょう。  
+それでは、アプリを起動してみましょう。
 アプリを開くと、Web マップが読み込まれ、表示されます。  
 マップをクリックするとクリック地点から最寄りの避難場所へのルートが表示されます。
 
