@@ -82,6 +82,8 @@ ArcGIS Runtime SDK のインストールを行います。
 
 ### MainWindow.xaml
 
+1. プロジェクトの sample/MainWindow.xaml ファイルを開きます。
+
 まず、MapView コントロールをページに追加するには、XAML 名前空間を割り当てる必要があります。
 次のように XML 名前空間の参照を WindowContentPage の XAML 要素に追加します。
 
