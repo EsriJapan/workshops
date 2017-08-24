@@ -429,6 +429,8 @@ private void generateGeodatabase()
 }
 ```
 
+【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちらに](examples/手順4)ございます。
+
 ### アプリの実行
 
 ここでアプリを実行します。
