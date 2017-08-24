@@ -674,11 +674,11 @@ private void UpdateProgressBar()
 
 ![](./img/6-1.png)
 
+## 手順 7: 同期されたフィーチャ レイヤーの確認
 
-### 4. 動作確認
+実際に ArcGIS Online にアクセスして新規に追加されたポイントデータが反映されているか確認しましょう。
+同期がうまくいった場合は新規のポイントデータが追加されています。
 
-それでは、アプリを起動してみましょう。
-アプリを開くと、Web マップが読み込まれ、表示されます。  
-マップをクリックするとクリック地点から最寄りの避難場所へのルートが表示されます。
+<img src="./img/SampleData.png" width="500px">
 
-![動作確認](./img/2-1.gif)
+[ArcGIS Online 上で表示](http://www.arcgis.com/home/webmap/viewer.html?webmap=4e90d664e499454a831ec05250299522)
