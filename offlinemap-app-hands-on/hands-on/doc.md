@@ -58,98 +58,29 @@ https://github.com/EsriJapan/workshops
 
 ソリューションタブの中の『ソリューション』を 右クリックして、『`Restore NuGet packages`』をクリックします。
 
-
 ## 手順 3: 地図表示
 
-地図を表示する部分 ユーザーインタフェースとして、**sample/MainWindow.xaml** に UI を作成していきます。
-地図表示（ユーザインタフェース）は **XAML**(ざむる)という、マークアップ言語で書いていきます。(Extensible Application Markup Language)
+NuGet パッケージのリストア後に、デバッグを開始してアプリを実行してみましょう。
+以下のような画面が表示されます。
 
-### MainWindow.xaml
+![](./img/3-1.png)
 
-1. プロジェクトの sample/MainWindow.xaml ファイルを開きます。
-
-まず、MapView コントロールをページに追加するには、XAML 名前空間を割り当てる必要があります。
-次のように XML 名前空間の参照を WindowContentPage の XAML 要素に追加します。
-
-```xml
-  xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
-```
-ArcGIS Runtime API のすべてのXAML要素は、http://schemas.esri.com/arcgis/runtime/2013 名前空間で使用できます。
-
-次に、Grid の中に MapView クラスを追加します。
-
-```xml
-  <Grid>
-     <esri:MapView x:Name="MyMapView"/>
-  </Grid>
-```
-【確認】現在、`MainWindow.xaml`は、次のようになっているはずです。
-
-```xml
-<Window x:Class="sample.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
-        xmlns:local="clr-namespace:sample"
-        mc:Ignorable="d"
-        Title="オフラインマップ" Height="450" Width="625">
- 
- <Grid>
-    <esri:MapView x:Name="MyMapView"/>
- </Grid>
-
-</ContentPage>
-```
+現在、ArcGIS Online の背景地図を表示していますが、今回は、オフライン環境ですので、背景地図はタイルパッケージを表示するように変更します。
+今回は事前に作成したタイルパッケージがありますので、こちらを使用します。
 
 ### MainWindow.xaml.cs
 
 次に背景地図を表示する部分を作成します。
 
 1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
-2. 以下のような内容で背景地図を呼び出す部分を書いていきます。
+2. 以下のような内容で背景地図を呼び出す部分を変更します。
 
 ```csharp
-using System;
-using System.Linq;
-using System.Windows;
-using System.Collections.Generic;
-
-using Esri.ArcGISRuntime;
-using Esri.ArcGISRuntime.Mapping;
-using Esri.ArcGISRuntime.Geometry;
-using Esri.ArcGISRuntime.Data;
-using Esri.ArcGISRuntime.UI.Controls;
-using Esri.ArcGISRuntime.Tasks;
-using Esri.ArcGISRuntime.Tasks.Offline;
-
-namespace sample
+public void Initialize()
 {
-    /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        // ArcGIS Online フィーチャ レイヤーサービスの URL  
-        private const string FEATURELAYER_SERVICE_URL = "https://services.arcgis.com/wlVTGRSYTzAbjjiC/ArcGIS/rest/services/SampleDataHandsOn/FeatureServer";
+    myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
 
-        private Map myMap;
-
-        private SyncGeodatabaseParameters syncParams;
-        
-        public MainWindow()
-        {
-            InitializeComponent();
-            Initialize();
-        }
-
-        public void Initialize()
-        {
-            myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
-            MyMapView.Map = myMap;
-        }
-    }
+    MyMapView.Map = myMap;
 }
 ```
 ### アプリの実行
