@@ -19,7 +19,7 @@ namespace sample
     public partial class MainWindow : Window
     {
         // ArcGIS Online フィーチャ レイヤーサービスの URL  
-        private const string FEATURELAYER_SERVICE_URL = "https://services.arcgis.com/wlVTGRSYTzAbjjiC/ArcGIS/rest/services/SampleDataHandsOn/FeatureServer";
+        private const string FEATURELAYER_SERVICE_URL = "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer";
 
         private Map myMap;
 
@@ -34,17 +34,27 @@ namespace sample
 
         public void Initialize()
         {
-            myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
 
+            myMap = new Map();
+            TileCache tileCache = new TileCache(@"D:\workshops\public_map.tpk");
+            ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
+
+            LayerCollection baseLayers = new LayerCollection();
+            baseLayers.Add(tiledLayer);
+            //myMap.Basemap.BaseLayers = baseLayers;
+
+            //MyMapView.Map = myMap;
+
+            myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
             MyMapView.Map = myMap;
 
             MyMapView.GeoViewTapped += OnMapViewTapped;
 
             // PC内の geodatabase ファイル作成パスを取得する
-            getGeodatabasePath();
+            //getGeodatabasePath();
 
             // すでにランタイムコンテンツが作成されているかチェックする
-            chkGeodatabase();
+            //chkGeodatabase();
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////
