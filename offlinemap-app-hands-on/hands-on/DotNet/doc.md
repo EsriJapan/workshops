@@ -100,7 +100,7 @@ public void Initialize()
 ```
 ### アプリの実行
 
-アプリを実行して確認しましょう。
+アプリを実行して確認しましょう。<br/>
 以下のような画面が表示されます。
 
 ![](./img/3-2.png)
@@ -493,12 +493,12 @@ private void generateGeodatabase()
 }
 ```
 
-【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` の全体を確認したい方は [こちら](examples/手順4)にございます。
+【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちら](examples/手順4)にございます。
 
 ### アプリの実行
 
-ここでアプリを実行します。
-実行後の以下のような画面になります。
+アプリを実行して確認しましょう。<br/>
+以下のような画面が表示されます。
 
 ![](./img/4-1.png)
 
