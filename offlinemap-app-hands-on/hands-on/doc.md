@@ -56,7 +56,7 @@ Visual Studio で `workshops/offlinemap-app-hands-on/hands-on/examples/start/sam
 
 ソリューションエクスプローラーを見ると、以下の構成になっています。
 
-![](./img/1-1.png)
+<img src="./img/1-1.png" width="300px">
 
 ## 手順 2: NuGet パッケージの復元
 
@@ -64,11 +64,11 @@ Visual Studio で `workshops/offlinemap-app-hands-on/hands-on/examples/start/sam
 
 ソリューションエクスプローラーの中の『ソリューション'sample'』を 右クリックして、『`NuGet パッケージの復元`』をクリックします。
 
-![](./img/2-1.png)
+<img src="./img/2-1.png" width="500px">
 
 ## 手順 3: 地図表示
 
-NuGet パッケージのリストア後に、デバッグを開始してアプリを実行してみましょう。
+NuGet パッケージの復元が完了したら、デバッグを開始してアプリを実行してみましょう。
 以下のような画面が表示されます。
 
 ![](./img/3-1.png)
