@@ -52,7 +52,7 @@ https://github.com/EsriJapan/workshops
 
 
 ## 手順 1: ソリューションファイルを開く
-Visual Studio で `workshops/offlinemap-app-hands-on/hands-on/examples/start/sample` ディレクトリの中にある「`sample.sln`」を開いてください。
+Visual Studio で `workshops/offlinemap-app-hands-on/hands-on/DotNet/examples/start` ディレクトリの中にある「`sample.sln`」を開いてください。
 
 ソリューションエクスプローラーを見ると、以下の構成になっています。
 
@@ -68,13 +68,13 @@ Visual Studio で `workshops/offlinemap-app-hands-on/hands-on/examples/start/sam
 
 ## 手順 3: 地図表示
 
-NuGet パッケージの復元が完了したら、デバッグを開始してアプリを実行してみましょう。
+NuGet パッケージの復元が完了したら、デバッグを開始してアプリを実行してみましょう。<br/>
 以下のような画面が表示されます。
 
 ![](./img/3-1.png)
 
 現在、ArcGIS Online の背景地図を表示していますが、今回は、オフライン環境ですので、背景地図はタイルパッケージを表示するように変更します。
-今回は事前に作成したタイルパッケージがありますので、こちらを使用します。
+今回は事前に作成したタイルパッケージがありますので、ダウンロードした `workshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk` を使用します。
 
 ### MainWindow.xaml.cs
 
@@ -86,17 +86,24 @@ NuGet パッケージの復元が完了したら、デバッグを開始して�
 ```csharp
 public void Initialize()
 {
-    myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
+    myMap = new Map();
+
+    TileCache tileCache = new TileCache(@"C:\workshops\offlinemap-app-hands-on\samples\SampleData\public_map.tpk");
+    ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
+
+    LayerCollection baseLayers = new LayerCollection();
+    baseLayers.Add(tiledLayer);
+    myMap.Basemap.BaseLayers = baseLayers;
 
     MyMapView.Map = myMap;
 }
 ```
 ### アプリの実行
 
-ここでアプリを実行します。
+アプリを実行して確認しましょう。
 以下のような画面が表示されます。
 
-![](./img/3-1.png)
+![](./img/3-2.png)
 
 ## 手順 4: Runtime コンテンツを作成して表示する
 
