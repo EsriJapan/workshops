@@ -116,8 +116,8 @@ Runtime コンテンツ（*.geodatabase）で使用するデータは、こち�
 
 ### MainWindow.xaml
 
-Runtime コンテンツ（*.geodatabase）を作成するためにデータの`ダウンロード`ボタンを追加します。<br/>
-`ダウンロード`ボタンがクリックされたら ArcGIS Online の[フィーチャ レイヤー]https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer)からデータをダウンロードして、Runtime コンテンツ（*.geodatabase）を作成します。
+Runtime コンテンツ（*.geodatabase）を作成するためにデータのダウンロード ボタンを追加します。<br/>
+ダウンロード ボタンがクリックされたら ArcGIS Online の[フィーチャ レイヤー](https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer)からデータをダウンロードして、Runtime コンテンツ（*.geodatabase）を作成します。
 
 1. プロジェクトの `sample/MainWindow.xaml` ファイルを開きます。
 2. 次に、Grid の中に次の要素を追加します。
@@ -236,7 +236,7 @@ private void getGeodatabasePath()
 }
 ```
 
-4. `ダウンロード`ボタンがクリックされて処理を作成します。
+4. ダウンロード ボタンがクリックされた処理を作成します。
 
 ```csharp
 private void OnDonwloadButton(object sender, RoutedEventArgs e)
@@ -361,42 +361,46 @@ private void generateGeodatabase()
 {
     // TODO geodatabaseファイル作成ジョブオブヘジェクトを作成する
 
-    // TODO JobChanged イベントを処理してジョブのステータスをチェックする
+    // JobChanged イベントを処理してジョブのステータスをチェックする
+    generateJob.JobChanged += (s, e) =>
+    {
+	// report error (if any)
+	if (generateJob.Error != null)
+	{
+	    Console.WriteLine("Error creating geodatabase: " + generateJob.Error.Message);
+	    return;
+	}
+
+	// check the job status
+	if (generateJob.Status == JobStatus.Succeeded)
+	{
+	    // ジョブが成功した場合はローカルデータをマップに追加する
+	    readGeoDatabase();
+	}
+	else if (generateJob.Status == JobStatus.Failed)
+	{
+	    // report failure
+	    Console.WriteLine("Unable to create local geodatabase.");
+	}
+	else
+	{
+	    // job is still running, report last message
+	    Console.WriteLine(generateJob.Messages[generateJob.Messages.Count - 1].Message);
+	}
+    };
+
+    generateJob.ProgressChanged += ((object sender, EventArgs e) =>
+    {
+	this.Dispatcher.Invoke(() =>
+	{
+	    MyProgressBar.Value = generateJob.Progress / 1.0;
+	});
+    });
 
     // ジョブを開始し、ジョブIDをコンソール上に表示
     generateJob.Start();
+
     Console.WriteLine("Submitted job #" + generateJob.ServerJobId + " to create local geodatabase");
-}
-
-// JobChangedイベントのハンドラ
-private void OnGenerateJobChanged(object sender, EventArgs e)
-{
-    // get the GenerateGeodatabaseJob that raised the event
-    var job = sender as GenerateGeodatabaseJob;
-    
-    // report error (if any)
-    if (job.Error != null)
-    {
-        Console.WriteLine("Error creating geodatabase: " + job.Error.Message);
-        return;
-    }
-
-    // check the job status
-    if (job.Status == JobStatus.Succeeded)
-    {
-        // ジョブが成功した場合はローカルデータをマップに追加する
-        readGeoDatabase();
-    }
-    else if (job.Status == JobStatus.Failed)
-    {
-        // report failure
-        Console.WriteLine("Unable to create local geodatabase.");
-    }
-    else
-    {
-        // job is still running, report last message
-        Console.WriteLine(job.Messages[job.Messages.Count - 1].Message);
-    }
 }
 ```
 
@@ -437,8 +441,7 @@ private async void generateGeodatabaseParameters()
     generateGeodatabase();
 }
 
-/**
- * GeoDatabaseを新規に作成する
+/** GeoDatabaseを新規に作成する
  * ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する
  **/
 private void generateGeodatabase()
@@ -446,11 +449,46 @@ private void generateGeodatabase()
     // TODO geodatabaseファイル作成ジョブオブヘジェクトを作成する
     generateJob = geodatabaseSyncTask.GenerateGeodatabase(generateParams, mGeodatabasePath);
 
-    // TODO JobChanged イベントを処理してジョブのステータスをチェックする
-    generateJob.JobChanged += OnGenerateJobChanged;
+    // JobChanged イベントを処理してジョブのステータスをチェックする
+    generateJob.JobChanged += (s, e) =>
+    {
+	// report error (if any)
+	if (generateJob.Error != null)
+	{
+	    Console.WriteLine("Error creating geodatabase: " + generateJob.Error.Message);
+	    return;
+	}
+
+	// check the job status
+	if (generateJob.Status == JobStatus.Succeeded)
+	{
+	    // ジョブが成功した場合はローカルデータをマップに追加する
+	    readGeoDatabase();
+	}
+	else if (generateJob.Status == JobStatus.Failed)
+	{
+	    // report failure
+	    Console.WriteLine("Unable to create local geodatabase.");
+	}
+	else
+	{
+	    // job is still running, report last message
+	    Console.WriteLine(generateJob.Messages[generateJob.Messages.Count - 1].Message);
+	}
+	
+    };
+
+    generateJob.ProgressChanged += ((object sender, EventArgs e) =>
+    {
+	this.Dispatcher.Invoke(() =>
+	{
+	    MyProgressBar.Value = generateJob.Progress / 1.0;
+	});
+    });
 
     // ジョブを開始し、ジョブIDをコンソール上に表示
     generateJob.Start();
+
     Console.WriteLine("Submitted job #" + generateJob.ServerJobId + " to create local geodatabase");
 }
 ```
