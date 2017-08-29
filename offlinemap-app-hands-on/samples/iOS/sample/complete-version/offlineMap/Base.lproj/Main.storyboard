@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="offlineMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cyT-vD-Ktl" customClass="AGSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQl-FO-scr">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem enabled="NO" title="ダウンロード" id="9So-Zc-035">
+                                        <connections>
+                                            <action selector="download:" destination="BYZ-38-t0r" id="ADW-kw-H3A"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="fBz-mb-OEh"/>
+                                    <barButtonItem enabled="NO" title="同期" id="CX4-YD-sGS">
+                                        <connections>
+                                            <action selector="sync:" destination="BYZ-38-t0r" id="Nik-5B-eCG"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cyT-vD-Ktl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="3yi-v9-ALy"/>
+                            <constraint firstAttribute="trailing" secondItem="HQl-FO-scr" secondAttribute="trailing" id="62q-F6-sle"/>
+                            <constraint firstItem="cyT-vD-Ktl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6Mh-sH-2l3"/>
+                            <constraint firstItem="HQl-FO-scr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LgG-m1-Rbf"/>
+                            <constraint firstItem="HQl-FO-scr" firstAttribute="top" secondItem="cyT-vD-Ktl" secondAttribute="bottom" id="POs-UT-w1P"/>
+                            <constraint firstAttribute="trailing" secondItem="cyT-vD-Ktl" secondAttribute="trailing" id="XL3-eQ-T82"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HQl-FO-scr" secondAttribute="bottom" id="dnA-Wc-bCe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="downloadBtn" destination="9So-Zc-035" id="3uH-Gw-Yby"/>
+                        <outlet property="mapView" destination="cyT-vD-Ktl" id="bOU-PR-0La"/>
+                        <outlet property="syncBtn" destination="CX4-YD-sGS" id="L9b-cz-EMr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="75.112443778110944"/>
+        </scene>
+    </scenes>
+</document>
