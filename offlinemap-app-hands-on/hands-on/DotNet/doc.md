@@ -115,14 +115,24 @@ public void Initialize()
 ### MainWindow.xaml.cs
 
 1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
-2. `Initialize` 関数に `getGeodatabasePath()`、`chkGeodatabase()` 関数を作成します。
+2. `Initialize` 関数に `async` 修飾子を追加し、`await myMap.LoadAsync();`を追加します。
+3. `getGeodatabasePath()`、`chkGeodatabase()` 関数を作成します。
 
 ```csharp
-public void Initialize()
+public async void Initialize()
 {
-    myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
+    myMap = new Map();
+
+    TileCache tileCache = new TileCache(@"D:\workshops\offlinemap-app-hands-on\samples\SampleData\public_map.tpk");
+    ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
+
+    LayerCollection baseLayers = new LayerCollection();
+    baseLayers.Add(tiledLayer);
+    myMap.Basemap.BaseLayers = baseLayers;
 
     MyMapView.Map = myMap;
+
+    await myMap.LoadAsync();
 
     // PC内の geodatabase ファイル作成パスを取得する
     getGeodatabasePath();
