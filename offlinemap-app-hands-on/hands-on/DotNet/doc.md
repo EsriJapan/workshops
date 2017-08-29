@@ -441,7 +441,7 @@ private async void generateGeodatabaseParameters()
     generateGeodatabase();
 }
 
-* GeoDatabaseを新規に作成する
+/** GeoDatabaseを新規に作成する
  * ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する
  **/
 private void generateGeodatabase()
