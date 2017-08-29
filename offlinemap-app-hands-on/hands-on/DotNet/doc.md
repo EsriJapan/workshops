@@ -107,9 +107,9 @@ public void Initialize()
 
 ## 手順 4: Runtime コンテンツを作成して表示する
 
-オフライン環境においてデータの参照や書き込みを行うために Runtime コンテンツ（*.geodatabase）を作成します。作成した Runtime コンテンツ（*.geodatabase）を参照して地図に表示します。
+オフライン環境においてデータの参照や書き込みを行うために ローカル上に Runtime コンテンツ（*.geodatabase）を作成する必要があります。作成した Runtime コンテンツ（*.geodatabase）を参照して地図に表示します。
 
-ここでは Runtime コンテンツ（*.geodatabase）を新規に作成し、作成した Runtime コンテンツ（*.geodatabase）を地図に表示する部分を書いていきます。<br/>
+ここでは Runtime コンテンツ（*.geodatabase）を新規に作成し、作成した Runtime コンテンツ（*.geodatabase）を地図に表示する部分を書いていきます。
 また、Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込むようにします。
 
 ### MainWindow.xaml.cs
