@@ -112,11 +112,88 @@ public void Initialize()
 ここでは Runtime コンテンツ（*.geodatabase）を新規に作成し、作成した Runtime コンテンツ（*.geodatabase）を地図に表示する部分を書いていきます。
 また、Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込むようにします。
 
+Runtime コンテンツ（*.geodatabase）で使用するデータは、こちらの[フィーチャ レイヤー](https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer)を使用していきます。
+
+### MainWindow.xaml
+
+Runtime コンテンツ（*.geodatabase）を作成するためにデータの`ダウンロード`ボタンを追加します。<br/>
+`ダウンロード`ボタンがクリックされたら ArcGIS Online の[フィーチャ レイヤー]https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer)からデータをダウンロードして、Runtime コンテンツ（*.geodatabase）を作成します。
+
+1. プロジェクトの `sample/MainWindow.xaml` ファイルを開きます。
+2. 次に、Grid の中に次の要素を追加します。
+
+```xml
+<Border Name="uiPanel" 
+    Background="White" BorderBrush="Black" BorderThickness="1"
+    HorizontalAlignment="Right" VerticalAlignment="Top"
+    Margin="5" Width="130">
+    <StackPanel>
+	<TextBlock Text="AGOL"
+	   HorizontalAlignment="Center"
+	   Margin="0,0,0,0" 
+	   TextWrapping="Wrap" />
+	<WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
+	    <Button Content="ダウンロード"
+		HorizontalAlignment="Left"
+		Margin="5"
+		Padding="0"    
+		VerticalAlignment="Top"
+		Width="auto"
+		Click="OnDonwloadButton" 
+		ToolTip="サーバー(AGOL)からダウンロードを行います"/>
+	</WrapPanel>
+	<ProgressBar x:Name="MyProgressBar" Visibility="Visible" MinHeight="15" />
+    </StackPanel>
+</Border>
+```
+
+【確認】現在、`MainWindow.xaml`は、次のようになっているはずです。
+
+```xml
+<Window x:Class="sample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+        xmlns:local="clr-namespace:sample"
+        mc:Ignorable="d"
+        Title="オフラインマップ" Height="450" Width="625">
+
+    <Grid>
+        <esri:MapView x:Name="MyMapView"/>
+
+        <Border Name="uiPanel" 
+            Background="White" BorderBrush="Black" BorderThickness="1"
+            HorizontalAlignment="Right" VerticalAlignment="Top"
+            Margin="5" Width="130">
+            <StackPanel>
+                <TextBlock Text="AGOL"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,0" 
+                   TextWrapping="Wrap" />
+                <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
+                    <Button Content="ダウンロード"
+                        HorizontalAlignment="Left"
+                        Margin="5"
+                        Padding="0"    
+                        VerticalAlignment="Top"
+                        Width="auto"
+                        Click="OnDonwloadButton" 
+                        ToolTip="サーバー(AGOL)からダウンロードを行います"/>
+                </WrapPanel>
+                <ProgressBar x:Name="MyProgressBar" Visibility="Visible" MinHeight="15" />
+            </StackPanel>
+        </Border>
+	
+    </Grid>
+</Window>
+```
+
 ### MainWindow.xaml.cs
 
 1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
-2. `Initialize` 関数に `async` 修飾子を追加し、`await myMap.LoadAsync();`を追加します。
-3. `getGeodatabasePath()`、`chkGeodatabase()` 関数を作成します。
+2. `Initialize` 関数に `chkGeodatabase()` 関数を作成します。
 
 ```csharp
 public async void Initialize()
@@ -132,17 +209,12 @@ public async void Initialize()
 
     MyMapView.Map = myMap;
 
-    await myMap.LoadAsync();
-
     // PC内の geodatabase ファイル作成パスを取得する
     getGeodatabasePath();
-
-    // すでにランタイムコンテンツが作成されているかチェックする
-    chkGeodatabase();
 }
 ```
 
-3. getGeodatabasePath()`、`chkGeodatabase()` 関数をそれぞれ作成します。
+3. `getGeodatabasePath()` 関数を作成します。
 
 ```csharp
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -162,7 +234,21 @@ private void getGeodatabasePath()
 
     mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
 }
+```
 
+4. `ダウンロード`ボタンがクリックされて処理を作成します。
+
+```csharp
+private void OnDonwloadButton(object sender, RoutedEventArgs e)
+{
+    // すでにランタイムコンテンツが作成されているかチェックする
+    chkGeodatabase();
+}
+```
+
+5. `chkGeodatabase()` 関数で Runtime コンテンツ（*.geodatabase）の作成の可否をチェックします。
+
+```csharp
 /**
 * ローカルファイルをMapViewへ追加する
 * */
@@ -186,7 +272,7 @@ private void chkGeodatabase()
 }
 ```
 
-4. 既存 GeoDatabase から読み込む、`readGeoDatabase()`関数を作成します。
+6. 既存 GeoDatabase から読み込む、`readGeoDatabase()`関数を作成します。
 
 ```csharp
 /**
@@ -216,7 +302,7 @@ private async void readGeoDatabase()
 }
 ```
 
-5. ローカルフォルダに Runtime コンテンツ（*.geodatabase）を作成します。
+7. ローカルフォルダに Runtime コンテンツ（*.geodatabase）を作成します。
 
  Runtime コンテンツ（*.geodatabase）の作成は、ステップ①、②、③ の手順で行っていきます。
 
