@@ -13,9 +13,9 @@
 使用する環境が動作要件を満たしているか[こちら](https://www.esrij.com/products/arcgis-runtime-sdk-for-ios/environments/)のページからご確認ください。
 
 ## 使用するデータ
-- [タイル パッケージ](https://desktop.arcgis.com/ja/arcmap/latest/map/working-with-arcmap/about-tile-packages.htm)（ArcGIS Desktop で作成）
+- 背景地図：[タイル パッケージ](https://desktop.arcgis.com/ja/arcmap/latest/map/working-with-arcmap/about-tile-packages.htm)（ArcGIS Desktop で作成）
  * ESRIジャパン データコンテンツのスターターパックに含まれる[公共地図](https://www.esrij.com/products/data-content-starter/details/kokyo/)を使用
-- [フィーチャ サービス](http://doc.arcgis.com/ja/arcgis-online/share-maps/publish-features.htm)（ArcGIS Online で配信）
+- 主題図：[フィーチャ サービス](http://doc.arcgis.com/ja/arcgis-online/share-maps/publish-features.htm)（ArcGIS Online で配信）
  * デモ用の保育園・幼稚園データ（浦安市の保育園・幼稚園のオープンデータをもとに作成）
  * フィーチャ サービスの URL（Rest エンドポイント）: https://services.arcgis.com/wlVTGRSYTzAbjjiC/ArcGIS/rest/services/urayasushi_hoikuen_yochien/FeatureServer
  * ArcGIS .com マップ ビューアーで[データを確認してみる](https://www.arcgis.com/home/webmap/viewer.html?webmap=49aaf6580c9142e28d8912cee6f573c9)
@@ -41,8 +41,14 @@
 * 今回のハンズオンで作成するサンプルの完成版が[こちら](http://esrijapan.github.io/workshops/offlinemap-app-hands-on/samples/iOS/sample/complete-version)にありますので、作業に困ったら参考にしてください。
 
 ## 手順 2: タイル パッケージ（背景地図）の表示
+サンプル プロジェクトには事前に地図画面を作成してあるので、そこに背景地図を表示していきます。ハンズオンで使用するタイル パッケージ（背景地図）は、GitHub からダウンロードしたフォルダ（workshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk）にあります。
 
-1. サンプル プロジェクトには事前に地図画面を作成してあります。viewDidLoad メソッドにタイル パッケージ（背景地図）を表示するコードを記述します。AGSTileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。
+
+1. Xcode のメニューで、[File] -> [Add Files to "offlineMap"...] から、public_map.tpk ファイルをプロジェクトに追加します。
+
+ <img src="./img/2-1.png" width="500px">
+
+1. viewDidLoad メソッドにタイル パッケージ（背景地図）を表示するコードを記述します。AGSTileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。
 ```javascript
 // 背景用のタイル レイヤー（タイル パッケージ）を表示
 // AGSTileCache のパラメーターには .tpk ファイルの名前を指定
@@ -54,7 +60,7 @@ self.mapView.map = map
 ```
 1. サンプル プロジェクトを実機もしくはシミュレーターで実行すると、以下のように地図が表示されます。
 
- <img src="./img/2-1.png" width="200px">
+ <img src="./img/2-2.png" width="200px">
 
 ## 手順 3: フィーチャ サービス（主題図）の表示
 

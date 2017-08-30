@@ -12,6 +12,7 @@
 		96745CDD1F4416F70067038F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96745CDB1F4416F70067038F /* Main.storyboard */; };
 		96745CDF1F4416F70067038F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96745CDE1F4416F70067038F /* Assets.xcassets */; };
 		96745CE21F4416F70067038F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96745CE01F4416F70067038F /* LaunchScreen.storyboard */; };
+		96A664751F5683270082B4F4 /* public_map.tpk in Resources */ = {isa = PBXBuildFile; fileRef = 96A664741F5683270082B4F4 /* public_map.tpk */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		96745CDE1F4416F70067038F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96745CE11F4416F70067038F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96745CE31F4416F70067038F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96A664741F5683270082B4F4 /* public_map.tpk */ = {isa = PBXFileReference; lastKnownFileType = file; name = public_map.tpk; path = ../../../SampleData/public_map.tpk; sourceTree = "<group>"; };
 		96FAC9F71F4558520087A29D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		96FAC9F81F4558520087A29D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -40,6 +42,7 @@
 		96745CCB1F4416F70067038F = {
 			isa = PBXGroup;
 			children = (
+				96A664741F5683270082B4F4 /* public_map.tpk */,
 				96745CD61F4416F70067038F /* offlineMap */,
 				96745CD51F4416F70067038F /* Products */,
 			);
@@ -128,6 +131,7 @@
 				96745CE21F4416F70067038F /* LaunchScreen.storyboard in Resources */,
 				96745CDF1F4416F70067038F /* Assets.xcassets in Resources */,
 				96745CDD1F4416F70067038F /* Main.storyboard in Resources */,
+				96A664751F5683270082B4F4 /* public_map.tpk in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

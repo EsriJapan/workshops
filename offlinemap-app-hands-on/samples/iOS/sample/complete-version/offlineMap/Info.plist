@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>カメラを使用します</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>アルバムを使用します</string>
-	<key>Privacy - Video Subscriber Account Usage Descriptiona</key>
-	<string>ビデオを使用します</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -28,6 +22,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>ポップアップ画面からカメラにアクセスします。</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>ポップアップ画面からアルバムにアクセスします。</string>
+	<key>Privacy - Video Subscriber Account Usage Descriptiona</key>
+	<string>ポップアップ画面からビデオにアクセスします。</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
