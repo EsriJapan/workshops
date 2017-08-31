@@ -168,7 +168,7 @@ public void addFeatureLayer()
 アプリを実行して確認しましょう。<br/>
 以下のような画面が表示されます。
 
-![](./img/2-2.png)
+![](./img/3-1.png)
 
 ## 手順 4: Runtime コンテンツを作成して表示する
 
