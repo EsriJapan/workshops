@@ -756,7 +756,7 @@ private async void addFeature(MapPoint pPoint)
  * ① 同期タスクを作成する
  * ② 同期パラメータを取得する
  **/
-private async void OnButtonClick(object sender, RoutedEventArgs e)
+private async void OnSyncClick(object sender, RoutedEventArgs e)
 {
     // 同期したいレイヤーでタスクオブジェクトを作成する
     geodatabaseSyncTask = await GeodatabaseSyncTask.CreateAsync(new Uri(FEATURELAYER_SERVICE_URL));
