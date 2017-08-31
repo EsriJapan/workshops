@@ -122,8 +122,11 @@ public void Initialize()
 
 ## 手順 3: フィーチャ サービス（主題図）の表示
 
+主題図：[フィーチャ サービス](http://doc.arcgis.com/ja/arcgis-online/share-maps/publish-features.htm)を表示してみましょう。
+ * デモ用の保育園・幼稚園データ（浦安市の保育園・幼稚園のオープンデータをもとに作成）
+ 
 1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
-2. 以下のような内容で背景地図を呼び出す部分を変更します。
+2. 以下のような内容でフィーチャ サービスの表示部分を作成します。
 
 ```csharp
 public void Initialize()
