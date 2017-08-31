@@ -30,7 +30,6 @@ ArcGIS Runtime SDK には　[iOS](https://developers.arcgis.com/ios/latest/) / [
 - フィーチャの編集（ポイント追加）
 - 編集結果をフィーチャ サービスと同期
 
-
 ## 開発環境
 
 ### Windows
@@ -64,7 +63,6 @@ Microsoft .NET Framework 4.5.2（最小バージョン）
 https://github.com/EsriJapan/workshops
 
 ![](./img/Workshop.png)
-
 
 ## 手順 1: ソリューションファイルを開く
 Visual Studio で `workshops/offlinemap-app-hands-on/hands-on/DotNet/examples/start` ディレクトリの中にある「`sample.sln`」を開いてください。
@@ -170,11 +168,11 @@ public void addFeatureLayer()
 
 ![](./img/3-1.png)
 
-## 手順 4: Runtime コンテンツを作成して表示する
+## 手順 4: フィーチャ サービスのデータのダウンロード
 
 オフライン環境においてデータの参照や書き込みを行うために ローカル上に Runtime コンテンツ（*.geodatabase）を作成する必要があります。作成した Runtime コンテンツ（*.geodatabase）を参照して地図に表示します。
 
-ここでは Runtime コンテンツ（*.geodatabase）を新規に作成し、作成した Runtime コンテンツ（*.geodatabase）を地図に表示する部分を書いていきます。
+ここでは フィーチャ サービスのデータをダウンロードして、ダウンロードしたデータから Runtime コンテンツ（*.geodatabase）を新規に作成し、作成した Runtime コンテンツ（*.geodatabase）を地図に表示する部分を書いていきます。
 また、Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込むようにします。
 
 Runtime コンテンツ（*.geodatabase）で使用するデータは、こちらの[フィーチャ レイヤー](https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer)を使用していきます。
