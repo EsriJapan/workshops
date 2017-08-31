@@ -673,7 +673,7 @@ private async void addFeature(MapPoint pPoint)
 
 ![](./img/5-1.png)
 
-## 手順 6: ArcGIS Online フィーチャ レイヤーとの同期
+## 手順 6: 編集結果をフィーチャ サービスと同期
 
 最後に Runtime コンテンツ（*.geodatabase）に追加したポイントを ArcGIS Online の[フィーチャ レイヤー](https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer)と同期する処理を書いていきましょう。
 
@@ -836,7 +836,7 @@ private void ShowStatusMessage(string message)
 
 ![](./img/6-1.png)
 
-## 手順 7: 同期されたフィーチャ レイヤーの確認
+## 最後: 同期されたフィーチャ レイヤーの確認
 
 実際に ArcGIS Online にアクセスして新規に追加されたポイントデータが反映されているか確認しましょう。
 同期がうまくいった場合は新規のポイントデータが追加されています。
