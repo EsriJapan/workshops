@@ -41,6 +41,7 @@
                 <ProgressBar x:Name="MyProgressBar" Visibility="Visible" MinHeight="15" />
             </StackPanel>
         </Border>
-        
+
     </Grid>
+    
 </Window>

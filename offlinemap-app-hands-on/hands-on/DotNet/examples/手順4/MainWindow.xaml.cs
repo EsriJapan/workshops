@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Windows;
 using System.Collections.Generic;
+using System.Windows.Controls;
+
 
 using Esri.ArcGISRuntime;
 using Esri.ArcGISRuntime.Mapping;
@@ -20,7 +22,7 @@ namespace sample
     {
         // ArcGIS Online フィーチャ レイヤーサービスの URL  
         private const string FEATURELAYER_SERVICE_URL = "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer";
-
+        private FeatureLayer featureLayer;
         private Map myMap;
 
         private SyncGeodatabaseParameters syncParams;
@@ -43,11 +45,30 @@ namespace sample
             baseLayers.Add(tiledLayer);
             myMap.Basemap.BaseLayers = baseLayers;
 
+            // 主題図の表示
+            addFeatureLayer();
+            
             MyMapView.Map = myMap;
-
+            
             // PC内の geodatabase ファイル作成パスを取得する
             getGeodatabasePath();
 
+        }
+
+        /**
+        * 主題図の表示をする
+        **/
+        public void addFeatureLayer()
+        {
+            // 主題図用のフィーチャ レイヤー（フィーチャ サービス）の表示
+            // フィーチャ サービスの URL を指定してフィーチャ テーブル（ServiceFeatureTable）を作成する
+            // フィーチャ サービスの URL はレイヤー番号（〜/FeatureServer/0）まで含める
+            var serviceUri = new Uri(FEATURELAYER_SERVICE_URL + "/0");
+            ServiceFeatureTable featureTable = new ServiceFeatureTable(serviceUri);
+            // フィーチャ テーブルからフィーチャ レイヤーを作成
+            featureLayer = new FeatureLayer(featureTable);
+            // マップにフィーチャ レイヤーを追加
+            myMap.OperationalLayers.Add(featureLayer);
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////
@@ -67,7 +88,6 @@ namespace sample
 
             mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
         }
-        
         private void OnDonwloadButton(object sender, RoutedEventArgs e)
         {
             // すでにランタイムコンテンツが作成されているかチェックする
@@ -75,8 +95,8 @@ namespace sample
         }
 
         /**
-        * ローカルファイルをMapViewへ追加する
-        * */
+         * ローカルファイルをMapViewへ追加する
+         **/
         private void chkGeodatabase()
         {
             // カレントディレクトリの取得
@@ -115,6 +135,8 @@ namespace sample
 
                 if (mGdbFeatureTable.LoadStatus == LoadStatus.Loaded)
                 {
+                    myMap.OperationalLayers.RemoveAt(0);
+
                     mFeatureLayer = new FeatureLayer(mGdbFeatureTable);
 
                     myMap.OperationalLayers.Add(mFeatureLayer);
@@ -202,7 +224,6 @@ namespace sample
                     // job is still running, report last message
                     Console.WriteLine(generateJob.Messages[generateJob.Messages.Count - 1].Message);
                 }
-
             };
 
             generateJob.ProgressChanged += ((object sender, EventArgs e) =>
@@ -218,6 +239,7 @@ namespace sample
 
             Console.WriteLine("Submitted job #" + generateJob.ServerJobId + " to create local geodatabase");
         }
+
 
     }
 }
