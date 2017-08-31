@@ -732,6 +732,7 @@ private async void addFeature(MapPoint pPoint)
                         Padding="0"    
                         VerticalAlignment="Top"
                         Width="auto"
+			IsEnabled="False"
                         Click="OnSyncClick" 
                         ToolTip="サーバー(AGOL)との同期を行います"/>
                 </WrapPanel>
@@ -745,8 +746,20 @@ private async void addFeature(MapPoint pPoint)
 ### MainWindow.xaml.cs
 
 1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
-2. 以下のようにフィーチャ レイヤーと同期する処理を作成します。
 
+2. ダウンロードボタンがクリックされたら同期ボタンを有効にします。
+```csharp
+private void OnDonwloadButton(object sender, RoutedEventArgs e)
+{
+    // すでにランタイムコンテンツが作成されているかチェックする
+    chkGeodatabase();
+
+    // 同期ボタンの有効
+    MyButton.IsEnabled = true;
+}
+```
+
+3. 以下のようにフィーチャ レイヤーと同期する処理を作成します。
 ```csharp
 ////////////////////////////////////////////////////////////////
 // 同期
