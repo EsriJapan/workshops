@@ -589,12 +589,15 @@ public void Initialize()
     baseLayers.Add(tiledLayer);
     myMap.Basemap.BaseLayers = baseLayers;
 
-    MyMapView.Map = myMap;
+    // 主題図の表示
+    addFeatureLayer();
 
-    MyMapView.GeoViewTapped += OnMapViewTapped;
+    MyMapView.Map = myMap;
 
     // PC内の geodatabase ファイル作成パスを取得する
     getGeodatabasePath();
+
+    MyMapView.GeoViewTapped += OnMapViewTapped;
 }
 ```
 
@@ -633,6 +636,11 @@ private void addPoint(MapPoint structureLocation)
  **/
 private async void addFeature(MapPoint pPoint)
 {
+    if (mGdbFeatureTable == null)
+    {
+	return;
+    }
+
     if (!mGdbFeatureTable.CanAdd())
     {
         // Deal with indicated error
