@@ -611,7 +611,7 @@ private async void addFeature(MapPoint pPoint)
 ```xml
 <Button Content="同期"
 	HorizontalAlignment="Left"
-	Margin="10"
+	Margin="5"
 	Padding="0"    
 	VerticalAlignment="Top"
 	Width="auto"
@@ -654,7 +654,7 @@ private async void addFeature(MapPoint pPoint)
                         ToolTip="サーバー(AGOL)からダウンロードを行います"/>
                     <Button Content="同期"
                         HorizontalAlignment="Left"
-                        Margin="10"
+                        Margin="5"
                         Padding="0"    
                         VerticalAlignment="Top"
                         Width="auto"
