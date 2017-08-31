@@ -14,41 +14,35 @@
 
 ## 使用するデータ
 - 背景地図：[タイル パッケージ](https://desktop.arcgis.com/ja/arcmap/latest/map/working-with-arcmap/about-tile-packages.htm)（ArcGIS Desktop で作成）
- * ESRIジャパン データコンテンツのスターターパックに含まれる[公共地図](https://www.esrij.com/products/data-content-starter/details/kokyo/)を使用
+    - ESRIジャパン データコンテンツのスターターパックに含まれる[公共地図](https://www.esrij.com/products/data-content-starter/details/kokyo/)を使用
 - 主題図：[フィーチャ サービス](http://doc.arcgis.com/ja/arcgis-online/share-maps/publish-features.htm)（ArcGIS Online で配信）
- * デモ用の保育園・幼稚園データ（浦安市の保育園・幼稚園のオープンデータをもとに作成）
- * フィーチャ サービスの URL（Rest エンドポイント）: https://services.arcgis.com/wlVTGRSYTzAbjjiC/ArcGIS/rest/services/urayasushi_hoikuen_yochien/FeatureServer
- * ArcGIS .com マップ ビューアーで[データを確認してみる](https://www.arcgis.com/home/webmap/viewer.html?webmap=49aaf6580c9142e28d8912cee6f573c9)
-<img src="./img/SampleData.png" width="500px">
-
+    - デモ用の保育園・幼稚園データ（浦安市の保育園・幼稚園のオープンデータをもとに作成）
+    - フィーチャ サービスの URL（Rest エンドポイント）: https://services.arcgis.com/wlVTGRSYTzAbjjiC/ArcGIS/rest/services/urayasushi_hoikuen_yochien/FeatureServer
+    - ArcGIS .com マップ ビューアーで[データを確認してみる](https://www.arcgis.com/home/webmap/viewer.html?webmap=49aaf6580c9142e28d8912cee6f573c9)
+    <img src="./img/SampleData.png" width="500px">
 
 ## 手順 1: SDK のインストール/プロジェクトのダウンロード
 ### SDK のインストール
 1. SDK の[ダウンロードページ](https://developers.arcgis.com/downloads)にアクセスします（事前に作成した開発者アカウントでサインインします。開発者アカウントをこれから作成する場合は、[こちら](http://esrijapan.github.io/arcgis-dev-resources/get-dev-account/)を参考にして作成してください）。
 1. ArcGIS Runtime SDK for iOS の箇所の [Download] をクリックして、インストーラーをダウンロードします。
-<img src="http://apps.esrij.com/arcgis-dev/guide/img/startup-ios100.0/sdk-download.png" width="500px">
+    <img src="http://apps.esrij.com/arcgis-dev/guide/img/startup-ios100.0/sdk-download.png" width="500px">
 1. ダウンロードしたインストーラー（.pkg ファイル）を実行して SDK をインストールします。
 
 ### サンプル プロジェクトのダウンロード
 1. [workshops](https://github.com/EsriJapan/workshops) ページを開いて [Clone or download] -> [Download ZIP] をクリックして、ファイル一式をダウンロードします。
+    <img src="./img/1-1.png" width="500px">
+1. サンプル プロジェクト（workshops-master/offlinemap-app-hands-on/samples/iOS/sample/offlineMap.xcodeproj）を Xcode で開きます。
 
-  <img src="./img/1-1.png" width="500px">
-1. サンプル プロジェクト（workshops/offlinemap-app-hands-on/samples/iOS/sample/offlineMap.xcodeproj）を Xcode で開きます。
-
-#### Tips:
+#### 参考情報:
 * SDK は [CocoaPods を使用してインストール](http://esrijapan.github.io/arcgis-dev-resources/ios/install-ios-100.x/#cocoapods-を使用して-sdk-をインストールする)することも可能です。
 * サンプル プロジェクトには事前に必要な Xcode プロジェクトの設定、地図画面（UIView を継承した AGSMapView クラス）やボタン等を作成しています。アプリ開発時に必要な設定は[インストール ガイド](http://esrijapan.github.io/arcgis-dev-resources/ios/install-ios-100.x/)をご覧ください。
-* 今回のハンズオンで作成するサンプルの完成版が[こちら](http://esrijapan.github.io/workshops/offlinemap-app-hands-on/samples/iOS/sample/complete-version)にありますので、作業に困ったら参考にしてください。
+* 今回のハンズオンで作成するサンプルの完成版が[こちら](https://github.com/EsriJapan/workshops/tree/master/offlinemap-app-hands-on/samples/iOS/sample/complete-version)にありますので、作業に困ったら参考にしてください。
 
 ## 手順 2: タイル パッケージ（背景地図）の表示
-サンプル プロジェクトには事前に地図画面を作成してあるので、そこに背景地図を表示していきます。ハンズオンで使用するタイル パッケージ（背景地図）は、GitHub からダウンロードしたフォルダ（workshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk）にあります。
-
-
+サンプル プロジェクトには事前に地図画面を作成してあるので、そこに背景地図を表示していきます。ハンズオンで使用するタイル パッケージ（背景地図）は、GitHub からダウンロードしたフォルダ（workshops-master/offlinemap-app-hands-on/samples/SampleData/public_map.tpk）にあります。
 1. Xcode のメニューで、[File] -> [Add Files to "offlineMap"...] から、public_map.tpk ファイルをプロジェクトに追加します。
-
- <img src="./img/2-1.png" width="500px">
-
-1. viewDidLoad メソッドにタイル パッケージ（背景地図）を表示するコードを記述します。AGSTileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。
+    <img src="./img/2-1.png" width="500px">
+2. viewDidLoad メソッドにタイル パッケージ（背景地図）を表示するコードを記述します。AGSTileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。
 ```javascript
 // 背景用のタイル レイヤー（タイル パッケージ）を表示
 // AGSTileCache のパラメーターには .tpk ファイルの名前を指定
@@ -58,12 +52,10 @@ let map = AGSMap(basemap: AGSBasemap(baseLayer: localTiledLayer))
 // マップビュー（地図画面）にマップを表示
 self.mapView.map = map
 ```
-1. サンプル プロジェクトを実機もしくはシミュレーターで実行すると、以下のように地図が表示されます。
-
- <img src="./img/2-2.png" width="200px">
+3. サンプル プロジェクトを実機もしくはシミュレーターで実行すると、以下のように地図が表示されます。
+    <img src="./img/2-2.png" width="200px">
 
 ## 手順 3: フィーチャ サービス（主題図）の表示
-
 1. フィーチャ レイヤーを作成しフィーチャ サービス（主題図）をマップに追加します。
 ```javascript
 // 主題図用のフィーチャ レイヤー（フィーチャ サービス）の表示
@@ -75,7 +67,7 @@ let featureLayer = AGSFeatureLayer(featureTable: featureTable)
 // マップにフィーチャ レイヤーを追加
 self.mapView.map?.operationalLayers.add(featureLayer)
 ```
-1. フィーチャ レイヤーの読み込み完了後に、フィーチャ サービスの全体表示範囲にズームし、ダウンロード ボタンを有効化します。
+2. フィーチャ レイヤーの読み込み完了後に、フィーチャ サービスの全体表示範囲にズームし、ダウンロード ボタンを有効化します。
 ```javascript
 // フィーチャ レイヤーの読み込み完了時の処理
 featureLayer.load(completion: { (error) in
@@ -85,13 +77,12 @@ featureLayer.load(completion: { (error) in
         // https://services.arcgis.com/wlVTGRSYTzAbjjiC/ArcGIS/rest/services/urayasushi_hoikuen_yochien/FeatureServer
         let viewPoint = AGSViewpoint(targetExtent: featureLayer.fullExtent!)
         self.mapView.setViewpoint(viewPoint)
-
         // ダウンロード ボタンのタップを有効化
         self.downloadBtn.isEnabled = true
     }
 })
 ```
-1. プロジェクトを実行して、フィーチャ サービスのデータが表示されるか確認します。
+3. プロジェクトを実行して、フィーチャ サービスのデータが表示されるか確認します。
 <img src="./img/3-1.png" width="200px">
 
 ## 手順 4: フィーチャ サービスのデータのダウンロード
@@ -100,9 +91,7 @@ featureLayer.load(completion: { (error) in
 // フィーチャ サービス URL を使用して同期タスク（AGSGeodatabaseSyncTask）を作成
 self.syncTask = AGSGeodatabaseSyncTask(url: URL(string: FEATURE_SERVICE_URL)!)
 ```
-
-1. ダウンロード ボタンのイベント メッソドで同期タスクのパラメーターを設定します。
-
+2. ダウンロード ボタンのイベント メソッドで同期タスクのパラメーターを設定します。
  ```javascript
 // 同期タスクのダウンロード パラメーターを作成
 let params = AGSGenerateGeodatabaseParameters()
@@ -119,7 +108,7 @@ let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMa
 let fullPath = "\(path)/\(dateFormatter.string(from: Date())).geodatabase"
 ```
 
-1. パラメーターを設定して同期タスクの AGSGenerateGeodatabaseJob（.geodatabase のダウンロード）を実行します。
+3. パラメーターを設定して同期タスクの AGSGenerateGeodatabaseJob（.geodatabase のダウンロード）を実行します。
 ```javascript
 // ダウンロード（AGSGenerateGeodatabaseJob）を実行
 generateJob =  self.syncTask.generateJob(with: params, downloadFileURL: URL(string: fullPath)!)
@@ -137,7 +126,7 @@ self.generateJob.start(statusHandler: { (status: AGSJobStatus) -> Void in
 }
 ```
 
-1. ダウンロードに成功した際の処理を記述します。ダウンロードされたた .geodatabase ファイルからフィーチャ レイヤーを作成しマップに追加します。
+4. ダウンロードに成功した際の処理を記述します。ダウンロードされたた .geodatabase ファイルからフィーチャ レイヤーを作成しマップに追加します。
 ```javascript
 // ダウンロードの成功時の処理を実装
 // ダウンロードされたファイル（.geodatabase）を取得
@@ -169,8 +158,8 @@ self?.generatedGeodatabase.load(completion: { [weak self] (error:Error?) -> Void
     }
 })
 ```
-1. プロジェクトを実行し、ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードしてみましょう。Xcode のコンソールにダウンロードの進捗状況が表示されます。Succeeded と表示されたらダウンロードの完了です。
-<img src="./img/4-1.png" width="500px">
+5. プロジェクトを実行し、ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードしてみましょう。Xcode のコンソールにダウンロードの進捗状況が表示されます。Succeeded と表示されたらダウンロードの完了です。
+    <img src="./img/4-1.png" width="500px">
 
 ## 手順 5: フィーチャの編集（ポイント追加）
 
@@ -178,13 +167,13 @@ self?.generatedGeodatabase.load(completion: { [weak self] (error:Error?) -> Void
 ```javascript
 class ViewController: UIViewController, AGSGeoViewTouchDelegate {
 ```
-1. viewDidLoad メソッドでマップのタッチ操作のデリゲートを設定します。
+2. viewDidLoad メソッドでマップのタッチ操作のデリゲートを設定します。
 ```javascript
 // マップのタッチ操作のデリゲートを設定
 self.mapView.touchDelegate = self
 ```
 
-1. マップがタップされた時に実行されるデリゲート メソッドを記述します。
+3. マップがタップされた時に実行されるデリゲート メソッドを記述します。
 ```javascript
 //MARK: - AGSGeoViewTouchDelegate（マップ上をタップ）
 func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
@@ -215,11 +204,15 @@ func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, ma
     }
 }
 ```
-1. プロジェクトを実行します。ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードした後に、マップ上をタップしてポイントを追加してみましょう。マップ上をタップするとタップした場所に、水色のシンボルのポイントが表示されます。
-<img src="./img/5-1.png" width="200px">
+
+4. プロジェクトを実行します。ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードした後に、マップ上をタップしてポイントを追加してみましょう。マップ上をタップするとタップした場所に、赤色のシンボルのポイントが表示されます。
+
+  <img src="./img/5-1.png" width="200px">
+
+ ポイントのデータは端末内の .geodatabase ファイルに保存されるため、[元のフィーチャ サービス](https://www.arcgis.com/home/webmap/viewer.html?webmap=49aaf6580c9142e28d8912cee6f573c9)には反映されていません。
 
 ## 手順 6: 編集結果をフィーチャ サービスと同期
-1. 同期ボタンのイベント メッソドで同期タスクのパラメーターを設定します。
+1. 同期ボタンのイベント メソッドで同期タスクのパラメーターを設定します。
 ```javascript
 // 同期タスクの同期 パラメーターを作成
 let params = AGSSyncGeodatabaseParameters()
@@ -229,7 +222,7 @@ params.layerOptions = [layerOption]
 // 同期方向の指定（端末で変更されたデータをフィーチャ サービスに更新）
 params.geodatabaseSyncDirection = .upload
 ```
-1. パラメーターを設定して同期タスクの AGSSyncGeodatabaseJob（.geodatabase とフィーチャ サービスの同期）を実行します。
+2. パラメーターを設定して同期タスクの AGSSyncGeodatabaseJob（.geodatabase とフィーチャ サービスの同期）を実行します。
 ```javascript
 // 同期（AGSSyncGeodatabaseJob）を実行
 self.syncJob = self.syncTask.syncJob(with: params, geodatabase: self.generatedGeodatabase)
@@ -247,20 +240,22 @@ self.syncJob.start(statusHandler: { (status: AGSJobStatus) -> Void in
     }
 })
 ```
-1. プロジェクトを実行します。ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードした後に、端末をオフライン状態にしてみましょう。ポイントを追加しても[元のフィーチャ サービス](https://www.arcgis.com/home/webmap/viewer.html?webmap=4e90d664e499454a831ec05250299522)には反映されていないことが分かります。端末をオンライン状態に戻し、同期ボタンをタップしてフィーチャ サービスにポイントが追加されているか確認してみてください。
-<img src="./img/6-1.png" width="500px">
 
-ハンズオンは以上で終了です。時間に余裕があるようでしたら、次のステップアップの手順を試してみてください。
+3. プロジェクトを実行します。ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードした後に、ポイントを追加します。ポイントを追加したら、同期ボタンをタップして[元のフィーチャ サービス](https://www.arcgis.com/home/webmap/viewer.html?webmap=49aaf6580c9142e28d8912cee6f573c9)に追加したポイントが反映されているか確認してみてください。
+
+    <img src="./img/6-1.png" width="500px">
+
+  ハンズオンは以上で終了です。時間に余裕があるようでしたら、次のステップアップの手順を試してみてください。
 
 ## ステップアップ: ポップアップを使用した編集
-フィーチャの編集（ジオメトリ、属性、アタッチメントの更新）はコードで実装する以外にも、ポップアップ コントローラーを使用して実装することもできます。フィーチャの編集に必要な一連の操作と UI がコントローラー上で提供されるため、簡単にアプリに編集機能を実装できます。
+フィーチャの編集（ジオメトリ、属性、アタッチメントの更新）はコードで実装する以外にも、ポップアップ コントローラーを使用して実装することもできます。フィーチャの編集に必要な一連の操作と UI がコントローラー上で提供されるため、簡単に編集機能を実装できます。
 1. ポップアップを使用するのに必要なデリゲート プロトコル(AGSPopupsViewControllerDelegate) と AGSPopupsViewController を宣言します。
 ```javascript
 class ViewController: UIViewController, AGSGeoViewTouchDelegate, AGSPopupsViewControllerDelegate {
 
   private var popupsVC:AGSPopupsViewController!
 ```
-1. マップがタップされた時に実行されるデリゲート メソッドを以下のように変更します。
+2. マップがタップされた時に実行されるデリゲート メソッドを以下のように変更します。
 ```javascript
 //MARK: - AGSGeoViewTouchDelegate（マップ上をタップ）
 func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
@@ -293,7 +288,7 @@ func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, ma
     }
 }
 ```
-1. ポップアップの操作が終了した時に実行されるデリゲート メソッドを以下のように記述します。
+3. ポップアップの操作が終了した時に実行されるデリゲート メソッドを以下のように記述します。
 ```javascript
 //MARK: - AGSPopupsViewControllerDelegate（ポップアップ操作の終了）
 // ポップアップを使用して属性を編集する場合
@@ -303,6 +298,6 @@ func popupsViewControllerDidFinishViewingPopups(_ popupsViewController: AGSPopup
     self.popupsVC = nil
 }
 ```
-1. ポップアップ画面の表示に使用する ArcGIS リソース バンドル ファイルをプロジェクトに追加します。[こちら](http://esrijapan.github.io/arcgis-dev-resources/ios/install-ios-100.x/#arcgis-リソース-バンドルの追加)の手順を参考にしてください。
-1. プロジェクトを実行します。フィーチャ サービスのデータをダウンロードした後に、マップ上をタップするとポップアップが表示され、属性情報を入力できます。
+4. ポップアップ画面の表示に使用する ArcGIS リソース バンドル ファイルをプロジェクトに追加します。[こちら](http://esrijapan.github.io/arcgis-dev-resources/ios/install-ios-100.x/#arcgis-リソース-バンドルの追加)の手順を参考にしてください。
+5. プロジェクトを実行します。フィーチャ サービスのデータをダウンロードした後に、マップ上をタップするとポップアップが表示され、属性情報を入力できます。
 <img src="./img/step-up.png" width="500px">
