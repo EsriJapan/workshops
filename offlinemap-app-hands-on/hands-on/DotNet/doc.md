@@ -16,6 +16,16 @@ ArcGIS Runtime SDK には　[iOS](https://developers.arcgis.com/ios/latest/) / [
 
 <img src="./img/CreateApp.png" width="600px">
 
+<img src="./img/CreateApp_2.png" width="600px">
+
+### 実装する機能
+- タイル パッケージ（背景地図）の表示
+- フィーチャ サービス（主題図）の表示
+- フィーチャ サービスのデータのダウンロード
+- フィーチャの編集（ポイント追加）
+- 編集結果をフィーチャ サービスと同期
+
+
 ## 開発環境
 
 ### Windows
