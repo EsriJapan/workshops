@@ -45,10 +45,67 @@ namespace sample
 
             MyMapView.Map = myMap;
 
+            MyMapView.GeoViewTapped += OnMapViewTapped;
+
             // PC内の geodatabase ファイル作成パスを取得する
             getGeodatabasePath();
 
         }
+
+        private void OnMapViewTapped(object sender, GeoViewInputEventArgs e)
+        {
+            try
+            {
+                // get the click point in geographic coordinates
+                var mapClickPoint = e.Location;
+                addPoint(mapClickPoint);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Sample error", ex.ToString());
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////
+        // 追加
+        ////////////////////////////////////////////////////////////////
+        /**
+         * 新しいポイントを追加する
+         * From touch eventから
+         **/
+        private void addPoint(MapPoint structureLocation)
+        {
+            MapPoint wgs84Point = (MapPoint)GeometryEngine.Project(structureLocation, SpatialReferences.Wgs84);
+            addFeature(wgs84Point);
+        }
+
+        /**
+         * ローカルgeodatabaseにポイントを追加する
+         **/
+        private async void addFeature(MapPoint pPoint)
+        {
+            if (!mGdbFeatureTable.CanAdd())
+            {
+                // Deal with indicated error
+                return;
+            }
+
+            // 項目にデータを入れる
+            var attributes = new Dictionary<string, object>();
+            attributes.Add("name", "ESRIジャパンnow！");
+
+            Feature addedFeature = mGdbFeatureTable.CreateFeature(attributes, pPoint);
+
+            await mGdbFeatureTable.AddFeatureAsync(addedFeature);
+
+            FeatureQueryResult results = await mGdbFeatureTable.GetAddedFeaturesAsync();
+
+            foreach (var r in results)
+            {
+                Console.WriteLine("add point geodatabase : '" + r.Attributes["name"]);
+            }
+        }
+ 
 
         ////////////////////////////////////////////////////////////////////////////////////////
         // 端末ローカルのパスまわり
@@ -217,6 +274,85 @@ namespace sample
             generateJob.Start();
 
             Console.WriteLine("Submitted job #" + generateJob.ServerJobId + " to create local geodatabase");
+        }
+
+
+        ////////////////////////////////////////////////////////////////
+        // 同期
+        ////////////////////////////////////////////////////////////////
+        /**
+         * サーバー(AGOL)と同期する
+         * ① 同期タスクを作成する
+         * ② 同期パラメータを取得する
+         **/
+        private async void OnSyncClick(object sender, RoutedEventArgs e)
+        {
+            // 同期したいレイヤーでタスクオブジェクトを作成する
+            geodatabaseSyncTask = await GeodatabaseSyncTask.CreateAsync(new Uri(FEATURELAYER_SERVICE_URL));
+
+            readGeoDatabase();
+
+            // タスクオブジェクトから同期するためのパラメータを作成する
+            syncParams = await geodatabaseSyncTask.CreateDefaultSyncGeodatabaseParametersAsync(geodatabase);
+
+            // パラーメータを使用してgeodatabaseを同期する
+            syncGeodatabase();
+        }
+
+        /**
+        * サーバー(AGOL)と同期する
+        * ③ 同期ジョブを作成する
+        * ④ 同期する
+        * */
+        private SyncGeodatabaseJob syncJob;
+        private void syncGeodatabase()
+        {
+            // 同期ジョブオブヘジェクトを作成する
+            syncJob = geodatabaseSyncTask.SyncGeodatabase(syncParams, geodatabase);
+
+            syncJob.JobChanged += (s, e) =>
+            {
+                // 同期ジョブが終了したときのステータスを検査する
+                if (syncJob.Status == JobStatus.Succeeded)
+                {
+                    // 同期完了から返された値を取得する
+                    var result = syncJob.GetResultAsync();
+                    if (result != null)
+                    {
+                        // 同期結果を確認して、例えばユーザに通知する処理を作成します
+                        ShowStatusMessage(result.Status.ToString());
+                    }
+                }
+                else if (syncJob.Status == JobStatus.Failed)
+                {
+                    // エラーの場合
+                    ShowStatusMessage(syncJob.Error.Message);
+                }
+                else
+                {
+                    var statusMessage = "";
+                    var m = from msg in syncJob.Messages select msg.Message;
+                    statusMessage += ": " + string.Join<string>("\n", m);
+
+                    Console.WriteLine(statusMessage);
+                }
+            };
+
+            syncJob.ProgressChanged += ((object sender, EventArgs e) =>
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    MyProgressBar.Value = syncJob.Progress / 1.0;
+                });
+            });
+
+            // geodatabase 同期のジョブを開始します
+            syncJob.Start();
+        }
+
+        private void ShowStatusMessage(string message)
+        {
+            MessageBox.Show(message);
         }
 
     }

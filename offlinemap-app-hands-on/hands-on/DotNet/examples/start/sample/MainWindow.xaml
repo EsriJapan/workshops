@@ -29,11 +29,18 @@
                         Width="auto"
                         Click="OnDonwloadButton" 
                         ToolTip="サーバー(AGOL)からダウンロードを行います"/>
+                    <Button Content="同期"
+                        HorizontalAlignment="Left"
+                        Margin="5"
+                        Padding="0"    
+                        VerticalAlignment="Top"
+                        Width="auto"
+                        Click="OnSyncClick" 
+                        ToolTip="サーバー(AGOL)との同期を行います"/>
                 </WrapPanel>
                 <ProgressBar x:Name="MyProgressBar" Visibility="Visible" MinHeight="15" />
             </StackPanel>
         </Border>
-
-  
+        
     </Grid>
 </Window>

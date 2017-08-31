@@ -19,7 +19,7 @@ namespace sample
     public partial class MainWindow : Window
     {
         // ArcGIS Online フィーチャ レイヤーサービスの URL  
-        private const string FEATURELAYER_SERVICE_URL = "https://services.arcgis.com/wlVTGRSYTzAbjjiC/ArcGIS/rest/services/SampleDataHandsOn/FeatureServer";
+        private const string FEATURELAYER_SERVICE_URL = "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer";
 
         private Map myMap;
 
@@ -34,7 +34,14 @@ namespace sample
 
         public void Initialize()
         {
-            myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
+            myMap = new Map();
+
+            TileCache tileCache = new TileCache(@"D:\workshops\offlinemap-app-hands-on\samples\SampleData\public_map.tpk");
+            ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
+
+            LayerCollection baseLayers = new LayerCollection();
+            baseLayers.Add(tiledLayer);
+            myMap.Basemap.BaseLayers = baseLayers;
 
             MyMapView.Map = myMap;
 
@@ -43,9 +50,62 @@ namespace sample
             // PC内の geodatabase ファイル作成パスを取得する
             getGeodatabasePath();
 
-            // すでにランタイムコンテンツが作成されているかチェックする
-            chkGeodatabase();
         }
+
+        private void OnMapViewTapped(object sender, GeoViewInputEventArgs e)
+        {
+            try
+            {
+                // get the click point in geographic coordinates
+                var mapClickPoint = e.Location;
+                addPoint(mapClickPoint);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Sample error", ex.ToString());
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////
+        // 追加
+        ////////////////////////////////////////////////////////////////
+        /**
+         * 新しいポイントを追加する
+         * From touch eventから
+         **/
+        private void addPoint(MapPoint structureLocation)
+        {
+            MapPoint wgs84Point = (MapPoint)GeometryEngine.Project(structureLocation, SpatialReferences.Wgs84);
+            addFeature(wgs84Point);
+        }
+
+        /**
+         * ローカルgeodatabaseにポイントを追加する
+         **/
+        private async void addFeature(MapPoint pPoint)
+        {
+            if (!mGdbFeatureTable.CanAdd())
+            {
+                // Deal with indicated error
+                return;
+            }
+
+            // 項目にデータを入れる
+            var attributes = new Dictionary<string, object>();
+            attributes.Add("name", "ESRIジャパンnow！");
+
+            Feature addedFeature = mGdbFeatureTable.CreateFeature(attributes, pPoint);
+
+            await mGdbFeatureTable.AddFeatureAsync(addedFeature);
+
+            FeatureQueryResult results = await mGdbFeatureTable.GetAddedFeaturesAsync();
+
+            foreach (var r in results)
+            {
+                Console.WriteLine("add point geodatabase : '" + r.Attributes["name"]);
+            }
+        }
+ 
 
         ////////////////////////////////////////////////////////////////////////////////////////
         // 端末ローカルのパスまわり
@@ -63,6 +123,12 @@ namespace sample
             //MessageBox.Show(stCurrentDir);
 
             mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
+        }
+        
+        private void OnDonwloadButton(object sender, RoutedEventArgs e)
+        {
+            // すでにランタイムコンテンツが作成されているかチェックする
+            chkGeodatabase();
         }
 
         /**
@@ -125,9 +191,9 @@ namespace sample
         private GenerateGeodatabaseParameters generateParams;
         private GenerateGeodatabaseJob generateJob;
         /**
-        * GeoDatabaseを新規に作成する
-        * ① 同期させたいArcGIS Online の Feature Layer でタスクを作成する
-        ****/
+         * GeoDatabaseを新規に作成する
+         * ① 同期させたいArcGIS Online の Feature Layer でタスクを作成する
+         ****/
         private async void createGeodatabaseSyncTask()
         {
             // TODO 同期させたいレイヤーで geodatabase 作成 タスクオブジェクトを作成する
@@ -167,97 +233,47 @@ namespace sample
             // TODO geodatabaseファイル作成ジョブオブヘジェクトを作成する
             generateJob = geodatabaseSyncTask.GenerateGeodatabase(generateParams, mGeodatabasePath);
 
-            // TODO JobChanged イベントを処理してジョブのステータスをチェックする
-            generateJob.JobChanged += OnGenerateJobChanged;
+            // JobChanged イベントを処理してジョブのステータスをチェックする
+            generateJob.JobChanged += (s, e) =>
+            {
+                // report error (if any)
+                if (generateJob.Error != null)
+                {
+                    Console.WriteLine("Error creating geodatabase: " + generateJob.Error.Message);
+                    return;
+                }
+
+                // check the job status
+                if (generateJob.Status == JobStatus.Succeeded)
+                {
+                    // ジョブが成功した場合はローカルデータをマップに追加する
+                    readGeoDatabase();
+                }
+                else if (generateJob.Status == JobStatus.Failed)
+                {
+                    // report failure
+                    Console.WriteLine("Unable to create local geodatabase.");
+                }
+                else
+                {
+                    // job is still running, report last message
+                    Console.WriteLine(generateJob.Messages[generateJob.Messages.Count - 1].Message);
+                }
+
+            };
+
+            generateJob.ProgressChanged += ((object sender, EventArgs e) =>
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    MyProgressBar.Value = generateJob.Progress / 1.0;
+                });
+            });
 
             // ジョブを開始し、ジョブIDをコンソール上に表示
             generateJob.Start();
+
             Console.WriteLine("Submitted job #" + generateJob.ServerJobId + " to create local geodatabase");
-        }
-
-        // JobChangedイベントのハンドラ
-        private void OnGenerateJobChanged(object sender, EventArgs e)
-        {
-            // get the GenerateGeodatabaseJob that raised the event
-            var job = sender as GenerateGeodatabaseJob;
-
-            // report error (if any)
-            if (job.Error != null)
-            {
-                Console.WriteLine("Error creating geodatabase: " + job.Error.Message);
-                return;
-            }
-
-            // check the job status
-            if (job.Status == JobStatus.Succeeded)
-            {
-                // ジョブが成功した場合はローカルデータをマップに追加する
-                readGeoDatabase();
-            }
-            else if (job.Status == JobStatus.Failed)
-            {
-                // report failure
-                Console.WriteLine("Unable to create local geodatabase.");
-            }
-            else
-            {
-                // job is still running, report last message
-                Console.WriteLine(job.Messages[job.Messages.Count - 1].Message);
-            }
-        }
-
-        private void OnMapViewTapped(object sender, GeoViewInputEventArgs e)
-        {
-            try
-            {
-                // get the click point in geographic coordinates
-                var mapClickPoint = e.Location;
-                addPoint(mapClickPoint);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Sample error", ex.ToString());
-            }
-        }
-
-        ////////////////////////////////////////////////////////////////
-        // 追加
-        ////////////////////////////////////////////////////////////////
-        /**
-         * 新しいポイントを追加する
-         * From touch eventから
-         **/
-        private void addPoint(MapPoint structureLocation)
-        {
-            MapPoint wgs84Point = (MapPoint)GeometryEngine.Project(structureLocation, SpatialReferences.Wgs84);
-            addFeature(wgs84Point);
-        }
-
-        /**
-         * ローカルgeodatabaseにポイントを追加する
-         **/
-        private async void addFeature(MapPoint pPoint)
-        {
-            if (!mGdbFeatureTable.CanAdd())
-            {
-                // Deal with indicated error
-                return;
-            }
-
-            // 項目にデータを入れる
-            var attributes = new Dictionary<string, object>();
-            attributes.Add("BuildingName", "ESRIジャパンnow！");
-
-            Feature addedFeature = mGdbFeatureTable.CreateFeature(attributes, pPoint);
-
-            await mGdbFeatureTable.AddFeatureAsync(addedFeature);
-
-            FeatureQueryResult results = await mGdbFeatureTable.GetAddedFeaturesAsync();
-
-            foreach (var r in results)
-            {
-                Console.WriteLine("add point geodatabase : '" + r.Attributes["BuildingName"]);
-            }
         }
 
     }
