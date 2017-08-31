@@ -93,6 +93,9 @@ namespace sample
         {
             // すでにランタイムコンテンツが作成されているかチェックする
             chkGeodatabase();
+
+            // 同期ボタンの有効
+            MyButton.IsEnabled = true;
         }
 
         /**
