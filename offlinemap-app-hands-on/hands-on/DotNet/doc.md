@@ -601,36 +601,22 @@ private async void addFeature(MapPoint pPoint)
 
 ## 手順 6: ArcGIS Online フィーチャ レイヤーとの同期
 
-最後に Runtime コンテンツ（*.geodatabase）に追加したポイントを フィーチャ レイヤーと同期する処理を書いていきましょう。
+最後に Runtime コンテンツ（*.geodatabase）に追加したポイントを ArcGIS Online の[フィーチャ レイヤー](https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer)と同期する処理を書いていきましょう。
 
 ### MainWindow.xaml
 
 1. プロジェクトの `sample/MainWindow.xaml` ファイルを開きます。
-2. 次に、Grid の中に次の要素を追加します。
+2. 次に、StackPanel の WrapPanel の中に次の要素を追加します。
 
 ```xml
-<Border Name="uiPanel" 
-        Background="White" BorderBrush="Black" BorderThickness="1"
-        HorizontalAlignment="Right" VerticalAlignment="Top"
-        Margin="5" Width="100">
-    <StackPanel>
-        <TextBlock Text="AGOL 同期"
-                   HorizontalAlignment="Center"
-                   Margin="0,0,0,0" 
-                   TextWrapping="Wrap" />
-        <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
-            <Button Content="同期"
-          HorizontalAlignment="Left"
-          Margin="10"
-                Padding="0"    
-          VerticalAlignment="Top"
-          Width="auto"
-          Click="OnButtonClick" 
-                ToolTip="サーバー(AGOL)との同期を行います"/>
-        </WrapPanel>
-        <ProgressBar x:Name="MyProgressBar" Visibility="Visible" MinHeight="15" />
-    </StackPanel>
-</Border>
+<Button Content="同期"
+	HorizontalAlignment="Left"
+	Margin="10"
+	Padding="0"    
+	VerticalAlignment="Top"
+	Width="auto"
+	Click="OnSyncClick" 
+	ToolTip="サーバー(AGOL)との同期を行います"/>
 ```
 
 【確認】現在、`MainWindow.xaml`は、次のようになっているはずです。
@@ -645,26 +631,34 @@ private async void addFeature(MapPoint pPoint)
         xmlns:local="clr-namespace:sample"
         mc:Ignorable="d"
         Title="オフラインマップ" Height="450" Width="625">
+
     <Grid>
         <esri:MapView x:Name="MyMapView"/>
-
         <Border Name="uiPanel" 
-                Background="White" BorderBrush="Black" BorderThickness="1"
-                HorizontalAlignment="Right" VerticalAlignment="Top"
-                Margin="5" Width="100">
+            Background="White" BorderBrush="Black" BorderThickness="1"
+            HorizontalAlignment="Right" VerticalAlignment="Top"
+            Margin="5" Width="130">
             <StackPanel>
-                <TextBlock Text="AGOL 同期"
-                           HorizontalAlignment="Center"
-                           Margin="0,0,0,0" 
-                           TextWrapping="Wrap" />
+                <TextBlock Text="AGOL"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,0" 
+                   TextWrapping="Wrap" />
                 <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
-                    <Button Content="同期"
-		                HorizontalAlignment="Left"
-		                Margin="10"
+                    <Button Content="ダウンロード"
+                        HorizontalAlignment="Left"
+                        Margin="5"
                         Padding="0"    
-		                VerticalAlignment="Top"
-		                Width="auto"
-		                Click="OnButtonClick" 
+                        VerticalAlignment="Top"
+                        Width="auto"
+                        Click="OnDonwloadButton" 
+                        ToolTip="サーバー(AGOL)からダウンロードを行います"/>
+                    <Button Content="同期"
+                        HorizontalAlignment="Left"
+                        Margin="10"
+                        Padding="0"    
+                        VerticalAlignment="Top"
+                        Width="auto"
+                        Click="OnSyncClick" 
                         ToolTip="サーバー(AGOL)との同期を行います"/>
                 </WrapPanel>
                 <ProgressBar x:Name="MyProgressBar" Visibility="Visible" MinHeight="15" />
