@@ -514,7 +514,14 @@ private void generateGeodatabase()
 ```csharp
 public void Initialize()
 {
-    myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
+    myMap = new Map();
+
+    TileCache tileCache = new TileCache(@"D:\workshops\offlinemap-app-hands-on\samples\SampleData\public_map.tpk");
+    ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
+
+    LayerCollection baseLayers = new LayerCollection();
+    baseLayers.Add(tiledLayer);
+    myMap.Basemap.BaseLayers = baseLayers;
 
     MyMapView.Map = myMap;
 
@@ -522,10 +529,6 @@ public void Initialize()
 
     // PC内の geodatabase ファイル作成パスを取得する
     getGeodatabasePath();
-
-    // すでにランタイムコンテンツが作成されているかチェックする
-    chkGeodatabase();
-
 }
 ```
 
@@ -572,7 +575,7 @@ private async void addFeature(MapPoint pPoint)
 
     // 項目にデータを入れる
     var attributes = new Dictionary<string, object>();
-    attributes.Add("BuildingName", "ESRIジャパンnow！");
+    attributes.Add("name", "ESRIジャパンnow！");
 
     Feature addedFeature = mGdbFeatureTable.CreateFeature(attributes, pPoint);
 
@@ -582,12 +585,12 @@ private async void addFeature(MapPoint pPoint)
 
     foreach (var r in results)
     {
-        Console.WriteLine("add point geodatabase : '" + r.Attributes["BuildingName"]);
+        Console.WriteLine("add point geodatabase : '" + r.Attributes["name"]);
     }
 }
 ```
 
-【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` の全体を確認したい方は [こちら](examples/手順5)にございます。
+【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちら](examples/手順5)にございます。
 
 ### アプリの実行
 
