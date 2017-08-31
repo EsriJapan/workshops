@@ -568,7 +568,7 @@ private void generateGeodatabase()
 
 ![](./img/4-1.png)
 
-## 手順 5: 新しいポイントを追加する
+## 手順 5: フィーチャの編集（ポイント追加）
 
 新しいポイントを Runtime コンテンツ（*.geodatabase）に追加する処理を書いていきましょう。
 
