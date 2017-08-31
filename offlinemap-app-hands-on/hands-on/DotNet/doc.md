@@ -270,9 +270,12 @@ public async void Initialize()
     baseLayers.Add(tiledLayer);
     myMap.Basemap.BaseLayers = baseLayers;
 
+    // 主題図の表示
+    addFeatureLayer();
+
     MyMapView.Map = myMap;
 
-    // PC内の geodatabase ファイル作成パスを取得する
+    // PC内の geodatabase ファイル作成パスを取得する
     getGeodatabasePath();
 }
 ```
