@@ -737,7 +737,10 @@ private void syncGeodatabase()
 
     syncJob.ProgressChanged += ((object sender, EventArgs e) =>
     {
-        UpdateProgressBar();
+	this.Dispatcher.Invoke(() =>
+	{
+	    MyProgressBar.Value = syncJob.Progress / 1.0;
+	});
     });
 
     // geodatabase 同期のジョブを開始します
@@ -748,17 +751,9 @@ private void ShowStatusMessage(string message)
 {
     MessageBox.Show(message);
 }
-
-private void UpdateProgressBar()
-{
-    this.Dispatcher.Invoke(() =>
-    {
-        MyProgressBar.Value = syncJob.Progress / 1.0;
-    });
-}
 ```
 
-【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` の全体を確認したい方は [こちら](examples/手順6)にございます。
+【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちら](examples/手順6)にございます。
 
 ### アプリの実行
 
