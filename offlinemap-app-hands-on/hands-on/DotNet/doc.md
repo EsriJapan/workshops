@@ -73,20 +73,20 @@ Visual Studio で `workshops/offlinemap-app-hands-on/hands-on/DotNet/examples/st
 
 <img src="./img/1-1.png" width="300px">
 
-## 手順 2: NuGet パッケージの復元
+### NuGet パッケージの復元
 
 すべてのプロジェクトにおいて、必要な NuGet パッケージはすべてインストール済みとなっています。ですので、このハンズオンでは、新たにパッケージを追加でインストールする必要はありません。しかし、プロジェクトをビルドするためには、まず最初にすべての NuGet パッケージを復元する必要があります。
 
 ソリューションエクスプローラーの中の『ソリューション'sample'』を 右クリックして、『`NuGet パッケージの復元`』をクリックします。
 
-<img src="./img/2-1.png" width="500px">
+<img src="./img/1-2.png" width="500px">
 
-## 手順 3: 地図表示
+### 手順 2: タイル パッケージ（背景地図）の表示
 
 NuGet パッケージの復元が完了したら、デバッグを開始してアプリを実行してみましょう。<br/>
 以下のような画面が表示されます。
 
-![](./img/3-1.png)
+![](./img/2-1.png)
 
 現在、ArcGIS Online の背景地図を表示していますが、今回は、オフライン環境ですので、背景地図はタイルパッケージを表示するように変更します。
 今回は事前に作成したタイルパッケージがありますので、ダウンロードした `workshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk` を使用します。
@@ -118,7 +118,54 @@ public void Initialize()
 アプリを実行して確認しましょう。<br/>
 以下のような画面が表示されます。
 
-![](./img/3-2.png)
+![](./img/2-2.png)
+
+## 手順 3: フィーチャ サービス（主題図）の表示
+
+1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
+2. 以下のような内容で背景地図を呼び出す部分を変更します。
+
+```csharp
+public void Initialize()
+{
+    myMap = new Map();
+
+    TileCache tileCache = new TileCache(@"D:\workshops\offlinemap-app-hands-on\samples\SampleData\public_map.tpk");
+    ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
+
+    LayerCollection baseLayers = new LayerCollection();
+    baseLayers.Add(tiledLayer);
+    myMap.Basemap.BaseLayers = baseLayers;
+
+    // 主題図の表示
+    addFeatureLayer();
+
+    MyMapView.Map = myMap;
+
+}
+
+/**
+* 主題図の表示をする
+**/
+public void addFeatureLayer()
+{
+    // 主題図用のフィーチャ レイヤー（フィーチャ サービス）の表示
+    // フィーチャ サービスの URL を指定してフィーチャ テーブル（ServiceFeatureTable）を作成する
+    // フィーチャ サービスの URL はレイヤー番号（〜/FeatureServer/0）まで含める
+    var serviceUri = new Uri(FEATURELAYER_SERVICE_URL + "/0");
+    ServiceFeatureTable featureTable = new ServiceFeatureTable(serviceUri);
+    // フィーチャ テーブルからフィーチャ レイヤーを作成
+    featureLayer = new FeatureLayer(featureTable);
+    // マップにフィーチャ レイヤーを追加
+    myMap.OperationalLayers.Add(featureLayer);
+}
+```
+### アプリの実行
+
+アプリを実行して確認しましょう。<br/>
+以下のような画面が表示されます。
+
+![](./img/2-2.png)
 
 ## 手順 4: Runtime コンテンツを作成して表示する
 
