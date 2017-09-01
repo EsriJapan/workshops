@@ -11,4 +11,5 @@
     <Grid>
         <esri:MapView x:Name="MyMapView"/>
     </Grid>
+    
 </Window>

@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Windows;
 using System.Collections.Generic;
+using System.Windows.Controls;
+
 
 using Esri.ArcGISRuntime;
 using Esri.ArcGISRuntime.Mapping;
@@ -20,7 +22,7 @@ namespace sample
     {
         // ArcGIS Online フィーチャ レイヤーサービスの URL  
         private const string FEATURELAYER_SERVICE_URL = "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer";
-
+        private FeatureLayer featureLayer;
         private Map myMap;
 
         private SyncGeodatabaseParameters syncParams;
@@ -33,11 +35,12 @@ namespace sample
         }
 
         public void Initialize()
-        {             
-            myMap = new Map(BasemapType.Streets, 35.639841, 139.905845, 13);
+        {
+            Map myMap = new Map(BasemapType.Streets, 35.632896, 139.880394, 13);
 
-            MyMapView.Map = myMap;
+            MyMapView.Map = myMap;            
         }
+
 
     }
 }

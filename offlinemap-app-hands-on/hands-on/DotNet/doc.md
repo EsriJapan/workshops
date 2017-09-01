@@ -2,19 +2,33 @@
 
 ## 概要
 
-これは、ArcGIS Runtime SDK と Esri のクラウドサービス　[ArcGIS Online](http://www.arcgis.com/features/index.html) を使用してオフラインアプリを作るハンズオンです。
+これは、ArcGIS Runtime SDK と Esri のクラウドサービス [ArcGIS Online](http://www.arcgis.com/features/index.html) を使用してオフラインアプリを作るハンズオンです。
 ArcGIS Runtime SDK には　[iOS](https://developers.arcgis.com/ios/latest/) / [Android](https://developers.arcgis.com/android/latest/) / [.NET](https://developers.arcgis.com/net/latest/) の開発環境があります。今回のハンズオンでは [ArcGIS Runtime SDK for .NET](https://developers.arcgis.com/net/latest/) を利用します。
 
-ハンズオンで使用するデータは こちらの[フィーチャ レイヤー](https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer)を使用します。
+### 使用するデータ
+- 背景地図：[タイル パッケージ](https://desktop.arcgis.com/ja/arcmap/latest/map/working-with-arcmap/about-tile-packages.htm)（ArcGIS Desktop で作成）
+ * ESRIジャパン データコンテンツのスターターパックに含まれる[公共地図](https://www.esrij.com/products/data-content-starter/details/kokyo/)を使用
+- 主題図：[フィーチャ サービス](http://doc.arcgis.com/ja/arcgis-online/share-maps/publish-features.htm)（ArcGIS Online で配信）
+ * デモ用の保育園・幼稚園データ（浦安市の保育園・幼稚園のオープンデータをもとに作成）
+ * フィーチャ サービスの URL（Rest エンドポイント）: https://services.arcgis.com/wlVTGRSYTzAbjjiC/ArcGIS/rest/services/urayasushi_hoikuen_yochien/FeatureServer
+ * ArcGIS.com マップ ビューアーで[データを確認してみる](https://www.arcgis.com/home/webmap/viewer.html?webmap=49aaf6580c9142e28d8912cee6f573c9)
 
 <img src="./img/SampleData.png" width="500px">
-
-[ArcGIS Online 上で表示](http://www.arcgis.com/home/webmap/viewer.html?webmap=49aaf6580c9142e28d8912cee6f573c9)
 
 ## 今回 作るものは？
 通信が制限されている状況で地図上にプロットしてポイントデータを作成し、作成したポイントデータをオンライン環境時に ArcGIS Online のフィーチャ レイヤーと同期するオフラインアプリを作成します。
 
 <img src="./img/CreateApp.png" width="600px">
+
+### 実装後のアプリ
+<img src="./img/CreateApp_2.png" width="500px">
+
+### 実装する機能
+- タイル パッケージ（背景地図）の表示
+- フィーチャ サービス（主題図）の表示
+- フィーチャ サービスのデータのダウンロード
+- フィーチャの編集（ポイント追加）
+- 編集結果をフィーチャ サービスと同期
 
 ## 開発環境
 
@@ -50,82 +64,221 @@ https://github.com/EsriJapan/workshops
 
 ![](./img/Workshop.png)
 
-
 ## 手順 1: ソリューションファイルを開く
-Visual Studio で `workshops/offlinemap-app-hands-on/hands-on/examples/start/sample` ディレクトリの中にある「`sample.sln`」を開いてください。
+Visual Studio で `workshops/offlinemap-app-hands-on/hands-on/DotNet/examples/start` ディレクトリの中にある「`sample.sln`」を開いてください。
 
 ソリューションエクスプローラーを見ると、以下の構成になっています。
 
 <img src="./img/1-1.png" width="300px">
 
-## 手順 2: NuGet パッケージの復元
+### NuGet パッケージの復元
 
 すべてのプロジェクトにおいて、必要な NuGet パッケージはすべてインストール済みとなっています。ですので、このハンズオンでは、新たにパッケージを追加でインストールする必要はありません。しかし、プロジェクトをビルドするためには、まず最初にすべての NuGet パッケージを復元する必要があります。
 
 ソリューションエクスプローラーの中の『ソリューション'sample'』を 右クリックして、『`NuGet パッケージの復元`』をクリックします。
 
-<img src="./img/2-1.png" width="500px">
+<img src="./img/1-2.png" width="500px">
 
-## 手順 3: 地図表示
+### 手順 2: タイル パッケージ（背景地図）の表示
 
-NuGet パッケージの復元が完了したら、デバッグを開始してアプリを実行してみましょう。
+NuGet パッケージの復元が完了したら、デバッグを開始してアプリを実行してみましょう。<br/>
 以下のような画面が表示されます。
 
-![](./img/3-1.png)
+![](./img/2-1.png)
 
 現在、ArcGIS Online の背景地図を表示していますが、今回は、オフライン環境ですので、背景地図はタイルパッケージを表示するように変更します。
-今回は事前に作成したタイルパッケージがありますので、こちらを使用します。
+今回は事前に作成したタイルパッケージがありますので、ダウンロードした `workshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk` を使用します。
 
 ### MainWindow.xaml.cs
 
 次に背景地図を表示する部分を作成します。
 
 1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
-2. 以下のような内容で背景地図を呼び出す部分を変更します。
+2. 以下のような内容で背景地図を呼び出す部分を変更します。(タイルパッケージへのパスは適宜設定してください。)
 
 ```csharp
 public void Initialize()
 {
-    myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
+    myMap = new Map();
+
+    TileCache tileCache = new TileCache(@"C:\workshops\offlinemap-app-hands-on\samples\SampleData\public_map.tpk");
+    ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
+
+    LayerCollection baseLayers = new LayerCollection();
+    baseLayers.Add(tiledLayer);
+    myMap.Basemap.BaseLayers = baseLayers;
 
     MyMapView.Map = myMap;
 }
 ```
 ### アプリの実行
 
-ここでアプリを実行します。
+アプリを実行して確認しましょう。<br/>
 以下のような画面が表示されます。
 
-![](./img/3-1.png)
+![](./img/2-2.png)
 
-## 手順 4: Runtime コンテンツを作成して表示する
+## 手順 3: フィーチャ サービス（主題図）の表示
 
-オフライン環境においてデータの参照や書き込みを行うために Runtime コンテンツ（*.geodatabase）を作成します。作成した Runtime コンテンツ（*.geodatabase）を参照して地図に表示します。
-
-ここでは Runtime コンテンツ（*.geodatabase）を新規に作成し、作成した Runtime コンテンツ（*.geodatabase）を地図に表示する部分を書いていきます。<br/>
-また、Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込むようにします。
-
-### MainWindow.xaml.cs
-
+主題図：[フィーチャ サービス](http://doc.arcgis.com/ja/arcgis-online/share-maps/publish-features.htm)を表示してみましょう。
+ * デモ用の保育園・幼稚園データ（浦安市の保育園・幼稚園のオープンデータをもとに作成）
+ 
 1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
-2. `Initialize` 関数に `getGeodatabasePath()`、`chkGeodatabase()` 関数を作成します。
+2. 以下のような内容でフィーチャ サービスの表示部分を作成します。
 
 ```csharp
 public void Initialize()
 {
-    myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
+    myMap = new Map();
+
+    TileCache tileCache = new TileCache(@"D:\workshops\offlinemap-app-hands-on\samples\SampleData\public_map.tpk");
+    ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
+
+    LayerCollection baseLayers = new LayerCollection();
+    baseLayers.Add(tiledLayer);
+    myMap.Basemap.BaseLayers = baseLayers;
+
+    // 主題図の表示
+    addFeatureLayer();
 
     MyMapView.Map = myMap;
 
-    // PC内の geodatabase ファイル作成パスを取得する
-    getGeodatabasePath();
+}
 
-    // すでにランタイムコンテンツが作成されているかチェックする
-    chkGeodatabase();
+/**
+* 主題図の表示をする
+**/
+public void addFeatureLayer()
+{
+    // 主題図用のフィーチャ レイヤー（フィーチャ サービス）の表示
+    // フィーチャ サービスの URL を指定してフィーチャ テーブル（ServiceFeatureTable）を作成する
+    // フィーチャ サービスの URL はレイヤー番号（〜/FeatureServer/0）まで含める
+    var serviceUri = new Uri(FEATURELAYER_SERVICE_URL + "/0");
+    ServiceFeatureTable featureTable = new ServiceFeatureTable(serviceUri);
+    // フィーチャ テーブルからフィーチャ レイヤーを作成
+    featureLayer = new FeatureLayer(featureTable);
+    // マップにフィーチャ レイヤーを追加
+    myMap.OperationalLayers.Add(featureLayer);
+}
+```
+### アプリの実行
+
+アプリを実行して確認しましょう。<br/>
+以下のような画面が表示されます。
+
+![](./img/3-1.png)
+
+## 手順 4: フィーチャ サービスのデータのダウンロード
+
+オフライン環境においてデータの参照や書き込みを行うために ローカル上に Runtime コンテンツ（*.geodatabase）を作成する必要があります。作成した Runtime コンテンツ（*.geodatabase）を参照して地図に表示します。
+
+ここでは フィーチャ サービスのデータをダウンロードして、ダウンロードしたデータから Runtime コンテンツ（*.geodatabase）を新規に作成し、作成した Runtime コンテンツ（*.geodatabase）を地図に表示する部分を書いていきます。
+また、Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込むようにします。
+
+### MainWindow.xaml
+
+Runtime コンテンツ（*.geodatabase）を作成するためにデータのダウンロード ボタンを追加します。<br/>
+ダウンロード ボタンがクリックされたら ArcGIS Online の[フィーチャ レイヤー](https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer)からデータをダウンロードして、Runtime コンテンツ（*.geodatabase）を作成します。
+
+1. プロジェクトの `sample/MainWindow.xaml` ファイルを開きます。
+2. 次に、Grid の中に次の要素を追加します。
+
+```xml
+<Border Name="uiPanel" 
+    Background="White" BorderBrush="Black" BorderThickness="1"
+    HorizontalAlignment="Right" VerticalAlignment="Top"
+    Margin="5" Width="130">
+    <StackPanel>
+	<TextBlock Text="AGOL"
+	   HorizontalAlignment="Center"
+	   Margin="0,0,0,0" 
+	   TextWrapping="Wrap" />
+	<WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
+	    <Button Content="ダウンロード"
+		HorizontalAlignment="Left"
+		Margin="5"
+		Padding="0"    
+		VerticalAlignment="Top"
+		Width="auto"
+		Click="OnDonwloadButton" 
+		ToolTip="サーバー(AGOL)からダウンロードを行います"/>
+	</WrapPanel>
+	<ProgressBar x:Name="MyProgressBar" Visibility="Visible" MinHeight="15" />
+    </StackPanel>
+</Border>
+```
+
+【確認】現在、`MainWindow.xaml`は、次のようになっているはずです。
+
+```xml
+<Window x:Class="sample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+        xmlns:local="clr-namespace:sample"
+        mc:Ignorable="d"
+        Title="オフラインマップ" Height="450" Width="625">
+
+    <Grid>
+        <esri:MapView x:Name="MyMapView"/>
+
+        <Border Name="uiPanel" 
+            Background="White" BorderBrush="Black" BorderThickness="1"
+            HorizontalAlignment="Right" VerticalAlignment="Top"
+            Margin="5" Width="130">
+            <StackPanel>
+                <TextBlock Text="AGOL"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,0" 
+                   TextWrapping="Wrap" />
+                <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
+                    <Button Content="ダウンロード"
+                        HorizontalAlignment="Left"
+                        Margin="5"
+                        Padding="0"    
+                        VerticalAlignment="Top"
+                        Width="auto"
+                        Click="OnDonwloadButton" 
+                        ToolTip="サーバー(AGOL)からダウンロードを行います"/>
+                </WrapPanel>
+                <ProgressBar x:Name="MyProgressBar" Visibility="Visible" MinHeight="15" />
+            </StackPanel>
+        </Border>
+	
+    </Grid>
+</Window>
+```
+
+### MainWindow.xaml.cs
+
+1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
+2. `Initialize` 関数に `chkGeodatabase()` 関数を作成します。
+
+```csharp
+public async void Initialize()
+{
+    myMap = new Map();
+
+    TileCache tileCache = new TileCache(@"D:\workshops\offlinemap-app-hands-on\samples\SampleData\public_map.tpk");
+    ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
+
+    LayerCollection baseLayers = new LayerCollection();
+    baseLayers.Add(tiledLayer);
+    myMap.Basemap.BaseLayers = baseLayers;
+
+    // 主題図の表示
+    addFeatureLayer();
+
+    MyMapView.Map = myMap;
+
+    // PC内の geodatabase ファイル作成パスを取得する
+    getGeodatabasePath();
 }
 ```
 
-3. getGeodatabasePath()`、`chkGeodatabase()` 関数をそれぞれ作成します。
+3. `getGeodatabasePath()` 関数を作成します。
 
 ```csharp
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -145,7 +298,21 @@ private void getGeodatabasePath()
 
     mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
 }
+```
 
+4. ダウンロード ボタンがクリックされた処理を作成します。
+
+```csharp
+private void OnDonwloadButton(object sender, RoutedEventArgs e)
+{
+    // すでにランタイムコンテンツが作成されているかチェックする
+    chkGeodatabase();
+}
+```
+
+5. `chkGeodatabase()` 関数で Runtime コンテンツ（*.geodatabase）の作成の可否をチェックします。
+
+```csharp
 /**
 * ローカルファイルをMapViewへ追加する
 * */
@@ -169,7 +336,7 @@ private void chkGeodatabase()
 }
 ```
 
-4. 既存 GeoDatabase から読み込む、`readGeoDatabase()`関数を作成します。
+6. 既存 GeoDatabase から読み込む、`readGeoDatabase()`関数を作成します。
 
 ```csharp
 /**
@@ -199,7 +366,7 @@ private async void readGeoDatabase()
 }
 ```
 
-5. ローカルフォルダに Runtime コンテンツ（*.geodatabase）を作成します。
+7. ローカルフォルダに Runtime コンテンツ（*.geodatabase）を作成します。
 
  Runtime コンテンツ（*.geodatabase）の作成は、ステップ①、②、③ の手順で行っていきます。
 
@@ -258,42 +425,46 @@ private void generateGeodatabase()
 {
     // TODO geodatabaseファイル作成ジョブオブヘジェクトを作成する
 
-    // TODO JobChanged イベントを処理してジョブのステータスをチェックする
+    // JobChanged イベントを処理してジョブのステータスをチェックする
+    generateJob.JobChanged += (s, e) =>
+    {
+	// report error (if any)
+	if (generateJob.Error != null)
+	{
+	    Console.WriteLine("Error creating geodatabase: " + generateJob.Error.Message);
+	    return;
+	}
+
+	// check the job status
+	if (generateJob.Status == JobStatus.Succeeded)
+	{
+	    // ジョブが成功した場合はローカルデータをマップに追加する
+	    readGeoDatabase();
+	}
+	else if (generateJob.Status == JobStatus.Failed)
+	{
+	    // report failure
+	    Console.WriteLine("Unable to create local geodatabase.");
+	}
+	else
+	{
+	    // job is still running, report last message
+	    Console.WriteLine(generateJob.Messages[generateJob.Messages.Count - 1].Message);
+	}
+    };
+
+    generateJob.ProgressChanged += ((object sender, EventArgs e) =>
+    {
+	this.Dispatcher.Invoke(() =>
+	{
+	    MyProgressBar.Value = generateJob.Progress / 1.0;
+	});
+    });
 
     // ジョブを開始し、ジョブIDをコンソール上に表示
     generateJob.Start();
+
     Console.WriteLine("Submitted job #" + generateJob.ServerJobId + " to create local geodatabase");
-}
-
-// JobChangedイベントのハンドラ
-private void OnGenerateJobChanged(object sender, EventArgs e)
-{
-    // get the GenerateGeodatabaseJob that raised the event
-    var job = sender as GenerateGeodatabaseJob;
-    
-    // report error (if any)
-    if (job.Error != null)
-    {
-        Console.WriteLine("Error creating geodatabase: " + job.Error.Message);
-        return;
-    }
-
-    // check the job status
-    if (job.Status == JobStatus.Succeeded)
-    {
-        // ジョブが成功した場合はローカルデータをマップに追加する
-        readGeoDatabase();
-    }
-    else if (job.Status == JobStatus.Failed)
-    {
-        // report failure
-        Console.WriteLine("Unable to create local geodatabase.");
-    }
-    else
-    {
-        // job is still running, report last message
-        Console.WriteLine(job.Messages[job.Messages.Count - 1].Message);
-    }
 }
 ```
 
@@ -334,8 +505,7 @@ private async void generateGeodatabaseParameters()
     generateGeodatabase();
 }
 
-/**
- * GeoDatabaseを新規に作成する
+/** GeoDatabaseを新規に作成する
  * ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する
  **/
 private void generateGeodatabase()
@@ -343,25 +513,60 @@ private void generateGeodatabase()
     // TODO geodatabaseファイル作成ジョブオブヘジェクトを作成する
     generateJob = geodatabaseSyncTask.GenerateGeodatabase(generateParams, mGeodatabasePath);
 
-    // TODO JobChanged イベントを処理してジョブのステータスをチェックする
-    generateJob.JobChanged += OnGenerateJobChanged;
+    // JobChanged イベントを処理してジョブのステータスをチェックする
+    generateJob.JobChanged += (s, e) =>
+    {
+	// report error (if any)
+	if (generateJob.Error != null)
+	{
+	    Console.WriteLine("Error creating geodatabase: " + generateJob.Error.Message);
+	    return;
+	}
+
+	// check the job status
+	if (generateJob.Status == JobStatus.Succeeded)
+	{
+	    // ジョブが成功した場合はローカルデータをマップに追加する
+	    readGeoDatabase();
+	}
+	else if (generateJob.Status == JobStatus.Failed)
+	{
+	    // report failure
+	    Console.WriteLine("Unable to create local geodatabase.");
+	}
+	else
+	{
+	    // job is still running, report last message
+	    Console.WriteLine(generateJob.Messages[generateJob.Messages.Count - 1].Message);
+	}
+	
+    };
+
+    generateJob.ProgressChanged += ((object sender, EventArgs e) =>
+    {
+	this.Dispatcher.Invoke(() =>
+	{
+	    MyProgressBar.Value = generateJob.Progress / 1.0;
+	});
+    });
 
     // ジョブを開始し、ジョブIDをコンソール上に表示
     generateJob.Start();
+
     Console.WriteLine("Submitted job #" + generateJob.ServerJobId + " to create local geodatabase");
 }
 ```
 
-【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` の全体を確認したい方は [こちら](examples/手順4)にございます。
+【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちら](examples/手順4)にございます。
 
 ### アプリの実行
 
-ここでアプリを実行します。
-実行後の以下のような画面になります。
+アプリを実行して確認しましょう。<br/>
+以下のような画面が表示されます。ダウンロードボタンをクリックするとフィーチャ サービスのデータのダウンロードが実行されます。
 
 ![](./img/4-1.png)
 
-## 手順 5: 新しいポイントを追加する
+## 手順 5: フィーチャの編集（ポイント追加）
 
 新しいポイントを Runtime コンテンツ（*.geodatabase）に追加する処理を書いていきましょう。
 
@@ -373,18 +578,24 @@ private void generateGeodatabase()
 ```csharp
 public void Initialize()
 {
-    myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
+    myMap = new Map();
+
+    TileCache tileCache = new TileCache(@"D:\workshops\offlinemap-app-hands-on\samples\SampleData\public_map.tpk");
+    ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
+
+    LayerCollection baseLayers = new LayerCollection();
+    baseLayers.Add(tiledLayer);
+    myMap.Basemap.BaseLayers = baseLayers;
+
+    // 主題図の表示
+    addFeatureLayer();
 
     MyMapView.Map = myMap;
-
-    MyMapView.GeoViewTapped += OnMapViewTapped;
 
     // PC内の geodatabase ファイル作成パスを取得する
     getGeodatabasePath();
 
-    // すでにランタイムコンテンツが作成されているかチェックする
-    chkGeodatabase();
-
+    MyMapView.GeoViewTapped += OnMapViewTapped;
 }
 ```
 
@@ -423,6 +634,11 @@ private void addPoint(MapPoint structureLocation)
  **/
 private async void addFeature(MapPoint pPoint)
 {
+    if (mGdbFeatureTable == null)
+    {
+	return;
+    }
+
     if (!mGdbFeatureTable.CanAdd())
     {
         // Deal with indicated error
@@ -431,7 +647,7 @@ private async void addFeature(MapPoint pPoint)
 
     // 項目にデータを入れる
     var attributes = new Dictionary<string, object>();
-    attributes.Add("BuildingName", "ESRIジャパンnow！");
+    attributes.Add("name", "ESRIジャパンnow！");
 
     Feature addedFeature = mGdbFeatureTable.CreateFeature(attributes, pPoint);
 
@@ -441,52 +657,40 @@ private async void addFeature(MapPoint pPoint)
 
     foreach (var r in results)
     {
-        Console.WriteLine("add point geodatabase : '" + r.Attributes["BuildingName"]);
+        Console.WriteLine("add point geodatabase : '" + r.Attributes["name"]);
     }
 }
 ```
 
-【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` の全体を確認したい方は [こちら](examples/手順5)にございます。
+【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちら](examples/手順5)にございます。
 
 ### アプリの実行
 
-ここでアプリを実行します。<br/>  
-実行後の以下のような画面になり、地図をタップすることでポイントが追加されます。
+アプリを実行して確認しましょう。<br/>
+以下のような画面が表示され、地図をタップすることでポイントが追加されます。ポイントの追加は、ダウンロードボタンを実行後に行います。
+
 
 ![](./img/5-1.png)
 
-## 手順 6: ArcGIS Online フィーチャ レイヤーとの同期
+## 手順 6: 編集結果をフィーチャ サービスと同期
 
-最後に Runtime コンテンツ（*.geodatabase）に追加したポイントを フィーチャ レイヤーと同期する処理を書いていきましょう。
+最後に Runtime コンテンツ（*.geodatabase）に追加したポイントを ArcGIS Online の[フィーチャ レイヤー](https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer)と同期する処理を書いていきましょう。
 
 ### MainWindow.xaml
 
 1. プロジェクトの `sample/MainWindow.xaml` ファイルを開きます。
-2. 次に、Grid の中に次の要素を追加します。
+2. 次に、StackPanel の WrapPanel の中に次の要素を追加します。
 
 ```xml
-<Border Name="uiPanel" 
-        Background="White" BorderBrush="Black" BorderThickness="1"
-        HorizontalAlignment="Right" VerticalAlignment="Top"
-        Margin="5" Width="100">
-    <StackPanel>
-        <TextBlock Text="AGOL 同期"
-                   HorizontalAlignment="Center"
-                   Margin="0,0,0,0" 
-                   TextWrapping="Wrap" />
-        <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
-            <Button Content="同期"
-          HorizontalAlignment="Left"
-          Margin="10"
-                Padding="0"    
-          VerticalAlignment="Top"
-          Width="auto"
-          Click="OnButtonClick" 
-                ToolTip="サーバー(AGOL)との同期を行います"/>
-        </WrapPanel>
-        <ProgressBar x:Name="MyProgressBar" Visibility="Visible" MinHeight="15" />
-    </StackPanel>
-</Border>
+<Button x:Name="MyButton" Content="同期"
+	HorizontalAlignment="Left"
+	Margin="5"
+	Padding="0"    
+	VerticalAlignment="Top"
+	Width="auto"
+	IsEnabled="False"
+	Click="OnSyncClick" 
+	ToolTip="サーバー(AGOL)との同期を行います"/>
 ```
 
 【確認】現在、`MainWindow.xaml`は、次のようになっているはずです。
@@ -501,27 +705,36 @@ private async void addFeature(MapPoint pPoint)
         xmlns:local="clr-namespace:sample"
         mc:Ignorable="d"
         Title="オフラインマップ" Height="450" Width="625">
+
     <Grid>
         <esri:MapView x:Name="MyMapView"/>
-
         <Border Name="uiPanel" 
-                Background="White" BorderBrush="Black" BorderThickness="1"
-                HorizontalAlignment="Right" VerticalAlignment="Top"
-                Margin="5" Width="100">
+            Background="White" BorderBrush="Black" BorderThickness="1"
+            HorizontalAlignment="Right" VerticalAlignment="Top"
+            Margin="5" Width="130">
             <StackPanel>
-                <TextBlock Text="AGOL 同期"
-                           HorizontalAlignment="Center"
-                           Margin="0,0,0,0" 
-                           TextWrapping="Wrap" />
+                <TextBlock Text="AGOL"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,0" 
+                   TextWrapping="Wrap" />
                 <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
-                    <Button Content="同期"
-		                HorizontalAlignment="Left"
-		                Margin="10"
+                    <Button Content="ダウンロード"
+                        HorizontalAlignment="Left"
+                        Margin="5"
                         Padding="0"    
-		                VerticalAlignment="Top"
-		                Width="auto"
-		                Click="OnButtonClick" 
-                        ToolTip="サーバー(AGOL)との同期を行います"/>
+                        VerticalAlignment="Top"
+                        Width="auto"
+                        Click="OnDonwloadButton" 
+                        ToolTip="サーバー(AGOL)からダウンロードを行います"/>
+		<Button x:Name="MyButton" Content="同期"
+			HorizontalAlignment="Left"
+			Margin="5"
+			Padding="0"    
+			VerticalAlignment="Top"
+			Width="auto"
+			IsEnabled="False"
+			Click="OnSyncClick" 
+			ToolTip="サーバー(AGOL)との同期を行います"/>
                 </WrapPanel>
                 <ProgressBar x:Name="MyProgressBar" Visibility="Visible" MinHeight="15" />
             </StackPanel>
@@ -533,8 +746,20 @@ private async void addFeature(MapPoint pPoint)
 ### MainWindow.xaml.cs
 
 1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
-2. 以下のようにフィーチャ レイヤーと同期する処理を作成します。
 
+2. ダウンロードボタンがクリックされたら同期ボタンを有効にします。
+```csharp
+private void OnDonwloadButton(object sender, RoutedEventArgs e)
+{
+    // すでにランタイムコンテンツが作成されているかチェックする
+    chkGeodatabase();
+
+    // 同期ボタンの有効
+    MyButton.IsEnabled = true;
+}
+```
+
+3. 以下のようにフィーチャ レイヤーと同期する処理を作成します。
 ```csharp
 ////////////////////////////////////////////////////////////////
 // 同期
@@ -544,7 +769,7 @@ private async void addFeature(MapPoint pPoint)
  * ① 同期タスクを作成する
  * ② 同期パラメータを取得する
  **/
-private async void OnButtonClick(object sender, RoutedEventArgs e)
+private async void OnSyncClick(object sender, RoutedEventArgs e)
 {
     // 同期したいレイヤーでタスクオブジェクトを作成する
     geodatabaseSyncTask = await GeodatabaseSyncTask.CreateAsync(new Uri(FEATURELAYER_SERVICE_URL));
@@ -599,7 +824,10 @@ private void syncGeodatabase()
 
     syncJob.ProgressChanged += ((object sender, EventArgs e) =>
     {
-        UpdateProgressBar();
+	this.Dispatcher.Invoke(() =>
+	{
+	    MyProgressBar.Value = syncJob.Progress / 1.0;
+	});
     });
 
     // geodatabase 同期のジョブを開始します
@@ -610,30 +838,22 @@ private void ShowStatusMessage(string message)
 {
     MessageBox.Show(message);
 }
-
-private void UpdateProgressBar()
-{
-    this.Dispatcher.Invoke(() =>
-    {
-        MyProgressBar.Value = syncJob.Progress / 1.0;
-    });
-}
 ```
 
-【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` の全体を確認したい方は [こちら](examples/手順6)にございます。
+【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちら](examples/手順6)にございます。
 
 ### アプリの実行
 
-ここでアプリを実行します。<br/>
-実行後の以下のような画面になり、画面右上の同期ボタンをクリックすることフィーチャ レイヤーと同期が実行されます。
+アプリを実行して確認しましょう。<br/>
+以下のような画面が表示され、ダウンロードボタンをクリックした後、画面右上の同期ボタンをクリックするとフィーチャ レイヤーとの同期が実行されます。
 
 ![](./img/6-1.png)
 
-## 手順 7: 同期されたフィーチャ レイヤーの確認
+## 最後: 同期されたフィーチャ レイヤーの確認
 
 実際に ArcGIS Online にアクセスして新規に追加されたポイントデータが反映されているか確認しましょう。
 同期がうまくいった場合は新規のポイントデータが追加されています。
 
 <img src="./img/AddData.png" width="500px">
 
-[ArcGIS Online 上で表示](http://www.arcgis.com/home/webmap/viewer.html?webmap=4e90d664e499454a831ec05250299522)
+[ArcGIS Online 上で表示](http://www.arcgis.com/home/webmap/viewer.html?webmap=49aaf6580c9142e28d8912cee6f573c9)

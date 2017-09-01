@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Windows;
 using System.Collections.Generic;
+using System.Windows.Controls;
+
 
 using Esri.ArcGISRuntime;
 using Esri.ArcGISRuntime.Mapping;
@@ -19,8 +21,8 @@ namespace sample
     public partial class MainWindow : Window
     {
         // ArcGIS Online フィーチャ レイヤーサービスの URL  
-        private const string FEATURELAYER_SERVICE_URL = "https://services.arcgis.com/wlVTGRSYTzAbjjiC/ArcGIS/rest/services/SampleDataHandsOn/FeatureServer";
-
+        private const string FEATURELAYER_SERVICE_URL = "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer";
+        private FeatureLayer featureLayer;
         private Map myMap;
 
         private SyncGeodatabaseParameters syncParams;
@@ -34,15 +36,39 @@ namespace sample
 
         public void Initialize()
         {
-            myMap = new Map(BasemapType.Streets, 35.704085, 139.619373, 13);
+            myMap = new Map();
 
+            TileCache tileCache = new TileCache(@"D:\workshops\offlinemap-app-hands-on\samples\SampleData\public_map.tpk");
+            ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
+
+            LayerCollection baseLayers = new LayerCollection();
+            baseLayers.Add(tiledLayer);
+            myMap.Basemap.BaseLayers = baseLayers;
+
+            // 主題図の表示
+            addFeatureLayer();
+            
             MyMapView.Map = myMap;
-
+            
             // PC内の geodatabase ファイル作成パスを取得する
             getGeodatabasePath();
 
-            // すでにランタイムコンテンツが作成されているかチェックする
-            chkGeodatabase();
+        }
+
+        /**
+        * 主題図の表示をする
+        **/
+        public void addFeatureLayer()
+        {
+            // 主題図用のフィーチャ レイヤー（フィーチャ サービス）の表示
+            // フィーチャ サービスの URL を指定してフィーチャ テーブル（ServiceFeatureTable）を作成する
+            // フィーチャ サービスの URL はレイヤー番号（〜/FeatureServer/0）まで含める
+            var serviceUri = new Uri(FEATURELAYER_SERVICE_URL + "/0");
+            ServiceFeatureTable featureTable = new ServiceFeatureTable(serviceUri);
+            // フィーチャ テーブルからフィーチャ レイヤーを作成
+            featureLayer = new FeatureLayer(featureTable);
+            // マップにフィーチャ レイヤーを追加
+            myMap.OperationalLayers.Add(featureLayer);
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////
@@ -62,10 +88,15 @@ namespace sample
 
             mGeodatabasePath = stCurrentDir + "\\" + "orglayer.geodatabase";
         }
+        private void OnDonwloadButton(object sender, RoutedEventArgs e)
+        {
+            // すでにランタイムコンテンツが作成されているかチェックする
+            chkGeodatabase();
+        }
 
         /**
-        * ローカルファイルをMapViewへ追加する
-        * */
+         * ローカルファイルをMapViewへ追加する
+         **/
         private void chkGeodatabase()
         {
             // カレントディレクトリの取得
@@ -104,6 +135,8 @@ namespace sample
 
                 if (mGdbFeatureTable.LoadStatus == LoadStatus.Loaded)
                 {
+                    myMap.OperationalLayers.RemoveAt(0);
+
                     mFeatureLayer = new FeatureLayer(mGdbFeatureTable);
 
                     myMap.OperationalLayers.Add(mFeatureLayer);
@@ -123,9 +156,9 @@ namespace sample
         private GenerateGeodatabaseParameters generateParams;
         private GenerateGeodatabaseJob generateJob;
         /**
-        * GeoDatabaseを新規に作成する
-        * ① 同期させたいArcGIS Online の Feature Layer でタスクを作成する
-        ****/
+         * GeoDatabaseを新規に作成する
+         * ① 同期させたいArcGIS Online の Feature Layer でタスクを作成する
+         ****/
         private async void createGeodatabaseSyncTask()
         {
             // TODO 同期させたいレイヤーで geodatabase 作成 タスクオブジェクトを作成する
@@ -165,44 +198,48 @@ namespace sample
             // TODO geodatabaseファイル作成ジョブオブヘジェクトを作成する
             generateJob = geodatabaseSyncTask.GenerateGeodatabase(generateParams, mGeodatabasePath);
 
-            // TODO JobChanged イベントを処理してジョブのステータスをチェックする
-            generateJob.JobChanged += OnGenerateJobChanged;
+            // JobChanged イベントを処理してジョブのステータスをチェックする
+            generateJob.JobChanged += (s, e) =>
+            {
+                // report error (if any)
+                if (generateJob.Error != null)
+                {
+                    Console.WriteLine("Error creating geodatabase: " + generateJob.Error.Message);
+                    return;
+                }
+
+                // check the job status
+                if (generateJob.Status == JobStatus.Succeeded)
+                {
+                    // ジョブが成功した場合はローカルデータをマップに追加する
+                    readGeoDatabase();
+                }
+                else if (generateJob.Status == JobStatus.Failed)
+                {
+                    // report failure
+                    Console.WriteLine("Unable to create local geodatabase.");
+                }
+                else
+                {
+                    // job is still running, report last message
+                    Console.WriteLine(generateJob.Messages[generateJob.Messages.Count - 1].Message);
+                }
+            };
+
+            generateJob.ProgressChanged += ((object sender, EventArgs e) =>
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    MyProgressBar.Value = generateJob.Progress / 1.0;
+                });
+            });
 
             // ジョブを開始し、ジョブIDをコンソール上に表示
             generateJob.Start();
+
             Console.WriteLine("Submitted job #" + generateJob.ServerJobId + " to create local geodatabase");
         }
 
-        // JobChangedイベントのハンドラ
-        private void OnGenerateJobChanged(object sender, EventArgs e)
-        {
-            // get the GenerateGeodatabaseJob that raised the event
-            var job = sender as GenerateGeodatabaseJob;
-
-            // report error (if any)
-            if (job.Error != null)
-            {
-                Console.WriteLine("Error creating geodatabase: " + job.Error.Message);
-                return;
-            }
-
-            // check the job status
-            if (job.Status == JobStatus.Succeeded)
-            {
-                // ジョブが成功した場合はローカルデータをマップに追加する
-                readGeoDatabase();
-            }
-            else if (job.Status == JobStatus.Failed)
-            {
-                // report failure
-                Console.WriteLine("Unable to create local geodatabase.");
-            }
-            else
-            {
-                // job is still running, report last message
-                Console.WriteLine(job.Messages[job.Messages.Count - 1].Message);
-            }
-        }
 
     }
 }
