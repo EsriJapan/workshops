@@ -79,7 +79,7 @@ Visual Studio で `workshops/offlinemap-app-hands-on/hands-on/DotNet/examples/st
 
 <img src="./img/1-2.png" width="500px">
 
-### 手順 2: タイル パッケージ（背景地図）の表示
+## 手順 2: タイル パッケージ（背景地図）の表示
 
 NuGet パッケージの復元が完了したら、デバッグを開始してアプリを実行してみましょう。<br/>
 以下のような画面が表示されます。
