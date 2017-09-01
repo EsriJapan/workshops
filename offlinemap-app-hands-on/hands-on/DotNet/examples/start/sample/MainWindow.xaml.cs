@@ -36,7 +36,7 @@ namespace sample
 
         public void Initialize()
         {
-            Map myMap = new Map(BasemapType.Streets, 35.632896, 139.880394, 12);
+            Map myMap = new Map(BasemapType.Streets, 35.632896, 139.880394, 13);
 
             MyMapView.Map = myMap;            
         }
