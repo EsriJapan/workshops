@@ -175,8 +175,6 @@ public void addFeatureLayer()
 ここでは フィーチャ サービスのデータをダウンロードして、ダウンロードしたデータから Runtime コンテンツ（*.geodatabase）を新規に作成し、作成した Runtime コンテンツ（*.geodatabase）を地図に表示する部分を書いていきます。
 また、Runtime コンテンツ（*.geodatabase）が存在している場合は 既存の Runtime コンテンツ（*.geodatabase）を読み込むようにします。
 
-Runtime コンテンツ（*.geodatabase）で使用するデータは、こちらの[フィーチャ レイヤー](https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/urayasushi_hoikuen_yochien/FeatureServer)を使用していきます。
-
 ### MainWindow.xaml
 
 Runtime コンテンツ（*.geodatabase）を作成するためにデータのダウンロード ボタンを追加します。<br/>
