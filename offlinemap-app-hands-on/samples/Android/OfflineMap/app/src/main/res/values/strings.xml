@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">OfflineMap</string>
+
+    <!-- ArcGIS Path-->
+
+    <string name="local_path">/Download/</string>
+    <string name="tpk_name">public_map.tpk</string>
+    <string name="runtimecontents_name">hanson.geodatabase</string>
+</resources>
