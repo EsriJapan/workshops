@@ -375,7 +375,7 @@ private async void readGeoDatabase()
 - ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する。
 
  コードの TODO 箇所に処理を書いていきましょう。<br/>
- 詳細は、 [Runtime コンテンツ（*.geodatabase）の作成](https://developers.arcgis.com/net/latest/wpf/guide/create-an-offline-layer.htm)を参考にしてください。
+ 詳細は、 [Runtime コンテンツ（*.geodatabase）の作成](https://developers.arcgis.com/net/latest/wpf/guide/create-an-offline-layer.htm#ESRI_SECTION3_89544D1DCF1E49AB842CD20BA03255A4)を参考にしてください。
  
 ```csharp
 ////////////////////////////////////////////////////////////////
