@@ -682,12 +682,13 @@ private async void addFeature(MapPoint pPoint)
 2. 次に、StackPanel の WrapPanel の中に次の要素を追加します。
 
 ```xml
-<Button Content="同期"
+<Button x:Name="MyButton" Content="同期"
 	HorizontalAlignment="Left"
 	Margin="5"
 	Padding="0"    
 	VerticalAlignment="Top"
 	Width="auto"
+	IsEnabled="False"
 	Click="OnSyncClick" 
 	ToolTip="サーバー(AGOL)との同期を行います"/>
 ```
@@ -725,15 +726,15 @@ private async void addFeature(MapPoint pPoint)
                         Width="auto"
                         Click="OnDonwloadButton" 
                         ToolTip="サーバー(AGOL)からダウンロードを行います"/>
-                    <Button Content="同期"
-                        HorizontalAlignment="Left"
-                        Margin="5"
-                        Padding="0"    
-                        VerticalAlignment="Top"
-                        Width="auto"
+		<Button x:Name="MyButton" Content="同期"
+			HorizontalAlignment="Left"
+			Margin="5"
+			Padding="0"    
+			VerticalAlignment="Top"
+			Width="auto"
 			IsEnabled="False"
-                        Click="OnSyncClick" 
-                        ToolTip="サーバー(AGOL)との同期を行います"/>
+			Click="OnSyncClick" 
+			ToolTip="サーバー(AGOL)との同期を行います"/>
                 </WrapPanel>
                 <ProgressBar x:Name="MyProgressBar" Visibility="Visible" MinHeight="15" />
             </StackPanel>
