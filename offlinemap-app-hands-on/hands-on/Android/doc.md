@@ -25,9 +25,8 @@
 ## 手順 1: プロジェクトのダウンロード
 ### サンプル プロジェクトのダウンロード
 1. [workshops](https://github.com/EsriJapan/workshops) ページを開いて [Clone or download] -> [Download ZIP] をクリックして、ファイル一式をダウンロードします。
- <img src="./img/1-1.png" width="500px">
+<img src="./img/1-1.png" width="500px">
 1. サンプル プロジェクト（workshops/offlinemap-app-hands-on/samples/Android/offlineMap）を Android Studio で開きます。
-
 1. Android Studio によるプロジェクト ビルドが終了したら、エミュレータまたは実機をつなげてアプリを実行してみましょう。次のような画面が表示されます。
  <img src="./img/1-2.png" width="200px">
 
