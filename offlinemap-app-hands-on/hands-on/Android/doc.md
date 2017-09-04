@@ -24,11 +24,11 @@
 
 ## 手順 1: プロジェクトのダウンロード
 ### サンプル プロジェクトのダウンロード
-1. [workshops](https://github.com/EsriJapan/workshops) ページを開いて [Clone or download] -> [Download ZIP] をクリックして、ファイル一式をダウンロードします。
+ 1. [workshops](https://github.com/EsriJapan/workshops) ページを開いて [Clone or download] -> [Download ZIP] をクリックして、ファイル一式をダウンロードします。
  <img src="./img/1-1.png" width="500px">
-1. サンプル プロジェクト（workshops/offlinemap-app-hands-on/samples/Android/offlineMap）を Android Studio で開きます。
+ 1. サンプル プロジェクト（workshops/offlinemap-app-hands-on/samples/Android/offlineMap）を Android Studio で開きます。
 
-1. Android Studio によるプロジェクト ビルドが終了したら、エミュレータまたは実機をつなげてアプリを実行してみましょう。次のような画面が表示されます。
+ 1. Android Studio によるプロジェクト ビルドが終了したら、エミュレータまたは実機をつなげてアプリを実行してみましょう。次のような画面が表示されます。
  <img src="./img/1-2.png" width="500px">
 
 #### Tips:
@@ -37,22 +37,26 @@
 * 今回のハンズオンで作成するサンプルの完成版が[こちら](http://esrijapan.github.io/workshops/offlinemap-app-hands-on/samples/Android/offlinemap/AnswerActivity)にありますので、作業に困ったら参考にしてください。
 
 ## 手順 2: タイル パッケージ（背景地図）の表示
-【ここは時間をかける。DL方法とadbコマンドによるファイル配置方法を明記する】サンプル プロジェクトには事前に地図画面を作成してあるので、そこに背景地図を表示していきます。ハンズオンで使用するタイル パッケージ（背景地図）は、GitHub からダウンロードしたフォルダ（workshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk）にあります。
-
-
-1. Xcode のメニューで、[File] -> [Add Files to "offlineMap"...] から、public_map.tpk ファイルをプロジェクトに追加します。
+1. ハンズオンで使用するタイル パッケージ（背景地図）を実行する端末またはエミューレーターへダウンロードします。タイル パッケージ (orkshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk) へ実機またはエミュレーターからアクセスして、ダウンロードします。ダウンロードしたファイルは、ファイルマネージャー アプリなどを使用して内部ストレージである sdcard/Downloads 配下に格納されることを確認します。
 
  <img src="./img/2-1.png" width="500px">
 
-1. viewDidLoad メソッドにタイル パッケージ（背景地図）を表示するコードを記述します。AGSTileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。
- ```javascript
- // 背景用のタイル レイヤー（タイル パッケージ）を表示
- // AGSTileCache のパラメーターには .tpk ファイルの名前を指定
- let localTiledLayer = AGSArcGISTiledLayer(tileCache: AGSTileCache(name: "public_map"))
- // タイル レイヤーを背景としてマップを作成
- let map = AGSMap(basemap: AGSBasemap(baseLayer: localTiledLayer))
- // マップビュー（地図画面）にマップを表示
- self.mapView.map = map
+  * adb コマンドを使用する場合は、タイル パッケージを任意の場所にダウンロードしたあと、次のコマンドを実行します。
+  >adb push public_map.tpk /sdcard/Download/
+
+1. タイル パッケージ（背景地図）を表示するコードを記述します。`readTilePkg()` メソッドを次のように実装します。TileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。
+ ```java
+ String tpkpath  = mLocalFilePath + getResources().getString(R.string.tpk_name);
+ // 存在チェック
+ File tpkfile = new File(mLocalFilePath);
+ if(!tpkfile.exists()){
+     Log.d(TAG, tpkpath + ":" + tpkfile.exists());
+ }else{
+     // tpkファイルはレイヤーとして表示する
+     TileCache tileCache = new TileCache(tpkpath);
+     ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
+     mArcGISmap.getOperationalLayers().add(tiledLayer);
+ }
  ```
 1. サンプル プロジェクトを実機もしくはシミュレーターで実行すると、以下のように地図が表示されます。
 

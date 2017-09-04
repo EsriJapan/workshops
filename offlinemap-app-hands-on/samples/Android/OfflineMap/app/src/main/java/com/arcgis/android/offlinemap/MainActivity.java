@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         mMapView.setMap(mArcGISmap);
 
         // TODO 2.タイルパッケージを読み込んで背景地図を表示する※メソッド内を実装します。
-//        readTilePkg();
+        readTilePkg();
 
         // TODO 3.主題図の表示
 //        readFeatureLayer();
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         if(!tpkfile.exists()){
             Log.d(TAG, tpkpath + ":" + tpkfile.exists());
         }else{
-            // TODO tpkファイルがある場合はレイヤーとして表示する
+            // tpkファイルはレイヤーとして表示する
             TileCache tileCache = new TileCache(tpkpath);
             ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
             mArcGISmap.getOperationalLayers().add(tiledLayer);
