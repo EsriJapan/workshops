@@ -34,10 +34,10 @@
 #### Tips:
 * SDK は Gradle へ参照先を明記して使用しますが、SDKの[ダウンロードページ](https://developers.arcgis.com/downloads)から jar ファイルをダウンロードして使用することも可能です。その場合はプロジェクト直下にlibフォルダを作成し、Gradle ファイルに以下のように定義します。なお、jarファイルをダウンロードする場合は開発者アカウントが必要になります。作成する場合は、[こちら](http://esrijapan.github.io/arcgis-dev-resources/get-dev-account/)を参考にして作成してください）。
 * サンプル プロジェクトには事前に必要な マニュフェストやレイアウトの設定、ボタン等を作成しています。アプリ開発時に必要な設定は[インストール ガイド](http://esrijapan.github.io/arcgis-dev-resources/android/install-android-100.x/)をご覧ください。
-* 今回のハンズオンで作成するサンプルの完成版が[こちら](http://esrijapan.github.io/workshops/offlinemap-app-hands-on/samples/Android/offlinemap/AnswerActivity)にありますので、作業に困ったら参考にしてください。
+* 今回のハンズオンで作成するサンプルの完成版が[こちら](https://github.com/wakanasato/workshops/blob/master/offlinemap-app-hands-on/samples/Android/OfflineMap/app/src/main/java/com/arcgis/android/offlinemap/AnswerActivity.java)にありますので、作業に困ったら参考にしてください。
 
 ## 手順 2: タイル パッケージ（背景地図）の表示
-1. ハンズオンで使用するタイル パッケージ（背景地図）を実行する端末またはエミューレーターへダウンロードします。タイル パッケージ (orkshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk) へ実機またはエミュレーターからアクセスして、ダウンロードします。ダウンロードしたファイルは、ファイルマネージャー アプリなどを使用して内部ストレージである sdcard/Downloads 配下に格納されることを確認します。
+1. ハンズオンで使用するタイル パッケージ（背景地図）を実行する端末またはエミューレーターへダウンロードします。タイル パッケージ (orkshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk) へ実機またはエミュレーターからアクセスして、ダウンロードします。ダウンロードしたファイルは、ファイルマネージャー アプリなどを使用して内部ストレージである sdcard/Downloads 配下に格納されることを確認します。実機の場合URLは http://bit.ly/2ex6vIj(http://bit.ly/2ex6vIj)をご利用ください。なおこのタイル パッケージの公開は当日のハンズオンのみとしています。
 
  <img src="./img/2-1.png" width="500px">
 
