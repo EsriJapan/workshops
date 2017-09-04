@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
          * Local_tpk_pathにはDownloadを指定している
          *
          * 【権限チェック】
-         * 端末自体の権限があるかどうかみる設定＞アプリ＞インストールしたapp＞権限
+         * Andrioid 6.0以上の端末はアプリの権限があるかどうかみる設定＞アプリ＞インストールしたapp＞権限
          * */
 
         String tpkpath  = mLocalFilePath + getResources().getString(R.string.tpk_name);
