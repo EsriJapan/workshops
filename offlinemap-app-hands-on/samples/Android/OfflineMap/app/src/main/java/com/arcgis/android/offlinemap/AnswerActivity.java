@@ -27,7 +27,6 @@ import com.esri.arcgisruntime.layers.FeatureLayer;
 import com.esri.arcgisruntime.loadable.LoadStatus;
 import com.esri.arcgisruntime.mapping.ArcGISMap;
 import com.esri.arcgisruntime.mapping.Basemap;
-import com.esri.arcgisruntime.mapping.Viewpoint;
 import com.esri.arcgisruntime.mapping.view.DefaultMapViewOnTouchListener;
 import com.esri.arcgisruntime.mapping.view.MapView;
 import com.esri.arcgisruntime.tasks.geodatabase.GenerateGeodatabaseJob;
@@ -43,10 +42,14 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Created by ej2238 on 2017/09/01.
- */
-
+ * OfflineApp Hands on @Android
+ *
+ * 2017/09/04 write by wakanasato
+ * Esri Japan Corporation All Rughts Reserved
+ * Answer Activity
+ * */
 public class AnswerActivity extends AppCompatActivity {
+
     /** map */
     MapView mMapView;
     ArcGISMap mArcGISmap;
@@ -138,7 +141,7 @@ public class AnswerActivity extends AppCompatActivity {
          * Local_tpk_pathにはDownloadを指定している
          *
          * 【権限チェック】
-         * 端末自体の権限があるかどうかみる設定＞アプリ＞インストールしたapp＞権限
+         * Andrioid 6.0以上の端末はアプリの権限があるかどうかみる設定＞アプリ＞インストールしたapp＞権限
          * */
 
         String tpkpath  = mLocalFilePath + getResources().getString(R.string.tpk_name);
@@ -147,7 +150,7 @@ public class AnswerActivity extends AppCompatActivity {
         if(!tpkfile.exists()){
             Log.d(TAG, tpkpath + ":" + tpkfile.exists());
         }else{
-            // tpkファイルはレイヤーとして表示する
+            // TODO tpkファイルがある場合はレイヤーとして表示する
             TileCache tileCache = new TileCache(tpkpath);
             ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
             mArcGISmap.getOperationalLayers().add(tiledLayer);
@@ -160,24 +163,15 @@ public class AnswerActivity extends AppCompatActivity {
      * */
     private void readFeatureLayer(){
 
-        // フィーチャ サービスの URL を指定してフィーチャ テーブル（ServiceFeatureTable）を作成する
-        // フィーチャ サービスの URL はレイヤー番号（〜/FeatureServer/0）まで含める
-        String FeatureServiceURL = mArcGISFeatureServiceUrl + "/0";
+        String FeatureServiceURL = mArcGISFeatureServiceUrl + "/0"; // レイヤーはここにリスト状に定義されているので順番を指定します
         FeatureTable featureTable = new ServiceFeatureTable(FeatureServiceURL);
-        // フィーチャ テーブルからフィーチャ レイヤーを作成
         final FeatureLayer featureLayer = new FeatureLayer(featureTable);
-        // マップにフィーチャ レイヤーを追加
         mArcGISmap.getOperationalLayers().add(featureLayer);
 
-        // フィーチャ レイヤーの読み込み完了時の処理
         featureLayer.addDoneLoadingListener(new Runnable() {
             @Override
             public void run() {
                 if(featureLayer.getLoadStatus() == LoadStatus.LOADED){
-                    // 読み込み後にフィーチャがすべて見える位置(ViewPointへ移動する)
-                    Viewpoint viewpoint = new Viewpoint(featureLayer.getFullExtent());
-                    mMapView.setViewpoint(viewpoint);
-
                     // toast出してボタンの有効化
                     Log.d(TAG, "FeatureLayer Loaded");
                     Toast.makeText(getApplicationContext(), "FeatureLayer Loaded / ボタンの活性化", Toast.LENGTH_SHORT).show();
