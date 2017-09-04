@@ -233,67 +233,67 @@ addFeatureFuture.addDoneListener(new Runnable() {
 <img src="./img/5-1.png" width="200px">
 
 ## 手順 6: 編集結果をフィーチャ サービスと同期
-1. ローカルのランタイムコンテンツとArcGIS Online のフィーチャ レイヤーを同期させます。同期のためのパラメータ(SyncGeodatabaseParameters)を取得します。`syncLocalgeodatabase()` メソッドを次のように実装します。
-```java
-// タスクオブジェクトから同期するためのパラメータを作成する
-final ListenableFuture<SyncGeodatabaseParameters> syncParamsFuture = mGeodatabaseSyncTask.createDefaultSyncGeodatabaseParametersAsync(geodatabase);
-syncParamsFuture.addDoneListener(new Runnable() {
-    @Override
-    public void run() {
-        try {
-            // パラメータを取得
-            mSyncParameter = syncParamsFuture.get();
-            // パラーメータを使用してgeodatabaseを同期する
-            syncGeodatabase();
-        }catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
-    }
-});
-```
-1. 同期タスクの SyncGeodatabaseJob（.geodatabase とフィーチャ サービスの同期）を実行します。`syncGeodatabase()` メソッドを次のように実装します。
-```java
-// 同期ジョブオブヘジェクトを作成する
-mSyncGeodatabaseJob = mGeodatabaseSyncTask.syncGeodatabaseAsync(mSyncParameter, geodatabase);
-
-// 同期中のステータスをチェックする
-mSyncGeodatabaseJob.addJobChangedListener(new Runnable() {
-    @Override
-    public void run() {
-        if (mSyncGeodatabaseJob.getError() != null) {
-            // 同期中にエラーがある場合
-            Log.e(TAG, mSyncGeodatabaseJob.getError().toString());
-        } else {
-            // 同期の進行状況：メッセージを確認したり、ログやユーザーインターフェイスで進行状況を更新します
-        }
-    }
-});
-
-// 同期が終了したときのステータスを取得します
-mSyncGeodatabaseJob.addJobDoneListener(new Runnable() {
-    @Override
-    public void run() {
-        // 同期ジョブが終了したときのステータスを検査する
-        if ((mSyncGeodatabaseJob.getStatus() != Job.Status.SUCCEEDED) || (mSyncGeodatabaseJob.getError() != null)) {
-            // エラーの場合
-            Log.e(TAG, mSyncGeodatabaseJob.getError().toString());
-        } else {
-            // 同期完了から返された値を取得する
-            List<SyncLayerResult> syncResults = (List<SyncLayerResult>) mSyncGeodatabaseJob.getResult();
-            if (syncResults != null) {
-                // 同期結果を確認して、例えばユーザに通知する処理を作成します
-                Toast.makeText(getApplicationContext(), "Sync Success!" , Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-});
-// geodatabase 同期のジョブを開始します
-mSyncGeodatabaseJob.start();
-// 同期ボタンを有効にする
-mBottun_Sync.setEnabled(false);
-```
-1. プロジェクトを実行します。ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードした後に、端末をオフライン状態にしてみましょう。ポイントを追加しても[元のフィーチャ サービス](https://www.arcgis.com/home/webmap/viewer.html?webmap=4e90d664e499454a831ec05250299522)には反映されていないことが分かります。端末をオンライン状態に戻し、同期ボタンをタップしてフィーチャ サービスにポイントが追加されているか確認してみてください。
-<img src="./img/6-1.png" width="500px">
+ 1. ローカルのランタイムコンテンツとArcGIS Online のフィーチャ レイヤーを同期させます。同期のためのパラメータ(SyncGeodatabaseParameters)を取得します。`syncLocalgeodatabase()` メソッドを次のように実装します。
+  ```java
+  // タスクオブジェクトから同期するためのパラメータを作成する
+  final ListenableFuture<SyncGeodatabaseParameters> syncParamsFuture = mGeodatabaseSyncTask.createDefaultSyncGeodatabaseParametersAsync(geodatabase);
+  syncParamsFuture.addDoneListener(new Runnable() {
+      @Override
+      public void run() {
+          try {
+              // パラメータを取得
+              mSyncParameter = syncParamsFuture.get();
+              // パラーメータを使用してgeodatabaseを同期する
+              syncGeodatabase();
+          }catch (InterruptedException | ExecutionException e) {
+              e.printStackTrace();
+          }
+      }
+  });
+  ```
+ 1. 同期タスクの SyncGeodatabaseJob（.geodatabase とフィーチャ サービスの同期）を実行します。`syncGeodatabase()` メソッドを次のように実装します。
+  ```java
+  // 同期ジョブオブヘジェクトを作成する
+  mSyncGeodatabaseJob = mGeodatabaseSyncTask.syncGeodatabaseAsync(mSyncParameter, geodatabase);
+  
+  // 同期中のステータスをチェックする
+  mSyncGeodatabaseJob.addJobChangedListener(new Runnable() {
+      @Override
+      public void run() {
+          if (mSyncGeodatabaseJob.getError() != null) {
+              // 同期中にエラーがある場合
+              Log.e(TAG, mSyncGeodatabaseJob.getError().toString());
+          } else {
+              // 同期の進行状況：メッセージを確認したり、ログやユーザーインターフェイスで進行状況を更新します
+          }
+      }
+  });
+  
+  // 同期が終了したときのステータスを取得します
+  mSyncGeodatabaseJob.addJobDoneListener(new Runnable() {
+      @Override
+      public void run() {
+          // 同期ジョブが終了したときのステータスを検査する
+          if ((mSyncGeodatabaseJob.getStatus() != Job.Status.SUCCEEDED) || (mSyncGeodatabaseJob.getError() != null)) {
+              // エラーの場合
+              Log.e(TAG, mSyncGeodatabaseJob.getError().toString());
+          } else {
+              // 同期完了から返された値を取得する
+              List<SyncLayerResult> syncResults = (List<SyncLayerResult>) mSyncGeodatabaseJob.getResult();
+              if (syncResults != null) {
+                  // 同期結果を確認して、例えばユーザに通知する処理を作成します
+                  Toast.makeText(getApplicationContext(), "Sync Success!" , Toast.LENGTH_SHORT).show();
+              }
+          }
+      }
+  });
+  // geodatabase 同期のジョブを開始します
+  mSyncGeodatabaseJob.start();
+  // 同期ボタンを有効にする
+  mBottun_Sync.setEnabled(false);
+  ```
+ 1. プロジェクトを実行します。ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードした後に、端末をオフライン状態にしてみましょう。ポイントを追加しても[元のフィーチャ サービス](https://www.arcgis.com/home/webmap/viewer.html?webmap=4e90d664e499454a831ec05250299522)には反映されていないことが分かります。端末をオンライン状態に戻し、同期ボタンをタップしてフィーチャ サービスにポイントが追加されているか確認してみてください。
+  <img src="./img/6-1.png" width="500px">
 
 ハンズオンは以上で終了です。
 
