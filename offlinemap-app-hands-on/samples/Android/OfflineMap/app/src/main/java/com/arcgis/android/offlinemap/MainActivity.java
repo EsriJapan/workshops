@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 File geodatabase = new File(mLocalFilePath + getResources().getString(R.string.runtimecontents_name));
                 if(geodatabase.exists()){
                     // 既存のgeodatabaseをreadする
+                    readGeoDatabase();
                 }else{
                     // TODO 4.フィーチャ サービスのデータのダウンロード
                     downloadFeatureService();
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO 6.編集結果をフィーチャ サービスと同期
-//                syncLocalgeodatabase();
+                syncLocalgeodatabase();
             }
         });
     }
@@ -196,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
     Geodatabase geodatabase;
     // ArcGIS Online または ArcGIS Enterprise との同期
     static SyncGeodatabaseParameters mSyncParameter;
+    static SyncGeodatabaseJob syncJob;
 
     /**
      * フィーチャ サービスのデータのダウンロード
@@ -318,7 +320,6 @@ public class MainActivity extends AppCompatActivity {
      * 既存GeoDatabaseから読み込む
      * ***/
     GeodatabaseFeatureTable mGdbFeatureTable;
-    FeatureLayer mFeatureLayer;
     private void readGeoDatabase(){
 
         geodatabase = new Geodatabase(mLocalFilePath + getResources().getString(R.string.runtimecontents_name));
@@ -333,9 +334,8 @@ public class MainActivity extends AppCompatActivity {
                         // 今回読み込むレイヤーは１つ=0
                         mGdbFeatureTable = geodatabase.getGeodatabaseFeatureTables().get(0);
                         try{
-                            mFeatureLayer = new FeatureLayer(mGdbFeatureTable);
-                            mFeatureLayer.setVisible(true);
-                            mArcGISmap.getOperationalLayers().add(mFeatureLayer);
+                            FeatureLayer featureLayer = new FeatureLayer(mGdbFeatureTable);
+                            mArcGISmap.getOperationalLayers().add(featureLayer);
                         }catch (Exception e){
                             e.printStackTrace();
                         }
@@ -363,22 +363,21 @@ public class MainActivity extends AppCompatActivity {
      * */
     private void addFeatures(android.graphics.Point pScreenPoint){
 
+        // 同期ボタンを有効にする
+        mBottun_Sync.setEnabled(true);
+
         // 変換した座標からArcGISのジオメトリ(point)を作成する
         Point mapPoint = mMapView.screenToLocation(pScreenPoint);
         // ポイントの座標変換
-        Point wgs84Point = (Point) GeometryEngine.project(mapPoint, SpatialReferences.getWgs84());
+        final Point wgs84Point = (Point) GeometryEngine.project(mapPoint, SpatialReferences.getWgs84());
 
         // ポイントと一緒に設定したい属性項目のデータ定義します。
-        java.util.Map<String, Object> attributes = new HashMap<String, Object>();
+        final java.util.Map<String, Object> attributes = new HashMap<String, Object>();
         attributes.put("name","ESRIジャパンnow！"); // 使用するFeature Layerにはあらかじめ"name"の項目を作成しています。
-        // フィーチャ サービスの URL はレイヤー番号（〜/FeatureServer/0）まで含める
-        String FeatureServiceURL = mArcGISFeatureServiceUrl+ "/0";
-        // フィーチャ サービスの URLをもとにフィーチャ テーブルのオブジェクトを作成します。
-        FeatureTable featureTable = new ServiceFeatureTable(FeatureServiceURL);
-        // フィーチャ テーブルをもとに新しいポイントと属性情報のフィーチャを作成します。
-        Feature addedFeature = featureTable.createFeature(attributes, wgs84Point);
+        // ローカルのランタイムコンテンツのフィーチャ テーブルをもとに新しいポイントと属性情報のフィーチャを作成します。
+        Feature addedFeature = mGdbFeatureTable.createFeature(attributes, wgs84Point);
         // ローカルのランタイムコンテンツに新しいポイント情報を追加します。
-        final ListenableFuture<Void> addFeatureFuture = featureTable.addFeatureAsync(addedFeature);
+        final ListenableFuture<Void> addFeatureFuture = mGdbFeatureTable.addFeatureAsync(addedFeature);
         addFeatureFuture.addDoneListener(new Runnable() {
             @Override
             public void run() {
@@ -414,21 +413,18 @@ public class MainActivity extends AppCompatActivity {
         // 同期したいレイヤーでタスクオブジェクトを作成する
         String FeatureServiceURL = mArcGISFeatureServiceUrl+ "/0";// 編集したいレイヤーの順番まで指定します
         mGeodatabaseSyncTask = new GeodatabaseSyncTask(FeatureServiceURL);
-        readGeoDatabase();
 
         // タスクオブジェクトから同期するためのパラメータを作成する
         final ListenableFuture<SyncGeodatabaseParameters> syncParamsFuture = mGeodatabaseSyncTask.createDefaultSyncGeodatabaseParametersAsync(geodatabase);
         syncParamsFuture.addDoneListener(new Runnable() {
             @Override
             public void run() {
-                try
-                {
+                try {
                     // パラメータを取得
                     mSyncParameter = syncParamsFuture.get();
                     // パラーメータを使用してgeodatabaseを同期する
                     syncGeodatabase();
-                }
-                catch (InterruptedException | ExecutionException e) {
+                }catch (InterruptedException | ExecutionException e) {
                     e.printStackTrace();
                 }
             }
@@ -440,7 +436,6 @@ public class MainActivity extends AppCompatActivity {
      * ③ 同期ジョブを作成する
      * ④ 同期する
      * */
-    static SyncGeodatabaseJob syncJob;
     private void syncGeodatabase() {
 
         // 同期ジョブオブヘジェクトを作成する
@@ -479,6 +474,8 @@ public class MainActivity extends AppCompatActivity {
         });
         // geodatabase 同期のジョブを開始します
         syncJob.start();
+        // 同期ボタンを有効にする
+        mBottun_Sync.setEnabled(false);
     }
 
 }

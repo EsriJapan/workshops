@@ -198,19 +198,15 @@ generateJob.start();
 // 変換した座標からArcGISのジオメトリ(point)を作成する
 Point mapPoint = mMapView.screenToLocation(pScreenPoint);
 // ポイントの座標変換
-Point wgs84Point = (Point) GeometryEngine.project(mapPoint, SpatialReferences.getWgs84());
+final Point wgs84Point = (Point) GeometryEngine.project(mapPoint, SpatialReferences.getWgs84());
 
 // ポイントと一緒に設定したい属性項目のデータ定義します。
-java.util.Map<String, Object> attributes = new HashMap<String, Object>();
+final java.util.Map<String, Object> attributes = new HashMap<String, Object>();
 attributes.put("name","ESRIジャパンnow！"); // 使用するFeature Layerにはあらかじめ"name"の項目を作成しています。
-// フィーチャ サービスの URL はレイヤー番号（〜/FeatureServer/0）まで含める
-String FeatureServiceURL = mArcGISFeatureServiceUrl+ "/0";
-// フィーチャ サービスの URLをもとにフィーチャ テーブルのオブジェクトを作成します。
-FeatureTable featureTable = new ServiceFeatureTable(FeatureServiceURL);
-// フィーチャ テーブルをもとに新しいポイントと属性情報のフィーチャを作成します。
-Feature addedFeature = featureTable.createFeature(attributes, wgs84Point);
+// ローカルのランタイムコンテンツのフィーチャ テーブルをもとに新しいポイントと属性情報のフィーチャを作成します。
+Feature addedFeature = mGdbFeatureTable.createFeature(attributes, wgs84Point);
 // ローカルのランタイムコンテンツに新しいポイント情報を追加します。
-final ListenableFuture<Void> addFeatureFuture = featureTable.addFeatureAsync(addedFeature);
+final ListenableFuture<Void> addFeatureFuture = mGdbFeatureTable.addFeatureAsync(addedFeature);
 addFeatureFuture.addDoneListener(new Runnable() {
     @Override
     public void run() {
