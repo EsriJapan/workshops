@@ -25,16 +25,14 @@
 ## 手順 1: プロジェクトのダウンロード
 ### サンプル プロジェクトのダウンロード
 1. [workshops](https://github.com/EsriJapan/workshops) ページを開いて [Clone or download] -> [Download ZIP] をクリックして、ファイル一式をダウンロードします。
-
  <img src="./img/1-1.png" width="500px">
 1. サンプル プロジェクト（workshops/offlinemap-app-hands-on/samples/Android/offlineMap）を Android Studio で開きます。
 
 1. Android Studio によるプロジェクト ビルドが終了したら、エミュレータまたは実機をつなげてアプリを実行してみましょう。次のような画面が表示されます。
- <img src="./img/1-1.png" width="500px" ★★★メモ：画像★★★>
+ <img src="./img/1-2.png" width="500px">
 
 #### Tips:
-★ここにはgradleのこととレイアウト、マニュフェストこと、答えのコードのことを書く
-1. SDK は Gradle へ参照先を明記して使用しますが、SDKの[ダウンロードページ](https://developers.arcgis.com/downloads)から jar ファイルをダウンロードして使用することも可能です。その場合はプロジェクト直下にlibフォルダを作成し、Gradle ファイルに以下のように定義します。なお、jarファイルをダウンロードする場合は開発者アカウントが必要になります。作成する場合は、[こちら](http://esrijapan.github.io/arcgis-dev-resources/get-dev-account/)を参考にして作成してください）。
+* SDK は Gradle へ参照先を明記して使用しますが、SDKの[ダウンロードページ](https://developers.arcgis.com/downloads)から jar ファイルをダウンロードして使用することも可能です。その場合はプロジェクト直下にlibフォルダを作成し、Gradle ファイルに以下のように定義します。なお、jarファイルをダウンロードする場合は開発者アカウントが必要になります。作成する場合は、[こちら](http://esrijapan.github.io/arcgis-dev-resources/get-dev-account/)を参考にして作成してください）。
 * サンプル プロジェクトには事前に必要な マニュフェストやレイアウトの設定、ボタン等を作成しています。アプリ開発時に必要な設定は[インストール ガイド](http://esrijapan.github.io/arcgis-dev-resources/android/install-android-100.x/)をご覧ください。
 * 今回のハンズオンで作成するサンプルの完成版が[こちら](http://esrijapan.github.io/workshops/offlinemap-app-hands-on/samples/Android/offlinemap/AnswerActivity)にありますので、作業に困ったら参考にしてください。
 

@@ -78,15 +78,14 @@ public class MainActivity extends AppCompatActivity {
         // 地図の表示
         mMapView = (MapView) findViewById(R.id.mapView);
         // AGOL(ArcGIS Online) のベースマップ(STREETS)を読み込む
-        mArcGISmap = new ArcGISMap(Basemap.Type.STREETS, 35.6830427,139.7381891, 13);
-//        mArcGISmap = new ArcGISMap(Basemap.Type.STREETS, 35.6539486,139.9133403, 13);
+        mArcGISmap = new ArcGISMap(Basemap.Type.STREETS, 35.6539486,139.9133403, 13);
         mMapView.setMap(mArcGISmap);
 
         // TODO 2.タイルパッケージを読み込んで背景地図を表示する※メソッド内を実装します。
-        readTilePkg();
+//        readTilePkg();
 
         // TODO 3.主題図の表示
-        readFeatureLayer();
+//        readFeatureLayer();
 
         // ボタンを選択したときにフィーチャ サービスを読み込んでランタイムコンテンツを作成する
         mBottun_DL.setOnClickListener(new View.OnClickListener() {
@@ -95,10 +94,10 @@ public class MainActivity extends AppCompatActivity {
                 File geodatabase = new File(mLocalFilePath + getResources().getString(R.string.runtimecontents_name));
                 if(geodatabase.exists()){
                     // 既存のgeodatabaseをreadする
-                    readGeoDatabase();
+//                    readGeoDatabase();
                 }else{
                     // TODO 4.フィーチャ サービスのデータのダウンロード
-                    downloadFeatureService();
+//                    downloadFeatureService();
                 }
             }
         });
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 // タッチされたポイントを作成
                 android.graphics.Point sreenPoint = new android.graphics.Point(Math.round(motionEvent.getX()), Math.round(motionEvent.getY()));
                 // TODO 5.フィーチャの編集（ポイント追加）
-                addFeatures(sreenPoint);
+//                addFeatures(sreenPoint);
                 return true;
             }
         });
@@ -120,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO 6.編集結果をフィーチャ サービスと同期
-                syncFeatureService();
+//                syncFeatureService();
             }
         });
     }
