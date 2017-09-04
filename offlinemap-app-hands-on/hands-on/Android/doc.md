@@ -36,10 +36,9 @@
 ## 手順 2: タイル パッケージ（背景地図）の表示
 1. ハンズオンで使用するタイル パッケージ（背景地図）を実行する端末またはエミューレーターへダウンロードします。タイル パッケージ (orkshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk) へ実機またはエミュレーターからアクセスして、ダウンロードします。ダウンロードしたファイルは、ファイルマネージャー アプリなどを使用して内部ストレージである sdcard/Downloads 配下に格納されることを確認します。実機の場合URLは [http://bit.ly/2ex6vIj](http://bit.ly/2ex6vIj) をご利用ください。なおこのタイル パッケージの公開は当日のみの利用としています。</br><img src="./img/2-1.png" width="500px">
 
-  * adb コマンドを使用する場合は、タイル パッケージを任意の場所にダウンロードしたあと、次のコマンドを実行します。</br>>adb push public_map.tpk /sdcard/Download/
+* adb コマンドを使用する場合は、タイル パッケージを任意の場所にダウンロードしたあと、次のコマンドを実行します。</br>>adb push public_map.tpk /sdcard/Download/
 
-1. タイル パッケージ（背景地図）を表示するコードを記述します。`readTilePkg()` メソッドを次のように実装します。TileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。
-```java
+1. タイル パッケージ（背景地図）を表示するコードを記述します。`readTilePkg()` メソッドを次のように実装します。TileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。</br>```java
 String tpkpath  = mLocalFilePath + getResources().getString(R.string.tpk_name);
 // 存在チェック
 File tpkfile = new File(mLocalFilePath);
