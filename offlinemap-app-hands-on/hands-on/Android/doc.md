@@ -29,17 +29,17 @@
 1. Android Studio によるプロジェクト ビルドが終了したら、エミュレータまたは実機をつなげてアプリを実行してみましょう。次のような画面が表示されます。<br><img src="./img/1-2.png" width="200px">
 
 #### Tips:
-* SDK は Gradle へ参照先を明記して使用しますが、SDKの[ダウンロードページ](https://developers.arcgis.com/downloads)から jar ファイルをダウンロードして使用することも可能です。その場合はプロジェクト直下にlibフォルダを作成し、Gradle ファイルに以下のように定義します。なお、jarファイルをダウンロードする場合は開発者アカウントが必要になります。作成する場合は、[こちら](http://esrijapan.github.io/arcgis-dev-resources/get-dev-account/)を参考にして作成してください）。
+* SDK は Gradle へ参照先を明記して使用しますが、SDK の[ダウンロードページ](https://developers.arcgis.com/downloads)から jar ファイルをダウンロードして使用することも可能です。その場合はプロジェクト直下に lib フォルダを作成し、Gradle ファイルに以下のように定義します。なお、jarファイルをダウンロードする場合は開発者アカウントが必要になります。作成する場合は、[こちら](http://esrijapan.github.io/arcgis-dev-resources/get-dev-account/)を参考にして作成してください）。
 * サンプル プロジェクトには事前に必要な マニュフェストやレイアウトの設定、ボタン等を作成しています。アプリ開発時に必要な設定は[インストール ガイド](http://esrijapan.github.io/arcgis-dev-resources/android/install-android-100.x/)をご覧ください。
 * 今回のハンズオンで作成するサンプルの完成版が[こちら](https://github.com/wakanasato/workshops/blob/master/offlinemap-app-hands-on/samples/Android/OfflineMap/app/src/main/java/com/arcgis/android/offlinemap/AnswerActivity.java)にありますので、作業に困ったら参考にしてください。
 
 ## 手順 2: タイル パッケージ（背景地図）の表示
-1. ハンズオンで使用するタイル パッケージ（背景地図）を実行する端末またはエミューレーターへダウンロードします。タイル パッケージ (orkshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk) を実機またはエミュレーターからアクセスして、ダウンロードします。ダウンロードしたファイルは、ファイルマネージャー アプリなどを使用して内部ストレージである sdcard/Downloads 配下に格納されることを確認します。タイルパッケージまでのURLは [http://bit.ly/2ex6vIj](http://bit.ly/2ex6vIj) をご利用ください。なおこのタイル パッケージの公開は当日のみの利用としています。</br><img src="./img/2-1.png" width="700px"></br><img src="./img/2-3.png" width="200px">
+1. ハンズオンで使用するタイル パッケージ（背景地図）を実行する端末またはエミューレーターへダウンロードします。タイル パッケージ (orkshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk) を実機またはエミュレーターからアクセスして、ダウンロードします。ダウンロードしたファイルは、ファイルマネージャー アプリなどを使用して内部ストレージである sdcard/Downloads 配下に格納されることを確認します。タイルパッケージまでの URL は [http://bit.ly/2ex6vIj](http://bit.ly/2ex6vIj) をご利用ください。なおこのタイル パッケージの公開は当日のみの利用としています。</br><img src="./img/2-1.png" width="700px"></br><img src="./img/2-3.png" width="200px">
 
 	* adb コマンドを使用する場合は、タイル パッケージを任意の場所にダウンロードしたあと、次のコマンドを実行します。
-	>>adb push public_map.tpk /sdcard/Download/
+	>adb push public_map.tpk /sdcard/Download/
 
-1. タイル パッケージ（背景地図）を表示するコードを記述します。`readTilePkg()` メソッドを次のように実装します。TileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。
+1. タイル パッケージ（背景地図）を表示するコードを記述します。MainActivity クラスの`readTilePkg()` メソッドを次のように実装します。TileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。
 	```java
 	String tpkpath  = mLocalFilePath + getResources().getString(R.string.tpk_name);
 	// 存在チェック
@@ -184,7 +184,7 @@
 	// geodatabase 作成のジョブを開始します
 	generateJob.start();
 	```
-1. プロジェクトを実行し、ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードしてみましょう。Toast表示または、LogcatにSuccess!のメッセージが表示されたらダウンロードの完了です。</br><img src="./img/4-1.png" width="500px">
+1. プロジェクトを実行し、ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードしてみましょう。Toast 表示または、Logcat に Success! のメッセージが表示されたらダウンロードの完了です。</br><img src="./img/4-1.png" width="500px">
 
 ## 手順 5: フィーチャの編集（ポイント追加）
 
