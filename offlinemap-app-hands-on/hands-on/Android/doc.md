@@ -55,7 +55,7 @@
 ## 手順 3: フィーチャ サービス（主題図）の表示
 
 1. フィーチャ レイヤーを作成しフィーチャ サービス（主題図）をマップに追加します。`readFeatureLayer()` メソッドを次のように実装します。
-	``java
+	```java
 	//フィーチャサービスのURLを指定してフィーチャテーブル（ServiceFeatureTable）を作成する
 	//フィーチャサービスのURLはレイヤー番号（〜/FeatureServer/0）まで含める
 	StringFeatureServiceURL=mArcGISFeatureServiceUrl+"/0";
@@ -84,8 +84,7 @@
 	    }
 	});
 	```
-1. プロジェクトを実行して、フィーチャ サービスのデータが表示されるか確認します。
-	<img src="./img/3-1.png" width="200px">
+1. プロジェクトを実行して、フィーチャ サービスのデータが表示されるか確認します。</br><img src="./img/3-1.png" width="200px">
 
 ## 手順 4: フィーチャ サービスのデータのダウンロード
 1. フィーチャ サービスの同期タスク（GeodatabaseSyncTask）を作成します。`downloadFeatureService()` メソッドを次のように実装します。
@@ -112,7 +111,7 @@
 	// タスクのロードを開始する
 	mGeodatabaseSyncTask.loadAsync();
 	```
-	1. フィーチャ サービスの同期パラメータ（GenerateGeodatabaseParameters）を作成します。`generateGeodatabaseParameters()` メソッドを次のように実装します。
+1. フィーチャ サービスの同期パラメータ（GenerateGeodatabaseParameters）を作成します。`generateGeodatabaseParameters()` メソッドを次のように実装します。
 	```java
 	// geodatabase 作成のためのパラメータを取得する
 	Envelope generateExtent = mMapView.getVisibleArea().getExtent();
@@ -136,156 +135,153 @@
 	});
 	```
 1. ランタイムコンテンツを作成します。新規作成のためのジョブオブジェクト（GenerateGeodatabaseJob）を作成します。`generateGeodatabase()` メソッドを次のように実装します。
-```java
-// geodatabaseファイル作成ジョブオブヘジェクトを作成する
-String runtimecontentspath  = mLocalFilePath + getResources().getString(R.string.runtimecontents_name);
-generateJob = mGeodatabaseSyncTask.generateGeodatabaseAsync(generateParams, runtimecontentspath);
-
-// データダウンロードのステータスをチェックする
-generateJob.addJobChangedListener(new Runnable() {
-    @Override
-    public void run() {
-
-        // 作成中のステータスをチェックする
-        if (generateJob.getError() != null) {
-            Log.e(TAG,generateJob.getError().toString());
-        } else {
-            // ダウンロードの進行状況：メッセージを確認したり、ログやユーザーインターフェイスで進行状況を更新します
-        }
-    }
-});
-
-// ダウンロードとgeodatabaseファイル作成が終了したときのステータスを取得します
-generateJob.addJobDoneListener(new Runnable() {
-    @Override
-    public void run() {
-
-        // 作成ジョブが終了したときのステータスを検査する
-        String status = generateJob.getStatus().toString();
-        if ((generateJob.getStatus() != Job.Status.SUCCEEDED) || (generateJob.getError() != null)) {
-            Log.e(TAG,generateJob.getError().toString());
-        } else {
-            // ランタイムコンテンツ作成成功！
-            Log.d(TAG, "Created RuntimeContents success!");
-            Toast.makeText(getApplicationContext(), "ランタムコンテンツ作成が成功しました！うぇーい!", Toast.LENGTH_SHORT).show();
-
-            if (generateJob.getResult() instanceof Geodatabase) {
-                Geodatabase syncResultGdb = (Geodatabase) generateJob.getResult();
-                geodatabase = syncResultGdb;
-                // 作成したgeodatabaseからフィーチャ レイヤーを表示する
-                // それまでのフィーチャーレイヤーは削除して、新たにランタイムコンテンツから表示させる
-                readGeoDatabase();
-            }
-        }
-    }
-});
-// geodatabase 作成のジョブを開始します
-generateJob.start();
-```
-1. プロジェクトを実行し、ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードしてみましょう。Toast表示または、LogcatにSuccess!のメッセージが表示されたらダウンロードの完了です。
-<img src="./img/4-1.png" width="500px">
+	```java
+	// geodatabaseファイル作成ジョブオブヘジェクトを作成する
+	String runtimecontentspath  = mLocalFilePath + getResources().getString(R.string.runtimecontents_name);
+	generateJob = mGeodatabaseSyncTask.generateGeodatabaseAsync(generateParams, runtimecontentspath);
+	
+	// データダウンロードのステータスをチェックする
+	generateJob.addJobChangedListener(new Runnable() {
+	    @Override
+	    public void run() {
+	
+	        // 作成中のステータスをチェックする
+	        if (generateJob.getError() != null) {
+	            Log.e(TAG,generateJob.getError().toString());
+	        } else {
+	            // ダウンロードの進行状況：メッセージを確認したり、ログやユーザーインターフェイスで進行状況を更新します
+	        }
+	    }
+	});
+	
+	// ダウンロードとgeodatabaseファイル作成が終了したときのステータスを取得します
+	generateJob.addJobDoneListener(new Runnable() {
+	    @Override
+	    public void run() {
+	
+	        // 作成ジョブが終了したときのステータスを検査する
+	        String status = generateJob.getStatus().toString();
+	        if ((generateJob.getStatus() != Job.Status.SUCCEEDED) || (generateJob.getError() != null)) {
+	            Log.e(TAG,generateJob.getError().toString());
+	        } else {
+	            // ランタイムコンテンツ作成成功！
+	            Log.d(TAG, "Created RuntimeContents success!");
+	            Toast.makeText(getApplicationContext(), "ランタムコンテンツ作成が成功しました！うぇーい!", Toast.LENGTH_SHORT).show();
+	
+	            if (generateJob.getResult() instanceof Geodatabase) {
+	                Geodatabase syncResultGdb = (Geodatabase) generateJob.getResult();
+	                geodatabase = syncResultGdb;
+	                // 作成したgeodatabaseからフィーチャ レイヤーを表示する
+	                // それまでのフィーチャーレイヤーは削除して、新たにランタイムコンテンツから表示させる
+	                readGeoDatabase();
+	            }
+	        }
+	    }
+	});
+	// geodatabase 作成のジョブを開始します
+	generateJob.start();
+	```
+1. プロジェクトを実行し、ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードしてみましょう。Toast表示または、LogcatにSuccess!のメッセージが表示されたらダウンロードの完了です。</br><img src="./img/4-1.png" width="500px">
 
 ## 手順 5: フィーチャの編集（ポイント追加）
 
 1. マップ上の任意の場所がタップされたときの処理を実装します。`addFeatures()` メソッドを次のように実装します。
-```java
-// 変換した座標からArcGISのジオメトリ(point)を作成する
-Point mapPoint = mMapView.screenToLocation(pScreenPoint);
-// ポイントの座標変換
-final Point wgs84Point = (Point) GeometryEngine.project(mapPoint, SpatialReferences.getWgs84());
-
-// ポイントと一緒に設定したい属性項目のデータ定義します。
-final java.util.Map<String, Object> attributes = new HashMap<String, Object>();
-attributes.put("name","ESRIジャパンnow！"); // 使用するFeature Layerにはあらかじめ"name"の項目を作成しています。
-// ローカルのランタイムコンテンツのフィーチャ テーブルをもとに新しいポイントと属性情報のフィーチャを作成します。
-Feature addedFeature = mGdbFeatureTable.createFeature(attributes, wgs84Point);
-// ローカルのランタイムコンテンツに新しいポイント情報を追加します。
-final ListenableFuture<Void> addFeatureFuture = mGdbFeatureTable.addFeatureAsync(addedFeature);
-addFeatureFuture.addDoneListener(new Runnable() {
-    @Override
-    public void run() {
-        try {
-            // ポイント追加の成功をチェックする
-            addFeatureFuture.get();
-            Toast.makeText(getApplicationContext(), "add point geodatabase", Toast.LENGTH_SHORT).show();
-
-        } catch (InterruptedException | ExecutionException e) {
-            // executionException may contain an ArcGISRuntimeException with edit error information.
-            if (e.getCause() instanceof ArcGISRuntimeException) {
-                ArcGISRuntimeException agsEx = (ArcGISRuntimeException)e.getCause();
-                Log.e(TAG, agsEx.toString());
-            } else {
-                Log.e(TAG, "other error");
-            }
-        }
-    }
-});
-```
-1. プロジェクトを実行します。マップの任意の場所をタップしてポイントを追加してみましょう。マップ上をタップするとタップした場所にポイントが表示されます。
-<img src="./img/5-1.png" width="200px">
+	```java
+	// 変換した座標からArcGISのジオメトリ(point)を作成する
+	Point mapPoint = mMapView.screenToLocation(pScreenPoint);
+	// ポイントの座標変換
+	final Point wgs84Point = (Point) GeometryEngine.project(mapPoint, SpatialReferences.getWgs84());
+	
+	// ポイントと一緒に設定したい属性項目のデータ定義します。
+	final java.util.Map<String, Object> attributes = new HashMap<String, Object>();
+	attributes.put("name","ESRIジャパンnow！"); // 使用するFeature Layerにはあらかじめ"name"の項目を作成しています。
+	// ローカルのランタイムコンテンツのフィーチャ テーブルをもとに新しいポイントと属性情報のフィーチャを作成します。
+	Feature addedFeature = mGdbFeatureTable.createFeature(attributes, wgs84Point);
+	// ローカルのランタイムコンテンツに新しいポイント情報を追加します。
+	final ListenableFuture<Void> addFeatureFuture = mGdbFeatureTable.addFeatureAsync(addedFeature);
+	addFeatureFuture.addDoneListener(new Runnable() {
+	    @Override
+	    public void run() {
+	        try {
+	            // ポイント追加の成功をチェックする
+	            addFeatureFuture.get();
+	            Toast.makeText(getApplicationContext(), "add point geodatabase", Toast.LENGTH_SHORT).show();
+	
+	        } catch (InterruptedException | ExecutionException e) {
+	            // executionException may contain an ArcGISRuntimeException with edit error information.
+	            if (e.getCause() instanceof ArcGISRuntimeException) {
+	                ArcGISRuntimeException agsEx = (ArcGISRuntimeException)e.getCause();
+	                Log.e(TAG, agsEx.toString());
+	            } else {
+	                Log.e(TAG, "other error");
+	            }
+	        }
+	    }
+	});
+	```
+1. プロジェクトを実行します。マップの任意の場所をタップしてポイントを追加してみましょう。マップ上をタップするとタップした場所にポイントが表示されます。</br><img src="./img/5-1.png" width="200px">
 
 ## 手順 6: 編集結果をフィーチャ サービスと同期
- 1. ローカルのランタイムコンテンツとArcGIS Online のフィーチャ レイヤーを同期させます。同期のためのパラメータ(SyncGeodatabaseParameters)を取得します。`syncLocalgeodatabase()` メソッドを次のように実装します。
-  ```java
-  // タスクオブジェクトから同期するためのパラメータを作成する
-  final ListenableFuture<SyncGeodatabaseParameters> syncParamsFuture = mGeodatabaseSyncTask.createDefaultSyncGeodatabaseParametersAsync(geodatabase);
-  syncParamsFuture.addDoneListener(new Runnable() {
-      @Override
-      public void run() {
-          try {
-              // パラメータを取得
-              mSyncParameter = syncParamsFuture.get();
-              // パラーメータを使用してgeodatabaseを同期する
-              syncGeodatabase();
-          }catch (InterruptedException | ExecutionException e) {
-              e.printStackTrace();
-          }
-      }
-  });
-  ```
- 1. 同期タスクの SyncGeodatabaseJob（.geodatabase とフィーチャ サービスの同期）を実行します。`syncGeodatabase()` メソッドを次のように実装します。
-  ```java
-  // 同期ジョブオブヘジェクトを作成する
-  mSyncGeodatabaseJob = mGeodatabaseSyncTask.syncGeodatabaseAsync(mSyncParameter, geodatabase);
-  
-  // 同期中のステータスをチェックする
-  mSyncGeodatabaseJob.addJobChangedListener(new Runnable() {
-      @Override
-      public void run() {
-          if (mSyncGeodatabaseJob.getError() != null) {
-              // 同期中にエラーがある場合
-              Log.e(TAG, mSyncGeodatabaseJob.getError().toString());
-          } else {
-              // 同期の進行状況：メッセージを確認したり、ログやユーザーインターフェイスで進行状況を更新します
-          }
-      }
-  });
-  
-  // 同期が終了したときのステータスを取得します
-  mSyncGeodatabaseJob.addJobDoneListener(new Runnable() {
-      @Override
-      public void run() {
-          // 同期ジョブが終了したときのステータスを検査する
-          if ((mSyncGeodatabaseJob.getStatus() != Job.Status.SUCCEEDED) || (mSyncGeodatabaseJob.getError() != null)) {
-              // エラーの場合
-              Log.e(TAG, mSyncGeodatabaseJob.getError().toString());
-          } else {
-              // 同期完了から返された値を取得する
-              List<SyncLayerResult> syncResults = (List<SyncLayerResult>) mSyncGeodatabaseJob.getResult();
-              if (syncResults != null) {
-                  // 同期結果を確認して、例えばユーザに通知する処理を作成します
-                  Toast.makeText(getApplicationContext(), "Sync Success!" , Toast.LENGTH_SHORT).show();
-              }
-          }
-      }
-  });
-  // geodatabase 同期のジョブを開始します
-  mSyncGeodatabaseJob.start();
-  // 同期ボタンを有効にする
-  mBottun_Sync.setEnabled(false);
-  ```
- 1. プロジェクトを実行します。ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードした後に、端末をオフライン状態にしてみましょう。ポイントを追加しても[元のフィーチャ サービス](https://www.arcgis.com/home/webmap/viewer.html?webmap=4e90d664e499454a831ec05250299522)には反映されていないことが分かります。端末をオンライン状態に戻し、同期ボタンをタップしてフィーチャ サービスにポイントが追加されているか確認してみてください。
-  <img src="./img/6-1.png" width="500px">
+1. ローカルのランタイムコンテンツとArcGIS Online のフィーチャ レイヤーを同期させます。同期のためのパラメータ(SyncGeodatabaseParameters)を取得します。`syncLocalgeodatabase()` メソッドを次のように実装します。
+	```java
+	// タスクオブジェクトから同期するためのパラメータを作成する
+	final ListenableFuture<SyncGeodatabaseParameters> syncParamsFuture = mGeodatabaseSyncTask.createDefaultSyncGeodatabaseParametersAsync(geodatabase);
+	syncParamsFuture.addDoneListener(new Runnable() {
+	    @Override
+	    public void run() {
+	        try {
+	            // パラメータを取得
+	            mSyncParameter = syncParamsFuture.get();
+	            // パラーメータを使用してgeodatabaseを同期する
+	            syncGeodatabase();
+	        }catch (InterruptedException | ExecutionException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	});
+	```
+1. 同期タスクの SyncGeodatabaseJob（.geodatabase とフィーチャ サービスの同期）を実行します。`syncGeodatabase()` メソッドを次のように実装します。
+	```java
+	// 同期ジョブオブヘジェクトを作成する
+	mSyncGeodatabaseJob = mGeodatabaseSyncTask.syncGeodatabaseAsync(mSyncParameter, geodatabase);
+	
+	// 同期中のステータスをチェックする
+	mSyncGeodatabaseJob.addJobChangedListener(new Runnable() {
+	    @Override
+	    public void run() {
+	        if (mSyncGeodatabaseJob.getError() != null) {
+	            // 同期中にエラーがある場合
+	            Log.e(TAG, mSyncGeodatabaseJob.getError().toString());
+	        } else {
+	            // 同期の進行状況：メッセージを確認したり、ログやユーザーインターフェイスで進行状況を更新します
+	        }
+	    }
+	});
+	
+	// 同期が終了したときのステータスを取得します
+	mSyncGeodatabaseJob.addJobDoneListener(new Runnable() {
+	    @Override
+	    public void run() {
+	        // 同期ジョブが終了したときのステータスを検査する
+	        if ((mSyncGeodatabaseJob.getStatus() != Job.Status.SUCCEEDED) || (mSyncGeodatabaseJob.getError() != null)) {
+	            // エラーの場合
+	            Log.e(TAG, mSyncGeodatabaseJob.getError().toString());
+	        } else {
+	            // 同期完了から返された値を取得する
+	            List<SyncLayerResult> syncResults = (List<SyncLayerResult>) mSyncGeodatabaseJob.getResult();
+	            if (syncResults != null) {
+	                // 同期結果を確認して、例えばユーザに通知する処理を作成します
+	                Toast.makeText(getApplicationContext(), "Sync Success!" , Toast.LENGTH_SHORT).show();
+	            }
+	        }
+	    }
+	});
+	// geodatabase 同期のジョブを開始します
+	mSyncGeodatabaseJob.start();
+	// 同期ボタンを有効にする
+	mBottun_Sync.setEnabled(false);
+	```
+1. プロジェクトを実行します。ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードした後に、端末をオフライン状態にしてみましょう。ポイントを追加しても[元のフィーチャ サービス](https://www.arcgis.com/home/webmap/viewer.html?webmap=4e90d664e499454a831ec05250299522)には反映されていないことが分かります。端末をオンライン状態に戻し、同期ボタンをタップしてフィーチャ サービスにポイントが追加されているか確認してみてください。</br><img src="./img/6-1.png" width="500px">
 
 ハンズオンは以上で終了です。
 
