@@ -26,10 +26,12 @@
 ### サンプル プロジェクトのダウンロード
 1. [workshops](https://github.com/EsriJapan/workshops) ページを開いて [Clone or download] -> [Download ZIP] をクリックして、ファイル一式をダウンロードします。
 
-  <img src="./img/1-1.png" width="500px">
+ <img src="./img/1-1.png" width="500px">
 1. サンプル プロジェクト（workshops/offlinemap-app-hands-on/samples/Android/offlineMap）を Android Studio で開きます。
 
-1. Android Studio によるプロジェクト ビルドが終了したら、エミュレータまたは実機をつなげてアプリを実行してみましょう。次のような画面が表示されます。  <img src="./img/1-1.png" width="500px" ★★★メモ：画像★★★>
+1. Android Studio によるプロジェクト ビルドが終了したら、エミュレータまたは実機をつなげてアプリを実行してみましょう。次のような画面が表示されます。
+ <img src="./img/1-1.png" width="500px" ★★★メモ：画像★★★>
+
 #### Tips:
 ★ここにはgradleのこととレイアウト、マニュフェストこと、答えのコードのことを書く
 1. SDK は Gradle へ参照先を明記して使用しますが、SDKの[ダウンロードページ](https://developers.arcgis.com/downloads)から jar ファイルをダウンロードして使用することも可能です。その場合はプロジェクト直下にlibフォルダを作成し、Gradle ファイルに以下のように定義します。なお、jarファイルをダウンロードする場合は開発者アカウントが必要になります。作成する場合は、[こちら](http://esrijapan.github.io/arcgis-dev-resources/get-dev-account/)を参考にして作成してください）。
@@ -45,15 +47,15 @@
  <img src="./img/2-1.png" width="500px">
 
 1. viewDidLoad メソッドにタイル パッケージ（背景地図）を表示するコードを記述します。AGSTileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。
-```javascript
-// 背景用のタイル レイヤー（タイル パッケージ）を表示
-// AGSTileCache のパラメーターには .tpk ファイルの名前を指定
-let localTiledLayer = AGSArcGISTiledLayer(tileCache: AGSTileCache(name: "public_map"))
-// タイル レイヤーを背景としてマップを作成
-let map = AGSMap(basemap: AGSBasemap(baseLayer: localTiledLayer))
-// マップビュー（地図画面）にマップを表示
-self.mapView.map = map
-```
+ ```javascript
+ // 背景用のタイル レイヤー（タイル パッケージ）を表示
+ // AGSTileCache のパラメーターには .tpk ファイルの名前を指定
+ let localTiledLayer = AGSArcGISTiledLayer(tileCache: AGSTileCache(name: "public_map"))
+ // タイル レイヤーを背景としてマップを作成
+ let map = AGSMap(basemap: AGSBasemap(baseLayer: localTiledLayer))
+ // マップビュー（地図画面）にマップを表示
+ self.mapView.map = map
+ ```
 1. サンプル プロジェクトを実機もしくはシミュレーターで実行すると、以下のように地図が表示されます。
 
  <img src="./img/2-2.png" width="200px">
@@ -61,16 +63,16 @@ self.mapView.map = map
 ## 手順 3: フィーチャ サービス（主題図）の表示
 
 1. フィーチャ レイヤーを作成しフィーチャ サービス（主題図）をマップに追加します。`readFeatureLayer()` メソッドを次のように実装します。
-```java
-// フィーチャ サービスの URL を指定してフィーチャ テーブル（ServiceFeatureTable）を作成する
-// フィーチャ サービスの URL はレイヤー番号（〜/FeatureServer/0）まで含める
-String FeatureServiceURL = mArcGISFeatureServiceUrl + "/0";
-FeatureTable featureTable = new ServiceFeatureTable(FeatureServiceURL);
-// フィーチャ テーブルからフィーチャ レイヤーを作成
-final FeatureLayer featureLayer = new FeatureLayer(featureTable);
-// マップにフィーチャ レイヤーを追加
-mArcGISmap.getOperationalLayers().add(featureLayer);
-```
+ ```java
+ // フィーチャ サービスの URL を指定してフィーチャ テーブル（ServiceFeatureTable）を作成する
+ // フィーチャ サービスの URL はレイヤー番号（〜/FeatureServer/0）まで含める
+ String FeatureServiceURL = mArcGISFeatureServiceUrl + "/0";
+ FeatureTable featureTable = new ServiceFeatureTable(FeatureServiceURL);
+ // フィーチャ テーブルからフィーチャ レイヤーを作成
+ final FeatureLayer featureLayer = new FeatureLayer(featureTable);
+ // マップにフィーチャ レイヤーを追加
+ mArcGISmap.getOperationalLayers().add(featureLayer);
+ ```
 1. フィーチャ レイヤーの読み込み完了後に、フィーチャ サービスの全体表示範囲にズームし、ダウンロード ボタンを有効化します。
 ```java
 // フィーチャ レイヤーの読み込み完了時の処理
@@ -233,41 +235,34 @@ addFeatureFuture.addDoneListener(new Runnable() {
 ## 手順 6: 編集結果をフィーチャ サービスと同期
 1. ローカルのランタイムコンテンツとArcGIS Online のフィーチャ レイヤーを同期させます。同期のためのパラメータ(SyncGeodatabaseParameters)を取得します。`syncLocalgeodatabase()` メソッドを次のように実装します。
 ```java
-// 同期したいレイヤーでタスクオブジェクトを作成する
-String FeatureServiceURL = mArcGISFeatureServiceUrl+ "/0";// 編集したいレイヤーの順番まで指定します
-mGeodatabaseSyncTask = new GeodatabaseSyncTask(FeatureServiceURL);
-readGeoDatabase();
-
 // タスクオブジェクトから同期するためのパラメータを作成する
 final ListenableFuture<SyncGeodatabaseParameters> syncParamsFuture = mGeodatabaseSyncTask.createDefaultSyncGeodatabaseParametersAsync(geodatabase);
 syncParamsFuture.addDoneListener(new Runnable() {
     @Override
     public void run() {
-        try
-        {
+        try {
             // パラメータを取得
             mSyncParameter = syncParamsFuture.get();
             // パラーメータを使用してgeodatabaseを同期する
             syncGeodatabase();
-        }
-        catch (InterruptedException | ExecutionException e) {
+        }catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
     }
 });
 ```
-1. 同期タスクの SyncGeodatabaseJob（.geodatabase とフィーチャ サービスの同期）を実行します。
+1. 同期タスクの SyncGeodatabaseJob（.geodatabase とフィーチャ サービスの同期）を実行します。`syncGeodatabase()` メソッドを次のように実装します。
 ```java
 // 同期ジョブオブヘジェクトを作成する
-syncJob = mGeodatabaseSyncTask.syncGeodatabaseAsync(mSyncParameter, geodatabase);
+mSyncGeodatabaseJob = mGeodatabaseSyncTask.syncGeodatabaseAsync(mSyncParameter, geodatabase);
 
 // 同期中のステータスをチェックする
-syncJob.addJobChangedListener(new Runnable() {
+mSyncGeodatabaseJob.addJobChangedListener(new Runnable() {
     @Override
     public void run() {
-        if (syncJob.getError() != null) {
+        if (mSyncGeodatabaseJob.getError() != null) {
             // 同期中にエラーがある場合
-            Log.e(TAG,syncJob.getError().toString());
+            Log.e(TAG, mSyncGeodatabaseJob.getError().toString());
         } else {
             // 同期の進行状況：メッセージを確認したり、ログやユーザーインターフェイスで進行状況を更新します
         }
@@ -275,16 +270,16 @@ syncJob.addJobChangedListener(new Runnable() {
 });
 
 // 同期が終了したときのステータスを取得します
-syncJob.addJobDoneListener(new Runnable() {
+mSyncGeodatabaseJob.addJobDoneListener(new Runnable() {
     @Override
     public void run() {
         // 同期ジョブが終了したときのステータスを検査する
-        if ((syncJob.getStatus() != Job.Status.SUCCEEDED) || (syncJob.getError() != null)) {
+        if ((mSyncGeodatabaseJob.getStatus() != Job.Status.SUCCEEDED) || (mSyncGeodatabaseJob.getError() != null)) {
             // エラーの場合
-            Log.e(TAG,syncJob.getError().toString());
+            Log.e(TAG, mSyncGeodatabaseJob.getError().toString());
         } else {
             // 同期完了から返された値を取得する
-            List<SyncLayerResult> syncResults = (List<SyncLayerResult>) syncJob.getResult();
+            List<SyncLayerResult> syncResults = (List<SyncLayerResult>) mSyncGeodatabaseJob.getResult();
             if (syncResults != null) {
                 // 同期結果を確認して、例えばユーザに通知する処理を作成します
                 Toast.makeText(getApplicationContext(), "Sync Success!" , Toast.LENGTH_SHORT).show();
@@ -293,8 +288,9 @@ syncJob.addJobDoneListener(new Runnable() {
     }
 });
 // geodatabase 同期のジョブを開始します
-syncJob.start();
-}
+mSyncGeodatabaseJob.start();
+// 同期ボタンを有効にする
+mBottun_Sync.setEnabled(false);
 ```
 1. プロジェクトを実行します。ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードした後に、端末をオフライン状態にしてみましょう。ポイントを追加しても[元のフィーチャ サービス](https://www.arcgis.com/home/webmap/viewer.html?webmap=4e90d664e499454a831ec05250299522)には反映されていないことが分かります。端末をオンライン状態に戻し、同期ボタンをタップしてフィーチャ サービスにポイントが追加されているか確認してみてください。
 <img src="./img/6-1.png" width="500px">

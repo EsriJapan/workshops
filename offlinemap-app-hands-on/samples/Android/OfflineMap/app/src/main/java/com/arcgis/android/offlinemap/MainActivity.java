@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO 6.編集結果をフィーチャ サービスと同期
-                syncLocalgeodatabase();
+                syncFeatureService();
             }
         });
     }
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
     Geodatabase geodatabase;
     // ArcGIS Online または ArcGIS Enterprise との同期
     static SyncGeodatabaseParameters mSyncParameter;
-    static SyncGeodatabaseJob syncJob;
+    static SyncGeodatabaseJob mSyncGeodatabaseJob;
 
     /**
      * フィーチャ サービスのデータのダウンロード
@@ -408,11 +408,7 @@ public class MainActivity extends AppCompatActivity {
      * ① 同期タスクを作成する
      * ② 同期パラメータを取得する
      * */
-    private void syncLocalgeodatabase() {
-
-        // 同期したいレイヤーでタスクオブジェクトを作成する
-        String FeatureServiceURL = mArcGISFeatureServiceUrl+ "/0";// 編集したいレイヤーの順番まで指定します
-        mGeodatabaseSyncTask = new GeodatabaseSyncTask(FeatureServiceURL);
+    private void syncFeatureService() {
 
         // タスクオブジェクトから同期するためのパラメータを作成する
         final ListenableFuture<SyncGeodatabaseParameters> syncParamsFuture = mGeodatabaseSyncTask.createDefaultSyncGeodatabaseParametersAsync(geodatabase);
@@ -439,15 +435,15 @@ public class MainActivity extends AppCompatActivity {
     private void syncGeodatabase() {
 
         // 同期ジョブオブヘジェクトを作成する
-        syncJob = mGeodatabaseSyncTask.syncGeodatabaseAsync(mSyncParameter, geodatabase);
+        mSyncGeodatabaseJob = mGeodatabaseSyncTask.syncGeodatabaseAsync(mSyncParameter, geodatabase);
 
         // 同期中のステータスをチェックする
-        syncJob.addJobChangedListener(new Runnable() {
+        mSyncGeodatabaseJob.addJobChangedListener(new Runnable() {
             @Override
             public void run() {
-                if (syncJob.getError() != null) {
+                if (mSyncGeodatabaseJob.getError() != null) {
                     // 同期中にエラーがある場合
-                    Log.e(TAG,syncJob.getError().toString());
+                    Log.e(TAG, mSyncGeodatabaseJob.getError().toString());
                 } else {
                     // 同期の進行状況：メッセージを確認したり、ログやユーザーインターフェイスで進行状況を更新します
                 }
@@ -455,16 +451,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // 同期が終了したときのステータスを取得します
-        syncJob.addJobDoneListener(new Runnable() {
+        mSyncGeodatabaseJob.addJobDoneListener(new Runnable() {
             @Override
             public void run() {
                 // 同期ジョブが終了したときのステータスを検査する
-                if ((syncJob.getStatus() != Job.Status.SUCCEEDED) || (syncJob.getError() != null)) {
+                if ((mSyncGeodatabaseJob.getStatus() != Job.Status.SUCCEEDED) || (mSyncGeodatabaseJob.getError() != null)) {
                     // エラーの場合
-                    Log.e(TAG,syncJob.getError().toString());
+                    Log.e(TAG, mSyncGeodatabaseJob.getError().toString());
                 } else {
                     // 同期完了から返された値を取得する
-                    List<SyncLayerResult> syncResults = (List<SyncLayerResult>) syncJob.getResult();
+                    List<SyncLayerResult> syncResults = (List<SyncLayerResult>) mSyncGeodatabaseJob.getResult();
                     if (syncResults != null) {
                         // 同期結果を確認して、例えばユーザに通知する処理を作成します
                         Toast.makeText(getApplicationContext(), "Sync Success!" , Toast.LENGTH_SHORT).show();
@@ -473,9 +469,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // geodatabase 同期のジョブを開始します
-        syncJob.start();
-        // 同期ボタンを有効にする
-        mBottun_Sync.setEnabled(false);
+        mSyncGeodatabaseJob.start();
     }
 
 }
