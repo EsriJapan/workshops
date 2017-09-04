@@ -34,30 +34,25 @@
 * 今回のハンズオンで作成するサンプルの完成版が[こちら](https://github.com/wakanasato/workshops/blob/master/offlinemap-app-hands-on/samples/Android/OfflineMap/app/src/main/java/com/arcgis/android/offlinemap/AnswerActivity.java)にありますので、作業に困ったら参考にしてください。
 
 ## 手順 2: タイル パッケージ（背景地図）の表示
-1. ハンズオンで使用するタイル パッケージ（背景地図）を実行する端末またはエミューレーターへダウンロードします。タイル パッケージ (orkshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk) へ実機またはエミュレーターからアクセスして、ダウンロードします。ダウンロードしたファイルは、ファイルマネージャー アプリなどを使用して内部ストレージである sdcard/Downloads 配下に格納されることを確認します。実機の場合URLは [http://bit.ly/2ex6vIj](http://bit.ly/2ex6vIj)をご利用ください。なおこのタイル パッケージの公開は当日のハンズオンのみとしています。
+1. ハンズオンで使用するタイル パッケージ（背景地図）を実行する端末またはエミューレーターへダウンロードします。タイル パッケージ (orkshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk) へ実機またはエミュレーターからアクセスして、ダウンロードします。ダウンロードしたファイルは、ファイルマネージャー アプリなどを使用して内部ストレージである sdcard/Downloads 配下に格納されることを確認します。実機の場合URLは [http://bit.ly/2ex6vIj](http://bit.ly/2ex6vIj) をご利用ください。なおこのタイル パッケージの公開は当日のみの利用としています。</br><img src="./img/2-1.png" width="500px">
 
- <img src="./img/2-1.png" width="500px">
-
-  * adb コマンドを使用する場合は、タイル パッケージを任意の場所にダウンロードしたあと、次のコマンドを実行します。
-  >adb push public_map.tpk /sdcard/Download/
+  * adb コマンドを使用する場合は、タイル パッケージを任意の場所にダウンロードしたあと、次のコマンドを実行します。</br>>adb push public_map.tpk /sdcard/Download/
 
 1. タイル パッケージ（背景地図）を表示するコードを記述します。`readTilePkg()` メソッドを次のように実装します。TileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。
- ```java
- String tpkpath  = mLocalFilePath + getResources().getString(R.string.tpk_name);
- // 存在チェック
- File tpkfile = new File(mLocalFilePath);
- if(!tpkfile.exists()){
-     Log.d(TAG, tpkpath + ":" + tpkfile.exists());
- }else{
-     // tpkファイルはレイヤーとして表示する
-     TileCache tileCache = new TileCache(tpkpath);
-     ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
-     mArcGISmap.getOperationalLayers().add(tiledLayer);
- }
- ```
-1. サンプル プロジェクトを実機もしくはシミュレーターで実行すると、以下のように地図が表示されます。
-
- <img src="./img/2-2.png" width="200px">
+```java
+String tpkpath  = mLocalFilePath + getResources().getString(R.string.tpk_name);
+// 存在チェック
+File tpkfile = new File(mLocalFilePath);
+if(!tpkfile.exists()){
+    Log.d(TAG, tpkpath + ":" + tpkfile.exists());
+}else{
+    // tpkファイルはレイヤーとして表示する
+    TileCache tileCache = new TileCache(tpkpath);
+    ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
+    mArcGISmap.getOperationalLayers().add(tiledLayer);
+}
+```
+1. サンプル プロジェクトを実機もしくはシミュレーターで実行すると、以下のように地図が表示されます。</br><img src="./img/2-2.png" width="200px">
 
 ## 手順 3: フィーチャ サービス（主題図）の表示
 
