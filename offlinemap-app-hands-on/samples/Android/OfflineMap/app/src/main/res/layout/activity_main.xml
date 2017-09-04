@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.arcgis.android.offlinemap.MainActivity">
+
+    <!-- MapView -->
+    <com.esri.arcgisruntime.mapping.view.MapView
+        android:id="@+id/mapView"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </com.esri.arcgisruntime.mapping.view.MapView>
+
+    <LinearLayout
+        android:layout_width="244dp"
+        android:layout_height="49dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/button_DL"
+            android:layout_width="80dp"
+            android:layout_height="37dp"
+            android:text="ダウンロード"
+            android:layout_weight="0.69" />
+
+        <Button
+            android:id="@+id/button_Sync"
+            android:layout_width="80dp"
+            android:layout_height="37dp"
+            android:text="同期"
+            android:layout_weight="0.33" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
