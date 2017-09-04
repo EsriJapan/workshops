@@ -191,6 +191,7 @@ public class AnswerActivity extends AppCompatActivity {
     GenerateGeodatabaseParameters generateParams;
     GenerateGeodatabaseJob generateJob;
     Geodatabase geodatabase;
+    GeodatabaseFeatureTable mGdbFeatureTable;
     // ArcGIS Online または ArcGIS Enterprise との同期
     static SyncGeodatabaseParameters mSyncParameter;
     static SyncGeodatabaseJob mSyncGeodatabaseJob;
@@ -315,7 +316,6 @@ public class AnswerActivity extends AppCompatActivity {
     /**
      * 既存GeoDatabaseから読み込む
      * ***/
-    GeodatabaseFeatureTable mGdbFeatureTable;
     private void readGeoDatabase(){
 
         geodatabase = new Geodatabase(mLocalFilePath + getResources().getString(R.string.runtimecontents_name));
