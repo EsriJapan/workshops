@@ -36,106 +36,105 @@
 ## 手順 2: タイル パッケージ（背景地図）の表示
 1. ハンズオンで使用するタイル パッケージ（背景地図）を実行する端末またはエミューレーターへダウンロードします。タイル パッケージ (orkshops/offlinemap-app-hands-on/samples/SampleData/public_map.tpk) へ実機またはエミュレーターからアクセスして、ダウンロードします。ダウンロードしたファイルは、ファイルマネージャー アプリなどを使用して内部ストレージである sdcard/Downloads 配下に格納されることを確認します。実機の場合URLは [http://bit.ly/2ex6vIj](http://bit.ly/2ex6vIj) をご利用ください。なおこのタイル パッケージの公開は当日のみの利用としています。</br><img src="./img/2-1.png" width="500px">
 
-* adb コマンドを使用する場合は、タイル パッケージを任意の場所にダウンロードしたあと、次のコマンドを実行します。</br>>adb push public_map.tpk /sdcard/Download/
-
-1. タイル パッケージ（背景地図）を表示するコードを記述します。`readTilePkg()` メソッドを次のように実装します。TileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。</br>```java
-String tpkpath  = mLocalFilePath + getResources().getString(R.string.tpk_name);
-// 存在チェック
-File tpkfile = new File(mLocalFilePath);
-if(!tpkfile.exists()){
-    Log.d(TAG, tpkpath + ":" + tpkfile.exists());
-}else{
-    // tpkファイルはレイヤーとして表示する
-    TileCache tileCache = new TileCache(tpkpath);
-    ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
-    mArcGISmap.getOperationalLayers().add(tiledLayer);
-}
-```
+1. タイル パッケージ（背景地図）を表示するコードを記述します。`readTilePkg()` メソッドを次のように実装します。TileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。
+	```java
+	String tpkpath  = mLocalFilePath + getResources().getString(R.string.tpk_name);
+	// 存在チェック
+	File tpkfile = new File(mLocalFilePath);
+	if(!tpkfile.exists()){
+	    Log.d(TAG, tpkpath + ":" + tpkfile.exists());
+	}else{
+	    // tpkファイルはレイヤーとして表示する
+	    TileCache tileCache = new TileCache(tpkpath);
+	    ArcGISTiledLayer tiledLayer = new ArcGISTiledLayer(tileCache);
+	    mArcGISmap.getOperationalLayers().add(tiledLayer);
+	}
+	```
 1. サンプル プロジェクトを実機もしくはシミュレーターで実行すると、以下のように地図が表示されます。</br><img src="./img/2-2.png" width="200px">
 
 ## 手順 3: フィーチャ サービス（主題図）の表示
 
 1. フィーチャ レイヤーを作成しフィーチャ サービス（主題図）をマップに追加します。`readFeatureLayer()` メソッドを次のように実装します。
- ```java
- // フィーチャ サービスの URL を指定してフィーチャ テーブル（ServiceFeatureTable）を作成する
- // フィーチャ サービスの URL はレイヤー番号（〜/FeatureServer/0）まで含める
- String FeatureServiceURL = mArcGISFeatureServiceUrl + "/0";
- FeatureTable featureTable = new ServiceFeatureTable(FeatureServiceURL);
- // フィーチャ テーブルからフィーチャ レイヤーを作成
- final FeatureLayer featureLayer = new FeatureLayer(featureTable);
- // マップにフィーチャ レイヤーを追加
- mArcGISmap.getOperationalLayers().add(featureLayer);
- ```
+	``java
+	//フィーチャサービスのURLを指定してフィーチャテーブル（ServiceFeatureTable）を作成する
+	//フィーチャサービスのURLはレイヤー番号（〜/FeatureServer/0）まで含める
+	StringFeatureServiceURL=mArcGISFeatureServiceUrl+"/0";
+	FeatureTablefeatureTable=newServiceFeatureTable(FeatureServiceURL);
+	//フィーチャテーブルからフィーチャレイヤーを作成
+	finalFeatureLayerfeatureLayer=newFeatureLayer(featureTable);
+	//マップにフィーチャレイヤーを追加
+	mArcGISmap.getOperationalLayers().add(featureLayer);
+	```
 1. フィーチャ レイヤーの読み込み完了後に、フィーチャ サービスの全体表示範囲にズームし、ダウンロード ボタンを有効化します。
-```java
-// フィーチャ レイヤーの読み込み完了時の処理
-featureLayer.addDoneLoadingListener(new Runnable() {
-    @Override
-    public void run() {
-        if(featureLayer.getLoadStatus() == LoadStatus.LOADED){
-            // 読み込み後にフィーチャがすべて見える位置(ViewPointへ移動する)
-            Viewpoint viewpoint = new Viewpoint(featureLayer.getFullExtent());
-            mMapView.setViewpoint(viewpoint);
-
-            // ボタンの有効化
-            Log.d(TAG, "FeatureLayer Loaded");
-            Toast.makeText(getApplicationContext(), "FeatureLayer Loaded / ボタンの活性化", Toast.LENGTH_SHORT).show();
-            mBottun_DL.setEnabled(true);
-        }
-    }
-});
-```
+	```java
+	// フィーチャ レイヤーの読み込み完了時の処理
+	featureLayer.addDoneLoadingListener(new Runnable() {
+	    @Override
+	    public void run() {
+	        if(featureLayer.getLoadStatus() == LoadStatus.LOADED){
+	            // 読み込み後にフィーチャがすべて見える位置(ViewPointへ移動する)
+	            Viewpoint viewpoint = new Viewpoint(featureLayer.getFullExtent());
+	            mMapView.setViewpoint(viewpoint);
+	
+	            // ボタンの有効化
+	            Log.d(TAG, "FeatureLayer Loaded");
+	            Toast.makeText(getApplicationContext(), "FeatureLayer Loaded / ボタンの活性化", Toast.LENGTH_SHORT).show();
+	            mBottun_DL.setEnabled(true);
+	        }
+	    }
+	});
+	```
 1. プロジェクトを実行して、フィーチャ サービスのデータが表示されるか確認します。
-<img src="./img/3-1.png" width="200px">
+	<img src="./img/3-1.png" width="200px">
 
 ## 手順 4: フィーチャ サービスのデータのダウンロード
 1. フィーチャ サービスの同期タスク（GeodatabaseSyncTask）を作成します。`downloadFeatureService()` メソッドを次のように実装します。
-```java
-// フィーチャ サービス URL を使用して同期タスク（AGSGeodatabaseSyncTask）を作成
-// ① ランタイムコンテンツを作成したい ArcGIS Online の Feature Layer でタスクオブジェクト(GeodatabaseSyncTask)を作成する
-mGeodatabaseSyncTask = new GeodatabaseSyncTask(mArcGISFeatureServiceUrl);
-// タスクオブジェクトのロードを行う
-mGeodatabaseSyncTask.addDoneLoadingListener(new Runnable() {
-    @Override public void run() {
-        // ロードのステータスを検査する
-        if (mGeodatabaseSyncTask.getLoadStatus() == LoadStatus.FAILED_TO_LOAD) {
-            Log.e(TAG,mGeodatabaseSyncTask.getLoadError().toString());
-            Toast.makeText(getApplicationContext(), "Created GeodatabaseSyncTask failed!", Toast.LENGTH_SHORT).show();
-        } else {
-            // Load に成功
-            Log.d(TAG, "Created GeodatabaseSyncTask");
-            Toast.makeText(getApplicationContext(), "Created GeodatabaseSyncTask Success!", Toast.LENGTH_SHORT).show();
-            // ② ロードができたら Feature Layer のパラメータを取得する
-            generateGeodatabaseParameters();
-        }
-    }
-});
-// タスクのロードを開始する
-mGeodatabaseSyncTask.loadAsync();
-```
-1. フィーチャ サービスの同期パラメータ（GenerateGeodatabaseParameters）を作成します。`generateGeodatabaseParameters()` メソッドを次のように実装します。
-```java
-// geodatabase 作成のためのパラメータを取得する
-Envelope generateExtent = mMapView.getVisibleArea().getExtent();
-final ListenableFuture<GenerateGeodatabaseParameters> generateParamsFuture = mGeodatabaseSyncTask.createDefaultGenerateGeodatabaseParametersAsync(generateExtent);
-generateParamsFuture.addDoneListener(new Runnable() {
-    @Override
-    public void run() {
-        try {
-            generateParams = generateParamsFuture.get();
-            Log.d(TAG, "Created GeodatabaseParameters");
-            Toast.makeText(getApplicationContext(), "Created GeodatabaseParameters Success!", Toast.LENGTH_SHORT).show();
-            // ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する
-            generateGeodatabase();
-        }
-        catch (InterruptedException | ExecutionException e) {
-            Log.d(TAG, "Created GeodatabaseParameters failed");
-            Toast.makeText(getApplicationContext(), "Created GeodatabaseParameters failed!", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-    }
-});
-```
+	```java
+	// フィーチャ サービス URL を使用して同期タスク（AGSGeodatabaseSyncTask）を作成
+	// ① ランタイムコンテンツを作成したい ArcGIS Online の Feature Layer でタスクオブジェクト(GeodatabaseSyncTask)を作成する
+	mGeodatabaseSyncTask = new GeodatabaseSyncTask(mArcGISFeatureServiceUrl);
+	// タスクオブジェクトのロードを行う
+	mGeodatabaseSyncTask.addDoneLoadingListener(new Runnable() {
+	    @Override public void run() {
+	        // ロードのステータスを検査する
+	        if (mGeodatabaseSyncTask.getLoadStatus() == LoadStatus.FAILED_TO_LOAD) {
+	            Log.e(TAG,mGeodatabaseSyncTask.getLoadError().toString());
+	            Toast.makeText(getApplicationContext(), "Created GeodatabaseSyncTask failed!", Toast.LENGTH_SHORT).show();
+	        } else {
+	            // Load に成功
+	            Log.d(TAG, "Created GeodatabaseSyncTask");
+	            Toast.makeText(getApplicationContext(), "Created GeodatabaseSyncTask Success!", Toast.LENGTH_SHORT).show();
+	            // ② ロードができたら Feature Layer のパラメータを取得する
+	            generateGeodatabaseParameters();
+	        }
+	    }
+	});
+	// タスクのロードを開始する
+	mGeodatabaseSyncTask.loadAsync();
+	```
+	1. フィーチャ サービスの同期パラメータ（GenerateGeodatabaseParameters）を作成します。`generateGeodatabaseParameters()` メソッドを次のように実装します。
+	```java
+	// geodatabase 作成のためのパラメータを取得する
+	Envelope generateExtent = mMapView.getVisibleArea().getExtent();
+	final ListenableFuture<GenerateGeodatabaseParameters> generateParamsFuture = mGeodatabaseSyncTask.createDefaultGenerateGeodatabaseParametersAsync(generateExtent);
+	generateParamsFuture.addDoneListener(new Runnable() {
+	    @Override
+	    public void run() {
+	        try {
+	            generateParams = generateParamsFuture.get();
+	            Log.d(TAG, "Created GeodatabaseParameters");
+	            Toast.makeText(getApplicationContext(), "Created GeodatabaseParameters Success!", Toast.LENGTH_SHORT).show();
+	            // ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する
+	            generateGeodatabase();
+	        }
+	        catch (InterruptedException | ExecutionException e) {
+	            Log.d(TAG, "Created GeodatabaseParameters failed");
+	            Toast.makeText(getApplicationContext(), "Created GeodatabaseParameters failed!", Toast.LENGTH_SHORT).show();
+	            e.printStackTrace();
+	        }
+	    }
+	});
+	```
 1. ランタイムコンテンツを作成します。新規作成のためのジョブオブジェクト（GenerateGeodatabaseJob）を作成します。`generateGeodatabase()` メソッドを次のように実装します。
 ```java
 // geodatabaseファイル作成ジョブオブヘジェクトを作成する
