@@ -4,7 +4,6 @@ using System.Windows;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
-
 using Esri.ArcGISRuntime;
 using Esri.ArcGISRuntime.Mapping;
 using Esri.ArcGISRuntime.Geometry;
@@ -14,7 +13,7 @@ using Esri.ArcGISRuntime.Tasks;
 using Esri.ArcGISRuntime.Tasks.Offline;
 
 namespace sample
-{
+{ 
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
@@ -38,9 +37,8 @@ namespace sample
         {
             Map myMap = new Map(BasemapType.Streets, 35.632896, 139.880394, 13);
 
-            MyMapView.Map = myMap;            
+            MyMapView.Map = myMap;
         }
-
 
     }
 }
