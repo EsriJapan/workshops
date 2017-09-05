@@ -7,9 +7,7 @@
         xmlns:local="clr-namespace:sample"
         mc:Ignorable="d"
         Title="オフラインマップ" Height="450" Width="625">
-
     <Grid>
         <esri:MapView x:Name="MyMapView"/>
     </Grid>
-    
 </Window>
