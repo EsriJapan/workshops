@@ -161,6 +161,9 @@ public void addFeatureLayer()
     myMap.OperationalLayers.Add(featureLayer);
 }
 ```
+
+【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちら](examples/sample1)にございます。
+
 ### アプリの実行
 
 アプリを実行して確認しましょう。<br/>
@@ -254,7 +257,7 @@ Runtime コンテンツ（*.geodatabase）を作成するためにデータの�
 ### MainWindow.xaml.cs
 
 1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
-2. `Initialize` 関数に `chkGeodatabase()` 関数を作成します。
+2. `Initialize` 関数に `getGeodatabasePath()` 関数を作成します。
 
 ```csharp
 public async void Initialize()
@@ -557,7 +560,7 @@ private void generateGeodatabase()
 }
 ```
 
-【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちら](examples/手順4)にございます。
+【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちら](examples/sample2)にございます。
 
 ### アプリの実行
 
@@ -662,7 +665,7 @@ private async void addFeature(MapPoint pPoint)
 }
 ```
 
-【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちら](examples/手順5)にございます。
+【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちら](examples/sample3)にございます。
 
 ### アプリの実行
 
@@ -840,7 +843,7 @@ private void ShowStatusMessage(string message)
 }
 ```
 
-【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちら](examples/手順6)にございます。
+【確認】ここまでの `MainWindow.xaml`、`MainWindow.xaml.cs` を確認したい方は [こちら](examples/sample4)にございます。
 
 ### アプリの実行
 
