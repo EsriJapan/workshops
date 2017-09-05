@@ -79,7 +79,7 @@ Visual Studio で `workshops/offlinemap-app-hands-on/hands-on/DotNet/examples/st
 
 <img src="./img/1-2.png" width="500px">
 
-### 手順 2: タイル パッケージ（背景地図）の表示
+## 手順 2: タイル パッケージ（背景地図）の表示
 
 NuGet パッケージの復元が完了したら、デバッグを開始してアプリを実行してみましょう。<br/>
 以下のような画面が表示されます。
@@ -375,7 +375,7 @@ private async void readGeoDatabase()
 - ③ 同期させたいArcGIS Online の Feature Layer でローカル geodatabase を作成する。
 
  コードの TODO 箇所に処理を書いていきましょう。<br/>
- 詳細は、 [Runtime コンテンツ（*.geodatabase）の作成](https://developers.arcgis.com/net/latest/wpf/guide/create-an-offline-layer.htm)を参考にしてください。
+ 詳細は、 [Runtime コンテンツ（*.geodatabase）の作成](https://developers.arcgis.com/net/latest/wpf/guide/create-an-offline-layer.htm#ESRI_SECTION3_89544D1DCF1E49AB842CD20BA03255A4)を参考にしてください。
  
 ```csharp
 ////////////////////////////////////////////////////////////////
