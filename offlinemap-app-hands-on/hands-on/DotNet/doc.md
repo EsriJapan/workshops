@@ -257,7 +257,7 @@ Runtime コンテンツ（*.geodatabase）を作成するためにデータの�
 ### MainWindow.xaml.cs
 
 1. プロジェクトの `sample/MainWindow.xaml.cs` ファイルを開きます。
-2. `Initialize` 関数に `chkGeodatabase()` 関数を作成します。
+2. `Initialize` 関数に `getGeodatabasePath()` 関数を作成します。
 
 ```csharp
 public async void Initialize()
