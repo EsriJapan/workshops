@@ -30,8 +30,8 @@
 
 ### サンプル プロジェクトのダウンロード
 1. [workshops](https://github.com/EsriJapan/workshops) ページを開いて [Clone or download] -> [Download ZIP] をクリックして、ファイル一式をダウンロードします。
-    <img src="./img/1-1.png" width="500px">
-1. サンプル プロジェクト（workshops-master/offlinemap-app-hands-on/samples/iOS/sample/offlineMap.xcodeproj）を Xcode で開きます。
+<img src="./img/1-1.png" width="500px">
+2. サンプル プロジェクト（workshops-master/offlinemap-app-hands-on/samples/iOS/sample/offlineMap.xcodeproj）を Xcode で開きます。
 
 #### 参考情報:
 * SDK は [CocoaPods を使用してインストール](http://esrijapan.github.io/arcgis-dev-resources/ios/install-ios-100.x/#cocoapods-を使用して-sdk-をインストールする)することも可能です。
@@ -41,7 +41,8 @@
 ## 手順 2: タイル パッケージ（背景地図）の表示
 サンプル プロジェクトには事前に地図画面を作成してあるので、そこに背景地図を表示していきます。ハンズオンで使用するタイル パッケージ（背景地図）は、GitHub からダウンロードしたフォルダ（workshops-master/offlinemap-app-hands-on/samples/SampleData/public_map.tpk）にあります。
 1. Xcode のメニューで、[File] -> [Add Files to "offlineMap"...] から、public_map.tpk ファイルをプロジェクトに追加します。
-    <img src="./img/2-1.png" width="500px">
+<img src="./img/2-1.png" width="500px">
+
 2. viewDidLoad メソッドにタイル パッケージ（背景地図）を表示するコードを記述します。AGSTileCache のパラメーターにはタイル パッケージ ファイルのファイル名（.tpk のファイル名）を指定します。
 ```javascript
 // 背景用のタイル レイヤー（タイル パッケージ）を表示
@@ -159,7 +160,7 @@ self?.generatedGeodatabase.load(completion: { [weak self] (error:Error?) -> Void
 })
 ```
 5. プロジェクトを実行し、ダウンロード ボタンをタップしてフィーチャ サービスのデータをダウンロードしてみましょう。Xcode のコンソールにダウンロードの進捗状況が表示されます。Succeeded と表示されたらダウンロードの完了です。
-    <img src="./img/4-1.png" width="500px">
+<img src="./img/4-1.png" width="500px">
 
 ## 手順 5: フィーチャの編集（ポイント追加）
 
