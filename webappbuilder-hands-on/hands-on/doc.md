@@ -113,8 +113,8 @@ config.json は JSON 形式のオブジェクト格納ファイルです。ウ�
   <div>
     <label>単位</label>
     <select data-dojo-type="dijit/form/Select" data-dojo-attach-point="selectLengthUnit">
-      <option value="kilometers">キロメートル</option>
       <option value="meters">メートル</option>
+      <option value="kilometers">キロメートル</option>
     </select>
   </div>
 </div>
@@ -140,7 +140,7 @@ define([
 });
 ```
 
-> dojo は、モジュール システムを導入しており、各機能はモジュールとして管理されています。モジュールを使用するには、`define()` の第1引数にモジュールを渡すとモジュールが読み込まれ、第2引数に渡したコールバック関数が実行されます。
+> dojo は、モジュール システムを導入しており、各機能はモジュールとして管理されています。モジュールを使用するには、`define()` の第1引数にモジュールを渡すとモジュールが読み込まれ、第2引数に渡したコールバック関数が実行されます。  
 > `declare()` は dojo が用意するクラス ベースの開発を実現するモジュールです。ウィジェット開発では、ベースとなるウィジェットを継承し、拡張することで、新しいウィジェットの作成を実現しています。`declare()` の第1引数に継承元のモジュールを渡します。ここでは、構成画面のベースとなる `BaseWidgetSetting` とウィジェットのテンプレート（HTML）で定義した `data-dojo-type` をモジュールに置き換える `_WidgetsInTemplateMixin` を渡しています。第2引数には、クラスに含むメソッドやプロパティを定義したオブジェクトを渡します。
 
 4. 次に、`baseClass`、`setConfig`、`getConfig` を定義します。  
@@ -160,7 +160,7 @@ setConfig: function(config) {
 getConfig: function() {
   // 構成画面の値を取得する
   var lengthUnit = this.selectLengthUnit.value;
-  var lengthUnitLabel = length === 'kilometers' ? 'キロメートル' : 'メートル';
+  var lengthUnitLabel = (lengthUnit === 'kilometers') ? 'キロメートル' : 'メートル';
 
   // 取得した値を保存する
   return {
@@ -285,10 +285,10 @@ onClose: function() {
 },
 ```
 
-> ウィジェットは、作成から廃棄されるまでのライフサイクルに、いくつかのタイミングでコールバック関数を呼びます。このコールバック関数に適切な処理を実装していくことで、ウィジェットの開発を進めていきます。構成画面の作成時に `Setting.js` で作成した `postCreate()` もこのライフサイクルで呼ばれます。
-> ウィジェットが開くときには `onOpen()` が呼ばれ、閉じるときには `onClose()` が呼ばれます。今回は、ここに、ウィジェット開閉時の処理を書いていきます。
-> ここでは、ウィジェットを開いたときに呼ばれる `onOpen()` に、マップ上のフィーチャ レイヤーを取得し、select 要素に表示させるメソッドを実行し、マップをクリックしたときのイベントを作成します。`onClose()` では、ウィジェットを閉じたときに、マップ上のグラフィクをクリアし、`onOpen` で作成したイベントを削除するよう記述します。
-> ライフサイクルの詳細は <a href="https://developers.arcgis.com/web-appbuilder/guide/widget-life-cycle.htm" target="_blank">Widget lifecycle</a> をご参照ください
+> ウィジェットは、作成から廃棄されるまでのライフサイクルに、いくつかのタイミングでコールバック関数を呼びます。このコールバック関数に適切な処理を実装していくことで、ウィジェットの開発を進めていきます。構成画面の作成時に `Setting.js` で作成した `postCreate()` もこのライフサイクルで呼ばれます。  
+> ウィジェットが開くときには `onOpen()` が呼ばれ、閉じるときには `onClose()` が呼ばれます。今回は、ここに、ウィジェット開閉時の処理を書いていきます。  
+> ここでは、ウィジェットを開いたときに呼ばれる `onOpen()` に、マップ上のフィーチャ レイヤーを取得し、select 要素に表示させるメソッドを実行し、マップをクリックしたときのイベントを作成します。`onClose()` では、ウィジェットを閉じたときに、マップ上のグラフィクをクリアし、`onOpen` で作成したイベントを削除するよう記述します。  
+> ライフサイクルの詳細は <a href="https://developers.arcgis.com/web-appbuilder/guide/widget-life-cycle.htm" target="_blank">Widget lifecycle</a> をご参照ください。
 
 4. `onOpen` メソッド実行時に呼ばれる `this._createLayerList()` を作成します。  
 
@@ -298,25 +298,28 @@ _createLayerlist: function() {
   var map = this.map;
 
   // マップ上のレイヤーを取得し、レイヤー一覧を selectlayerNode に表示
-  var options = [];
-  var layerStructure = LayerStructure.getInstance();
-  var layerNodes = layerStructure.getLayerNodes();
-  array.forEach(layerNodes, function(layerNode){
-    options.push({
-      label: layerNode.title,
-      value: layerNode.id
+  LayerInfos.getInstance(map, map.itemInfo).then(lang.hitch(this, function(layerInfosObj) {
+    var infos = layerInfosObj.getLayerInfoArray();
+    var options = [];
+    array.forEach(infos, function(info) {
+      if (info.originOperLayer.layerType === 'ArcGISFeatureLayer') {
+        options.push({
+          label: info.title,
+          value: info.id
+        });
+      }
     });
-  });
+    this.layerSelectNode.set('options', options);
+  }));
 
-  this.layerSelectNode.set('options', options);
   this.layerSelectNode.on('change', lang.hitch(this, function(value) {
     this.layerId = value;
   }));
 },
 ```
 
-> Web AppBuilder には、マップの操作レイヤーのストラクチャーを取得する <a href="https://developers.arcgis.com/web-appbuilder/api-reference/layerstructure.htm" target="_blank">LayerStructure</a> クラスが提供されています。これを使ってマップにあるレイヤーを取得します。取得したレイヤーを options の配列に入れる。
-> this.layerSelectNode を使って、HTML の select 要素を参照。dijit/form/Select は、set/get で値を設定/取得できるので、this.layerSelectNode.set() に options を入れる  
+> Web AppBuilder には、マップの操作レイヤーのストラクチャーを取得する <a href="https://developers.arcgis.com/web-appbuilder/api-reference/layerstructure.htm" target="_blank">LayerStructure</a> クラスが提供されています。これを使ってマップにあるレイヤーを取得します。取得したレイヤーを options の配列に入れる。  
+> this.layerSelectNode を使って、HTML の select 要素を参照。dijit/form/Select は、set/get で値を設定/取得できるので、this.layerSelectNode.set() に options を入れる   
 > select が変更されたら、値を this.layerId に入れる。これは、対象のレイヤーを getLayer するときに使う
 
 5. マップ クリック時のイベントリスナーを実装します。  
@@ -391,9 +394,9 @@ var layer = map.getLayer(this.layerId);
 > 
 > ウィジェットの機能を実装するファイルです。`jimu/BaseWidget` の子クラスを作成します。
 
-### 4. ウィジェットの動作を確認する
+## ウィジェットの動作を確認する
 
-最後に、ウィジェットを起動し、動作を確認します。
+ウィジェットを起動し、動作を確認します。
 
 1. Web AppBuilder の [マップ] タブを開き、[Web マップの選択] をクリックします。  
 [Web の選択] 画面が開いたら、[パブリック] をクリックし、[ArcGIS Online] にチェックを入れます。  

@@ -39,5 +39,6 @@ _mapClickEvent: function(evt) {
 
     }
   });
+
 }
 ```
