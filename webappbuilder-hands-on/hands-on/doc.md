@@ -86,7 +86,7 @@ define({
 
 ### 2. config.json の定義
 
-config.json は JSON 形式のオブジェクト格納ファイルです。ウィジェットを初期化するためのデフォルトの値を設定します。config.json に設定した値は構成画面やウィジェットから取得できます。  
+config.json は JSON 形式のオブジェクト格納ファイルです。ウィジェット初期化時のデフォルトの値を設定します。config.json に設定した値は構成画面やウィジェットから取得できます。  
 
 1. 作成するバッファーのデフォルトの距離単位を設定します。  
 `Buffer` フォルダーの `config.json` ファイルを開き、以下のコードを入力します。  
@@ -107,8 +107,6 @@ config.json は JSON 形式のオブジェクト格納ファイルです。ウ�
 1. `Buffer` フォルダーに `setting` フォルダーを作成します。
 
 2. `setting` フォルダーに `Setting.html` ファイルを作成し、以下のコードを入力します。  
-dojo では、要素に `data-dojo-type` 属性を使い、モジュールを設定すると、要素がモジュールに置き換わり、HTML 内でモジュールをどこに組み込むかを指定することができます。ここでは、`Select` を `dijit/form/Select` に置き換えています。  
-また、`data-dojo-attach-point` を使用すると、ウィジェットのプロパティとして、要素を参照することが可能になります。`data-dojo-attach-point` の使用は `id` の競合を避けることができます。
 
 ```html
 <div>
@@ -122,11 +120,12 @@ dojo では、要素に `data-dojo-type` 属性を使い、モジュールを設
 </div>
 ```
 
+> dojo では、要素に `data-dojo-type` 属性を使い、モジュールを設定すると、要素がモジュールに置き換わり、HTML 内でモジュールをどこに組み込むかを指定することができます。ここでは、`Select` を `dijit/form/Select` に置き換えています。  
+> また、`data-dojo-attach-point` を使用すると、ウィジェットのプロパティとして、要素を参照することが可能になります。`data-dojo-attach-point` の使用は `id` の競合を避けることができます。
+
 3. `setting` フォルダーに `Setting.js` ファイルを作成し、構成画面での処理を記述します。  
-まず、処理に使用するモジュールを読み込みます。dojo は、モジュール システムを導入しており、各機能をモジュールとして管理しているので、はじめに必要なモジュールを読み込んでおきます。  
-そして、`declare()` を使用してクラスを定義します。dojo では、`declare()` によって、クラス ベースの開発を行うことができるようになります。ウィジェット開発では、ベースとなるウィジェットを拡張することで、新しいウィジェットの作成を実現しています。  
-`declare()` の第1引数に継承元のモジュールを渡します。ここでは、構成画面のベースとなる `BaseWidgetSetting` とウィジェットのテンプレート（HTML）で定義した `data-dojo-type` をモジュールに置き換える `_WidgetsInTemplateMixin` を渡しています。第2引数には、クラスに含むメソッドやプロパティを定義したオブジェクトを渡します。  
-`baseClass` は、
+まず、処理に使用するモジュールを読み込みます。  
+そして、`declare()` を使用して、構成画面のベースとなる `BaseWidgetSetting` を継承し子クラスを作成します。
 
 ```js
 define([
@@ -141,10 +140,10 @@ define([
 });
 ```
 
-4. 次に、baseClass、setConfig、getConfig を定義します。  
-baseClass は、ウィジェットの親ノードのクラス属性に設定されます。  
-BaseWidgetSetting には、config.json に定義された値を構成画面に表示する setConfig と、構成画面で設定した値を保存する getConfig 関数が用意sされています。setConfig は自動では呼ばれないので、postCreate 関数内で setConfig を呼び出します。  
-※ dojo のウィジェットは、ライフサイクル内のタイミングでいくつかのコールバック関数を呼びます。postCreate はウィジェットの生成が終了した後に実行されます。
+> dojo は、モジュール システムを導入しており、各機能はモジュールとして管理されています。モジュールを使用するには、`define()` の第1引数にモジュールを渡すとモジュールが読み込まれ、第2引数に渡したコールバック関数が実行されます。
+> `declare()` は dojo が用意するクラス ベースの開発を実現するモジュールです。ウィジェット開発では、ベースとなるウィジェットを継承し、拡張することで、新しいウィジェットの作成を実現しています。`declare()` の第1引数に継承元のモジュールを渡します。ここでは、構成画面のベースとなる `BaseWidgetSetting` とウィジェットのテンプレート（HTML）で定義した `data-dojo-type` をモジュールに置き換える `_WidgetsInTemplateMixin` を渡しています。第2引数には、クラスに含むメソッドやプロパティを定義したオブジェクトを渡します。
+
+4. 次に、`baseClass`、`setConfig`、`getConfig` を定義します。  
 
 ```js
 baseClass: 'jimu-widget-buffer-setting',
@@ -172,6 +171,10 @@ getConfig: function() {
   };
 }
 ```
+
+> `baseClas` は、ウィジェットの親ノードのクラス属性に設定されます。  
+> `BaseWidgetSetting` には、`config.json` に定義された値を構成画面に表示する `setConfig` と、構成画面で設定した値を保存する `getConfig` 関数が用意されています。`setConfig` は自動では呼ばれないので、`postCreate` 関数内で `setConfig` を呼び出すようにしています。
+※ dojo のウィジェットは、ライフサイクル内のタイミングでいくつかのコールバック関数を呼びます。`postCreate` はウィジェットの生成が終了した後に実行されます。
 
 5. `Buffer\manifest.json` を開き `hasSettingLocale` と `hasSettingStyle` 属性を `false` にします。  
 `setting` フォルダーに `css` や `nls` フォルダーを作成することで、構成画面用のスタイル定義、ローカライズが可能ですが、ここでは使用しないため `false` にします。
@@ -203,7 +206,6 @@ getConfig: function() {
 
 ウィジェットの処理を実装します。
 
-> #### TIPS
 > Web AppBuilder では新規にアプリを作成するときに、`<Web AppBuilder のインストール ディレクトリ>\client\stemapp\widgets` フォルダーに配置されたウィジェットが読み込まれます。作成済みの既存アプリには、ウィジェットの更新内容は反映されないため、ウィジェットを更新する度に新規にアプリを作成する作業が発生してしまい、非常に面倒です。  
 作成したアプリが参照するウィジェットを更新することで、新規アプリを作成しなくとも更新内容を反映させることができます。
 > 
@@ -216,7 +218,7 @@ getConfig: function() {
 
 1. `Buffer` フォルダーにある `Widget.html` ファイルを開き編集します。  
 `config.json` から、構成画面で選択した単位のラベルを取得し半径入力ラベルに表示します。  
-そして、半径を入力する input と選択するレイヤーを表示する select 要素を作成します。各要素は、`data-dojo-attach-point` を設定し、ウィジェットからアクセスできるようにします。
+半径を入力する input と選択するレイヤーを表示する select 要素を作成します。各要素は、`data-dojo-attach-point` を設定し、ウィジェットからアクセスできるようにします。
 
 ```html
 <div>
@@ -232,8 +234,8 @@ getConfig: function() {
 ```
 
 2. `Buffer` フォルダーにある `Widget.js` ファイルを開き編集します。  
-まず、Widget.js で使用するモジュールを読み込みます。  
-ウィジェットのベースとなる BaseWidget を継承し、baseClass にウィジェットの親ノードのクラス名を設定します。
+`Widget.js` で使用するモジュールを読み込みます。  
+ウィジェットのベースとなる `BaseWidget` を継承し、`baseClass` にウィジェットの親ノードのクラス名を設定します。
 
 ```js
 define([
@@ -262,11 +264,6 @@ define([
 ```
 
 3. ウィジェット開閉時の処理を実装します。  
-ウィジェットは、作成から廃棄されるまでのライフサイクルに、いくつかのタイミングでコールバック関数を呼びます。このコールバック関数に適切な処理を実装していくことで、ウィジェットの開発を進めていきます。  
-ウィジェットが開くときには onOpen() が呼ばれ、閉じるときには onClose() が呼ばれます。今回は、ここに、ウィジェット開閉時の処理を書いていきます。  
-なお、ライフサイクルの詳細は <a href="https://developers.arcgis.com/web-appbuilder/guide/widget-life-cycle.htm" target="_blank">Widget lifecycle</a> をご参照ください。
-では、ウィジェットを開いたときに呼ばれる onOpen() に、マップ上のフィーチャ レイヤーを取得し、select 要素に表示させるメソッドを実装します。さらに、マップをクリックしたときのイベントを作成します。
-そして、onClose() を使い、ウィジェットを閉じたときに、マップ上のグラフィクを削除します。onOpen で作成したイベントを削除します。
 
 ```js
 // ウィジェットのパネルを開いたときの処理
@@ -288,10 +285,12 @@ onClose: function() {
 },
 ```
 
-4. onOpen メソッド実行時に呼ばれる this._createLayerList() を実装します。  
-Web AppBuilder には、マップの操作レイヤーのストラクチャーを取得する <a href="https://developers.arcgis.com/web-appbuilder/api-reference/layerstructure.htm" target="_blank">LayerStructure</a> クラスが提供されています。これを使ってマップにあるレイヤーを取得。取得したレイヤーを options の配列に入れる。
-this.layerSelectNode を使って、HTML の select 要素を参照。dijit/form/Select は、set/get で値を設定/取得できるので、this.layerSelectNode.set() に options を入れる  
-select が変更されたら、値を this.layerId に入れる。これは、対象のレイヤーを getLayer するときに使う
+> ウィジェットは、作成から廃棄されるまでのライフサイクルに、いくつかのタイミングでコールバック関数を呼びます。このコールバック関数に適切な処理を実装していくことで、ウィジェットの開発を進めていきます。構成画面の作成時に `Setting.js` で作成した `postCreate()` もこのライフサイクルで呼ばれます。
+> ウィジェットが開くときには `onOpen()` が呼ばれ、閉じるときには `onClose()` が呼ばれます。今回は、ここに、ウィジェット開閉時の処理を書いていきます。
+> ここでは、ウィジェットを開いたときに呼ばれる `onOpen()` に、マップ上のフィーチャ レイヤーを取得し、select 要素に表示させるメソッドを実行し、マップをクリックしたときのイベントを作成します。`onClose()` では、ウィジェットを閉じたときに、マップ上のグラフィクをクリアし、`onOpen` で作成したイベントを削除するよう記述します。
+> ライフサイクルの詳細は <a href="https://developers.arcgis.com/web-appbuilder/guide/widget-life-cycle.htm" target="_blank">Widget lifecycle</a> をご参照ください
+
+4. `onOpen` メソッド実行時に呼ばれる `this._createLayerList()` を作成します。  
 
 ```js
 _createLayerlist: function() {
@@ -316,9 +315,12 @@ _createLayerlist: function() {
 },
 ```
 
+> Web AppBuilder には、マップの操作レイヤーのストラクチャーを取得する <a href="https://developers.arcgis.com/web-appbuilder/api-reference/layerstructure.htm" target="_blank">LayerStructure</a> クラスが提供されています。これを使ってマップにあるレイヤーを取得します。取得したレイヤーを options の配列に入れる。
+> this.layerSelectNode を使って、HTML の select 要素を参照。dijit/form/Select は、set/get で値を設定/取得できるので、this.layerSelectNode.set() に options を入れる  
+> select が変更されたら、値を this.layerId に入れる。これは、対象のレイヤーを getLayer するときに使う
+
 5. マップ クリック時のイベントリスナーを実装します。  
-distance に、ウィジェットのパネルに入力された値、lengthUnit に、構成画面で選択した単位を入れる
-これらは、バッファー作成時に使用される
+`distance` に、ウィジェットのパネルに入力された値、`lengthUnit` に、構成画面で選択した単位を入れます。これらは、バッファー作成時に使用します。
 
 ```js
 // マップクリック時のイベントリスナー
@@ -339,12 +341,12 @@ _mapClickEvent: function(evt) {
 }
 ```
 
-6. 続いて、_mapClickEvent 内にバッファーを作成し、マップに表示する処理を実装します。
+6. 続いて、`_mapClickEvent` 内にバッファーを作成し、マップに表示する処理を実装します。
 
 ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) タスク
 
-1. クライアント側でジオメトリ演算を行う <a href="https://developers.arcgis.com/javascript/3/jsapi/esri.geometry.geometryengine-amd.html#buffer" target="_blank">geometryEngine.buffer()</a> を使って、クリック地点からバッファーを作成してみましょう。  
-バッファーの距離は distance、距離の単位は lengthUnit が参照する値を使用します。
+1. クライアント側でジオメトリ演算を行う <a href="https://developers.arcgis.com/javascript/3/jsapi/esri.geometry.geometryengine-amd.html#buffer" target="_blank">`geometryEngine.buffer()`</a> を使って、クリック地点からバッファーを作成してみましょう。  
+バッファーの距離は `distance`、距離の単位は `lengthUnit` が参照する値を使用します。
 
 2. 作成したバッファーをマップ上に表示してみましょう。  
 マップに表示するには<a href="https://developers.arcgis.com/javascript/3/jsapi/graphic-amd.html">グラフィック</a>を作成します。  
@@ -368,8 +370,8 @@ var layer = map.getLayer(this.layerId);
 
 ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) タスク
 
-フィーチャ レイヤーからフィーチャをクエリする <a href="https://developers.arcgis.com/javascript/3/jsapi/featurelayer-amd.html#queryfeatures" target="_blank">layer.queryFeatures()</a> を使って、バッファー内に含まれるフィーチャを取得してみましょう。  
-layer.queryFeatures() の第1引数には、手順 7 で作成したクエリ オブジェクト、第2引数には、クエリ完了時に実行するコールバック関数を渡します。  
+フィーチャ レイヤーからフィーチャをクエリする <a href="https://developers.arcgis.com/javascript/3/jsapi/featurelayer-amd.html#queryfeatures" target="_blank">`layer.queryFeatures()`</a> を使って、バッファー内に含まれるフィーチャを取得してみましょう。  
+`layer.queryFeatures()` の第1引数には、手順 7 で作成したクエリ オブジェクト、第2引数には、クエリ完了時に実行するコールバック関数を渡します。  
 コールバック関数に返ってきたクエリの結果結果からフィーチャを取得し、ハイライトするシンボルを<a href="https://developers.arcgis.com/javascript/3/jsapi/simplemarkersymbol-amd.html" target="_blank">ポイント</a>、<a href="https://developers.arcgis.com/javascript/3/jsapi/simplelinesymbol-amd.html" target="_blank">ライン</a>、<a href="https://developers.arcgis.com/javascript/3/jsapi/simplefillsymbol-amd.html" target="_blank">ポリゴン</a>ごとに作成します。  
 取得したフィーチャと作成したシンボルを使用して、<a href="https://developers.arcgis.com/javascript/3/jsapi/graphic-amd.html">グラフィック</a>を作成、<a href="https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#graphics" target="_blank">マップに表示</a>します。
 
@@ -395,11 +397,11 @@ layer.queryFeatures() の第1引数には、手順 7 で作成したクエリ �
 
 1. Web AppBuilder の [マップ] タブを開き、[Web マップの選択] をクリックします。  
 [Web の選択] 画面が開いたら、[パブリック] をクリックし、[ArcGIS Online] にチェックを入れます。  
-検索ボックスに「」と入力し、検索結果に表示された「」を選択します。  
+検索ボックスに「室蘭市 避難場所マップ」と入力し、検索結果に表示された Web マップを選択します。  
 ![バッファー検索設定](http://apps.esrij.com/arcgis-dev/guide/img/webappbuilder/development-guide7.png)
 
 2. バッファー ウィジェットを開きます。  
-テキスト ボックスに任意の距離、レイヤー一覧から「」を選択します。
+テキスト ボックスに任意の距離、レイヤー一覧から「避難場所」を選択します。
 
 3. マップ上の任意の地点をクリックします。バッファーが作成され、バッファー内のフィーチャがハイライト表示されます。  
 ![バッファー検索実行](http://apps.esrij.com/arcgis-dev/guide/img/webappbuilder/development-guide8.jpg)
