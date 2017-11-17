@@ -1,0 +1,405 @@
+# Web AppBuilder for ArcGIS (Developer Edition) を使用したカスタム ウィジェット開発ガイド
+
+## 概要
+
+このガイドは Web AppBuilder for ArcGIS (Developer Edition) （以下、Web AppBuilder）で使用するカスタム ウィジェットを作成する方法を説明します。  
+Web AppBuilder のインストール方法に関しては、[Web AppBuilder for ArcGIS (Developer Edition) インストールガイド](https://esrijapan.github.io/arcgis-dev-resources/webappbuilder/install-guide/)をご参照ください。
+
+## 既成ウィジェットのソースコードの確認
+
+Web AppBuilder で使われる全てのウィジェットは `<Web AppBuilder のインストール ディレクトリ>\client\stemapp\widgets` に格納されていて、ソースコードを確認できます。開発したカスタム ウィジェットも同様にこのディレクトリに配置します。  
+上記ディレクトリにある `samplewidgets` フォルダーには簡易機能のサンプル ウィジェットが用意されています（本ガイドではウィジェット作成の雛形となるコードが記述されたテンプレートである `CustomWidgetTemplate` を使用します）。
+
+## ウィジェットのフォルダー構成
+
+カスタム ウィジェットを作成する際に使用するファイルは以下です。全ファイルが必須ではなく、ウィジェットの UI を設ける、ウィジェットをローカライズする、設定画面を設ける等の目的に応じてファイルを準備します。
+
+![フォルダー構成](http://apps.esrij.com/arcgis-dev/guide/img/webappbuilder/development-guide1.jpg)
+
+## カスタム ウィジェットの開発
+
+### 1. ウィジェット ボタンを配置する
+
+Web AppBuilder のウィジェットは 2 種類に分けられます。1 つは「描画」ウィジェットのようなパネルを表示して使用するウィジェットです（Web AppBuilder では In-Panel ウィジェットと呼びます）。もう 1 つは、「現在位置」ウィジェットのように画面上にボタンのみを配置するパネルを表示しないウィジェットです（Off-Panel ウィジェットと呼びます）。
+
+![ウィジェットの種類](http://apps.esrij.com/arcgis-dev/guide/img/webappbuilder/development-guide2.jpg)
+
+本ガイドでは簡単なバッファー検索を行う In-Panel ウィジェットを開発していきます。ウィジェットを追加するには `<Web AppBuilder のインストール ディレクトリ>\client\stemapp\widgets` にウィジェットのフォルダーを配置します。
+
+1. `<Web AppBuilder のインストール ディレクトリ>\client\stemapp\widgets\samplewidgets` にある `CustomWidgetTemplate` フォルダーを `<Web AppBuilder のインストール ディレクトリ>\client\stemapp\widgets` にコピーします。
+
+2. `CustomWidgetTemplate` フォルダーの名前を `Buffer` に変えます。  
+![フォルダー名](http://apps.esrij.com/arcgis-dev/guide/img/webappbuilder/development-guide3.jpg)  
+フォルダー名がウィジェット名となります。ウィジェット名は半角英数字である必要があります。
+
+3. `Buffer` フォルダー直下にある `manifest.json` ファイルを開きます。
+
+4. `name` 属性の値を `Buffer` に変更し、保存します。
+
+```js
+{
+  "name": "Buffer",
+  "2D": true,
+  "3D": false,
+  "platform": "HTML",
+  // ...
+```
+
+> #### manifest.json
+> 
+> ウィジェットの名前やバージョン等を設定するファイルです。`properties` 属性でカスタム ウィジェットのプロパティを構成できます。ウィジェットのプロパティについては<a href="https://developers.arcgis.com/web-appbuilder/guide/widget-manifest.htm" target="_blank">Widget manifest</a>をご参照ください。
+
+5. Web AppBuilder のウィジェットの追加画面で表示されるウィジェット名をローカライズします。ウィジェットのローカライズは `Buffer` フォルダーの直下にある `nls` フォルダーで設定します。  
+`Buffer\nls` フォルダーにある `strings.js` ファイルを開き、以下のコードを入力し保存します。
+
+```js
+define({
+  root: {
+    _widgetLabel: "Buffer"
+  },
+  "ja": 1
+});
+```
+
+6. `nls` フォルダー直下に `ja` フォルダーを作成します。
+
+7. `ja` フォルダーに `strings.js` ファイルを作成し、以下のコードを入力し保存します。  
+
+```js
+define({
+  _widgetLabel: "バッファー検索"
+});
+```
+
+> #### nls フォルダー
+> 
+> カスタム ウィジェットを多言語化する場合に使用します。アクセスするブラウザーのロケールにより該当する言語が表示されます。  
+> `_widgetLabel` はウィジェット追加時に表示されるラベルをローカライズするための固有の属性です。
+
+8. Web AppBuilder を起動し、アプリケーションを作成します。ウィジェットの追加画面に「バッファー検索」というウィジェット名が表示されます。  
+![追加画面](http://apps.esrij.com/arcgis-dev/guide/img/webappbuilder/development-guide4.jpg)
+
+> #### images\icon.png
+> 
+> カスタム ウィジェットのボタンのアイコンを変更したい場合は、このファイルを置き換えます。  
+![アイコン変更](http://apps.esrij.com/arcgis-dev/guide/img/webappbuilder/development-guide5.png)
+
+### 2. config.json の定義
+
+config.json は JSON 形式のオブジェクト格納ファイルです。ウィジェットを初期化するためのデフォルトの値を設定します。config.json に設定した値は構成画面やウィジェットから取得できます。  
+
+1. 作成するバッファーのデフォルトの距離単位を設定します。  
+`Buffer` フォルダーの `config.json` ファイルを開き、以下のコードを入力します。  
+
+```json
+{
+  "measurement": {
+    "lengthUnit": "meters",
+    "lengthUnitLabel": "メートル"
+  }
+}
+```
+
+### 3. ウィジェットの構成画面を作成する
+
+ウィジェットの構成を行う画面を作成します。今回は、構成画面で、検索に使用するバッファーの距離単位を設定します。
+
+1. `Buffer` フォルダーに `setting` フォルダーを作成します。
+
+2. `setting` フォルダーに `Setting.html` ファイルを作成し、以下のコードを入力します。  
+dojo では、要素に `data-dojo-type` 属性を使い、モジュールを設定すると、要素がモジュールに置き換わり、HTML 内でモジュールをどこに組み込むかを指定することができます。ここでは、`Select` を `dijit/form/Select` に置き換えています。  
+また、`data-dojo-attach-point` を使用すると、ウィジェットのプロパティとして、要素を参照することが可能になります。`data-dojo-attach-point` の使用は `id` の競合を避けることができます。
+
+```html
+<div>
+  <div>
+    <label>単位</label>
+    <select data-dojo-type="dijit/form/Select" data-dojo-attach-point="selectLengthUnit">
+      <option value="kilometers">キロメートル</option>
+      <option value="meters">メートル</option>
+    </select>
+  </div>
+</div>
+```
+
+3. `setting` フォルダーに `Setting.js` ファイルを作成し、構成画面での処理を記述します。  
+まず、処理に使用するモジュールを読み込みます。dojo は、モジュール システムを導入しており、各機能をモジュールとして管理しているので、はじめに必要なモジュールを読み込んでおきます。  
+そして、`declare()` を使用してクラスを定義します。dojo では、`declare()` によって、クラス ベースの開発を行うことができるようになります。ウィジェット開発では、ベースとなるウィジェットを拡張することで、新しいウィジェットの作成を実現しています。  
+`declare()` の第1引数に継承元のモジュールを渡します。ここでは、構成画面のベースとなる `BaseWidgetSetting` とウィジェットのテンプレート（HTML）で定義した `data-dojo-type` をモジュールに置き換える `_WidgetsInTemplateMixin` を渡しています。第2引数には、クラスに含むメソッドやプロパティを定義したオブジェクトを渡します。  
+`baseClass` は、
+
+```js
+define([
+  'dojo/_base/declare',
+  'jimu/BaseWidgetSetting',
+  'dijit/_WidgetsInTemplateMixin',
+  'dijit/form/Select'
+], function(declare, BaseWidgetSetting, _WidgetsInTemplateMixin) {
+  return declare([BaseWidgetSetting, _WidgetsInTemplateMixin], {
+    // ...
+  });
+});
+```
+
+4. 次に、baseClass、setConfig、getConfig を定義します。  
+baseClass は、ウィジェットの親ノードのクラス属性に設定されます。  
+BaseWidgetSetting には、config.json に定義された値を構成画面に表示する setConfig と、構成画面で設定した値を保存する getConfig 関数が用意sされています。setConfig は自動では呼ばれないので、postCreate 関数内で setConfig を呼び出します。  
+※ dojo のウィジェットは、ライフサイクル内のタイミングでいくつかのコールバック関数を呼びます。postCreate はウィジェットの生成が終了した後に実行されます。
+
+```js
+baseClass: 'jimu-widget-buffer-setting',
+
+postCreate: function() {
+  this.setConfig(this.config);
+},
+
+setConfig: function(config) {
+  // 構成画面の距離と単位に config.json に設定されている値を表示する
+  this.selectLengthUnit.set('value', config.measurement.lengthUnit);
+},
+
+getConfig: function() {
+  // 構成画面の値を取得する
+  var lengthUnit = this.selectLengthUnit.value;
+  var lengthUnitLabel = length === 'kilometers' ? 'キロメートル' : 'メートル';
+
+  // 取得した値を保存する
+  return {
+    measurement: {
+      lengthUnit: lengthUnit,
+      lengthUnitLabel: lengthUnitLabel
+    }
+  };
+}
+```
+
+5. `Buffer\manifest.json` を開き `hasSettingLocale` と `hasSettingStyle` 属性を `false` にします。  
+`setting` フォルダーに `css` や `nls` フォルダーを作成することで、構成画面用のスタイル定義、ローカライズが可能ですが、ここでは使用しないため `false` にします。
+
+```js
+// ...
+"hasSettingPage":true,
+"hasSettingUIFile":true,
+"hasSettingLocale":false,
+"hasSettingStyle":false,
+```
+
+6. ブラウザーで Web AppBuilder を更新後、ウィジェットの追加画面で、バッファー検索ウィジェットを追加すると、ウィジェットの構成画面が表示されます。  
+![構成画面](http://apps.esrij.com/arcgis-dev/guide/img/webappbuilder/development-guide6.png)
+
+> #### Setting\Setting.html
+> 
+> Web AppBuilder でウィジェットの設定を行う画面を作成します。
+> 
+> #### Setting\Setting.js
+> 
+> Web AppBuilder でウィジェットの設定を行う際の処理を実装します。`jimu/BaseWidgetSetting` の子クラスを作成し、`baseClass` に `jimu-widget-<ウィジェット名>-setting` を指定します。以下のイベントが用意されています。
+> * setConfig：設定画面の初期化時
+> * getConfig：設定変更時（変更内容を `config.json` のオブジェクトに格納）
+
+7. OK ボタンをクリックし、ウィジェットを追加します。
+
+### 4. ウィジェットの処理を実装する
+
+ウィジェットの処理を実装します。
+
+> #### TIPS
+> Web AppBuilder では新規にアプリを作成するときに、`<Web AppBuilder のインストール ディレクトリ>\client\stemapp\widgets` フォルダーに配置されたウィジェットが読み込まれます。作成済みの既存アプリには、ウィジェットの更新内容は反映されないため、ウィジェットを更新する度に新規にアプリを作成する作業が発生してしまい、非常に面倒です。  
+作成したアプリが参照するウィジェットを更新することで、新規アプリを作成しなくとも更新内容を反映させることができます。
+> 
+> 1. `<Web AppBuilder のインストール ディレクトリ>\server\apps` フォルダーを開きます。このフォルダーには Web AppBuilder で作成したアプリが配置されています。  
+フォルダー名にはアプリの作成順に数字が割り当てられます。
+> 
+> 2. `<Web AppBuilder のインストール ディレクトリ>\server\apps\<作成したアプリ>\Widgets\Buffer` を開きます。以降は、このフォルダーに格納されているファイルを更新していきます。
+
+まず、ウィジェットのパネルに表示する画面を作成します。パネルには、バッファーの半径と、マップ上にあるレイヤーから検索対象のレイヤーを選択する画面を作成します。
+
+1. `Buffer` フォルダーにある `Widget.html` ファイルを開き編集します。  
+`config.json` から、構成画面で選択した単位のラベルを取得し半径入力ラベルに表示します。  
+そして、半径を入力する input と選択するレイヤーを表示する select 要素を作成します。各要素は、`data-dojo-attach-point` を設定し、ウィジェットからアクセスできるようにします。
+
+```html
+<div>
+  <div>
+    <label>半径を入力（${config.measurement.lengthUnitLabel}）</label>
+    <input class="jimu-input" data-dojo-attach-point="distanceInputNode" value="1">
+  </div>
+  <div>
+    <label>検索レイヤーを選択</label>
+    <select data-dojo-type="dijit/form/Select" data-dojo-attach-point="layerSelectNode"></select>
+  </div>
+</div>
+```
+
+2. `Buffer` フォルダーにある `Widget.js` ファイルを開き編集します。  
+まず、Widget.js で使用するモジュールを読み込みます。  
+ウィジェットのベースとなる BaseWidget を継承し、baseClass にウィジェットの親ノードのクラス名を設定します。
+
+```js
+define([
+  'dojo/_base/declare',
+  'jimu/BaseWidget',
+  'dijit/_WidgetsInTemplateMixin',
+  'dojo/_base/lang',
+  'dojo/_base/array',
+  'jimu/LayerInfos/LayerInfos',
+  'esri/geometry/geometryEngine',
+  'esri/symbols/SimpleFillSymbol',
+  'esri/symbols/SimpleLineSymbol',
+  'esri/symbols/SimpleMarkerSymbol',
+  'esri/Color',
+  'esri/graphic',
+  'esri/tasks/query',
+  'dijit/form/Select'
+], function(declare, BaseWidget, _WidgetsInTemplateMixin, lang, array, LayerInfos, geometryEngine, SimpleFillSymbol, SimpleLineSymbol, SimpleMarkerSymbol, Color, Graphic, Query) {
+  return declare([BaseWidget, _WidgetsInTemplateMixin], {
+
+    baseClass: 'jimu-widget-buffer',
+    // ...
+
+  });
+});
+```
+
+3. ウィジェット開閉時の処理を実装します。  
+ウィジェットは、作成から廃棄されるまでのライフサイクルに、いくつかのタイミングでコールバック関数を呼びます。このコールバック関数に適切な処理を実装していくことで、ウィジェットの開発を進めていきます。  
+ウィジェットが開くときには onOpen() が呼ばれ、閉じるときには onClose() が呼ばれます。今回は、ここに、ウィジェット開閉時の処理を書いていきます。  
+なお、ライフサイクルの詳細は <a href="https://developers.arcgis.com/web-appbuilder/guide/widget-life-cycle.htm" target="_blank">Widget lifecycle</a> をご参照ください。
+では、ウィジェットを開いたときに呼ばれる onOpen() に、マップ上のフィーチャ レイヤーを取得し、select 要素に表示させるメソッドを実装します。さらに、マップをクリックしたときのイベントを作成します。
+そして、onClose() を使い、ウィジェットを閉じたときに、マップ上のグラフィクを削除します。onOpen で作成したイベントを削除します。
+
+```js
+// ウィジェットのパネルを開いたときの処理
+onOpen: function() {
+  // レイヤーの一覧をパネルに表示
+  this._createLayerlist();
+
+  // マップをクリックしたときのイベントを作成
+  this.mapClickFunc = this.map.on('click', lang.hitch(this, this._mapClickEvent));
+},
+
+// パネルを閉じたときの処理
+onClose: function() {
+  // マップ上のグラフィックをクリア
+  this.map.graphics.clear();
+
+  // マップのクリック イベントを削除
+  this.mapClickFunc.remove();
+},
+```
+
+4. onOpen メソッド実行時に呼ばれる this._createLayerList() を実装します。  
+Web AppBuilder には、マップの操作レイヤーのストラクチャーを取得する <a href="https://developers.arcgis.com/web-appbuilder/api-reference/layerstructure.htm" target="_blank">LayerStructure</a> クラスが提供されています。これを使ってマップにあるレイヤーを取得。取得したレイヤーを options の配列に入れる。
+this.layerSelectNode を使って、HTML の select 要素を参照。dijit/form/Select は、set/get で値を設定/取得できるので、this.layerSelectNode.set() に options を入れる  
+select が変更されたら、値を this.layerId に入れる。これは、対象のレイヤーを getLayer するときに使う
+
+```js
+_createLayerlist: function() {
+  // マップ コンストラクタを取得
+  var map = this.map;
+
+  // マップ上のレイヤーを取得し、レイヤー一覧を selectlayerNode に表示
+  var options = [];
+  var layerStructure = LayerStructure.getInstance();
+  var layerNodes = layerStructure.getLayerNodes();
+  array.forEach(layerNodes, function(layerNode){
+    options.push({
+      label: layerNode.title,
+      value: layerNode.id
+    });
+  });
+
+  this.layerSelectNode.set('options', options);
+  this.layerSelectNode.on('change', lang.hitch(this, function(value) {
+    this.layerId = value;
+  }));
+},
+```
+
+5. マップ クリック時のイベントリスナーを実装します。  
+distance に、ウィジェットのパネルに入力された値、lengthUnit に、構成画面で選択した単位を入れる
+これらは、バッファー作成時に使用される
+
+```js
+// マップクリック時のイベントリスナー
+_mapClickEvent: function(evt) {
+  // マップ コンストラクタを取得
+  var map = this.map;
+
+  // マップのグラフィックスをクリア
+  map.graphics.clear();
+
+  // distanceInputNode に入力されたバッファーの距離を取得
+  var distance = this.distanceInputNode.value;
+  // 構成画面で選択された単位を config.json から取得
+  var lengthUnit = this.config.measurement.lengthUnit;
+
+  // ...
+
+}
+```
+
+6. 続いて、_mapClickEvent 内にバッファーを作成し、マップに表示する処理を実装します。
+
+![#c5f015](https://placehold.it/15/c5f015/000000?text=+) タスク
+
+1. クライアント側でジオメトリ演算を行う <a href="https://developers.arcgis.com/javascript/3/jsapi/esri.geometry.geometryengine-amd.html#buffer" target="_blank">geometryEngine.buffer()</a> を使って、クリック地点からバッファーを作成してみましょう。  
+バッファーの距離は distance、距離の単位は lengthUnit が参照する値を使用します。
+
+2. 作成したバッファーをマップ上に表示してみましょう。  
+マップに表示するには<a href="https://developers.arcgis.com/javascript/3/jsapi/graphic-amd.html">グラフィック</a>を作成します。  
+グラフィックには、表示する位置の情報を持つジオメトリと、表示するスタイル情報を持つシンボルが含まれます。  
+ジオメトリは、作成したバッファーです。シンボルは、<a href="https://developers.arcgis.com/javascript/3/jsapi/simplefillsymbol-amd.html" target="_blank">塗りつぶし シンボル</a>を使用して作成します。  
+最後に、作成したグラフィックを、<a href="https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#graphics" target="_blank">マップのグラフィックス レイヤー</a>に追加します。
+
+![#c5f015](https://placehold.it/15/c5f015/000000?text=+) [回答例](example/task1.md)
+
+7. フィーチャ レイヤーをクエリし、作成したバッファーに含まれるフィーチャを取得します。
+
+```js
+// バッファーにあるフィーチャを検索
+var query = new Query();
+query.geometry = graphic.geometry;
+query.spatialRelationship = Query.SPATIAL_REL_CONTAINS;
+
+// マップ上からレイヤー ID を指定してフィーチャ レイヤーを取得
+var layer = map.getLayer(this.layerId);
+```
+
+![#c5f015](https://placehold.it/15/c5f015/000000?text=+) タスク
+
+フィーチャ レイヤーからフィーチャをクエリする <a href="https://developers.arcgis.com/javascript/3/jsapi/featurelayer-amd.html#queryfeatures" target="_blank">layer.queryFeatures()</a> を使って、バッファー内に含まれるフィーチャを取得してみましょう。  
+layer.queryFeatures() の第1引数には、手順 7 で作成したクエリ オブジェクト、第2引数には、クエリ完了時に実行するコールバック関数を渡します。  
+コールバック関数に返ってきたクエリの結果結果からフィーチャを取得し、ハイライトするシンボルを<a href="https://developers.arcgis.com/javascript/3/jsapi/simplemarkersymbol-amd.html" target="_blank">ポイント</a>、<a href="https://developers.arcgis.com/javascript/3/jsapi/simplelinesymbol-amd.html" target="_blank">ライン</a>、<a href="https://developers.arcgis.com/javascript/3/jsapi/simplefillsymbol-amd.html" target="_blank">ポリゴン</a>ごとに作成します。  
+取得したフィーチャと作成したシンボルを使用して、<a href="https://developers.arcgis.com/javascript/3/jsapi/graphic-amd.html">グラフィック</a>を作成、<a href="https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#graphics" target="_blank">マップに表示</a>します。
+
+![#c5f015](https://placehold.it/15/c5f015/000000?text=+) [回答例](example/task2.md)
+
+これでウィジェットの開発は完了です。
+
+> #### Widget.html
+> 
+> ウィジェットの画面を作成します。
+> 
+> #### css\style.css
+> 
+> `Widget.html` のスタイル定義ファイルです。
+> 
+> #### Widget.js
+> 
+> ウィジェットの機能を実装するファイルです。`jimu/BaseWidget` の子クラスを作成します。
+
+### 4. ウィジェットの動作を確認する
+
+最後に、ウィジェットを起動し、動作を確認します。
+
+1. Web AppBuilder の [マップ] タブを開き、[Web マップの選択] をクリックします。  
+[Web の選択] 画面が開いたら、[パブリック] をクリックし、[ArcGIS Online] にチェックを入れます。  
+検索ボックスに「」と入力し、検索結果に表示された「」を選択します。  
+![バッファー検索設定](http://apps.esrij.com/arcgis-dev/guide/img/webappbuilder/development-guide7.png)
+
+2. バッファー ウィジェットを開きます。  
+テキスト ボックスに任意の距離、レイヤー一覧から「」を選択します。
+
+3. マップ上の任意の地点をクリックします。バッファーが作成され、バッファー内のフィーチャがハイライト表示されます。  
+![バッファー検索実行](http://apps.esrij.com/arcgis-dev/guide/img/webappbuilder/development-guide8.jpg)
