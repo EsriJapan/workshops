@@ -14,7 +14,7 @@ Web AppBuilder のインストール方法に関しては、[Web AppBuilder for 
 1. `<Web AppBuilder のインストール ディレクトリ>\client\stemapp\widgets\samplewidgets` にある `CustomWidgetTemplate` フォルダーを `<Web AppBuilder のインストール ディレクトリ>\client\stemapp\widgets` にコピーします。
 
 2. `CustomWidgetTemplate` フォルダーの名前を `Buffer` に変えます。  
-![フォルダー名](./img/folder.png)  
+![フォルダー名](./img/folder.jpg)  
 フォルダー名がウィジェット名となります。ウィジェット名は半角英数字である必要があります。
 
 3. `Buffer` フォルダー直下にある `manifest.json` ファイルを開きます。
