@@ -66,7 +66,7 @@ define({
 > #### images\icon.png
 > 
 > カスタム ウィジェットのボタンのアイコンを変更したい場合は、このファイルを置き換えます。  
-> ![アイコン変更](./img/changeIcon)
+> ![アイコン変更](./img/changeIcon.png)
 
 ### 2. config.json の定義
 
