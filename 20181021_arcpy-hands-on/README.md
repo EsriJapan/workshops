@@ -2,11 +2,12 @@
 2018 年 10 月 21 日に開催された GIS 学会のハンズオン セッション「Python を使って作業の効率化を図ろう！」で使用したデータと資料を公開しています。
 
 ## 使用している製品
-ArcMap
+* [ArcGIS Desktop](http://www.esrij.com/products/arcgis-for-desktop/)
+* [Python](https://www.python.org/)
 
 ## 動作環境
-ArcMap 10.5 以上
-
+* [ArcGIS Desktop](http://www.esrij.com/products/arcgis-for-desktop/) 10.5 以上 
+* [Python](https://www.python.org/) 
 ## ライセンス
 Copyright 2018 Esri Japan Corporation.
 
