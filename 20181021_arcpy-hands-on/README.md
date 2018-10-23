@@ -7,8 +7,7 @@
 
 
 ## 動作環境
-* [ArcGIS Desktop](http://www.esrij.com/products/arcgis-for-desktop/) 10.5 以上 
-* [Python](https://www.python.org/) 
+* [ArcGIS Desktop](http://www.esrij.com/products/arcgis-for-desktop/) 10.5 以上  
 ## ライセンス
 Copyright 2018 Esri Japan Corporation.
 
