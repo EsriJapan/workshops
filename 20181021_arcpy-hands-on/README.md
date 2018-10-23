@@ -1,9 +1,10 @@
 # GIS 学会 ハンズオン「Python を使って作業の効率化を図ろう！」
 2018 年 10 月 21 日に開催された GIS 学会のハンズオン セッション「Python を使って作業の効率化を図ろう！」で使用したデータと資料を公開しています。
 
-## 使用している製品
-* [ArcGIS Desktop](http://www.esrij.com/products/arcgis-for-desktop/)
-* [Python](https://www.python.org/)
+## データと資料
+* [ハンズオンのデータ](https://github.com/EsriJapan/workshops/tree/master/20181021_arcpy-hands-on/hands-on)
+* [ハンズオンの資料](https://github.com/EsriJapan/workshops/blob/master/20181021_arcpy-hands-on/Python%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E4%BD%9C%E6%A5%AD%E3%81%AE%E5%8A%B9%E7%8E%87%E5%8C%96%E3%82%92%E5%9B%B3%E3%82%8D%E3%81%86!%20.pdf)
+
 
 ## 動作環境
 * [ArcGIS Desktop](http://www.esrij.com/products/arcgis-for-desktop/) 10.5 以上 
