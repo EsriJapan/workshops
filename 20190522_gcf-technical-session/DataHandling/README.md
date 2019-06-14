@@ -7,13 +7,12 @@
 
 ## 使用している製品・プロジェクト
 
-* [ArcPy (ArcGIS Pro)](http://www.esrij.com/products/arcgis-for-desktop/)
+* [ArcPy (ArcGIS Pro)](https://pro.arcgis.com/ja/pro-app/arcpy/get-started/what-is-arcpy-.htm)
 * [Python](https://www.python.org/)
 
 ## 動作環境
 
-* Windows 7, 8, 8.1, 10
-* [ArcGIS Pro](http://www.esrij.com/products/arcgis-for-desktop/) 2.3 Basic 以上
+* [ArcGIS Pro](https://www.esrij.com/products/arcgis-desktop/environments/arcgis-pro/) 2.3 Basic 以上
 * [Python](https://www.python.org/) 
 
 ## リソース
