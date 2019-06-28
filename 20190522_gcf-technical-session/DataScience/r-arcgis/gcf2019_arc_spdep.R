@@ -40,7 +40,6 @@ SEM <- errorsarlm(
 summary(SEM)
 
 # 解析結果を元のデータに付与する=================================================================
-# std_residual <- (residuals(SEM) - mean(residuals(SEM)))/3.8285
 sem_values <- bstn_sp@data %>% 
     cbind(residuals = SEM$residuals) %>% 
     cbind(fitted = SEM$fitted.values)
