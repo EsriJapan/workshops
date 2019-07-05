@@ -12,7 +12,7 @@
 
 ## 動作環境
 
-[ArcGIS Noteboook Server] (https://enterprise.arcgis.com/ja/notebook/latest/install/windows/introduction-to-arcgis-notebook-server.htm)
+[ArcGIS Noteboook Server](https://enterprise.arcgis.com/ja/notebook/latest/install/windows/introduction-to-arcgis-notebook-server.htm)</br>
 
 ただし、[ArcGIS Pro](https://www.esrij.com/products/arcgis-desktop/environments/arcgis-pro/)にプリインストールされている Jupyter Notebook から、ArcPy および ArcGIS API for Python を指定して実行することができます。</br>
 その場合は、ArcPy で扱うデータソースのパスをご自身の環境にあわせてください。</br>
