@@ -8,17 +8,6 @@ __※完成イメージ__
 
 <img src="./img/widget.gif" width="600px"></br>
 
-## ハンズオンで使用するソースのダウンロード
-以下リンクから CustomRecenter.zip をダウンロード、解凍をして任意のディレクトリに格納してください。
-
-[ハンズオン用ソース](https://github.com/Koki-Kunihara/seminar-js/blob/master/TypeScript/hands-on/exercise/CustomRecenter.zip)
-
-<img src="./img/download.png" width="600px"></br>
-
-完成済みのソースは以下に格納してあります。ハンズオン中に参考にする場合はダウンロードをしてください。
-
-[完成済みソース](https://github.com/Koki-Kunihara/seminar-js/blob/master/TypeScript/hands-on/answer/CustomRecenter_%E5%AE%8C%E6%88%90.zip)
-
 ## Debugger for Chrome のインストール
 「Debugger for Chrome」をインストールすることで、Visual Studio Code から Google Chrome でデバッグを行うことができます。
 
@@ -182,7 +171,7 @@ state: State;
 
 すべてのプロパティに対して ```@property```, ```@renderable``` デコレーターが使われます。
 - @property
-  - Accessor プロパティを定義するために使われます。このデコレーターで定義されたプロパティは、get、set、watch を使用できます。
+  - Accessor プロパティを定義するために使われます（get/set）。
 - @renderable
   - このデコレーターで定義されたプロパティは、プロパティが変更されるたびに描画が更新されます。
 
