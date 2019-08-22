@@ -2,7 +2,7 @@
 
 2019年8月23日に開催された ArcGIS 開発者のための最新アプリ開発塾 2019 の資料を公開しています。
 
-[0. はじめに](/20190823_app-development-hands-on/01_はじめに.pdf)
+[0. はじめに/まとめ](/20190823_app-development-hands-on/00_はじめに_まとめ.pdf)
 
 [1. ArcGIS プラットフォームの活用のための REST API 入門](/20190823_app-development-hands-on/01_ArcGIS_プラットフォームの活用のための_REST_API_入門.pdf)
 
