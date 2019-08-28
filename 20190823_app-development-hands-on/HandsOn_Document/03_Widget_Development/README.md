@@ -9,7 +9,7 @@ __※完成イメージ__
 <img src="./img/widget.gif" width="600px"></br>
 
 ## プロジェクトのダウンロード
-[本ハンズオンで使用するプロジェクトはこちらでダウンロードできます](https://github.com/EsriJapan/workshops/blob/master/20190823_app-development-hands-on/HandsOn_Data.zip)
+[本ハンズオンで使用するプロジェクトはこちらでダウンロードできます](https://github.com/EsriJapan/workshops/raw/master/20190823_app-development-hands-on/HandsOn_Data.zip)
 
 上記リンクでダウンロードする HandsOn_Data.zip 内の CustomRecenter フォルダがプロジェクトです。  
 
