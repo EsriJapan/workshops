@@ -35,7 +35,7 @@ __※完成イメージ__
 <img src="./img/imageB.gif" width="600px">
 
 ## 演習解答
-[演習の解答はこちらでダウンロードできます](https://github.com/EsriJapan/workshops/blob/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%922/source/Exercise2.zip)
+[演習の解答はこちらでダウンロードできます](https://github.com/EsriJapan/workshops/raw/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%922/source/Exercise2.zip)
 
 ## 2-a. マップ ツールの作成
 
@@ -147,7 +147,7 @@ protected override Task<bool> OnSketchCompleteAsync(Geometry geometry)
 
 <img src="./img/latestProject.png" width="300px">
 
-__※ダウンロードされていない方は[Sample.zip](https://github.com/EsriJapan/workshops/blob/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%92%E3%83%87%E3%83%BC%E3%82%BF/Sample.zip)をダウンロードしてください__
+__※ダウンロードされていない方は[Sample.zip](https://github.com/EsriJapan/workshops/raw/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%92%E3%83%87%E3%83%BC%E3%82%BF/Sample.zip)をダウンロードしてください__
 
 4-4.ArcGIS Proが起動したら「アドイン」タブ > 「マップツール」ボタンをクリックしてください。
 

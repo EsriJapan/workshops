@@ -9,8 +9,8 @@
 * [ArcGIS Pro SDK for .NET API Reference](https://pro.arcgis.com/en/pro-app/sdk/api-reference/index.html#topic1.html)
 
 ## データと資料
-* [ハンズオンデータ](https://github.com/EsriJapan/workshops/blob/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%92%E3%83%87%E3%83%BC%E3%82%BF/Sample.zip)
-* [ハンズオン資料](https://github.com/EsriJapan/workshops/blob/master/20190913_arcgis-pro-sdk-hands-on/%E3%83%8F%E3%83%B3%E3%82%BA%E3%82%AA%E3%83%B3%E8%B3%87%E6%96%99.pdf)
+* [ハンズオンデータ](https://github.com/EsriJapan/workshops/raw/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%92%E3%83%87%E3%83%BC%E3%82%BF/Sample.zip)
+* [ハンズオン資料](https://github.com/EsriJapan/workshops/raw/master/20190913_arcgis-pro-sdk-hands-on/%E3%83%8F%E3%83%B3%E3%82%BA%E3%82%AA%E3%83%B3%E8%B3%87%E6%96%99.pdf)
 
 ## ハンズオン演習
 * ArcGIS Pro SDK for .NET のコアコンセプトについて  

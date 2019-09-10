@@ -33,7 +33,7 @@ __※完成イメージ__
 <img src="./img/imageB.gif" width="600px">
 
 ## 演習解答
-[演習の解答はこちらでダウンロードできます](https://github.com/EsriJapan/workshops/blob/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%923/source/Exercise3.zip)
+[演習の解答はこちらでダウンロードできます](https://github.com/EsriJapan/workshops/raw/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%923/source/Exercise3.zip)
 
 ## 3-a. 属性検索の実行
 
@@ -150,7 +150,7 @@ protected override void OnClick()
 
 <img src="./img/latestProject.png" width="300px">
 
-__※ダウンロードされていない方は[Sample.zip](https://github.com/EsriJapan/workshops/blob/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%92%E3%83%87%E3%83%BC%E3%82%BF/Sample.zip)をダウンロードしてください__
+__※ダウンロードされていない方は[Sample.zip](https://github.com/EsriJapan/workshops/raw/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%92%E3%83%87%E3%83%BC%E3%82%BF/Sample.zip)をダウンロードしてください__
 
 4-4.ArcGIS Pro が起動したら「アドイン」タブ > 「属性検索」ボタンをクリックしてください。
 

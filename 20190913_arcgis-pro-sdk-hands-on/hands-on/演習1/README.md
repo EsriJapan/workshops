@@ -33,7 +33,7 @@ __※完成イメージ__
  <img src="./img/imageB.gif" width="600px">
 
 ## 演習解答
-[演習の解答はこちらでダウンロードできます](https://github.com/EsriJapan/workshops/blob/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%921/source/Exercise1.zip)
+[演習の解答はこちらでダウンロードできます](https://github.com/EsriJapan/workshops/raw/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%921/source/Exercise1.zip)
 
 ## 1-a. アドイン ボタンの作成
 
@@ -126,7 +126,7 @@ protected async override void OnClick()
 
 <img src="./img/AnotherProject.png" width="300px"></br>
 
- __※ダウンロードされていない方は[Sample.zip](https://github.com/EsriJapan/workshops/blob/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%92%E3%83%87%E3%83%BC%E3%82%BF/Sample.zip)をダウンロードしてください__
+ __※ダウンロードされていない方は[Sample.zip](https://github.com/EsriJapan/workshops/raw/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%92%E3%83%87%E3%83%BC%E3%82%BF/Sample.zip)をダウンロードしてください__
 
 4-4.ArcGIS Pro が起動したら「アドイン」タブ > 「アドインボタン」ボタンをクリックしてください。
 
