@@ -52,5 +52,5 @@
 - Microsoft .NET Framework 4.6.1以上
 
 ### 統合開発環境
+-  Visual Studio 2019 (Professional, Enterprise, and Community Editions)
 -  Visual Studio 2017 (Professional, Enterprise, and Community Editions)
--  Visual Studio 2015 (Professional, Enterprise, and Community Editions) (Deprecated at 2.3)
