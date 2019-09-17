@@ -43,6 +43,9 @@
 
 #### <span style="color: red; ">*本ハンズオン演習では ArcGIS Pro2.4 が使用されています</span>
 
+### ライセンス
+ArcGIS Developer Subscription の [Professional](https://www.esrij.com/products/arcgis-for-developers/details/) 以上のライセンスが必要
+
 ### OS
 - Windows 10 (Home, Pro, Enterprise) (64 bit)
 - Windows 8.1 (Pro, and Enterprise) (64 bit)
