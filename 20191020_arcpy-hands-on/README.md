@@ -3,7 +3,7 @@
 
 ## データと資料
 * [ハンズオンのデータ](https://github.com/EsriJapan/workshops/tree/master/20191020_arcpy-hands-on/hands-on)
-* [ハンズオンの資料](/20191019_arcpy-hands-on/ArcPyを使用したスクリプト作成_Pro_GIS学会2019.pdf)
+* [ハンズオンの資料](/20191020_arcpy-hands-on/ArcPyを使用したスクリプト作成_Pro_GIS学会2019.pdf)
 
 
 ## 動作環境
