@@ -21,7 +21,7 @@ ArcGIS Online にアクセスして、コンテンツ画面から Web マップ�
 コピーしたURL を Configration.xml に設定します。
 
 ファイルの保存先：HandsOn_Data\02_Data_Collection_Application\data-collection-dotnet-master_ejLocalized\src\DataCollection.Shared\Properties\ Configuration.xml
-Configration.xmlをテキストエディター等で開き、上記でコピーしたURLを、次の XML タグにWeb マップのURLを設定します。
+Configration.xmlをテキストエディター等で開き、上記でコピーしたURLを、次の XML タグに設定します。
 
 - \<WebmapURL> Web マップの URL \</WebmapURL>
 
@@ -29,7 +29,7 @@ Configration.xmlをテキストエディター等で開き、上記でコピー�
 ArcGIS for Developers で「アプリの登録」を行い、認証に必要な クライアント ID と リダイレクト URL を発行します。アプリの登録は、ArcGIS for Developers のダッシュボード画面から行います。
 
 ### 2_1. アプリの登録
-ArcGIS for Developers のダッシューボード画面からアプリの登録を行います。ユーザーアイコンの左側にある「App Launcher」から「Developers」のアイコンを選択し、「New Application」ボタンを選択します。
+ユーザーアイコンの左側にある「App Launcher」から「Developers」のアイコンを選択し、「New Application」ボタンを選択します。
 
 ![ダッシュボード画面へ遷移](https://s3-ap-northeast-1.amazonaws.com/apps.esrij.com/arcgis-dev/github/img/workshop/DataCollection/dc_devLauncher.gif)
 
@@ -53,27 +53,28 @@ DataCollection://oauth
 ![リダイレクト URL の登録](https://s3-ap-northeast-1.amazonaws.com/apps.esrij.com/arcgis-dev/github/img/workshop/DataCollection/dc_redirectUrl.gif)
 
 緑のチェックが表示されれば、利用可能な URL として登録ができます。
+
 注意：ブラウザの翻訳機能は使用しないで URL の登録を行ってください。
 
 画面に表示されている Client ID と Current Redirect URIs をConfigration.xml に設定します。
 
 ![ID と URL のコピー](https://s3-ap-northeast-1.amazonaws.com/apps.esrij.com/arcgis-dev/github/img/workshop/DataCollection/dc_credentialInf.png)
 
-Configration.xmlをテキストエディター等で開き、上記でコピーした「クライアント ID」と「リダイレクト URL」をそれぞれ次の XML タグに設定します。
-- <AppClientID> クライアント ID </AppClientID>
-- <RedirectURL> リダイレクト URL </RedirectURL>
+Configration.xml をテキストエディター等で開き、上記でコピーした「クライアント ID」と「リダイレクト URL」をそれぞれ次の XML タグに設定します。
+- \<AppClientID> クライアント ID \</AppClientID>
+- \<RedirectURL> リダイレクト URL \</RedirectURL>
 
 ## 3.アプリのビルド
 DataCollection.sln を Visual Studio 2017 で開きます。
 
-Configration.xml を開きます。次の XML タグにクライアント ID 等が設定されていることを確認してください。
+Configration.xml を開き次の XML タグに Web マップの URL 等が設定されていることを確認してください。
 - \<WebmapURL> Web マップの URL \</WebmapURL>
 - \<AppClientID> クライアント ID \</AppClientID>
 - \<RedirectURL> リダイレクト URL \</RedirectURL>
 
 ![Visual Studio の画面](https://s3-ap-northeast-1.amazonaws.com/apps.esrij.com/arcgis-dev/github/img/workshop/DataCollection/dc_settingInfo.png)
 
-設定されていることが確認出来たら、ビルドを行います。実行後 ログインの認証画面が表示された場合は、開発者アカウントのユーザー ID とパスワードを入力します。
+設定されていることが確認出来たら、ビルドを行います。実行後にログインの認証画面が表示された場合は、開発者アカウントのユーザー ID とパスワードを入力します。
 
 初めてアプリを実行すると、以下のパスに設定ファイルが作成されます。
 - C:\Users\ \<YourUsername>\AppData\Roaming\DataCollectionSettings.xml
