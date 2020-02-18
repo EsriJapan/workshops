@@ -1,7 +1,5 @@
 # Data Collection for .NET アプリ ハンズオン
 
-![Data Collection for .NET](https://camo.githubusercontent.com/1ec24340c1b992c3b1e8a10fefa33b5268ec2f18/68747470733a2f2f646576656c6f706572732e6172636769732e636f6d2f6578616d706c652d617070732f646174612d636f6c6c656374696f6e2d646f746e65742f696d672f66656174757265642d696d672e706e67)
-
 ## 概要
 このドキュメントは、2019年8月に開催した「ArcGIS  開発者のための最新アプリ開発塾 2019」で使用した現地調査に活用できるData Collection for .NET アプリ（以下、アプリ）を起動するまでの手順を示しています。
 
