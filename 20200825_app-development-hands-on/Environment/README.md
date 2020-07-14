@@ -9,7 +9,7 @@
 
 4. 5行目の value をご自身の環境に合わせて変更してください（例：C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\pythonw.exe）
 
-<img src="./Images/data_config.png" width="500px">
+<img src="./img/data_config.png" width="500px">
 
 ## ArcGIS Pro
 [ArcGIS Pro SDK](https://pro.arcgis.com/en/pro-app/sdk/) で作成されたアドインをインストールします。
@@ -18,6 +18,6 @@
 
 2. アドインファイルをダブルクリックし、インストールします。
 
-<img src="./Images/prosdk.png" width="500px">
+<img src="./img/prosdk.png" width="500px">
 
 ## ArcGIS API for Python
