@@ -20,4 +20,12 @@
 
 <img src="./img/prosdk.png" width="500px">
 
+3. D:\EJWater\EJWater.aprx をダブルクリックし、起動確認をしてください。
+
+<img src="./img/pro_boot.png" width="500px">
+
+4. 「オフラインデータ」タブが存在し、リボン上のアイテムが活性状態であることを確認してください。
+
+<img src="./img/pro_addin.png" width="500px">
+
 ## ArcGIS API for Python
