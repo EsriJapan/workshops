@@ -1,3 +1,23 @@
-# ArcGIS 開発者のための最新アプリ開発塾 2020
+# 環境構築
 
-2019年8月25～26日に開催される ArcGIS 開発者のための最新アプリ開発塾 2020 の資料を公開します。
+## データの配置
+1. [ハンズオン用データ](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/HandsOn_Data.zip)をダウンロードし、解凍してください。
+
+2. 解凍したデータをDドライブ直下に配置してください（D:\EJWater となるように配置してください）。
+
+3. EJWater フォルダにある「project.config」ファイルを開いてください。
+
+4. 5行目の value をご自身の環境に合わせて変更してください（例：C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\pythonw.exe）
+
+<img src="./Images/data_config.png" width="500px">
+
+## ArcGIS Pro
+[ArcGIS Pro SDK](https://pro.arcgis.com/en/pro-app/sdk/) で作成されたアドインをインストールします。
+
+1. [アドインファイル](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/Environment/Addin.zip)をダウンロードし、解凍してください。
+
+2. アドインファイルをダブルクリックし、インストールします。
+
+<img src="./Images/prosdk.png" width="500px">
+
+## ArcGIS API for Python
