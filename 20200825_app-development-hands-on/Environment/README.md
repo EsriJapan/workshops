@@ -39,3 +39,6 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 ## ArcGIS プラットフォームを活用したWebアプリ開発ハンズオン
 
 ### ArcGIS API for JavaScript の環境設定
+1. [Visual Studio Code](https://code.visualstudio.com/) をインストールしてください。
+
+2. Google Chrome(最新バージョン)をインストールしてください。
