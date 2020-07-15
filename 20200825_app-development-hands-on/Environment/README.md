@@ -1,6 +1,8 @@
 # 環境構築
+ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方は以下手順に沿って環境構築をお願いします。
 
-## データの配置
+## ArcGIS プラットフォームを活用したデータ構築
+### データの配置
 1. [ハンズオン用データ](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/HandsOn_Data.zip)をダウンロードし、解凍してください。
 
 2. 解凍したデータをDドライブ直下に配置してください（D:\EJWater となるように配置してください）。
@@ -11,7 +13,7 @@
 
 <img src="./img/data_config.png" width="500px">
 
-## ArcGIS Pro
+### ArcGIS Pro の環境設定
 [ArcGIS Pro SDK](https://pro.arcgis.com/en/pro-app/sdk/) で作成されたアドインをインストールします。
 
 1. [アドインファイル](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/Environment/Addin.zip)をダウンロードし、解凍してください。
@@ -28,4 +30,12 @@
 
 <img src="./img/pro_addin.png" width="500px">
 
-## ArcGIS API for Python
+### ArcGIS API for Python の環境設定
+
+## ArcGIS プラットフォームを活用した現地調査アプリ開発ハンズオン
+
+### ArcGIS Runtime SDK for .NET の環境設定
+
+## ArcGIS プラットフォームを活用したWebアプリ開発ハンズオン
+
+### ArcGIS API for JavaScript の環境設定
