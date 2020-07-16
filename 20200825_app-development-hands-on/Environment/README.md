@@ -20,19 +20,17 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
    ArcGIS Pro をお持ちでない方は[トライアルライセンス](https://www.esrij.com/form/arcgis/trials/)を配布していますので、そちらを使ってインストールしてください。ArcGIS Pro をすでにお持ちの方はそちらをご使用いただいて構いません（ただし、バージョンは2.5にしていただく必要があります）。
 
-2. [ArcGIS Pro SDK](https://pro.arcgis.com/en/pro-app/sdk/) で作成されたこちらの[アドイン](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/Environment/Addin.zip)をインストールしてください。
+2. [ArcGIS Pro SDK](https://pro.arcgis.com/en/pro-app/sdk/) で作成された[アドイン](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/Environment/Addin.zip)をダウンロードし、解凍してください。
 
-3. [アドインファイル](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/Environment/Addin.zip)をダウンロードし、解凍してください。
-
-4. アドインファイルをダブルクリックし、インストールしてください。
+3. アドインファイルをダブルクリックし、インストールしてください。
 
    <img src="./img/prosdk.png" width="500px">
 
-5. D:\EJWater\EJWater.aprx をダブルクリックし、起動確認をしてください。
+4. D:\EJWater\EJWater.aprx をダブルクリックし、起動確認をしてください。
 
    <img src="./img/pro_boot.png" width="500px">
 
-6. 「オフラインデータ」タブが存在し、リボン上のアイテムが活性状態であることを確認してください。
+5. 「オフラインデータ」タブが存在し、リボン上のアイテムが活性状態であることを確認してください。
 
    <img src="./img/pro_addin.png" width="500px">
 
