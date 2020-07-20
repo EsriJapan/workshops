@@ -7,11 +7,11 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
 2. 解凍したデータをDドライブ直下に配置してください（D:\EJWater となるように配置してください）。
 
-   ※Cドライブに配置していただいても構いませんが、配置先にあわせて EJWater フォルダにある「project.config」の4,6行目を書き換えて頂く必要があります。
+   ※Cドライブや任意のディレクトリに配置していただいても構いませんが、配置先にあわせて EJWater フォルダにある「project.config」の4,6行目を書き換えて頂く必要があります（以下画像参照）。
 
    <img src="./img/data_config2.png" width="500px">
 
-3. 「project.config」ファイルの 5行目の value をご自身の環境に合わせて変更してください（例：C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\pythonw.exe）
+3. 「project.config」ファイルの 5行目の value をご自身の Python 環境に合わせて変更してください（例：C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\pythonw.exe）
 
    <img src="./img/data_config.png" width="500px">
 
