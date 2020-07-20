@@ -41,9 +41,9 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
 2. ログイン情報を入力し、ログインができることを確認してください。
 
-　 ※ログイン情報の作成に関しては[ArcGIS for Developers 開発者アカウント](https://esrijapan.github.io/arcgis-dev-resources/guide/create-map/get-dev-account/）参照
+　 ※ログイン情報の作成に関しては[ArcGIS for Developers 開発者アカウント](https://esrijapan.github.io/arcgis-dev-resources/guide/create-map/get-dev-account/)参照
 
-   <img src="./img/agol_login.png" width="500px">
+   <img src="./img/agol_login.png" width="300px">
 
 ### ArcGIS API for Python の環境設定
 
