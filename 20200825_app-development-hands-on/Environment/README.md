@@ -34,14 +34,14 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
    <img src="./img/pro_addin.png" width="500px">
 
-### ArcGIS Online へのアクセス
+### ArcGIS Online へのアクセス確認
 1. [ArcGIS Online](https://www.esrij.com/products/arcgis-online/) にアクセスしてください。
 
    <img src="./img/agol.png" width="500px">
 
 2. ログイン情報を入力し、ログインができることを確認してください。
 
-　 ※ログイン情報の作成に関しては[ArcGIS for Developers 開発者アカウント](https://esrijapan.github.io/arcgis-dev-resources/guide/create-map/get-dev-account/)参照
+   ※ログイン情報の作成に関しては[ArcGIS for Developers 開発者アカウント](https://esrijapan.github.io/arcgis-dev-resources/guide/create-map/get-dev-account/)参照してください。
 
    <img src="./img/agol_login.png" width="300px">
 
