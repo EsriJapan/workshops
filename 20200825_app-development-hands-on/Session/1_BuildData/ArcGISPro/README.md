@@ -38,12 +38,14 @@
 
 3. アップロードした Web マップを押下します。
 
-   <img src="./img/agol_content.png" width="500px">
+   <img src="./img/agol_content.png" width="500px">  
 
 4. Web マップの概要画面に遷移後、サムネイルを押下します。
 
-   <img src="./img/agol_web_map.png" width="500px">
+   <img src="./img/agol_web_map.png" width="500px">  
 
-5.
+5. Web マップ が参照可能になります。
+
+   <img src="./img/agol_view.png" width="500px">
 
    
