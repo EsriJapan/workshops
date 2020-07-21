@@ -12,17 +12,17 @@
 
 ## Web マップの作成
 
-3. 「共有」タブ内の「Webマップ」ボタンを押下します。
+1. 「共有」タブ内の「Webマップ」ボタンを押下します。
 
    <img src="./img/pro_share.png" width="500px">
 
-4. 「Web マップとして共有」パネルの「概要」「タグ」項目を入力し（内容は任意）、「共有」ボタンを押下します。
+2. 「Web マップとして共有」パネルの「概要」「タグ」項目を入力し（内容は任意）、「共有」ボタンを押下します。
 
    ※「名前」項目を変更しても構いません。
 
    <img src="./img/pro_webmap_upload.png" width="300px"></br>
 
-5. Web マップの作成が完了します。
+3. Web マップの作成が完了します。
 
    <img src="./img/pro_webmap_upload_finish.png" width="300px">
 
