@@ -48,4 +48,11 @@
 
    <img src="./img/agol_view.png" width="500px">
 
-   
+## まとめ
+ArcGIS Pro を使用することで FGDB などのローカルデータから簡単に Web マップを作成することができます。また、ArcGIS API for Python, ArcGIS Runtime SDK, ArcGIS API for JavaScript などの API を使用すれば 作成した Web マップを参照することができます。次のセッションでは ArcGIS API for Python を使用して Web マップ を扱ってみようと思います。
+
+### １日目(2020/8/25)
+作成した Web マップ と ArcGIS API for Python を使用して現地調査用データを作成
+
+### 2日目(2020/8/26)
+ArcGIS API for Python を使用して作成した Web マップ を更新
