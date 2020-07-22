@@ -58,7 +58,7 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 ArcGIS Runtime SDK for .NET バージョン 100.8 のシステム要件につきましては以下のサイトに記載されておりますのでご確認ください。  
 ・[ArcGIS Runtime SDK システム要件](https://www.esrij.com/products/arcgis-runtime-sdk-for-dotnet/environments/100_8_0/)  
 
-ArcGIS Runtime SDK for .NET バージョン 100.8 につきましては、開発環境としてVisual Studio Visual Studio 2019 16.0 以上（ [.NETデスクトップ開発] ワークロード のインストール）が必要となります。  
+ArcGIS Runtime SDK for .NET バージョン 100.8 につきましては、開発環境として Visual Studio 2019 16.0 以上（ [.NETデスクトップ開発] ワークロード のインストール）が必要となります。  
 以下サイトよりダウンロード、およびインストールをお願いいたします。  
 ・[Visual Studio ダウンロードページ](https://visualstudio.microsoft.com/ja/downloads/)  
 ・[Visual Studio インストール手順](https://docs.microsoft.com/ja-jp/visualstudio/install/install-visual-studio?view=vs-2019)  
