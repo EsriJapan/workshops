@@ -54,6 +54,8 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 ## ArcGIS プラットフォームを活用した現地調査アプリ開発ハンズオン
 
 ### ArcGIS Runtime SDK for .NET の環境設定
+ArcGIS Runtime SDK の動作環境につきましては以下のサイトに記載されておりますのでご確認ください。
+[ArcGIS Runtime SDK システム要件](https://developers.arcgis.com/net/latest/wpf/guide/system-requirements.htm)
 
 ## ArcGIS プラットフォームを活用したWebアプリ開発ハンズオン
 
