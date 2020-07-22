@@ -3,7 +3,7 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
 ## ArcGIS プラットフォームを活用したデータ構築
 ### データの配置
-1. [ハンズオン用データ](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/HandsOn_Data.zip)をダウンロードし、解凍してください。
+1. [ハンズオン用データ](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/HandsOn_Data.zip)をダウンロードし、解凍してください。
 
 2. 解凍したデータをDドライブ直下に配置してください（D:\EJWater となるように配置してください）。
 
@@ -20,7 +20,7 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
    ArcGIS Pro をお持ちでない方は[トライアルライセンス](https://www.esrij.com/form/arcgis/trials/)を配布していますので、そちらを使ってインストールしてください。ArcGIS Pro をすでにお持ちの方はそちらをご使用いただいて構いません（ただし、バージョンは2.5にしていただく必要があります）。
 
-2. [ArcGIS Pro SDK](https://pro.arcgis.com/en/pro-app/sdk/) で作成された[アドイン](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/Environment/Addin.zip)をダウンロードし、解凍してください。
+2. [ArcGIS Pro SDK](https://pro.arcgis.com/en/pro-app/sdk/) で作成された[アドイン](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Environment/Addin.zip)をダウンロードし、解凍してください。
 
 3. アドインファイルをダブルクリックし、インストールしてください。
 
