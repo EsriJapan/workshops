@@ -2,7 +2,25 @@
 ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方は以下手順に沿って環境構築をお願いします。
 
 ## ArcGIS プラットフォームを活用したデータ構築
-### データの配置
+### ①ArcGIS Online へのアクセス確認
+1. [ArcGIS Online](https://www.esrij.com/products/arcgis-online/) にアクセスしてください。
+
+   <img src="./img/agol.png" width="500px">
+
+2. ログイン情報を入力し、ログインができることを確認してください。
+
+   ※ログイン情報の作成に関しては[ArcGIS for Developers 開発者アカウント](https://esrijapan.github.io/arcgis-dev-resources/guide/create-map/get-dev-account/)参照してください。
+
+   <img src="./img/agol_login.png" width="300px">
+
+3. 日本語表示にされる方は Settings ボタン押下語、Language を 日本語に変更してください。  
+
+   <img src="./img/agol_setting.png" width="300px"></br>
+  
+   <img src="./img/agol_language.png" width="300px">
+
+## ArcGIS Pro をお持ちの方のみ「②」「③」「④」をご対応願います。
+### ②データの配置
 1. [ハンズオン用データ](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/HandsOn_Data.zip)をダウンロードし、解凍してください。
 
 2. 解凍したデータをDドライブ直下に配置してください（D:\EJWater となるように配置してください）。
@@ -15,10 +33,8 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
    <img src="./img/data_config.png" width="500px">
 
-### ArcGIS Pro の環境設定
-1. ArcGIS Pro をインストールしてください。
-
-   ArcGIS Pro をお持ちでない方は[トライアルライセンス](https://www.esrij.com/form/arcgis/trials/)を配布していますので、そちらを使ってインストールしてください。ArcGIS Pro をすでにお持ちの方はそちらをご使用いただいて構いません（ただし、バージョンは2.5にしていただく必要があります）。
+### ③ArcGIS Pro の環境設定
+1. ArcGIS Pro 2.5 を用意してください。
 
 2. [ArcGIS Pro SDK](https://pro.arcgis.com/en/pro-app/sdk/) で作成された[アドイン](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Environment/Addin.zip)をダウンロードし、解凍してください。
 
@@ -26,34 +42,19 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
    <img src="./img/prosdk.png" width="500px">
 
-4. D:\EJWater\EJWater.aprx をダブルクリックするとログイン画面が起動しますので、ArcGIS Online のアカウント を入力してください。
-
-   <img src="./img/signin.png" width="500px">
-
-5. ArcGIS Pro が起動することを確認してください。
+4. D:\EJWater\EJWater.aprx をダブルクリックし、ArcGIS Pro が起動することを確認してください。
 
    <img src="./img/pro_boot.png" width="500px">
 
-6. 「オフラインデータ」タブが存在し、リボン上のアイテムが活性状態であることを確認してください。
+5. 「オフラインデータ」タブが存在し、リボン上のアイテムが活性状態であることを確認してください。
 
    <img src="./img/pro_addin.png" width="500px">
 
-7. また、「図郭」コンボボックスに以下のように値が格納されていることを確認してください。
+6. また、「図郭」コンボボックスに以下のように値が格納されていることを確認してください。
 
    <img src="./img/pro_zukaku.png" width="500px">
 
-### ArcGIS Online へのアクセス確認
-1. [ArcGIS Online](https://www.esrij.com/products/arcgis-online/) にアクセスしてください。
-
-   <img src="./img/agol.png" width="500px">
-
-2. ログイン情報を入力し、ログインができることを確認してください。
-
-   ※ログイン情報の作成に関しては[ArcGIS for Developers 開発者アカウント](https://esrijapan.github.io/arcgis-dev-resources/guide/create-map/get-dev-account/)参照してください。
-
-   <img src="./img/agol_login.png" width="300px">
-
-### ArcGIS API for Python の環境設定
+### ④ArcGIS API for Python の環境設定
 1. ArcGIS Pro をインストールし起動したら [設定] をクリックします
 
    <img src="./img/pro_setting.png" width="500px">
@@ -107,7 +108,7 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
 ## ArcGIS プラットフォームを活用した現地調査アプリ開発ハンズオン
 
-### ArcGIS Runtime SDK for .NET の環境設定
+### ⑤ArcGIS Runtime SDK for .NET の環境設定
 ハンズオンでは ArcGIS Runtime SDK for .NET バージョン 100.8 を使用いたします。  
 ArcGIS Runtime SDK for .NET バージョン 100.8 のシステム要件につきましては以下のサイトに記載されておりますのでご確認ください。  
 ・[ArcGIS Runtime SDK システム要件](https://www.esrij.com/products/arcgis-runtime-sdk-for-dotnet/environments/100_8_0/)  
@@ -119,7 +120,7 @@ ArcGIS Runtime SDK for .NET バージョン 100.8 につきましては、開発
 
 ## ArcGIS プラットフォームを活用したWebアプリ開発ハンズオン
 
-### ArcGIS API for JavaScript の環境設定
+### ⑥ArcGIS API for JavaScript の環境設定
 1. [Visual Studio Code](https://code.visualstudio.com/) をインストールしてください。
 
 2. [Google Chrome](https://www.google.com/chrome/?brand=CHBD&gclid=EAIaIQobChMIqszkqJLO6gIVCFdgCh1CbgnjEAAYASAAEgIfY_D_BwE&gclsrc=aw.ds)(最新バージョン)をインストールしてください。
