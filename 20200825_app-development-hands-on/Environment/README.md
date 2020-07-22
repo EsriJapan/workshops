@@ -62,7 +62,6 @@ ArcGIS Runtime SDK for .NET バージョン 100.8 につきましては、開発
 以下サイトよりダウンロード、およびインストールをお願いいたします。  
 ・[Visual Studio ダウンロードページ](https://visualstudio.microsoft.com/ja/downloads/)  
 ・[Visual Studio インストール手順](https://docs.microsoft.com/ja-jp/visualstudio/install/install-visual-studio?view=vs-2019)  
-※
 
 ## ArcGIS プラットフォームを活用したWebアプリ開発ハンズオン
 
