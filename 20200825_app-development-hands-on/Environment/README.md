@@ -54,7 +54,7 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 ## ArcGIS プラットフォームを活用した現地調査アプリ開発ハンズオン
 
 ### ArcGIS Runtime SDK for .NET の環境設定
-ハンズオンでは ArcGIS Runtime SDK for .NET Ver 100.8 を使用いたします。
+ハンズオンでは ArcGIS Runtime SDK for .NET Ver 100.8 を使用いたします。  
 ArcGIS Runtime SDK for .NET Ver 100.8 のシステム要件につきましては以下のサイトに記載されておりますのでご確認ください。  
 ・[ArcGIS Runtime SDK システム要件](https://developers.arcgis.com/net/latest/wpf/guide/system-requirements.htm)  
 
