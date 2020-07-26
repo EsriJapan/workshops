@@ -1,5 +1,9 @@
 # ArcGIS Pro を使用した Web マップの作成
 
+## ArcGIS をお持ちの方は[こちら](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro#arcgis-pro-%E8%B5%B7%E5%8B%95)へおすすみください。
+
+
+
 ## ArcGIS Pro 起動
 
 1. EJWater フォルダにある EJWater.aprx をダブルクリックします。
