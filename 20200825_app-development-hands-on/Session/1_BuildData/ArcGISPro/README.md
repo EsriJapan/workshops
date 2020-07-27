@@ -1,6 +1,6 @@
 # ArcGIS Pro を使用した Web マップの作成
 
-## ArcGIS Pro をお持ちでない方は[こちら](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/ArcGISOnlineVersion)をご参照ください。
+<span style="color: red; ">※ArcGIS Pro をお持ちでない方は[こちら](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/ArcGISOnlineVersion)をご参照ください。</span>
 
 ## ArcGIS Pro 起動
 
