@@ -2,7 +2,7 @@
 
 <span style="color: red; ">※ArcGIS Pro をお持ちの方は[こちら](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro)をご参照ください。</span>
 
-<span style="color: red; ">※こちらの手順で Web マップが作成できなかった場合は[こちら](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/ArcGISOnlineVersion)をご参照ください。</span>
+<span style="color: red; ">※こちらの手順で Web マップが作成できなかった場合は[ArcGIS Online を使用した Web マップの作成](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/ArcGISOnlineVersion)をご参照ください。</span>
 
 ## ArcGIS Notebook Server にアクセス
 [ArcGIS Notebook Server](https://enterprise.arcgis.com/ja/notebook/latest/install/windows/introduction-to-arcgis-notebook-server.htm) を使うことによって [Jupyter Notebook](https://jupyter.org/) を ArcGIS Online(ライセンス制限あり) もしくは ArcGIS Enterprise 上で動かすことができます 。今回は米国Esri が公開している ArcGIS Notebook Server の環境を使用します。  
