@@ -77,6 +77,10 @@ Web マップに格納するためのレイヤーを作成します。
 
    <img src="./img/select_layer.png" width="500px">
 
+   ※以下エラーが出てきたら「OK」を押してください（特に問題はありません）。
+
+   <img src="./img/append_error.png" width="300px">
+   
 5. 「2」~「4」の手順を以下レイヤーに対して繰り返します。
 
    「漏水」  

@@ -5,7 +5,9 @@
 <span style="color: red; ">※こちらの手順で Web マップが作成できなかった場合は[こちら](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/ArcGISOnlineVersion)をご参照ください。</span>
 
 ## ArcGIS Notebook Server にアクセス
-ArcGIS Notebook Server を使うことによて [Jupyter Notebook](https://jupyter.org/) を ArcGIS Online(ライセンス制限あり) もしくは ArcGIS Enterprise 上で動かすことができます 。今回は米国Esri が公開している ArcGIS Notebook Server の環境を使用します。ArcGIS Notebook Serverについての詳細は[こちら](https://community.esri.com/docs/DOC-13626)をご参照ください。
+[ArcGIS Notebook Server](https://enterprise.arcgis.com/ja/notebook/latest/install/windows/introduction-to-arcgis-notebook-server.htm) を使うことによって [Jupyter Notebook](https://jupyter.org/) を ArcGIS Online(ライセンス制限あり) もしくは ArcGIS Enterprise 上で動かすことができます 。今回は米国Esri が公開している ArcGIS Notebook Server の環境を使用します。  
+
+ArcGIS Notebook Server についての詳細は[こちら](https://community.esri.com/docs/DOC-13626)をご参照ください。
 
 1. [ArcGIS Notebook Server](https://notebooks.esri.com/user/rlQ1EHOw9BsZb7twKKnLdxdFR/tree)にアクセスします。
 
@@ -26,9 +28,9 @@ Web マップに格納するためのレイヤーを作成します。
    result[0]
    ```
 
-   ※パブリックに公開しているフィーチャ レイヤーをコピーし、ご自身の ArcGIS Online の領域に同じデータをプライベートな状態で作成します。
+   ※ESRIジャパンがパブリックに公開しているフィーチャ レイヤーをコピーし、ご自身の ArcGIS Online の領域に同じデータをプライベートな状態で作成します。
 
-2. パスワードを入力します。
+2. パスワードを入力し Enter キーを押下します。
 
    <img src="./img/enter_password.png" width="500px">
 
@@ -78,7 +80,7 @@ Web マップに格納するためのレイヤーを作成します。
 
 
 ## まとめ
-マップにレイヤーが格納されているように、Web マップにも同じようにレイヤーを格納する必要があります（今回の場合はフィーチャレイヤー）。今回は レイヤーを ArcGIS API for Python を使用して作ってみましたが、ArcGIS Online からでも作成可能なので、興味のある方はぜひ [ArcGIS Online を使用した Web マップの作成](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/ArcGISOnlineVersion)にもチャレンジしてみてください。また、今回、Web GIS のレイヤーについてお話する時間があまりありませんでしたが、詳細は[こちら](https://esrijapan.github.io/arcgis-dev-resources/core-concepts/layers/)をご参照ください。  
+マップにレイヤーが格納されているように、Web マップにも同じようにレイヤーを格納する必要があります（今回はフィーチャ レイヤーを格納しました）。今回は レイヤーを ArcGIS API for Python を使って作成してみましたが、ArcGIS Online からでも作成可能なので、興味のある方はぜひ [ArcGIS Online を使用した Web マップの作成](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/ArcGISOnlineVersion)にもチャレンジしてみてください。また、今回、Web GIS のレイヤーについてお話する時間があまりありませんでしたが、Web GIS のレイヤーについての詳細は[こちら](https://esrijapan.github.io/arcgis-dev-resources/core-concepts/layers/)をご参照ください。  
 
 次のセッションでは ArcGIS API for Python を使用して Web マップ を扱ってみようと思います。
 
