@@ -12,23 +12,28 @@
 
    <img src="./img/agol_menu.png" width="500px">
 
-## フィーチャレイヤーのコピー
+## フィーチャ レイヤーの作成
+Web マップに格納するためのレイヤーを作成します。
+
 1. 「作成」ボタンを押下します。
 
    <img src="./img/create_item.png" width="300px">
 
 2. 「フィーチャ レイヤー」を押下します。
+
    <img src="./img/create_featurelayer.png" width="300px">
    
 3. 「URLから」を選択し、「URL」に以下を入力し、「次へ」ボタンを押下します。
 
-   「URL」・・・ https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer  
+   「URL」・・・ `https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer`
 
-   <img src="./img/create_featurelayer2.png" width="300px">
+   ※入力する URL はあらかじめパブリックに公開しておいたデータです。これをテンプレートにして空のフィーチャ レイヤーを作成します。
+
+   <img src="./img/create_featurelayer2.png" width="500px">
 
 4. 「次へ」ボタンを押下します。
 
-   <img src="./img/create_featurelayer3.png" width="300px">
+   <img src="./img/create_featurelayer3.png" width="500px">
 
 5. 以下を入力し「次へ」ボタンを押下します。
 
@@ -51,46 +56,60 @@
    <img src="./img/create_featurelayer6.png" width="300px">
 
 ## フィーチャレイヤーにデータを追加
+1. [GDB](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/ArcGISOnlineVersion/data/EJWater.gdb.zip)をダウンロードします。
 
+2. 「データ更新」＞「データをレイヤーに追加」を押下します。
 
-2. 「URL」からを押下します。
+   <img src="./img/add_data.png" width="500px">
 
-   <img src="./img/add_item_url.png" width="300px">
-   
-3. 以下を入力し、「アイテムの追加」ボタンを押下します。
+3. 以下を入力し、「アップロードと継続」ボタンを押下します。
 
-   「URL」・・・ https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer  
-   「タイトル」・・・日吉水道マップ_WFL1  
-   「タグ」・・・開発塾2020  
+   「ファイル名」・・・「1」でダウンロードした zip  
+   「コンテンツ」・・・ファイルジオデータベース
 
-   ※入力する URL はあらかじめパブリックに公開しておいたデータです。
+   <img src="./img/data_append.png" width="500px">
 
-   <img src="./img/add_fs.png" width="300px">
+   ※以下エラーが出てきたら「OK」を押してください（特に問題はありません）。
 
-    
+   <img src="./img/append_error.png" width="300px">
 
-4. アイテムが追加されたことを確認し、サムネイルを押下します。
+4. 「データの追加先のレイヤーを選択」「更新済みデータを含むEJWWater.gdb.zipからレイヤーを選択」に同じ値を設定し、「更新の適用」ボタンを押下します。
 
-   <img src="./img/add_fs_finish.png" width="300px">
+   <img src="./img/select_layer.png" width="300px">
 
+5. 「2」~「4」の手順を以下レイヤーに対して繰り返します。
 
-5. 「名前を付けて保存」を押下します。
+   「漏水」  
+   「メータ」  
+   「弁」  
+   「管」  
+   「給水管」  
+   「図郭_500」  
 
-   <img src="./img/save.png" width="300px">
+   ※本手順ではハンズオンの時間の関係上、レイヤーを抜粋していますが、時間に余裕がありましたら全レイヤーに対して処理していただいても構いません。
 
-6. 以下を入力し、「マップの保存」を押下します。
+## Web マップを作成
+1. サムネイルを押下します。
 
-   「タイトル」・・・日吉水道マップ  
-   「タグ」・・・開発塾2020  
+   <img src="./img/select_thumnail.png" width="300px">
+
+2. 「名前を付けて保存」を押下します。
+
+   <img src="./img/save_webmap.png" width="300px">
+
+3. 以下を入力し、「マップの保存」を押下します。
+
+   「タイトル」・・・日吉水道マップ    
+   「タグ」・・・開発塾2020    
    「サマリー」・・・日吉水道マップ  
 
    <img src="./img/save_map.png" width="300px">
 
-7. 「コンテンツ」を押下します。
+4. 「コンテンツ」を押下します。
 
    <img src="./img/home.png" width="300px">
 
-8. Web マップが作成されていることを確認します。
+5. Web マップが作成されていることを確認します。
 
    <img src="./img/webmap.png" width="300px">
 
@@ -107,9 +126,10 @@
 
    <img src="./img/agol_view.png" width="300px">
 
-
 ## まとめ
+マップにレイヤーが格納されているように、Web マップにも同じようにレイヤーを格納する必要があります、今回は Web マップにフィーチャレイヤーを格納しましたが、その他にも様々なレイヤーがあります。もし興味がありましたら、[こちら](https://esrijapan.github.io/arcgis-dev-resources/core-concepts/layers/)に詳細が記載してありますので、ぜひ読んでみてください。  
 
+次のセッションでは ArcGIS API for Python を使用して Web マップ を扱ってみようと思います。
 
 ### １日目(2020/8/25)
 作成した Web マップ と ArcGIS API for Python を使用して現地調査用データを作成
