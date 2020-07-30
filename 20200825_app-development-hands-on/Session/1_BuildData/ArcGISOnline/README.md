@@ -1,4 +1,4 @@
-# Web GIS 基礎
+# Web GIS 基礎 ~ArcGIS Online を使ってみよう~
 
 ## ArcGIS Online へアクセス
 1. [ArcGIS Online](https://www.esrij.com/products/arcgis-online/) にアクセスしてください。
@@ -8,6 +8,10 @@
 2. ログイン情報を入力し、ArcGIS Onlineにログインしてください。
 
    <img src="./img/agol_login.png" width="300px">
+
+## CSV をアップロード
+   <img src="./img/add_item.png" width="300px">
+
 
 ## Living Atlas へアクセス
 1. 画面上部にある赤枠のボタンを押下してください。
