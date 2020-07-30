@@ -1,5 +1,6 @@
 # Web GIS 基礎 ~ArcGIS Online を使ってみよう~
 
+### ①CSV ファイルをアップロードしてみよう
 ## ArcGIS Online へアクセス
 1. [ArcGIS Online](https://www.esrij.com/products/arcgis-online/) にアクセスしてください。
 
@@ -9,10 +10,37 @@
 
    <img src="./img/agol_login.png" width="300px">
 
-## CSV をアップロード
+## フィーチャ レイヤーの作成
+マップにレイヤーが格納されているように、Web マップにも同じようにレイヤーを格納する必要があります。Web マップを作成する前にまずはレイヤーを作ってみましょう。
+
+1. [zip](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISOnline/data/%E5%90%84%E5%BA%97%E8%88%97%E5%A3%B2%E4%B8%8A.zip) をダウンロードして、解凍してください。
+
+2. 「アイテムの追加」 > 「コンピューターから」を押下します。
+
    <img src="./img/add_item.png" width="300px">
 
+3. 以下を入力し、「アイテムの追加」ボタンを押下します。
 
+   「ファイル」・・・「1」で解凍したデータ（csv）  
+   「タイトル」・・・各店舗売上  
+   「タグ」・・・各店舗売上  
+   「フィーチャの検索」・・・座標  
+   「場所フィールド（フィールド名：経度）」・・・経度  
+   「場所フィールド（フィールド名：緯度）」・・・緯度  
+
+   <img src="./img/add_item2.png" width="300px">  
+
+   <img src="./img/add_item3.png" width="300px">
+
+4. フィーチャ レイヤー 作成後、サムネイルを押下します。
+
+   <img src="./img/thumnail.png" width="300px">
+
+5. 追加したアイテムを確認することができます。
+
+   <img src="./img/viewer.png" width="300px">
+
+### ②Living Atlas を使ってみよう
 ## Living Atlas へアクセス
 1. 画面上部にある赤枠のボタンを押下してください。
  
