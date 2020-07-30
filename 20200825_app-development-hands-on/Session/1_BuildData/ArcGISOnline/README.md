@@ -68,4 +68,4 @@
    <img src="./img/agol_japan_mapview.png" width="500px">
 
 ## まとめ
-このように、ArcGIS Online を使用すればパブリックにアップロードされている Web マップを自由に使用することができます。そして、それを ArcGIS API for Python, ArcGIS Runtime SDK, ArcGIS API for JavaScript などを使用して参照することができます。また、Web マップをご自身で作成することもできますので、次のセッションでは Web マップの作成を実際に行ってみようと思います。
+ArcGIS Online を使用すれば、簡単に Web GIS 上にデータをアップロードしたり、パブリックに公開されているデータを自由に使用することができます。次のセッションでは Web マップの作成を実際に行ってみようと思います。
