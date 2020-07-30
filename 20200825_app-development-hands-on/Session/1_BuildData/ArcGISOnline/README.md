@@ -12,7 +12,7 @@
 ## Living Atlas へアクセス
 1. 画面上部にある赤枠のボタンを押下してください。
  
-   <img src="./img/agol_menu.png" width="500px">
+   <img src="./img/agol_menu.png" width="300px">
 
 2. 「Living Atlas」ボタンを押下します。
 
