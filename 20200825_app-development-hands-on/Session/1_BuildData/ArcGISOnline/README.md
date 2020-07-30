@@ -1,4 +1,4 @@
-# Web GIS 基礎 ~ArcGIS Online を使ってみよう~
+# Web GIS 基礎 ~ ArcGIS Online を使ってみよう ~
 
 ## ①CSV ファイルをアップロードしてみよう
 ### ArcGIS Online へアクセス
