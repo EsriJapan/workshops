@@ -28,15 +28,16 @@
    「場所フィールド（フィールド名：経度）」・・・経度  
    「場所フィールド（フィールド名：緯度）」・・・緯度  
 
-   <img src="./img/add_item2.png" width="300px">  
+   <img src="./img/add_item2.png" width="300px"></br>
+  
+   <img src="./img/add_item3.png" width="300px">  
 
-   <img src="./img/add_item3.png" width="300px">
-
-4. フィーチャ レイヤー 作成後、サムネイルを押下します。
+### フィーチャ レイヤーの参照
+1. フィーチャ レイヤー 作成後、サムネイルを押下します。
 
    <img src="./img/thumnail.png" width="300px">
 
-5. 追加したアイテムを確認することができます。
+2. フィーチャ レイヤーを参照することができます。
 
    <img src="./img/viewer.png" width="300px">
 
@@ -68,4 +69,6 @@
    <img src="./img/agol_japan_mapview.png" width="500px">
 
 ## まとめ
-ArcGIS Online を使用すれば、簡単に Web GIS 上にデータをアップロードしたり、パブリックに公開されているデータを自由に使用することができます。次のセッションでは Web マップの作成を実際に行ってみようと思います。
+ArcGIS Online を使用すれば、簡単に Web GIS 上にデータをアップロードしたり、パブリックに公開されているデータを自由に使用することができます。また、ArcGIS Online にアップロードしたデータを ArcGIS API for Python, ArcGIS Runtime SDK, ArcGIS API for JavaScript などを API で操作することもできます。  
+
+次のセッションでは Web マップの作成を実際に行ってみようと思います。
