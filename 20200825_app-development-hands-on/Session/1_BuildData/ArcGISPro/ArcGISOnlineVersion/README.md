@@ -25,7 +25,7 @@ Web マップに格納するためのレイヤーを作成します。
    
 3. 「URLから」を選択し、「URL」に以下を入力し、「次へ」ボタンを押下します。
 
-   「URL」・・・ `https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer`
+   「URL」・・・ `https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer`  
 
    ※入力する URL はあらかじめパブリックに公開しておいたデータです。これをテンプレートにして空のフィーチャ レイヤーを作成します。
 
@@ -37,17 +37,17 @@ Web マップに格納するためのレイヤーを作成します。
 
 5. 以下を入力し「次へ」ボタンを押下します。
 
-   「左」・・・139.636
-   「右」・・・139.652
-   「上」・・・35.556
-   「下」・・・35.552
+   「左」・・・139.636  
+   「右」・・・139.652  
+   「上」・・・35.556  
+   「下」・・・35.552  
 
    <img src="./img/create_featurelayer4.png" width="300px">
 
 6. 以下を入力し「完了」ボタンを押下します。
 
-   「タイトル」・・・日吉水道マップ_WFL1
-   「タグ」・・・日吉水道マップ
+   「タイトル」・・・日吉水道マップ_WFL1  
+   「タグ」・・・日吉水道マップ  
 
    <img src="./img/create_featurelayer5.png" width="300px">
 
@@ -75,7 +75,7 @@ Web マップに格納するためのレイヤーを作成します。
 
 4. 「データの追加先のレイヤーを選択」「更新済みデータを含むEJWWater.gdb.zipからレイヤーを選択」に同じ値を設定し、「更新の適用」ボタンを押下します。
 
-   <img src="./img/select_layer.png" width="300px">
+   <img src="./img/select_layer.png" width="500px">
 
 5. 「2」~「4」の手順を以下レイヤーに対して繰り返します。
 
