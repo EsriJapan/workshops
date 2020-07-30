@@ -12,10 +12,46 @@
 
    <img src="./img/agol_menu.png" width="500px">
 
-## Web マップの作成
-1. 「アイテムの追加」ボタンを押下します。
+## フィーチャレイヤーのコピー
+1. 「作成」ボタンを押下します。
 
-   <img src="./img/add_item.png" width="300px">
+   <img src="./img/create_item.png" width="300px">
+
+2. 「フィーチャ レイヤー」を押下します。
+   <img src="./img/create_featurelayer.png" width="300px">
+   
+3. 「URLから」を選択し、「URL」に以下を入力し、「次へ」ボタンを押下します。
+
+   「URL」・・・ https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer  
+
+   <img src="./img/create_featurelayer2.png" width="300px">
+
+4. 「次へ」ボタンを押下します。
+
+   <img src="./img/create_featurelayer3.png" width="300px">
+
+5. 以下を入力し「次へ」ボタンを押下します。
+
+   「左」・・・139.636
+   「右」・・・139.652
+   「上」・・・35.556
+   「下」・・・35.552
+
+   <img src="./img/create_featurelayer4.png" width="300px">
+
+6. 以下を入力し「完了」ボタンを押下します。
+
+   「タイトル」・・・日吉水道マップ_WFL1
+   「タグ」・・・日吉水道マップ
+
+   <img src="./img/create_featurelayer5.png" width="300px">
+
+7. フィーチャレイヤーが作成されます。
+
+   <img src="./img/create_featurelayer6.png" width="300px">
+
+## フィーチャレイヤーにデータを追加
+
 
 2. 「URL」からを押下します。
 
