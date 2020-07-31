@@ -1,6 +1,6 @@
 # ArcGIS API for Python を使用した Web マップの作成
 
-<span style="color: red; ">※ArcGIS Pro をお持ちの方は[こちら](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro)をご参照ください。</span>
+<span style="color: red; ">※ArcGIS Pro をお持ちの方は[ArcGIS Pro を使用した Web マップの作成](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro)をご参照ください。</span>
 
 <span style="color: red; ">※こちらの手順で Web マップが作成できなかった場合は[ArcGIS Online を使用した Web マップの作成](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/ArcGISOnlineVersion)をご参照ください。</span>
 
