@@ -21,7 +21,7 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
 ## ArcGIS Pro をお持ちの方のみ「②」「③」「④」をご対応願います。
 ### ②データの配置
-1. [ハンズオン用データ](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/HandsOn_Data.zip)をダウンロードし、解凍してください。
+1. [ハンズオン用データ](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Environment/HandsOn_Data.zip)をダウンロードし、解凍してください。
 
    ※データは差し替える可能性がありますので、あらかじめご了承願います。
 
