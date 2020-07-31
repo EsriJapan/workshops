@@ -20,43 +20,7 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
    <img src="./img/agol_language.png" width="300px">
 
 ## ArcGIS Pro をお持ちの方のみ「②」「③」「④」をご対応願います。
-### ②データの配置
-1. [ハンズオン用データ](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Environment/HandsOn_Data.zip)をダウンロードし、解凍してください。
-
-   ※データは差し替える可能性がありますので、あらかじめご了承願います。
-
-2. 解凍したデータをDドライブ直下に配置してください（D:\EJWater となるように配置してください）。
-
-   ※Cドライブや任意のディレクトリに配置していただいても構いませんが、配置先にあわせて EJWater フォルダにある「project.config」の4,6行目を書き換えて頂く必要があります（以下画像参照）。
-
-   <img src="./img/data_config2.png" width="500px">
-
-3. 「project.config」ファイルの 5行目の value をご自身の Python 環境に合わせて変更してください（例：C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\pythonw.exe）
-
-   <img src="./img/data_config.png" width="500px">
-
-### ③ArcGIS Pro の環境設定
-1. ArcGIS Pro 2.5 を用意してください。
-
-2. [ArcGIS Pro SDK](https://pro.arcgis.com/en/pro-app/sdk/) で作成された[アドイン](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Environment/Addin.zip)をダウンロードし、解凍してください。
-
-3. アドインファイルをダブルクリックし、インストールしてください。
-
-   <img src="./img/prosdk.png" width="500px">
-
-4. D:\EJWater\EJWater.aprx をダブルクリックし、ArcGIS Pro が起動することを確認してください。
-
-   <img src="./img/pro_boot.png" width="500px">
-
-5. 「オフラインデータ」タブが存在し、リボン上のアイテムが活性状態であることを確認してください。
-
-   <img src="./img/pro_addin.png" width="500px">
-
-6. また、「図郭」コンボボックスに以下のように値が格納されていることを確認してください。
-
-   <img src="./img/pro_zukaku.png" width="500px">
-
-### ④ArcGIS API for Python の環境設定
+### ②ArcGIS API for Python の環境設定
 1. ArcGIS Pro をインストールし起動したら [設定] をクリックします。
 
    <img src="./img/pro_setting.png" width="700px">
@@ -108,6 +72,50 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
    マップが表示されたら正常に環境が構築されています。  
 
    <img src="./img/map.png" width="500px">
+
+### ③データの配置
+1. [ハンズオン用データ](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Environment/HandsOn_Data.zip)をダウンロードし、解凍してください。
+
+   ※データは差し替える可能性がありますので、あらかじめご了承願います。
+
+2. 解凍したデータをDドライブ直下に配置してください（D:\EJWater となるように配置してください）。
+
+   ※Cドライブや任意のディレクトリに配置していただいても構いませんが、配置先にあわせて以下を書き換えていただく必要があります。
+   
+   ・EJWater フォルダにある「project.config」の4,6行目を書き換えて頂く必要があります（以下画像参照）。
+
+   <img src="./img/data_config2.png" width="500px">   
+   
+   ・EJWater\script\config フォルダにある「config.ini」の2行目を書き換えていただく必要があります（以下画像参照）。
+   
+   <img src="./img/data_config3.png" width="500px">  
+
+3. 「project.config」ファイルの 5行目の value をご自身の Python 環境に合わせて変更してください（例：C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\pythonw.exe）
+
+   ※[④ArcGIS API for Python の環境設定](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Environment#arcgis-api-for-python-%E3%81%AE%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A)で設定した Python パスを使用してください。
+
+   <img src="./img/data_config.png" width="500px">
+
+### ④ArcGIS Pro の環境設定
+1. ArcGIS Pro 2.5 を用意してください。
+
+2. [ArcGIS Pro SDK](https://pro.arcgis.com/en/pro-app/sdk/) で作成された[アドイン](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Environment/Addin.zip)をダウンロードし、解凍してください。
+
+3. アドインファイルをダブルクリックし、インストールしてください。
+
+   <img src="./img/prosdk.png" width="500px">
+
+4. D:\EJWater\EJWater.aprx をダブルクリックし、ArcGIS Pro が起動することを確認してください。
+
+   <img src="./img/pro_boot.png" width="500px">
+
+5. 「オフラインデータ」タブが存在し、リボン上のアイテムが活性状態であることを確認してください。
+
+   <img src="./img/pro_addin.png" width="500px">
+
+6. また、「図郭」コンボボックスに以下のように値が格納されていることを確認してください。
+
+   <img src="./img/pro_zukaku.png" width="500px">
 
 ## ArcGIS プラットフォームを活用した現地調査アプリ開発ハンズオン
 
