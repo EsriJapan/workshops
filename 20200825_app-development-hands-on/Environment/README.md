@@ -136,13 +136,16 @@ Live Server を使用することによって、簡単にローカルサーバ�
 ※ 既にインストール済みの方は不要です。
 
 1．Visual Studio Code を起動してください。
-<img src="./img/vs_code_start.png" width="600px"></br>
+
+   <img src="./img/vs_code_start.png" width="600px"></br>
 
 2．拡張機能ボタンを押下してください。
-<img src="./img/vs_code_extension.png" width="600px"></br>
+
+   <img src="./img/vs_code_extension.png" width="600px"></br>
 
 3．検索バーに Liver Server と入力し、Live Server のインストールをしてください。
-<img src="./img/vs_code_liveServer.png" width="600px"></br>
+   
+   <img src="./img/vs_code_liveServer.png" width="600px"></br>
 
 #### 3. ArcGIS API for JavaScript Snippets 
 ArcGIS API for JavaScript のコード スニペットとして、ArcGIS API for JavaScript Snippets を提供しています。開発を効率に行う上でも便利な機能ですので、必須ではありませんが、インストールをお勧めします。
