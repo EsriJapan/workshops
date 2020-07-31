@@ -33,7 +33,9 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
    <img src="./img/pro_clone.png" width="700px">
 
-4. クローン完了後、作成された環境のラジオボタンを押した後に [OK] をクリックして環境を切り替えます。切り替えたら ArcGIS Pro を閉じましょう。
+4. クローンが完了すると新たに作成された環境のパスが表示されます。後ほど[③データの配置](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Environment#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E9%85%8D%E7%BD%AE)の際に使用するため、このパスをメモしておいてください。
+
+   クローンで作成された環境のラジオボタンを押した後に [OK] をクリックして環境を切り替えます。切り替えたら ArcGIS Pro を閉じましょう。
 
    <img src="./img/pro_change_env.png" width="700px">
 
@@ -90,10 +92,11 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
    
    <img src="./img/data_config3.png" width="500px">  
 
-3. 「project.config」ファイルの 5行目の value をご自身の Python 環境に合わせて変更してください（例：C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\pythonw.exe）
+3. 「project.config」ファイルの 5行目の value をご自身の Python 環境に合わせて変更します。
 
-   ※[④ArcGIS API for Python の環境設定](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Environment#arcgis-api-for-python-%E3%81%AE%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A)で設定した Python パスを使用してください。
+   [②ArcGIS API for Python の環境設定](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Environment#arcgis-api-for-python-%E3%81%AE%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A)でメモしたパスに Explorer で移動します。配下に **pythonw.exe** があるので、そのパスを指定してください。
 
+   <img src="./img/data_config_python.png" width="700px">
    <img src="./img/data_config.png" width="500px">
 
 ### ④ArcGIS Pro の環境設定
