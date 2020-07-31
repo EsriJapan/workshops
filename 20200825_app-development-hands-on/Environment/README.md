@@ -57,46 +57,46 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
    <img src="./img/pro_zukaku.png" width="500px">
 
 ### ④ArcGIS API for Python の環境設定
-1. ArcGIS Pro をインストールし起動したら [設定] をクリックします
+1. ArcGIS Pro をインストールし起動したら [設定] をクリックします。
 
-   <img src="./img/pro_setting.png" width="500px">
+   <img src="./img/pro_setting.png" width="700px">
 
-2. [Python] をクリックし、Python パッケージ マネージャーを開きます
+2. [Python] をクリックし、Python パッケージ マネージャーを開きます。
 
-   <img src="./img/pro_setting_python.png" width="500px">
+   <img src="./img/pro_setting_python.png" width="700px">
 
 3. [環境の管理] をクリックし、デフォルト環境である [arcgispro-py3] をクローンします。任意の環境名を指定 (ここでは [app-dev-2020]) して、クローンを開始しましょう。
 
-   <img src="./img/pro_clone.png" width="500px">
+   <img src="./img/pro_clone.png" width="700px">
 
-4. クローンが完了したら、作成された環境のラジオボタンを押して環境を切り替え、ArcGIS Pro を閉じましょう。
+4. クローン完了後、作成された環境のラジオボタンを押した後に [OK] をクリックして環境を切り替えます。切り替えたら ArcGIS Pro を閉じましょう。
 
-   <img src="./img/pro_change_env.png" width="500px">
+   <img src="./img/pro_change_env.png" width="700px">
 
-5. 次にPython コマンド プロンプトを開きます。スタートメニュー>すべてのプログラム> ArcGIS> Python コマンドプロンプトから開くことができます。
+5. 次にPython コマンド プロンプトを開きます。スタートメニュー > ArcGIS > Python コマンドプロンプトから開くことができます。もしくは、スタートメニューの [ここに入力して検索] から Python コマンド プロンプト と入力して検索することも可能です。
 
    <img src="./img/python_cmd.png" width="500px">
 
-6. Python コマンド プロンプトが開いたら、環境が先ほど作成した app-dev-2020 であることを確認したら以下のコマンドを実行します。
+6. Python コマンド プロンプトが開いたら、環境が先ほど作成した app-dev-2020 であることを確認し、以下のコマンドを実行します。
 
    `conda install -c esri arcgis=1.8.1 --no-pin`
 
-   <img src="./img/install-python.png" width="500px">
+   <img src="./img/install-python.png" width="700px">
 
-   各種パッケージのインストールについて確認されるので、y + Enter でインストールを進めます。
+   各種パッケージのインストールについて確認されるので、y > Enter でインストールを進めます。
    
 8. インストールが完了したらディレクトリを任意の場所に移動し、次のコマンドで Jupyter Notebook を起動します。
 
    `jupyter notebook`
 
    Chrome、Firefox、Chromium 版の Edge 等のモダン ブラウザーを使用してください。
-   IE 等で開いてしまった場合は以下画像部分の URL を Chrome 等の アドレスバーにコピーして開いてください。
+   IE 等で開いてしまった場合は以下画像部分の URL を Chrome 等のアドレスバーにコピーして開いてください。
 
-   <img src="./img/jupyter-notebook.png" width="500px">
+   <img src="./img/jupyter-notebook.png" width="700px">
 
 9. Jupyter Notebook が開いたら以下画像の順にクリックし、新しいノートブックを開きます。
 
-   <img src="./img/open-jupyter-nb.png" width="500px">
+   <img src="./img/open-jupyter-nb.png" width="700px">
 
    ノートブックが開いたら、セルに次のコードを入力後、Shift + Enter で実行して、マップが表示されることを確認してください。
    ```
@@ -105,7 +105,7 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
       m = gis.map()
       m
    ```
-   マップが表示されたら正常に環境がこうちくされています。  
+   マップが表示されたら正常に環境が構築されています。  
 
    <img src="./img/map.png" width="500px">
 
