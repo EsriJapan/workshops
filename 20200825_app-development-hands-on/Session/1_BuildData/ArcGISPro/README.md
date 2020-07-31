@@ -30,24 +30,27 @@
    <img src="./img/pro_webmap_upload_finish.png" width="300px">
 
 ## ArcGIS Online で Web マップを参照
-
 1. [ArcGIS Online](https://www.esrij.com/products/arcgis-online/) にアクセスします。
 
    <img src="./img/agol.png" width="500px">
 
-2. 画面上部の「コンテンツ」を押下します。
+2. ログイン情報を入力し、ArcGIS Onlineにログインしてください。
+
+   <img src="./img/login.png" width="500px">
+
+3. 画面上部の「コンテンツ」を押下します。
 
    <img src="./img/agol_menu.png" width="800px">
 
-3. アップロードした Web マップを押下します。
+4. アップロードした Web マップを押下します。
 
    <img src="./img/agol_content.png" width="500px">  
 
-4. Web マップの概要画面に遷移後、サムネイルを押下します。
+5. Web マップの概要画面に遷移後、サムネイルを押下します。
 
    <img src="./img/agol_web_map.png" width="500px">  
 
-5. Web マップ が参照可能になります。
+6. Web マップ が参照可能になります。
 
    <img src="./img/agol_view.png" width="500px">
 
