@@ -105,11 +105,13 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
    ※Cドライブや任意のディレクトリに配置していただいても構いませんが、配置先にあわせて以下を書き換えていただく必要があります。
    
-   ・EJWater フォルダにある「project.config」の4,6行目を書き換えて頂く必要があります（以下画像参照）。
-
+   ・EJWater フォルダにある「project.config」の4,6行目を書き換えて頂く必要があります（以下画像参照）。  
+     →解凍したデータをDドライブ直下に配置した場合は対応不要です。
+     
    <img src="./img/data_config2.png" width="500px">   
    
-   ・EJWater\script\config フォルダにある「config.ini」の2行目を書き換えていただく必要があります（以下画像参照）。
+   ・EJWater\script\config フォルダにある「config.ini」の2行目を書き換えていただく必要があります（以下画像参照）。  
+     →解凍したデータをDドライブ直下に配置した場合は対応不要です。
    
    <img src="./img/data_config3.png" width="500px">  
 
