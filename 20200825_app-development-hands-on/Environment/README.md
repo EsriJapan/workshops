@@ -69,18 +69,38 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
 6. Python コマンド プロンプトが開いたら、環境が先ほど作成した app-dev-2020 であることを確認し、以下のコマンドを実行します。
 
-   `conda install -c esri arcgis=1.8.1 --no-pin`
+   `conda upgrade -c esri arcgis --no-pin`
 
-   <img src="./img/install-python.png" width="700px">
+   <img src="./img/upgrade_python_api.png" width="700px">
 
    各種パッケージのインストールについて確認されるので、y > Enter でインストールを進めます。
+   この際、arcgis パッケージのバージョンが 1.8.2 であることを確認してください。
    
 8. インストールが完了したらディレクトリを任意の場所に移動し、次のコマンドで Jupyter Notebook を起動します。
 
    `jupyter notebook`
 
    Chrome、Firefox、Chromium 版の Edge 等のモダン ブラウザーを使用してください。
-   IE 等で開いてしまった場合は以下画像部分の URL を Chrome 等のアドレスバーにコピーして開いてください。
+
+   基本的には Windows の既定のブラウザーで開かれますが、IE 11 を既定のブラウザーにしている場合は、次の方法で Jupyter Notebook 使用時に開くデフォルトのブラウザーを変更してください。
+
+   1. Python コマンド プロンプトで以下のコマンドを実行
+      `jupyter notebook --generate-config`
+
+      Jupyter Notebook の設定ファイルが作成され、設定ファイルのパスが表示されます。
+
+      <img src="./img/generate_config.png" width="700px">
+
+   1. 設定ファイルを編集
+      設定ファイルをテキスト エディターで開き、99 行目付近の `c.NotebookApp.browser` に、以下の例のように任意のブラウザーの実行ファイルのパスに書き換え保存します。
+
+      `c.NotebookApp.browser = u'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'`
+
+      <img src="./img/jupyter_notebook_config.png" width="700px">
+
+      上記の例では Google Chrome のパスを設定しています。
+
+   一時的に利用するブラウザーを変えるだけであれば、Jupyter Notebook を起動後、以下画像部分の URL を Chrome 等のアドレスバーにコピーすることでも対応可能です。
 
    <img src="./img/jupyter-notebook.png" width="700px">
 
@@ -120,7 +140,7 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
 3. 「project.config」ファイルの 5行目の value をご自身の Python 環境に合わせて変更します。
 
-   [②ArcGIS API for Python の環境設定](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Environment#arcgis-api-for-python-%E3%81%AE%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A)でメモしたパスに Explorer で移動します。配下に **pythonw.exe** があるので、そのパスを指定してください。
+   [②ArcGIS API for Python の環境設定](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Environment#arcgis-api-for-python-%E3%81%AE%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A)でメモしたパスに Explorer で移動します。配下に python**w**.exe があるので、そのパスを指定してください。
 
    <img src="./img/data_config_python.png" width="700px">  
 
