@@ -71,10 +71,11 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
    `conda upgrade -c esri arcgis --no-pin`
 
-   <img src="./img/upgrade_python_api.png" width="700px">
-
    各種パッケージのインストールについて確認されるので、y > Enter でインストールを進めます。
    この際、arcgis パッケージのバージョンが 1.8.2 であることを確認してください。
+
+   <img src="./img/upgrade_python_api.png" width="700px">
+
    
 8. インストールが完了したらディレクトリを任意の場所に移動し、次のコマンドで Jupyter Notebook を起動します。
 
@@ -85,20 +86,21 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
    基本的には Windows の既定のブラウザーで開かれますが、IE 11 を既定のブラウザーにしている場合は、次の方法で Jupyter Notebook 使用時に開くデフォルトのブラウザーを変更してください。
 
    1. Python コマンド プロンプトで以下のコマンドを実行
+
       `jupyter notebook --generate-config`
 
-      Jupyter Notebook の設定ファイルが作成され、設定ファイルのパスが表示されます。
+      Jupyter Notebook の設定ファイルが作成され、作成された設定ファイルのパスが表示されます。
 
-      <img src="./img/generate_config.png" width="700px">
+      <img src="./img/generate_config.png" width="600px">
 
    1. 設定ファイルを編集
-      設定ファイルをテキスト エディターで開き、99 行目付近の `c.NotebookApp.browser` に、以下の例のように任意のブラウザーの実行ファイルのパスに書き換え保存します。
+      設定ファイルをテキスト エディターで開き、99 行目付近の `c.NotebookApp.browser` を、以下の例のように任意のブラウザーの実行ファイルのパスに書き換えます。
 
       `c.NotebookApp.browser = u'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'`
 
       <img src="./img/jupyter_notebook_config.png" width="700px">
 
-      上記の例では Google Chrome のパスを設定しています。
+      上記の例では Google Chrome のパスを設定しています。 
 
    一時的に利用するブラウザーを変えるだけであれば、Jupyter Notebook を起動後、以下画像部分の URL を Chrome 等のアドレスバーにコピーすることでも対応可能です。
 
@@ -115,7 +117,7 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
       m = gis.map()
       m
    ```
-   マップが表示されたら正常に環境が構築されています。  
+   マップが表示されたら正常に環境が構築されています。 
 
    <img src="./img/map.png" width="500px">
 
