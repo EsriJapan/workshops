@@ -140,14 +140,22 @@ ArcGIS Runtime SDK for .NET バージョン 100.8 につきましては、開発
 ## ArcGIS プラットフォームを活用したWebアプリ開発ハンズオン
 
 ### ⑥ArcGIS API for JavaScript の環境設定
-#### 1. 開発環境
+
+#### 1. 動作環境
+
+ハンズオンでは、ArcGIS API for JavaScript バージョン 4.x を使用します。   
+動作環境については、以下のサイトに記載しておりますのでご確認ください。
+
+[ArcGIS API for JavaScript バージョン 4.x (動作環境)](https://www.esrij.com/products/arcgis-api-for-javascript/environments/)
+
+#### 2. 開発環境
 
 ハンズオンでは [Visual Studio Code](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) を使用します。  
 ご使用の開発環境に応じて[ダウンロード](https://code.visualstudio.com/download)行い、インストールを行ってください。
 
 また、本ハンズオンでは、Visual Studio Code の拡張機能を使用しますので、以下の手順に従って Live Server のインストールを行ってください。
 
-#### 2. Live Server
+#### 2-1. Live Server
 Live Server を使用することによって、簡単にローカルサーバを立てることができます。また、ファイルを更新すると自動的にブラウザを更新します。
 
 ※ 既にインストール済みの方は不要です。
@@ -164,7 +172,7 @@ Live Server を使用することによって、簡単にローカルサーバ�
    
    <img src="./img/vs_code_liveServer.png" width="600px"></br>
 
-#### 3. ArcGIS API for JavaScript Snippets 
+#### 2-2. ArcGIS API for JavaScript Snippets 
 ArcGIS API for JavaScript のコード スニペットとして、ArcGIS API for JavaScript Snippets を提供しています。開発を効率に行う上でも便利な機能ですので、必須ではありませんが、インストールをお勧めします。
 
 ※ 既にインストール済みの方は不要です。
