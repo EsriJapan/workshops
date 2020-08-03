@@ -9,7 +9,9 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
 2. ログイン情報を入力し、ログインができることを確認してください。
 
-   ※ログイン情報の作成に関しては[ArcGIS for Developers 開発者アカウント](https://esrijapan.github.io/arcgis-dev-resources/guide/create-map/get-dev-account/)参照してください。
+   ※ArcGIS Online の組織向けプラン、もしくは ArcGIS Developer Subscription をご利用中の方はお持ちの ArcGIS Online のアカウントでログインができることを確認してください。  
+   ※ArcGIS Online のアカウントをお持ちでない方は ArcGIS Developer Subscription の無料アカウントを作成し、ログインができることを確認してください。ログイン情報の作成に関しては[ArcGIS for Developers 開発者アカウントの作成](https://esrijapan.github.io/arcgis-dev-resources/guide/create-map/get-dev-account/)参照してください。
+     
 
    <img src="./img/agol_login.png" width="300px">
 
