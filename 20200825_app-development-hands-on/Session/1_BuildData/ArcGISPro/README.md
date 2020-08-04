@@ -36,11 +36,11 @@
 
 2. ログイン情報を入力し、ArcGIS Onlineにログインしてください。
 
-   <img src="./img/login.png" width="500px">
+   <img src="./img/login.png" width="300px">
 
 3. 画面上部の「コンテンツ」を押下します。
 
-   <img src="./img/agol_menu.png" width="800px">
+   <img src="./img/agol_menu.png" width="500px">
 
 4. アップロードした Web マップを押下します。
 
