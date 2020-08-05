@@ -41,32 +41,78 @@
 
    <img src="./img/viewer.png" width="300px">
 
+### フィーチャ レイヤーのフィルタリング
+1. 「詳細」を押下します。
+
+   <img src="./img/viewer_detail.png" width="300px">
+
+2. 「フィルター」を押下します。
+
+   <img src="./img/filter.png" width="300px">
+
+3. 「売上＝3000000」となるようにフィルターの設定をし、「フィルターの適用ボタン」を押下します。
+
+   <img src="./img/filter2.png" width="300px">
+
+4. 「テーブルの表示」を押下します。
+
+   <img src="./img/filter3.png" width="300px">
+
+5. フィルターが正しく設定されていることがわかります。
+
+   <img src="./img/filter4.png" width="300px">
+
 ## ②Living Atlas を使ってみよう
 ### Living Atlas へアクセス
-1. 画面上部にある赤枠のボタンを押下してください。
- 
-   <img src="./img/agol_menu.png" width="300px">
-
-2. 「Living Atlas」ボタンを押下します。
+1. 画面右上の「Living Atlas」ボタンを押下します。
 
    <img src="./img/agol_living_atlas.png" width="300px">
 
-3. Living Atlas 表示後、検索バーに「全国市区町村界」と入力し、検索を実行します。
+2. Living Atlas 表示後、検索バーに「全国市区町村界マップ2020」と入力し、Enterキーを押下します。
 
-   <img src="./img/living_atlas_japan.png" width="500px">
+   <img src="./img/living_atlas_japan.png" width="300px">
 
 ### Web マップ参照
 1. 検索結果の表示後、「全国市区町村界マップ2020」を押下します。
 
-   <img src="./img/living_atlas_japan_search.png" width="500px">
+   <img src="./img/living_atlas_japan_search.png" width="300px">
 
-2. 画面遷移後、サムネイルを押下します。
+2. 「全国市区町村界マップ2020」 Web マップが起動します。
 
-   <img src="./img/living_atlas_japan_view.png" width="500px">
+   <img src="./img/agol_japan_mapview.png" width="300px">
 
-3. 「全国市区町村界マップ2020」 Web マップが起動します。
+### Web マップのレンダリング
+1. 「コンテンツ」を押下します。
 
-   <img src="./img/agol_japan_mapview.png" width="500px">
+   <img src="./img/map_content.png" width="300px">
+
+2. 「スタイルの変更」を押下します。
+
+   <img src="./img/change_style.png" width="300px">
+
+3. 「表示する属性を選択」で「P_NUM」(人口数)を選択します。
+
+   <img src="./img/change_style2.png" width="300px">
+
+4. 数値分類でフィーチャがレンダリングされていることがわかります。
+
+   <img src="./img/change_style3.png" width="300px">
+
+5. 「オプション」を押下します。
+
+   <img src="./img/change_style4.png" width="300px">
+
+6. 「シンボル」を押下します。
+
+    <img src="./img/change_style5.png" width="300px">
+
+7.  任意の色を選択して「OK」を押下してください。
+
+    <img src="./img/change_style6.png" width="300px">
+
+8. シンボルの色が変更されたことがわかります。
+   
+   <img src="./img/change_style7.png" width="300px">
 
 ## まとめ
 ArcGIS Online を使用すれば、簡単に Web GIS 上にデータをアップロードしたり、パブリックに公開されているデータを自由に使用することができます。また、ArcGIS Online にアップロードしたデータを ArcGIS API for Python, ArcGIS Runtime SDK, ArcGIS API for JavaScript などを API で操作することもできます。  
