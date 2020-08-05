@@ -25,7 +25,7 @@ Web マップに格納するためのレイヤーを作成します。
    
 3. 「URLから」を選択し、「URL」に以下を入力し、「次へ」ボタンを押下します。
 
-   「URL」・・・ `https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer`  
+   「URL」・・・`https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer`  
 
    ※入力する URL はあらかじめパブリックに公開しておいたデータです。これをテンプレートにして空のフィーチャ レイヤーを作成します。  
    ※この作業をすることで、複数のレイヤーをレンダリング設定を含めて一括でコピーすることができます。
@@ -123,11 +123,15 @@ Web マップに格納するためのレイヤーを作成します。
 
    <img src="./img/agol_content.png" width="300px">  
 
-2. Web マップの概要画面に遷移後、サムネイルを押下します。
+2. 後のセッションで使用するので、赤枠の部分をコピーして控えておいてください（=より後の部分をコピーしてください）。
+
+   <img src="./img/web_id.png" width="500px">  
+
+3. Web マップの概要画面に遷移後、サムネイルを押下します。
 
    <img src="./img/agol_web_map.png" width="300px">  
 
-3. Web マップ が参照可能になります。
+4. Web マップ が参照可能になります。
 
    <img src="./img/agol_view.png" width="300px">
 

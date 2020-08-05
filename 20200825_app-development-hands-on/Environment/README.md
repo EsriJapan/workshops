@@ -16,7 +16,7 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
    <img src="./img/agol_login.png" width="300px">
 
-3. 日本語表示にされる方は Settings ボタン押下語、Language を 日本語に変更してください(ハンズオンは日本語表示で進めます)。  
+3. 日本語表示にされる方は My settings ボタンを押下してください(ハンズオンは日本語表示で進めます)。  
 
    <img src="./img/agol_setting.png" width="300px"></br>
   

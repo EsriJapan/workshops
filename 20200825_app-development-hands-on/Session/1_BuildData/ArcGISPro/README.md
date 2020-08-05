@@ -1,6 +1,6 @@
 # ArcGIS Pro を使用した Web マップの作成
 
-<span style="color: red; ">※ArcGIS Pro をお持ちでない方は[ArcGIS API for Python を使用した Web マップの作成](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/PythonAPIVersion)をご参照ください。</span>
+<span style="color: red; ">※ArcGIS Pro をお持ちでない方は[ArcGIS Online を使用した Web マップの作成](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/ArcGISOnlineVersion)をご参照ください。</span>
 
 ## ArcGIS Pro 起動
 
@@ -46,11 +46,15 @@
 
    <img src="./img/agol_content.png" width="500px">  
 
-5. Web マップの概要画面に遷移後、サムネイルを押下します。
+5. 後のセッションで使用するので、赤枠の部分をコピーして控えておいてください（=より後の部分をコピーしてください）。
+
+   <img src="./img/web_id.png" width="500px">  
+
+6. Web マップの概要画面に遷移後、サムネイルを押下します。
 
    <img src="./img/agol_web_map.png" width="500px">  
 
-6. Web マップ が参照可能になります。
+7. Web マップ が参照可能になります。
 
    <img src="./img/agol_view.png" width="500px">
 
