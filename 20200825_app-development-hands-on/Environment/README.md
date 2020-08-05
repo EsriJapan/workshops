@@ -16,11 +16,17 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
 
    <img src="./img/agol_login.png" width="300px">
 
-3. 日本語表示にされる方は My settings ボタンを押下してください(ハンズオンは日本語表示で進めます)。  
+3. 日本語表示にされる方は「My settings」ボタンを押下してください(ハンズオンは日本語表示で進めます)。  
 
    <img src="./img/agol_setting.png" width="300px"></br>
   
-   <img src="./img/agol_language.png" width="300px">
+4. 「Update」ボタンを押下してください。
+
+   <img src="./img/update_language.png" width="300px">
+
+5. 「日本語」を選択して「Save」ボタンを押下します。
+
+   <img src="./img/update_language2.png" width="300px">
 
 ## ArcGIS Pro をお持ちの方のみ「②」「③」「④」をご対応願います。
 ### ②ArcGIS Pro の環境設定
