@@ -114,6 +114,14 @@
    
    <img src="./img/change_style7.png" width="300px">
 
+9. 下にある「全国都道府県界データ2020」のレイヤーを非表示にします。
+
+   <img src="./img/layer_off.png" width="300px">
+
+10. 「表示する縮尺範囲」を以下のように設定します。
+
+   <img src="./img/scale_filter.png" width="300px">
+
 ## まとめ
 ArcGIS Online を使用すれば、簡単に Web GIS 上にデータをアップロードしたり、パブリックに公開されているデータを自由に使用することができます。また、ArcGIS Online にアップロードしたデータを ArcGIS API for Python, ArcGIS Runtime SDK, ArcGIS API for JavaScript などを API で操作することもできます。  
 
