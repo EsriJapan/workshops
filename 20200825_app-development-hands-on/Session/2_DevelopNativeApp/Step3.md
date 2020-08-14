@@ -119,7 +119,7 @@ public async Task OfflineMapUp(PreplannedMapArea mapArea)
 
 以上がアップロード機能の実装となります。  
 
-漏水調査アプリを実行して動作を確認してみてください。
+漏水調査アプリを実行して動作を確認してみてください。  
 <img src="./img/vs_jikkou2.png" width="500px">
 
 オフラインデータのアップロードについては以下のサイトに詳細な情報が記載されています。  
