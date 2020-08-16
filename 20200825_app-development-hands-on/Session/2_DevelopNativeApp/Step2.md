@@ -17,7 +17,7 @@
 <img src="./img/vs_offlineclass1.png" width="500px">  
 
 「OfflineAreaPanelModel.cs」ファイルの 139 行目にある以下のメソッドを実装します。  
-```
+```cs
 private async Task DownloadMapAreaAsync(PreplannedMapArea mapArea, OfflineMapTask offlineMapTask)  
 ```
 
@@ -32,11 +32,11 @@ private async Task DownloadMapAreaAsync(PreplannedMapArea mapArea, OfflineMapTas
 
 補足：  
 offlineMapTask クラスのインスタンスは Web マップを引数に作成することができます。
-```
+```cs
 offlineMapTask = await OfflineMapTask.CreateAsync(Map);
 ```
 プレプランのエリアは OfflineMapTask クラスの GetPreplannedMapAreasAsync メソッドを使用してプレプランエリアのリストを取得することができます。
-```
+```cs
 IReadOnlyList<PreplannedMapArea> preplannedAreas = await offlineMapTask.GetPreplannedMapAreasAsync();
 ```
 
@@ -45,7 +45,7 @@ IReadOnlyList<PreplannedMapArea> preplannedAreas = await offlineMapTask.GetPrepl
 
 ### ② DownloadMapAreaAsync の実装
 1. はじめにダウンロードするエリアが選択されているかチェックする処理を記述します。  
-    ```
+    ```cs
     if (mapArea == null)
     {
         MessageBox.Show("ダウンロードするエリアを選択してください。");
@@ -54,7 +54,7 @@ IReadOnlyList<PreplannedMapArea> preplannedAreas = await offlineMapTask.GetPrepl
     ```
 
 2. UI を処理中画面に変更します。  
-    ```
+    ```cs
     // ダウンロード用のUIを設定します。
     BusyIndicatorVisibility = true;
     OnPropertyChanged(nameof(BusyIndicatorVisibility));
