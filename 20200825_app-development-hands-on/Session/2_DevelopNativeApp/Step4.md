@@ -16,8 +16,8 @@
 ソリューションエクスプローラーから「ESRIJOfflineApp」→「Modelsフォルダ」→「OfflineAreaPanelModel.cs」を開きます。  
 <img src="./img/vs_offlineclass1.png" width="500px">  
 
-「OfflineAreaPanelModel.cs」ファイルの 329 行目にある以下のメソッドを実装します。  
-```
+「OfflineAreaPanelModel.cs」ファイルにある以下のメソッドを実装します。  
+```cs
 private async Task DeleteMapAreasAsync(PreplannedMapArea mapArea)  
 ```
 
@@ -31,7 +31,7 @@ DeleteMapAreasAsync メソッドの引数について
 
 ### ② OfflineMapUp の実装
 1. はじめに削除するするオフラインデータが選択されているかチェックする処理を記述します。
-    ```
+    ```cs
     if (mapArea == null)
     {
         MessageBox.Show("削除するエリアを選択してください。");
@@ -43,7 +43,7 @@ DeleteMapAreasAsync メソッドの引数について
     - GeodatabaseSyncTask クラスの UnregisterGeodatabaseAsync メソッドを使って同期を解除します。  
     - モバイル マップ パッケージを閉じます。  
     - ローカルに保存されているモバイル マップ パッケージを削除します。  
-    ```
+    ```cs
     try
     {            
         // 削除するマップ パッケージフォルダ パスを作成します。
