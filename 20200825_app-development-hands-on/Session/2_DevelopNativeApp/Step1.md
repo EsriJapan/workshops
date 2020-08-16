@@ -10,7 +10,7 @@
 
 ### ① アプリケーションのダウンロード
 1. ハンズオンで使用するアプリケーションを以下よりダウンロードしてください。  
-[Handson.zip](./Handson.zip)
+[Handson.zip](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Session/2_DevelopNativeApp/Handson.zip)
 
 2. 任意の場所に配置して解凍する  
 例：D：\ESRIJOfflineApp
