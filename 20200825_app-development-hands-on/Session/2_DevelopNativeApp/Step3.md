@@ -94,7 +94,7 @@ public async Task OfflineMapUp(PreplannedMapArea mapArea)
             }
             else if (offlineMapSyncJob.Status == Esri.ArcGISRuntime.Tasks.JobStatus.Failed)
             {
-                //同期失敗
+                // 同期失敗
                 _statusMessage = offlineMapSyncJob.Error.Message;
                 BusyIndicatorVisibility = false;
                 OnPropertyChanged(nameof(BusyIndicatorVisibility));
