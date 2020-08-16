@@ -62,7 +62,7 @@ IReadOnlyList<PreplannedMapArea> preplannedAreas = await offlineMapTask.GetPrepl
 
 3. 既にダウンロード済みのモバイル マップ パッケージがあればそれを開きます。  
 ※コードに出てくる アンダースコア ( _ ) が先頭についている変数はクラス変数です。 
-    ```
+    ```cs
     // マップ パッケージをダウンロードするフォルダ パスを作成します。
     string path = System.IO.Path.Combine(_offlineDataFolder, mapArea.PortalItem.Title);
 
@@ -97,7 +97,7 @@ IReadOnlyList<PreplannedMapArea> preplannedAreas = await offlineMapTask.GetPrepl
 4. パラメータを作成  
 オフラインのマップのダウンロードに必要なパラメータを作成します。  
 DownloadPreplannedOfflineMapParameters クラスに OfflineMapTask クラスの CreateDefaultDownloadPreplannedOfflineMapParametersAsync メソッドを渡すことで作成できます。CreateDefaultDownloadPreplannedOfflineMapParametersAsync メソッドの引数はダウンロードするプレプランのエリアです。
-    ```
+    ```cs
     // ダウンロードパラメータを作成します。
     DownloadPreplannedOfflineMapParameters parameters = await offlineMapTask.CreateDefaultDownloadPreplannedOfflineMapParametersAsync(mapArea);
 
@@ -107,7 +107,7 @@ DownloadPreplannedOfflineMapParameters クラスに OfflineMapTask クラスの 
 
 5. ジョブを作成する
 OfflineMapTask クラスのDownloadPreplannedOfflineMap メソッドを実行してプレプランで作成したオフラインエリアのデータをダウンロードします。
-    ```
+    ```cs
     // ジョブの作成
     DownloadPreplannedOfflineMapJob job = offlineMapTask.DownloadPreplannedOfflineMap(parameters, path);
     ```
@@ -117,7 +117,7 @@ DownloadPreplannedOfflineMapJobクラス の GetResultAsync メソッドを実�
 完了すると、DownloadPreplannedOfflineMapResult クラスのインスタンスを返します。  
 DownloadPreplannedOfflineMapResult クラスの HasErrors プロパティを使用して判定を行いオフラインマップの表示までの処理を実行します。  
 ※HasErrors プロパティは成功した場合、true になります。
-    ```
+    ```cs
     try
     {
         // エリアのダウンロード
