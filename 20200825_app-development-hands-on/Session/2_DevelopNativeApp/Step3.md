@@ -45,8 +45,7 @@ public async Task OfflineMapUp(PreplannedMapArea mapArea)
     - OfflineMapSyncTask を作成します。  
     - OfflineMapSyncParametersオブジェクトを作成します。  
     - タスク上で SyncOfflineMap を呼び出し、定義したパラメータオブジェクトを渡して OfflineMapSyncJob を作成します。  
-    - ジョブのステータス変更とメッセージを追跡するために OfflineMapSyncJob.JobChanged イベントを処理します。これは、ジョブの完了（成功または失敗）が報告される場所です。  
-    - OfflineMapSyncJob.ProgressChangedイベントを処理して、ジョブの進行状況を監視および報告します。  
+    - OfflineMapSyncJob.JobChanged イベントを処理して、ジョブのステータスを監視します。  
     - OfflineMapSyncJob.Startを呼び出して、同期ジョブを開始します。
 
     ```cs
