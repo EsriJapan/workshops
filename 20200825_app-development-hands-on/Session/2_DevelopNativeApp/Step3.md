@@ -16,8 +16,8 @@
 ソリューションエクスプローラーから「ESRIJOfflineApp」→「Modelsフォルダ」→「OfflineAreaPanelModel.cs」を開きます。  
 <img src="./img/vs_offlineclass1.png" width="500px">  
 
-「OfflineAreaPanelModel.cs」ファイルの 247 行目にある以下の OfflineMapUp メソッドを実装します。  
-```
+「OfflineAreaPanelModel.cs」ファイルにある以下の OfflineMapUp メソッドを実装します。  
+```cs
 public async Task OfflineMapUp(PreplannedMapArea mapArea)  
 ```
 
@@ -33,7 +33,7 @@ public async Task OfflineMapUp(PreplannedMapArea mapArea)
 
 ### ② OfflineMapUp の実装
 1. はじめにアップロードするエリアが選択されているかチェックする処理を記述します。
-    ```
+    ```cs
     if (mapArea == null)
     {
         MessageBox.Show("アップロードするエリアを選択してください。");
@@ -49,7 +49,7 @@ public async Task OfflineMapUp(PreplannedMapArea mapArea)
     - OfflineMapSyncJob.ProgressChangedイベントを処理して、ジョブの進行状況を監視および報告します。  
     - OfflineMapSyncJob.Startを呼び出して、同期ジョブを開始します。
 
-    ```
+    ```cs
     // マップ パッケージをダウンロードするフォルダ パスを作成します。
     string path = System.IO.Path.Combine(_offlineDataFolder, mapArea.PortalItem.Title);
 
