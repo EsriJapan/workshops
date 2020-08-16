@@ -63,5 +63,7 @@
 【オフラインモード】
 - オンラインマップ：オフラインモードからオンラインモードへ切り替える
 
-<img src="./img/offline_window.png" width="300px">
+| オンラインモードの時 | オフラインモードの時 |
+| --- | --- |
+| <img src="./img/offline_window.png" width="300px"> | <img src="./img/offline_window2.png" width="300px"> |    
 
