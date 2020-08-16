@@ -58,6 +58,11 @@
 
    <img src="./img/agol_view.png" width="500px">
 
+## Web マップの保存の仕方
+1. 「保存」ボタンを押下します。
+
+   <img src="./img/save.png" width="500px">
+
 ## まとめ
 ArcGIS Pro を使用することで FGDB などのローカルデータから簡単に Web マップを作成することができます。また、ArcGIS API for Python, ArcGIS Runtime SDK, ArcGIS API for JavaScript などの API を使用すれば 作成した Web マップを参照することができます。次のセッションでは ArcGIS API for Python を使用して Web マップ を扱ってみようと思います。
 

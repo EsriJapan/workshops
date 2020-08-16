@@ -16,8 +16,8 @@
 ソリューションエクスプローラーから「ESRIJOfflineApp」→「Modelsフォルダ」→「OfflineAreaPanelModel.cs」を開きます。  
 <img src="./img/vs_offlineclass1.png" width="500px">  
 
-「OfflineAreaPanelModel.cs」ファイルの 139 行目にある以下のメソッドを実装します。  
-```
+「OfflineAreaPanelModel.cs」ファイルにある以下のメソッドを実装します。  
+```cs
 private async Task DownloadMapAreaAsync(PreplannedMapArea mapArea, OfflineMapTask offlineMapTask)  
 ```
 
@@ -32,11 +32,11 @@ private async Task DownloadMapAreaAsync(PreplannedMapArea mapArea, OfflineMapTas
 
 補足：  
 offlineMapTask クラスのインスタンスは Web マップを引数に作成することができます。
-```
+```cs
 offlineMapTask = await OfflineMapTask.CreateAsync(Map);
 ```
 プレプランのエリアは OfflineMapTask クラスの GetPreplannedMapAreasAsync メソッドを使用してプレプランエリアのリストを取得することができます。
-```
+```cs
 IReadOnlyList<PreplannedMapArea> preplannedAreas = await offlineMapTask.GetPreplannedMapAreasAsync();
 ```
 
@@ -45,7 +45,7 @@ IReadOnlyList<PreplannedMapArea> preplannedAreas = await offlineMapTask.GetPrepl
 
 ### ② DownloadMapAreaAsync の実装
 1. はじめにダウンロードするエリアが選択されているかチェックする処理を記述します。  
-    ```
+    ```cs
     if (mapArea == null)
     {
         MessageBox.Show("ダウンロードするエリアを選択してください。");
@@ -54,7 +54,7 @@ IReadOnlyList<PreplannedMapArea> preplannedAreas = await offlineMapTask.GetPrepl
     ```
 
 2. UI を処理中画面に変更します。  
-    ```
+    ```cs
     // ダウンロード用のUIを設定します。
     BusyIndicatorVisibility = true;
     OnPropertyChanged(nameof(BusyIndicatorVisibility));
@@ -62,7 +62,7 @@ IReadOnlyList<PreplannedMapArea> preplannedAreas = await offlineMapTask.GetPrepl
 
 3. 既にダウンロード済みのモバイル マップ パッケージがあればそれを開きます。  
 ※コードに出てくる アンダースコア ( _ ) が先頭についている変数はクラス変数です。 
-    ```
+    ```cs
     // マップ パッケージをダウンロードするフォルダ パスを作成します。
     string path = System.IO.Path.Combine(_offlineDataFolder, mapArea.PortalItem.Title);
 
@@ -97,7 +97,7 @@ IReadOnlyList<PreplannedMapArea> preplannedAreas = await offlineMapTask.GetPrepl
 4. パラメータを作成  
 オフラインのマップのダウンロードに必要なパラメータを作成します。  
 DownloadPreplannedOfflineMapParameters クラスに OfflineMapTask クラスの CreateDefaultDownloadPreplannedOfflineMapParametersAsync メソッドを渡すことで作成できます。CreateDefaultDownloadPreplannedOfflineMapParametersAsync メソッドの引数はダウンロードするプレプランのエリアです。
-    ```
+    ```cs
     // ダウンロードパラメータを作成します。
     DownloadPreplannedOfflineMapParameters parameters = await offlineMapTask.CreateDefaultDownloadPreplannedOfflineMapParametersAsync(mapArea);
 
@@ -107,7 +107,7 @@ DownloadPreplannedOfflineMapParameters クラスに OfflineMapTask クラスの 
 
 5. ジョブを作成する
 OfflineMapTask クラスのDownloadPreplannedOfflineMap メソッドを実行してプレプランで作成したオフラインエリアのデータをダウンロードします。
-    ```
+    ```cs
     // ジョブの作成
     DownloadPreplannedOfflineMapJob job = offlineMapTask.DownloadPreplannedOfflineMap(parameters, path);
     ```
@@ -117,7 +117,7 @@ DownloadPreplannedOfflineMapJobクラス の GetResultAsync メソッドを実�
 完了すると、DownloadPreplannedOfflineMapResult クラスのインスタンスを返します。  
 DownloadPreplannedOfflineMapResult クラスの HasErrors プロパティを使用して判定を行いオフラインマップの表示までの処理を実行します。  
 ※HasErrors プロパティは成功した場合、true になります。
-    ```
+    ```cs
     try
     {
         // エリアのダウンロード
@@ -167,7 +167,7 @@ DownloadPreplannedOfflineMapResult クラスの HasErrors プロパティを使�
     ```
 以上がダウンロード機能の実装となります。  
 
-漏水調査アプリを実行して動作を確認してみてください。
+漏水調査アプリを実行して動作を確認してみてください。  
 <img src="./img/vs_jikkou2.png" width="500px">
 
 オフラインデータのダウンロードについては以下のサイトに詳細な情報が記載されています。  

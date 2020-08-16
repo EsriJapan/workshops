@@ -39,7 +39,7 @@
 3. 「ServerUrl」を設定  
 ServerUrl の Value にポータルのURLを設定する。  
 例：  
-```<add key="ServerUrl" value="https://ej.maps.arcgis.com/sharing/rest"/>```  
+```<add key="ServerUrl" value="https://www.arcgis.com/sharing/rest"/>```  
 
 4. 「AppClientID」、「OAuthRedirectUrl」を設定  
 まずは、アプリケーションID と リダイレクトURLを発行します。

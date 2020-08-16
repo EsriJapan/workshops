@@ -16,8 +16,8 @@
 ソリューションエクスプローラーから「ESRIJOfflineApp」→「Modelsフォルダ」→「OfflineAreaPanelModel.cs」を開きます。  
 <img src="./img/vs_offlineclass1.png" width="500px">  
 
-「OfflineAreaPanelModel.cs」ファイルの 247 行目にある以下の OfflineMapUp メソッドを実装します。  
-```
+「OfflineAreaPanelModel.cs」ファイルにある以下の OfflineMapUp メソッドを実装します。  
+```cs
 public async Task OfflineMapUp(PreplannedMapArea mapArea)  
 ```
 
@@ -33,7 +33,7 @@ public async Task OfflineMapUp(PreplannedMapArea mapArea)
 
 ### ② OfflineMapUp の実装
 1. はじめにアップロードするエリアが選択されているかチェックする処理を記述します。
-    ```
+    ```cs
     if (mapArea == null)
     {
         MessageBox.Show("アップロードするエリアを選択してください。");
@@ -45,11 +45,10 @@ public async Task OfflineMapUp(PreplannedMapArea mapArea)
     - OfflineMapSyncTask を作成します。  
     - OfflineMapSyncParametersオブジェクトを作成します。  
     - タスク上で SyncOfflineMap を呼び出し、定義したパラメータオブジェクトを渡して OfflineMapSyncJob を作成します。  
-    - ジョブのステータス変更とメッセージを追跡するために OfflineMapSyncJob.JobChanged イベントを処理します。これは、ジョブの完了（成功または失敗）が報告される場所です。  
-    - OfflineMapSyncJob.ProgressChangedイベントを処理して、ジョブの進行状況を監視および報告します。  
+    - OfflineMapSyncJob.JobChanged イベントを処理して、ジョブのステータスを監視します。  
     - OfflineMapSyncJob.Startを呼び出して、同期ジョブを開始します。
 
-    ```
+    ```cs
     // マップ パッケージをダウンロードするフォルダ パスを作成します。
     string path = System.IO.Path.Combine(_offlineDataFolder, mapArea.PortalItem.Title);
 
@@ -94,7 +93,7 @@ public async Task OfflineMapUp(PreplannedMapArea mapArea)
             }
             else if (offlineMapSyncJob.Status == Esri.ArcGISRuntime.Tasks.JobStatus.Failed)
             {
-                //同期失敗
+                // 同期失敗
                 _statusMessage = offlineMapSyncJob.Error.Message;
                 BusyIndicatorVisibility = false;
                 OnPropertyChanged(nameof(BusyIndicatorVisibility));
@@ -119,7 +118,7 @@ public async Task OfflineMapUp(PreplannedMapArea mapArea)
 
 以上がアップロード機能の実装となります。  
 
-漏水調査アプリを実行して動作を確認してみてください。
+漏水調査アプリを実行して動作を確認してみてください。  
 <img src="./img/vs_jikkou2.png" width="500px">
 
 オフラインデータのアップロードについては以下のサイトに詳細な情報が記載されています。  
