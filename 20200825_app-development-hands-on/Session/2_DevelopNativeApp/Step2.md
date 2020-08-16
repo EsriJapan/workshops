@@ -16,7 +16,7 @@
 ソリューションエクスプローラーから「ESRIJOfflineApp」→「Modelsフォルダ」→「OfflineAreaPanelModel.cs」を開きます。  
 <img src="./img/vs_offlineclass1.png" width="500px">  
 
-「OfflineAreaPanelModel.cs」ファイルの 139 行目にある以下のメソッドを実装します。  
+「OfflineAreaPanelModel.cs」ファイルにある以下のメソッドを実装します。  
 ```cs
 private async Task DownloadMapAreaAsync(PreplannedMapArea mapArea, OfflineMapTask offlineMapTask)  
 ```
