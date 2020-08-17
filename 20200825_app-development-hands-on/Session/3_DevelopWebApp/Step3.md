@@ -1,6 +1,7 @@
 ## Step3：標準ウィジェットの実装
 ### 標準ウィジェットを活用したウィジェット作成
- 
+main.js に対して実装していきます。
+
 <b>① 検索 ウィジェットの実装</b>  
  マップ内の目標物や場所を検索するためのウィジェットです。
  
@@ -9,7 +10,7 @@
 
  - API リファレンス: [検索ウィジェット](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Search.html)
 
-以下のコードを記述してください。
+main.js を開いて、以下のコードを記述してください。
 ```JavaScript
 const searchWidget = new Search({
   container: "searchWidgetDiv",
@@ -22,7 +23,7 @@ DOM の要素 として、"searchWidgetDiv" を指定します。ここでは、
 
 コードを記述し、保存することで、ブラウザが自動的に更新されます。もし、ブラウザを閉じた場合は、再度、Liver Server を起動してください。
 
-|![step3](./img/app_step3_1.png)|
+|<img src="./img/app_step3_1.png" width="600">|
 |:-:|
 
 画面右上に検索 ウィジェットが追加されてます。
@@ -35,7 +36,7 @@ DOM の要素 として、"searchWidgetDiv" を指定します。ここでは、
 
 - API リファレンス: [ホーム ウィジェット](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Home.html)
 
-以下のコードを記述してください。
+main.js を開いて、以下のコードを記述してください。
 ```javascript
 const home = new Home({
   view: mapView
@@ -58,7 +59,7 @@ mapView.ui.add(home, "top-left");
 
 - API リファレンス: [コンパス ウィジェット](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Compass.html)
 
-以下のコードを記述してください。
+main.js を開いて、以下のコードを記述してください。
 ```javascript
 const compass = new Compass({
   view: mapView
@@ -79,7 +80,7 @@ mapView.ui.add(compass, "top-left");
 
 - API リファレンス: [ベースマップ ウィジェット](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-BasemapToggle.html)
 
-以下のコードを記述してください。
+main.js を開いて、以下のコードを記述してください。
 ```javascript
 const basemapToggle = new BasemapToggle({
   view: mapView,
@@ -101,7 +102,7 @@ mapView.ui.add(basemapToggle, "bottom-right");
 
 - API リファレンス: [スケールバー ウィジェット](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-ScaleBar.html)
 
-以下のコードを記述してください。
+main.js を開いて、以下のコードを記述してください。
 ```javascript
 const scaleBar = new ScaleBar({
   style: "line",
@@ -118,7 +119,7 @@ ScaleBar クラスのコンストラクタのプロパティにはスケール�
 
 scaleBar の地図配置は、"manual" としています。"manual" とすることで、 container プロパティで設定した DOM 要素の "scaleBarDiv" に対して、CSS を設定することで、任意の位置に配置することができます。
 
-以下の CSS は、index.css に設定しています。
+以下の CSS を index.css に設定しています。
 ```css
 #scaleBarDiv {
   bottom: 50px;
@@ -137,7 +138,7 @@ scaleBar の地図配置は、"manual" としています。"manual" とする�
 
 - API リファレンス: [レイヤーリスト ウィジェット](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList.html)
 
-以下のコードを記述してください。
+main.js を開いて、以下のコードを記述してください。
 ```javascript
 const layerList = new LayerList({
     selectionEnabled: true,
@@ -158,11 +159,11 @@ LayerList クラスのコンストラクタのプロパティには、レイヤ�
 [listItemCreatedFunction](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList.html#listItemCreatedFunction) では、各レイヤーのリストアイテム [ListItem](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList-ListItem.html) にアクセスする関数を指定することができます。ここでは、レイヤーリストにアクセスすることで凡例を表示するようにしています。　
 
 レイヤーリスト ウィジェットの起動は、メニューのレイヤー一覧を選択します。
-|![step3](./img/app_step3_2.png)|
+|<img src="./img/app_step3_2.png" width="600">|
 |:-:|
 
-すると、以下のようなレイヤーリスト ウィジェットを表示します。
-|![step3](./img/app_step3_3.png)|
+以下のようなレイヤーリスト ウィジェットを表示します。
+|<img src="./img/app_step3_3.png" width="600">|
 |:-:|
 
 <br/>
@@ -172,7 +173,7 @@ LayerList クラスのコンストラクタのプロパティには、レイヤ�
 
 - API リファレンス: [印刷 ウィジェット](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Print.html)
 
-以下のコードを記述してください。
+main.js を開いて、以下のコードを記述してください。
 ```javascript
 const print = new Print({
   view: mapView,
@@ -187,6 +188,9 @@ Print クラスのコンストラクタの printServiceUrl プロパティには
 
 印刷 ウィジェットもレイヤーリスト ウィジェットと同様にメニューの印刷を選択することで立ち上がります。
 
+|<img src="./img/app_step3_10.png" width="300">|
+|:-:|
+
 <br/>
 
 <b>⑧ ブックマーク ウィジェット</b>  
@@ -194,7 +198,7 @@ Print クラスのコンストラクタの printServiceUrl プロパティには
 
 - API リファレンス: [ブックマーク ウィジェット](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Bookmarks.html)
 
-以下のコードを記述してください。
+main.js を開いて、以下のコードを記述してください。
 ```javascript
 const bookmarks = new Bookmarks({
   view: mapView,
@@ -214,10 +218,10 @@ const bookmarks = new Bookmarks({
 Bookmarks クラスのコンストラクタの [editingEnabled プロパティ](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Bookmarks.html#editingEnabled)は、true にすることでブックマークを編集することができます。ブックマークの追加、編集、並べ替え、削除することができます。ただし、ブックマークの編集等の結果はローカル上で表示されるのみで保存はされません。  
 [bookmarkCreationOptions プロパティ](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Bookmarks.html#bookmarkCreationOptions)は、ブックマークの作成時に、スクリーンショットの取得、または現在の地図に基づいた範囲の作成を有効または無効にするために使用できます。
 
-<b>チャレンジ：ブックマークの保尊</b>  
+<b>チャレンジ：ブックマークの保存</b>  
 追加したブックマークは WebMap に保存します。WebMap に保存することで、次回アプリを起動時にも追加したブックマークが有効となっています。
 
-以下のコードを記述してください。
+main.js を開いて、以下のコードを記述してください。
 ```javaScript
 const webmapSave = document.getElementById("WebmapSave");
 webmapSave.addEventListener("click", (event) => {
@@ -241,12 +245,15 @@ webmapSave.addEventListener("click", (event) => {
 ```
 Bookmarks ウィジェットもレイヤーリスト ウィジェットと同様にメニューのブックマークを選択することで立ち上がります。
 
+|<img src="./img/app_step3_9.png" width="300">|
+|:-:|
+
 <br/>
 
-<b>⑨Coordinates ウィジェット</b>  
-Coordinates ウィジェットは、マウスポイントが指定している座標、現在のスケールを表示するためのウィジェットです。この ウィジェットは、標準で用意されていないため、新規に作成します。
+<b>⑨チャレンジ：Coordinates ウィジェット</b>  
+Coordinates ウィジェットは、マウスポイントが指定している座標、現在のスケールを表示するためのウィジェットです。この ウィジェットは、標準で用意されていないため、新規に作成する必要があります。
 
-はじめに以下のコードを記述してください。
+はじめに main.js を開いて、以下のコードを記述してください。
 ```javaScript
 // 新しい div 要素を作成します。
 const coordsWidget = document.createElement("div");
@@ -259,7 +266,7 @@ mapView.ui.add(coordsWidget, "bottom-right");
 
 新しい div 要素を作成して、View に追加することで、UI を作成することができます。そして、その UI に対して、座標とスケールを表示するように制御します。
 
-マウスポインタの座標を取得して表示するため、View に対してのイベントを発行する必要があります。以下のコードを記述してください。
+マウスポインタの座標を取得して表示するため、View に対してのイベントを発行する必要があります。以下のコードを main.js に記述してください。
 ```javaScript
 mapView.on("pointer-move", (evt) => {
   showCoordinates(mapView.toMap({ x: evt.x, y: evt.y }));
@@ -269,7 +276,7 @@ MapView のイベントとして、["pointer-move"](https://developers.arcgis.co
 
 <br>
 
-最後に showCoordinates 関数のコードを記述してください。
+最後に showCoordinates 関数のコードを main.js に記述してください。
 ```javaScript
 const outSpatialReference = new SpatialReference({
   wkid: 6677
@@ -292,6 +299,31 @@ showCoordinates 関数では、座標と縮尺を表示する処理を記述し�
 |![step3](./img/app_step3_8.png)|
 |:-:|
 
-Step 3 はここまでです。  
+Step 3 はここまでです。 
 
-次の Step4 は、「[Step4：概観図の実装](./Step4#Step4：概観図の実装) 」をご参照ください。
+### Step3 のまとめ
+
+今回ハンズオンで使用したウィジェット以外にも20 を超える多くのウィジェットが用意されています。例えば、フィーチャの追加や削除などのデータを編集できる編集ウィジェットとして、[Editer ウィジェット](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Editor.html)があります。  
+他のウィジェットについては、APIリファレンス内の [Widget](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Widget.html) の Subclasses を参照することで確認できます。また、[サンプルコード](https://developers.arcgis.com/javascript/latest/sample-code/?search=widgets)としても提供していますので、ご参照ください。
+
+### Tips
+<b>UI API</b>  
+view の UI レイアウト を設定することができます。 
+UI コンポーネント（ウィジェットや DOM 要素）を四隅に簡単に配置して、  view.ui でアクセスして、追加、移動、削除が可能です。
+
+|<img src="./img/views-ui-layout.jpg" width="400">|
+|:-:|
+
+```javaScript
+// 追加
+view.ui.add(widget, "top-right");
+
+// 移動
+view.ui.move(widget, "bottom-left");
+
+// 削除
+view.ui.remove(widget);
+```
+
+
+次の Step4 は、「[Step4：概観図の実装](./Step4.md#Step4概観図の実装) 」をご参照ください。

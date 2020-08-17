@@ -1,6 +1,7 @@
 ## Step4：概観図の実装
 ### 概観図を表示するウィジェットを作成
- 
+main.js と over-view-map.js に対して実装していきます。
+
 <b>概観図 ウィジェットの実装</b>  
 現在概観図には何も表示されていない状態です。ここに概観図を実装していきます。概観図とは、別の地図の表示範囲を枠などで表示した小縮尺の地図になります。
 
@@ -28,8 +29,6 @@ overView.ui.components = [];
 ```
 概観図では、地図以外は何も表示しないため、UI のコンポーネントを初期化します。
 
-<br/>
-
 次に main.js の 255 行目以降にある mapView.when() 内で、以下のコードを記述します。
 ```JavaScript
 overView.when(() => {
@@ -46,10 +45,7 @@ overView.when(() => {
 });
 ```
 
-View の [when()](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#when) を使用することで、overView と mapView のインスタンスが作成されたあとに overViewMapSet() を実行するようにしています。  
-overViewMapSet() の処理を呼び出しているファイルは、over-view-map.js になります。
-
-<br>
+View の [when()](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#when) を使用することで、overView と mapView のインスタンスが作成されたあとに overViewMapSet() を実行します。overViewMapSet() の処理を呼び出しているファイルは、over-view-map.js になります。
 
 次に over-view-map.js を開いて、overViewMapSet() 関数内に以下のコードを記述します。
 ```JavaScript
@@ -100,11 +96,35 @@ watchUtils の [init](https://developers.arcgis.com/javascript/latest/api-refere
 
 
 以下の画面のようにメインの地図と連動した概観図が作成されます。
-|![step4_2](./img/app_step4_2.png)|
+|<img src="./img/app_step4_2.png" width="500">|
 |:-:|
 
-サンプルの [Overview map](https://developers.arcgis.com/javascript/latest/sample-code/overview-map/index.html) も併せてご参照ください。
 
 Step 4 はここまでです。  
 
-次の Step5 は、「[Step5：属性検索の実装](./Step5#Step5：属性検索の実装)」をご参照ください。
+### Step 4 のまとめ
+
+概観図の作成では、概観図用の Map と View を用意することで実現しています。
+
+```JavaScript
+// overviewMap（概観図）
+overviewMap = new Map({
+  basemap: "topo"
+});
+
+// overView
+overView = new MapView({
+  container: "overViewDiv",
+  map: overviewMap,
+  constraints: {
+    rotationEnabled: false
+  }
+});
+
+// UI コンポーネントの初期化（デフォルトのウィジェットとして設定）
+overView.ui.components = [];
+```
+
+その他、ArcGIS API for JavaScript のサンプルとして紹介している「 [Overview map](https://developers.arcgis.com/javascript/latest/sample-code/overview-map/index.html) 」も併せてご参照ください。ここでは、3D シーンを使用しています。
+
+次の Step5 は、「[Step5：属性検索の実装](./Step5.md#Step5属性検索の実装)」をご参照ください。
