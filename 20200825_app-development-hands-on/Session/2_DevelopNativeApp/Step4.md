@@ -29,7 +29,7 @@ DeleteMapAreasAsync メソッドの引数について
 
 それでは、次の手順より実際にコードを記述してメソッドを完成させます。
 
-### ② OfflineMapUp の実装
+### ② DeleteMapAreasAsync の実装
 1. はじめに削除するするオフラインデータが選択されているかチェックする処理を記述します。
     ```cs
     if (mapArea == null)
