@@ -127,4 +127,4 @@ ArcGIS Developers サイト：[オフライン編集の同期](https://developer
 
 
 ## 次のステップ：
-削除機能の実装
+[Step4：削除機能の実装](./Step4.md)
