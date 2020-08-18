@@ -2,6 +2,10 @@
 
 <span style="color: red; ">※ArcGIS Pro をお持ちでない方は[ArcGIS Online を使用した Web マップの作成](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/ArcGISOnlineVersion)をご参照ください。</span>
 
+## 演習の目的
+1. 「Web マップとして共有」機能を使用して、Web マップを作成する
+2. 作成した Web マップを ArcGIS Online で参照する
+
 ## ArcGIS Pro 起動
 
 1. EJWater フォルダにある EJWater.aprx をダブルクリックします。
