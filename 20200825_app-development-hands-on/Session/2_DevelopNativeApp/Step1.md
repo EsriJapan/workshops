@@ -93,6 +93,7 @@ ServerUrl の Value にポータルのURLを設定する。
 <br><br>
 FeatureLayer の URL を App.config ファイルの「FeatureServiceUrl」に設定する。  
 例：  
+
 ```<add key="FeatureServiceUrl" value="https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer"/>```   
 
 7. 「OfflineDataFolder」と「Mode」に以下を設定する  
