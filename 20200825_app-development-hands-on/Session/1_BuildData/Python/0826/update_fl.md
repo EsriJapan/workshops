@@ -18,19 +18,21 @@ Python コマンド プロンプトを起動すると、自動的に ArcGIS Pro 
 
 1. 以下のコマンドを実行すると作成されている Python 環境の一覧が表示されます。
 
-      - `conda info -e`
+      `conda info -e`
 
 1. 以下のコマンドを実行するとアクティブな Python 環境を切り替えることが可能です。
 
-      - `proswap 任意の環境名` (例: proswap arcgispro-py3)
+      `proswap 任意の環境名` (例: proswap arcgispro-py3)
       
       事前の環境構築の際に今回のハンズオン用に作成した環境に切り替えておきましょう。[環境構築手順](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Environment#arcgis-api-for-python-%E3%81%AE%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A)に記載のとおり作成された場合、環境名は app-dev-2020 です。
 
 ## Python スクリプトの実行
 事前に用意された Python スクリプトを実行します。
 1. `cd` コマンドで EJWater\script\src にディレクトリを移動します。以下のコマンドは D ドライブにハンズオン データを配置した場合の例です。ご自身の任意のディレクトリにデータを配置した場合はそのディレクトリに移動してください。
-    - `d:`
-    - `cd EJWater\script\src`
+
+    `d:`
+    
+    `cd EJWater\script\src`
 
 1. ディレクトリを移動したら src ディレクトリ内にある web_map_sync_main.py ファイルを実行しましょう。
 
