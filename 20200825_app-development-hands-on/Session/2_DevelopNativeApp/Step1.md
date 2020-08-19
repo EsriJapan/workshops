@@ -23,7 +23,7 @@
 
 2. ソリューションエクスプローラーから「App.Config ファイル」を開きます。  
 <img src="./img/appconfig1.png" width="500px"><br>
-「App.config ファイル」には、以下のパラメータが定義してあります。  
+「App.config ファイル」には、以下のパラメータが定義してあります。<br>
 - ServerUrl：ポータルのURL
 - AppClientId：アプリケーションID
 - ClientSecret：アプリケーションの秘密キー
@@ -63,10 +63,10 @@ ServerUrl の Value にポータルのURLを設定する。
 <img src="./img/agol_item_add2.png" width="300px"><br>
 
 - 登録したアプリ (漏水調査アプリ) の概要画面が開かれるので、設定タブを押下して設定画面に遷移する。  
-※自動で移動しなかった場合はコンテンツ画面から漏水調査アプリのリンクをクリックする。
+※自動で移動しなかった場合はコンテンツ画面から漏水調査アプリのリンクをクリックする。  
 <img src="./img/agol_app_gaiyou.png" width="300px"><br>
 
-- 設定画面の「Application」枠の「登録情報」ボタンを押下する。
+- 設定画面の「Application」枠の「登録情報」ボタンを押下する。  
 <img src="./img/agol_app_setting.png" width="300px"><br>
 
 - 画面に「アプリケーションID」と「リダイレクトURL」が表示されます。  
@@ -84,7 +84,6 @@ ServerUrl の Value にポータルのURLを設定する。
 コンテンツ画面より今回使用する Web マップをクリックする。  
 <img src="./img/agol_webmap_id.png" width="300px">  
 例：  
-
 ```xml
 <add key="WebMapId" value="https://ej.maps.arcgis.com/home/item.html?id=8e285147abe044cb851fbec6a1bed5cd"/>
 ```
