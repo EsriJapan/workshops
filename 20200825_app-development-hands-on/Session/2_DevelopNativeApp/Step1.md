@@ -83,6 +83,7 @@ ServerUrl の Value にポータルのURLを設定する。
 コンテンツ画面より今回使用するWebマップをクリックする。  
 <img src="./img/agol_webmap_id.png" width="300px">  
 例：  
+
 ```<add key="WebMapId" value="https://ej.maps.arcgis.com/home/item.html?id=8e285147abe044cb851fbec6a1bed5cd"/>```  
 
 6. 「FeatureServiceUrl」を設定  
