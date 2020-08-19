@@ -1,11 +1,11 @@
 #  ArcGIS API for Python と ArcGIS Pro SDK for .NET を使用したオフライン エリアの作成
 
 ## 演習の目的
-- ここでは、ArcGIS API for Python のスクリプトを ArcGIS Pro SDK for .NET でカスタマイズしたアドインから実行し、次の二点について理解を深めていただきます。
+- ここでは、ArcGIS API for Python のスクリプトを ArcGIS Pro SDK for .NET でカスタマイズしたアドインから実行してオフライン エリアを作成することで、以下の 2 点について理解を深めていただきます。
   - ArcGIS API for Python による Web GIS の操作
   - ArcGIS Pro SDK for .NET による業務ワークフローに合わせた ArcGIS Pro のカスタマイズ
 
-※ このハンズオンは ArcGIS Pro をご利用いただいている方のみ実施いただきます。ArcGIS Online で参加されている方は、参考資料として御覧ください。
+  ※ このハンズオンは ArcGIS Pro をご利用いただいている方のみ実施いただきます。ArcGIS Online で参加されている方は、参考資料として御覧ください。
 
 ## 設定ファイルの編集
 
@@ -13,7 +13,7 @@
     
     <img src="./img/dir.png" width="300px">
 
-1. 次の画像のように設定を編集します。
+1. 次の画像のように設定を編集して保存します。
 
    <img src="./img/config.png" width="550px">
 
@@ -26,9 +26,9 @@
 
     ※: 青枠内は変更不要です
     
-    [アイテム ID の確認方法](# アイテム-ID-の確認方法)、[レイヤーのサービス URL の確認方法](# レイヤーのサービス-URL-の確認方法)を見ながら
+    アイテム ID については[アイテム ID の確認方法](#アイテムIDの確認方法)、レイヤーのサービス URL については[レイヤーのサービス URL の確認方法](#レイヤーのサービスURLの確認方法)をそれぞれ参照してください。
 
-### アイテム ID の確認方法
+### アイテムIDの確認方法
 アイテム ID は Web GIS 上のアイテムを一意に識別する ID です。次の方法で確認できます。
 1. ArcGIS Online にサインインし、[コンテンツ] をクリックし、一覧から対象のアイテムをクリックし、アイテム ページを開きます。
 
@@ -42,31 +42,46 @@
 
   <img src="./img/items.png" width="400px">
 
-    * 2つの図郭レイヤーのサービス URL は、次の方法でそれぞれコピー、ペーストしてください
-      1. ホスト フィーチャ レイヤーのアイテム ページを開き、画面をスクロールすると図郭_500と図郭_100レイヤーが表示されるので、クリックします。
-      
-        <img src="./img/layers.png" width="400px">
-    
-      1. クリックしたレイヤーの詳細画面に切り替わるので、右側のサービス URL のコピーボタンをクリックし、設定ファイルに URL を貼り付けます。
-        
-        <img src="./img/copy-url.png" width="400px">
-  
+### レイヤーのサービスURLの確認方法
+2つの図郭レイヤーのサービス URL は、次の方法でそれぞれコピー、ペーストしてください
+1. ホスト フィーチャ レイヤーのアイテム ページを開き、画面をスクロールすると図郭_500と図郭_100レイヤーが表示されるので、クリックします。
 
-## レイヤーのサービス URL の確認方法
+  <img src="./img/layers.png" width="400px">
 
-1. [コンテンツ] から作成した Web マップをクリックします。
+1. クリックしたレイヤーの詳細画面に切り替わるので、右側のサービス URL のコピーボタンをクリックし、設定ファイルに URL を貼り付けます。
 
-   <img src="./img/web_map_setting.png" width="550px">
+  <img src="./img/copy-url.png" width="400px">
 
-1. アイテム ページ右上の [設定] をクリックします。
+## ArcGIS Pro SDK for .NET で拡張したアドインを使用したオフライン エリアの作成
+1. 設定ファイルを編集・保存したら EJWater フォルダにある EJWater.aprx をダブルクリックして ArcGIS Pro のプロジェクトを開きます。
 
-   <img src="./img/web_map_setting_2.png" width="400px">
+1. ArcGIS Pro が開いたら画面上部の [オフラインデータ タブ] をクリックし、図郭_500 をコンボボックスから選択しましょう。
 
-1. 画面をスクロールし、[オフライン モードの有効化] をクリックした後、[保存]をクリックします。
+  <img src="./img/prosdk-1.png" width="400px">
 
-   <img src="./img/web_map_setting_3.png" width="400px">
+1. [図郭選択] をクリック後、マップ上で日吉駅付近の図郭をクリックして選択し、[オフラインデータ作成] をクリックします。
 
-以上で Web マップにオフライン エリアを作成する準備が整いました。
-次のステップでは設定を終えた Web マップからオフライン エリアを作成します。
+  <img src="./img/prosdk-2.png" width="400px">
 
-時間がある方は [ArcGIS Online の UI 操作によるオフライン エリアの作成](offline_area_agol.md) へ進んでください。
+1. オフライン エリアの名前を入力し、作成をクリックします。確認のプロンプトが出るので、[はい] をクリックして作成を開始します。
+
+  オフライン エリアの名前は ArcGIS Online の UI 操作で作成したものとは別の名前にしてください。
+
+  <img src="./img/prosdk-3.png" width="400px">
+
+  作成には数分かかるので、[オフライン エリア作成の仕組み](オフライン エリア作成の仕組み)へと進みましょう。
+
+## オフライン エリア作成の仕組み
+ArcGIS Pro を ArcGIS Pro SDK for .NET を使って拡張し、[オフライン エリア]カスタムのアドインを追加しています。
+
+カスタムのアドインでは、選択した図郭の属性情報 (図郭固有の番号等) を取得し、Python スクリプトへパラメーターとして渡して実行します。
+
+Python スクリプト内では ArcGIS API for Python を使用して、渡されたパラメーターに基づいて ArcGIS Online へオフライン エリア作成のリクエストを送っています。
+
+ArcGIS Pro をカスタマイズすることで、ArcGIS Pro を業務ワークフローに合わせて拡張することができるほか、ArcGIS API for Python と組み合わせることで、ArcGIS Pro の UI 操作を介して ArcGIS Online の操作を実行することができます。
+
+  <img src="./img/prosdk-pythonapi-agol.png" width="400px">
+
+以上で ArcGIS API for Python と ArcGIS Pro SDK for .NET を使用したオフライン エリアの作成は終了です。
+
+時間がある方は EJWater\script\src の中の preplan.py ファイルを見てみましょう。
