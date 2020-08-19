@@ -37,7 +37,7 @@
 
 3. 「ServerUrl」を設定  
 ServerUrl の Value にポータルのURLを設定する。  
-例：  
+例：<br>
 ```xml
 <add key="ServerUrl" value="https://www.arcgis.com/sharing/rest"/>
 ```  
@@ -96,7 +96,7 @@ ServerUrl の Value にポータルのURLを設定する。
 <img src="./img/agol_layer_url.png" width="300px">
 <br><br>
 FeatureLayer の URL を App.config ファイルの「FeatureServiceUrl」に設定する。  
-例：  
+例：<br>
 ```xml
 <add key="FeatureServiceUrl" value="https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer"/>
 ```   
