@@ -50,7 +50,7 @@
 
 ここではArcGIS Online の UI からオフライン エリアを作成する方法を学びました。
 
-ArcGIS Pro をお持ちの方は、時間があれば [xxx](offline_area_python_prosdk.md) へ進んで下さい
+ArcGIS Pro をお持ちの方は、時間があれば [ArcGIS API for Python と ArcGIS Pro SDK for .NET を使用したオフライン エリアの作成](offline_area_python_prosdk.md) へ進んで下さい
 
 ## 背景地図が表示されない場合の対応方法
 1. オフライン エリア作成画面右上の ☓ ボタンをクリックし、作成画面を閉じます。
