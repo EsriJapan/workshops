@@ -82,7 +82,7 @@ ServerUrl の Value にポータルのURLを設定する。
 5. 「WebMapId」を設定  
 作成済みのWebマップのURLを設定する。  
 コンテンツ画面より今回使用する Web マップをクリックする。  
-<img src="./img/agol_webmap_id.png" width="300px">
+<img src="./img/agol_webmap_id.png" width="300px"><br>
 例：<br>
     ```xml
     <add key="WebMapId" value="https://ej.maps.arcgis.com/home/item.html?id=8e285147abe044cb851fbec6a1bed5cd"/>
