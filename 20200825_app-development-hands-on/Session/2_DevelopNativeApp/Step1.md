@@ -108,7 +108,7 @@ ServerUrl の Value にポータルのURLを設定する。
     すべて設定すると次のようなコンフィグになります。   
     <img src="./img/appconfig.png" width="500px">
 
-    ※「ClientSecret」、「OfflineDataName」は設定は不要です。
+    ※「ClientSecret」、「OfflineDataName」の設定は不要です。
 
 
 ### ③ アプリケーションの起動確認
