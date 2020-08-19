@@ -46,7 +46,7 @@ ServerUrl の Value にポータルのURLを設定する。
 4. 「AppClientID」、「OAuthRedirectUrl」を設定  
 まずは、アプリケーションID と リダイレクトURLを発行します。
 - [ArcGIS Online](https://www.esrij.com/products/arcgis-online/) にアクセスしてください。  
-<img src="./img/agol.png" width="500px"><br>
+<img src="./img/agol.png" width="500px">
 
 - ログイン情報を入力し、ArcGIS Online にログインしてください。  
 <img src="./img/agol_login.png" width="250px">
