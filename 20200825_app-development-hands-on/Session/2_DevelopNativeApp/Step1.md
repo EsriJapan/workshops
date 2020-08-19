@@ -73,9 +73,9 @@ ServerUrl の Value にポータルのURLを設定する。
 <br><br>
 上記で発行した「アプリケーションID」と「リダイレクトURL」を App.Config ファイルの「AppClientID」、「OAuthRedirectUrl」に設定します。  
 例：  
-
+```<add key="ServerUrl" value="https://www.arcgis.com/sharing/rest"/>```  
+例：  
 ```<add key="AppClientId" value="pzXBDz3TutCDdA0C"/>```  
-
 ```<add key="OAuthRedirectUrl" value="esrijofflineapp://auth"/>```
 
 5. 「WebMapId」を設定  
@@ -94,7 +94,6 @@ ServerUrl の Value にポータルのURLを設定する。
 <br><br>
 FeatureLayer の URL を App.config ファイルの「FeatureServiceUrl」に設定する。<br>
 例：  
-
 ```<add key="FeatureServiceUrl" value="https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer"/>```   
 
 7. 「OfflineDataFolder」と「Mode」に以下を設定する  
