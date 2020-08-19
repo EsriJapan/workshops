@@ -88,6 +88,7 @@ ArcGIS 開発者のための最新アプリ開発塾 2020 にご参加する方�
       <img src="./img/generate_config.png" width="600px">
 
    1. 設定ファイルを編集
+   
       設定ファイルをテキスト エディターで開き、99 行目付近の `c.NotebookApp.browser` を、以下の例のように任意のブラウザーの実行ファイルのパスに書き換えます。
 
       `c.NotebookApp.browser = u'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'`
