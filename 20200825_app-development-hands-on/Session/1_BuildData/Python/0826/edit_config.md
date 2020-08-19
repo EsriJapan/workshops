@@ -3,7 +3,7 @@
 
 1. 環境構築時にダウンロードした[ハンズオンデータ](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/Environment/README.md#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E9%85%8D%E7%BD%AE)の EJWater\script\config フォルダにある「config.ini」をメモ帳で開きます。
     
-    <img src="../0825/img/dir.png" width="300px">
+    <img src="../0825/img/dir.png" width="4500px">
 
 1. 次の画像のように設定を編集して保存します。
 
