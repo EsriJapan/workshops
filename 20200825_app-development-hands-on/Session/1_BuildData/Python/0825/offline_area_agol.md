@@ -36,34 +36,36 @@
     作成中でも作成画面を閉じることが可能です。
 
 1. オフライン エリアの作成が開始されますが、完全に作成が完了するまで数分かかります。</br>
-  オフライン エリア名の横の [パッケージ] の文字が消えれば作成完了です。
+  オフライン エリア名の横の [パッケージ] の文字が表示されている間は作成中です。
   
-    <img src="./img/under-creation.png" width="200px">
-    
-    <img src="./img/created.png" width="200px">
+    <img src="./img/under-creation.png" width="250px">
   
-  完了を待たずに画面右上の ☓ ボタンを押して作成画面を閉じて構いません。
+    表示が消えれば作成完了です。
   
-    <img src="./img/close.png" width="200px">
+    <img src="./img/created.png" width="250px">
+  
+    完了を待たずに画面右上の ☓ ボタンを押して作成画面を閉じて構いません。
+  
+    <img src="./img/close.png" width="250px">
 
 * ここではArcGIS Online の UI からオフライン エリアを作成する方法を学びました。
 * ArcGIS Pro をお持ちの方は、時間があれば [xxx]() へ進んで下さい
 
-## 背景地図が表示されない場合
+## 背景地図が表示されない場合の対応方法
 1. オフライン エリア作成画面右上の ☓ ボタンをクリックし、作成画面を閉じます。
 
     <img src="./img/close.png" width="200px">
 
 1. 画面を上にスクロールし、[概要]ボタンをクリックします。
 
-    <img src="./img/overview.png" width="200px">
+    <img src="./img/overview.png" width="450px">
 
 1. サムネイル画像をクリックし、Web マップを開きます。
 
-    <img src="./img/open-mapviewer.png" width="200px">
+    <img src="./img/open-mapviewer.png" width="450px">
 
 1. [保存] をクリックして Web マップを保存します。
 
-    <img src="./img/save-webmap.png" width="200px">
+    <img src="./img/save-webmap.png" width="450px">
 
 1. 再度オフライン エリアの作成画面に戻り、オフライン エリアを作成してください。
