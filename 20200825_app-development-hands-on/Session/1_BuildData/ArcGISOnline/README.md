@@ -126,6 +126,38 @@
 
    <img src="./img/scale_filter.png" width="300px">
 
+### Web マップの保存
+1. 「名前を付けて保存」を押下します。
+
+   <img src="./img/save.png" width="300px">
+
+2. 以下を入力し、「マップの保存」ボタンを押下します。
+
+   「タイトル」・・・全国市区町村界マップ2020_開発塾   
+   「サマリー」・・・ 全国市区町村界マップ2020にレンダリングを設定  
+
+3. 「コンテンツ」を押下します。
+
+   <img src="./img/content.png" width="300px">
+
+4. 「全国市区町村界マップ2020_開発塾 」がWebマップとして作成されます。これを押下します。
+
+   <img src="./img/webmap.png" width="300px">
+
+### データ共有設定の変更
+1. 「編集」を押下します。
+
+   <img src="./img/sharing.png" width="300px">
+
+
+2. 「すべての人に公開(パブリック)」を選択し、「保存」を押下します。
+
+   <img src="./img/private2public.png" width="300px">
+
+3. 共有が「すべての人に公開(パブリック)」になっていることを確認します。
+
+   <img src="./img/public.png" width="300px">
+
 ## まとめ
 ArcGIS Online を使用すれば、簡単に Web GIS 上にデータをアップロードしたり、パブリックに公開されているデータを自由に使用することができます。また、ArcGIS Online にアップロードしたデータを ArcGIS API for Python, ArcGIS Runtime SDK, ArcGIS API for JavaScript などを API で操作することもできます。  
 
