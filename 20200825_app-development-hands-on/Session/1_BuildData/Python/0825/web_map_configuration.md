@@ -7,7 +7,7 @@
 
 1. ArcGIS Online にサインインし、[コンテンツ] をクリックし、アイテムの一覧の中から今回作成したホスト フィーチャ レイヤーをクリックします。
 
-   <img src="./img/host_fl_setting.png" width="400px">  
+   <img src="./img/host_fl_setting.png" width="550px">  
 
 1. ホスト フィーチャ レイヤーのアイテム ページが開いたら、右上の [設定] をクリックします。
 
@@ -24,7 +24,7 @@
 
 1. [コンテンツ] から作成した Web マップをクリックします。
 
-   <img src="./img/web_map_setting.png" width="400px">
+   <img src="./img/web_map_setting.png" width="550px">
 
 1. アイテム ページ右上の [設定] をクリックします。
 
