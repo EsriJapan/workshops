@@ -79,4 +79,4 @@ ArcGIS Pro をカスタマイズすることで、ArcGIS Pro を業務ワーク�
 
 以上で ArcGIS API for Python と ArcGIS Pro SDK for .NET を使用したオフライン エリアの作成は終了です。
 
-時間がある方は EJWater\script\src の中の preplan.py ファイルを見てみましょう。
+時間がある方は EJWater\script\src の中の preplan.py ファイルを開き、ソース コードを確認してみましょう。
