@@ -73,11 +73,11 @@ ServerUrl の Value にポータルのURLを設定する。
 - 画面に「アプリケーションID」と「リダイレクトURL」が表示されます。  
 <img src="./img/agol_app_reg.png" width="300px">
 <br><br>
-上記で発行した「アプリケーションID」と「リダイレクトURL」を App.Config ファイルの「AppClientID」、「OAuthRedirectUrl」に設定します。<br>
+上記で発行した「アプリケーションID」と「リダイレクトURL」を App.Config ファイルの「AppClientID」、「OAuthRedirectUrl」に設定します。  
 例：  
 ```xml
-<add key="ServerUrl" value="https://www.arcgis.com/sharing/rest"/>
-```  
+<add key="AppClientId" value="pzXBDz3TutCDdA0C"/>
+```
 ```xml
 <add key="OAuthRedirectUrl" value="esrijofflineapp://auth"/>
 ```
@@ -89,7 +89,7 @@ ServerUrl の Value にポータルのURLを設定する。
 例：  
 ```xml
 <add key="WebMapId" value="https://ej.maps.arcgis.com/home/item.html?id=8e285147abe044cb851fbec6a1bed5cd"/>
-```  
+```
 
 6. 「FeatureServiceUrl」を設定  
 - Web マップの概要画面に表示されているレイヤーから任意のモノをクリックする。  
