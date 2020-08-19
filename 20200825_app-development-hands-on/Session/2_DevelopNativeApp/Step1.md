@@ -33,7 +33,8 @@
     - OfflineDataFolder：オフラインデータの保存フォルダパス
     - Mode：起動時のアプリケーションのモード（Online/Offline）
     - OfflineDataName：アプリケーション終了時に表示していたオフラインデータの名前<br>
-以下より、パラメーターに必要な情報の作成と設定を行います。<br><br>
+    
+以下より、パラメーターに必要な情報の作成と設定を行います。<br>
 
 3. 「ServerUrl」を設定  
 ServerUrl の Value にポータルのURLを設定する。  
