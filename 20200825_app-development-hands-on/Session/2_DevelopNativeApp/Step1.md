@@ -112,12 +112,12 @@ ServerUrl の Value にポータルのURLを設定する。
 
 ### ③ アプリケーションの起動確認
 1. Visual Studio 2019画面の「ビルド」タブから「ソリューションのリビルド」を選択します。  
-<img src="./img/vs_build.png" width="500px">
+<img src="./img/vs_build.png" width="500px"><br>
 
 2. 「実行」を選択して、アプリケーションを起動します。  
-<img src="./img/vs_jikkou.png" width="500px">  
+<img src="./img/vs_jikkou.png" width="500px"><br>
 
 3. 以下画面が起動すれば完了です。  
-<img src="./img/app.png" width="500px">  
+<img src="./img/app.png" width="500px"><br>
 
 ※時間がある方は、実際にログインして動作を確認してみてください。
