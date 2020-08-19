@@ -1,12 +1,18 @@
-## Step5：属性検索の実装  
-### 1. 属性検索ウィジェットの作成
-### 2. 検索結果はフィーチャ テーブルウィジェットに表示
+## Step5：属性検索の実装
 
-Step5 では、属性検索を実装していきます。
+### 演習の目的
+-  属性検索ウィジェットの作成方法の習得
+   - 属性検索ウィジェットでは標準で用意されていないため、独自ウィジェットとして作成します。
+-  属性検索の実行方法の習得
+   - クエリを利用して属性検索を行います。
+-  フィーチャ テーブルウィジェットの利用方法の習得
+   - 属性検索の結果は、フィーチャ テーブルウィジェットに表示します。
+
+以下の画面は属性検索を行って結果をフィーチャ テーブルウィジェットに表示している例です。
 |<img src="./img/app_step5_3.gif" width="600">|
 |:-:|
 
-main.js、query-task.js、search-feature-table.js に対して実装していきます。
+コードは、main.js、query-task.js、search-feature-table.js に対して実装していきます。
 
 ### 1．属性検索ウィジェットの実装  
 各属性に対して検索機能を実装していきます。はじめに属性検索ウィジェットを実装します。
@@ -363,11 +369,10 @@ mapView.goTo(target).catch((error) => {
 
 ### Step 5 のまとめ
 
-フィーチャの検索としてクエリを使用しました。  
-クエリには、[FeatureLayer](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-FeatureLayer.html) の queryFeature() メソッドを使用しました。[queryFeatures()](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-FeatureLayer.html#queryFeatures) メソッドに検索条件の [query](https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-support-Query.html) オブジェクトを指定することで、FeatureLayer に対して検索を行うことができます。
+フィーチャの検索としてクエリを使用しました。クエリには、[FeatureLayer](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-FeatureLayer.html) の queryFeature() メソッドを使用しました。[queryFeatures()](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-FeatureLayer.html#queryFeatures) メソッドに検索条件の [query](https://developers.arcgis.com/javascript/latest/api-reference/esri-tasks-support-Query.html) オブジェクトを指定することで、FeatureLayer に対して検索を行うことができます。
 
 そして、検索結果の表示には、フィーチャ テーブルウィジェットを使用しました。フィーチャ テーブルウィジェットは、フィーチャ レイヤーのデータをテーブル形式で表示し、テーブルの行を選択したり、属性に基づいてソートしたり、列 (属性) の表示/非表示を選択することもできます。 
-フィーチャ テーブルウィジェットの作成には、[FeatureTable](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-FeatureTable.html) クラスを使用しました。
+フィーチャ テーブルウィジェットの作成には、[FeatureTable](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-FeatureTable.html) クラスを使用することで作成できます。
 現在このフィーチャ テーブルウィジェットはベータ版として提供されており、今後も拡張機能が追加されていく予定です。
 
 今回のハンズオンはここまでです。

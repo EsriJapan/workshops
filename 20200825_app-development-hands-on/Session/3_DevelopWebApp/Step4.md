@@ -1,14 +1,17 @@
 ## Step4：概観図の実装
-### 概観図を表示するウィジェットを作成
+### 演習の目的
+- 概観図を表示するウィジェットの作成方法の習得
+  - 概観図は標準ウィジェットでは標準で用意されていないため、独自ウィジェットとして作成します。
+
 main.js と over-view-map.js に対して実装していきます。
 
-<b>概観図 ウィジェットの実装</b>  
+### 概観図 ウィジェットの実装 
 現在概観図には何も表示されていない状態です。ここに概観図を実装していきます。概観図とは、別の地図の表示範囲を枠などで表示した小縮尺の地図になります。
 
 |![step4_1](./img/app_step4_1.png)|
 |:-:|
 
-main.js を開いて、58行目あたりに概観図を表示するための Map と MapView を定義します。以下のコードを記述します。
+main.js を開いて、58 行目あたりに概観図を表示するための Map と MapView を定義します。以下のコードを記述します。
 ```JavaScript
 // overviewMap（概観図）
 overviewMap = new Map({
@@ -104,7 +107,7 @@ Step 4 はここまでです。
 
 ### Step 4 のまとめ
 
-概観図の作成では、概観図用の Map と View を用意することで実現しています。
+概観図の作成では、以下のように概観図用の Map と View を用意しています。その作成した概観図とメインの地図表示を変更 (拡大、縮小など) するたびに連動するようにすることで実現しています。
 
 ```JavaScript
 // overviewMap（概観図）
@@ -125,6 +128,6 @@ overView = new MapView({
 overView.ui.components = [];
 ```
 
-その他、ArcGIS API for JavaScript のサンプルとして紹介している「 [Overview map](https://developers.arcgis.com/javascript/latest/sample-code/overview-map/index.html) 」も併せてご参照ください。ここでは、3D シーンを使用しています。
+その他、ArcGIS API for JavaScript のサンプルとして紹介している「 [Overview map](https://developers.arcgis.com/javascript/latest/sample-code/overview-map/index.html) 」も併せてご参照ください。ここでは、3D シーンを使用した概観図の作成例を紹介しています。
 
 次の Step5 は、「[Step5：属性検索の実装](./Step5.md#Step5属性検索の実装)」をご参照ください。
