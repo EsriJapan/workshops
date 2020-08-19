@@ -24,15 +24,15 @@
 2. ソリューションエクスプローラーから「App.Config ファイル」を開きます。  
 <img src="./img/appconfig1.png" width="500px"><br>
 「App.config ファイル」には、以下のパラメータが定義してあります。<br>
-  - ServerUrl：ポータルのURL
-  - AppClientId：アプリケーションID
-  - ClientSecret：アプリケーションの秘密キー
-  - OAuthRedirectUrl：リダイレクトURL
-  - WebMapId：WebマップのURL
-  - FeatureServiceUrl：FeatureServiceのURL
-  - OfflineDataFolder：オフラインデータの保存フォルダパス
-  - Mode：起動時のアプリケーションのモード（Online/Offline）
-  - OfflineDataName：アプリケーション終了時に表示していたオフラインデータの名前  
+    - ServerUrl：ポータルのURL
+    - AppClientId：アプリケーションID
+    - ClientSecret：アプリケーションの秘密キー
+    - OAuthRedirectUrl：リダイレクトURL
+    - WebMapId：WebマップのURL
+    - FeatureServiceUrl：FeatureServiceのURL
+    - OfflineDataFolder：オフラインデータの保存フォルダパス
+    - Mode：起動時のアプリケーションのモード（Online/Offline）
+    - OfflineDataName：アプリケーション終了時に表示していたオフラインデータの名前  
 以下より、パラメーターに必要な情報の作成と設定を行います。<br>
 
 3. 「ServerUrl」を設定  
@@ -73,7 +73,7 @@ ServerUrl の Value にポータルのURLを設定する。
 <img src="./img/agol_app_reg.png" width="300px"><br>
 
 上記で発行した「アプリケーションID」と「リダイレクトURL」を App.Config ファイルの「AppClientID」、「OAuthRedirectUrl」に設定します。  
-例：  
+例：<br>
 ```xml
 <add key="AppClientId" value="pzXBDz3TutCDdA0C"/>
 <add key="OAuthRedirectUrl" value="esrijofflineapp://auth"/>
@@ -82,8 +82,8 @@ ServerUrl の Value にポータルのURLを設定する。
 5. 「WebMapId」を設定  
 作成済みのWebマップのURLを設定する。  
 コンテンツ画面より今回使用する Web マップをクリックする。  
-<img src="./img/agol_webmap_id.png" width="300px">  
-例：  
+<img src="./img/agol_webmap_id.png" width="300px"><br>
+例：<br>
 ```xml
 <add key="WebMapId" value="https://ej.maps.arcgis.com/home/item.html?id=8e285147abe044cb851fbec6a1bed5cd"/>
 ```
