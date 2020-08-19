@@ -34,7 +34,7 @@
    <img src="./img/pro_webmap_upload_finish.png" width="300px">
 
 ## ArcGIS Online で Web マップを参照
-1. [ArcGIS Online](https://www.esrij.com/products/arcgis-online/) にアクセスします。
+1. [ArcGIS Online](https://www.arcgis.com/home/index.html) にアクセスして「サインイン」を押下してください。
 
    <img src="./img/agol.png" width="500px">
 
@@ -62,12 +62,7 @@
 
    <img src="./img/agol_view.png" width="500px">
 
-## Web マップの保存の仕方
-1. 「保存」ボタンを押下します。
-
-   <img src="./img/save.png" width="500px">
-
-## まとめ
+2## まとめ
 ArcGIS Pro を使用することで FGDB などのローカルデータから簡単に Web マップを作成することができます。また、ArcGIS API for Python, ArcGIS Runtime SDK, ArcGIS API for JavaScript などの API を使用すれば 作成した Web マップを参照することができます。次のセッションでは ArcGIS API for Python を使用して Web マップ を扱ってみようと思います。
 
 ※Web マップが作成できなかった場合、「ArcGIS Runtime SDK for .NET を使用して現地調査アプリを開発してみよう！」（1日目）「ArcGIS API for JavaScript を使用して Web アプリを開発してみよう！」(2日目)のセッションでは、こちらで用意している Web マップを使用していただきますが、以下のセッションにつきましては聴講のみとさせていただきますので、ご了承ください。

@@ -2,9 +2,13 @@
 
 <span style="color: red; ">※ArcGIS Pro をお持ちの方は[ArcGIS Pro を使用した Web マップの作成](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro)をご参照ください。</span>
 
+## 演習の目的
+1. Web マップを作成する
+2. 作成した Web マップを ArcGIS Online で参照する
+
 ## ArcGIS Online にアクセス
 
-1. [ArcGIS Online](https://www.esrij.com/products/arcgis-online/) にアクセスします。
+1. [ArcGIS Online](https://www.arcgis.com/home/index.html) にアクセスして「サインイン」を押下してください。
 
    <img src="./img/agol.png" width="300px">
 

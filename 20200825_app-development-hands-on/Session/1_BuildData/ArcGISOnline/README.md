@@ -1,8 +1,12 @@
 # Web GIS 基礎 ~ ArcGIS Online を使ってみよう ~
 
+## 演習の目的
+1. ArcGIS Online にデータをアップロードする
+2. ArcGIS Online のサービスの一つである、Living Atlas を使ってみる
+
 ## ①CSV ファイルをアップロードしてみよう
 ### ArcGIS Online へアクセス
-1. [ArcGIS Online](https://www.esrij.com/products/arcgis-online/) にアクセスしてください。
+1. [ArcGIS Online](https://www.arcgis.com/home/index.html) にアクセスして「サインイン」を押下してください。
 
    <img src="./img/agol.png" width="500px">
 
