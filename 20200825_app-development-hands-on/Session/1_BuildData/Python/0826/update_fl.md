@@ -41,3 +41,19 @@ Python コマンド プロンプトを起動すると、自動的に ArcGIS Pro 
     <img src="./img/execute-python.png" width="550px">
 
     実行完了までしばらく時間がかかるので、余裕があればテキストエディタ等で src ディレクトリ内の web_map_sync.py ファイルを開き、ソースコードを確認してみましょう。
+
+1. 実行が完了するとPython コマンド プロンプトに `フィーチャ サービスの更新が完了しました` と表示されます。完了したら Web マップを開いて確認しましょう。
+
+    1. ArcGIS Online にサインインし、[コンテンツ] をクリックして [マイ コンテンツ] の中から公開した Web マップをクリックします。
+
+        <img src="../0825/img/web_map_setting.png" width="550px">
+
+    1. サムネイル画像をクリックし、Web マップを開きます。
+
+        <img src="../0825/img/open-mapviewer.png" width="450px">
+        
+    1. ArcGIS Pro で追加したポイント データが反映されていることを確認しましょう。
+
+この演習では Python コマンド プロンプトの基本的な使用方法、Python スクリプトの実行などを行いました。
+
+タスクスケジューラなどを使うことでPython スクリプトの実行を自動で定期的に行うことも可能です。詳しくは[ArcGIS for Developer 開発リソース集](http://esrijapan.github.io/arcgis-dev-resources/tips/python/automate-tasks/)をご覧ください。
