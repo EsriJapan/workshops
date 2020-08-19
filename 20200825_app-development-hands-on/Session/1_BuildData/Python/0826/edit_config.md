@@ -23,19 +23,19 @@
 ### アイテムIDの確認方法
 アイテム ID は Web GIS 上のアイテムを一意に識別する ID です。次の方法で確認できます。
 1. ArcGIS Online にサインインし、[コンテンツ] をクリックし、一覧から対象のアイテムをクリックし、アイテム ページを開きます。</br>
-    <img src="../0825/img/host_fl_setting.png" width="400px">
+    <img src="../0825/img/host_fl_setting.png" width="550px">
   
 1. アイテム ページの URL の`id=`以降の英数字がアイテム IDです。コピーして設定ファイルに貼り付けてください。</br>
-    <img src="../0825/img/item-id.png" width="400px">
+    <img src="../0825/img/item-id.png" width="550px">
 
     ※ Web マップ(①)、ホスト フィーチャ レイヤー(②)、ホスト フィーチャ レイヤーのサービス定義ファイル(③)を混同して貼り付けるアイテム ID を間違えないように注意してください。</br>
-    <img src="../0825/img/items.png" width="400px">
+    <img src="../0825/img/items.png" width="550px">
 
 ### レイヤーのサービスURLの確認方法
 2つの図郭レイヤーのサービス URL は、次の方法でそれぞれコピー、ペーストしてください
 1. ArcGIS Online にサインインし、[コンテンツ] をクリックして、ホスト フィーチャ レイヤーをクリックします。</br>
-    <img src="../0825/img/host_fl_setting.png" width="400px"></br>
+    <img src="../0825/img/host_fl_setting.png" width="550px"></br>
 1. ホスト フィーチャ レイヤーのアイテム ページを開き、画面をスクロールすると図郭_500と図郭_100レイヤーが表示されるので、クリックします。</br>
-    <img src="../0825/img/layers.png" width="400px"></br>
+    <img src="../0825/img/layers.png" width="550px"></br>
 1. クリックしたレイヤーの詳細画面に切り替わるので、右側のサービス URL のコピーボタンをクリックし、設定ファイルに URL を貼り付けます。</br>
-    <img src="../0825/img/copy-url.png" width="400px">
+    <img src="../0825/img/copy-url.png" width="550px">
