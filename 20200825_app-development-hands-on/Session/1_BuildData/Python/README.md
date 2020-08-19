@@ -18,3 +18,13 @@
 - [3. ArcGIS API for Python と ArcGIS Pro SDK for .NET を使用したオフライン エリアの作成](./0825/offline_area_python_prosdk.md)
   - ArcGIS API for Python と ArcGIS Pro SDK for .NET を使用したサンプルを使用してオフライン エリアを作成します
   - ArcGIS Pro をお持ちで無い方は参考資料として御覧ください
+
+### ArcGIS ネイティブ アプリ開発ハンズオンで使用するオフライン エリアの作成方法 (8 月 26 日実施)
+- [1. 設定ファイルの編集](./0826/edit_config.md)
+  - 設定ファイルを編集します
+
+- [2. ArcGIS Pro によるデータ編集](./0826/edit_data.md)
+  - ArcGIS Pro の UI からポイント データを追加し、保存します
+  
+- [3. Python スクリプトによるホスト フィーチャ  レイヤーのアップデート](./0826/update_fl.md)
+  - 編集したローカルのデータにもとづいて ArcGIS Online の既存のホスト フィーチャ レイヤーをアップデートします
