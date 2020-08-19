@@ -1,10 +1,7 @@
-# ArcGIS API for Python を使用した現地調査用オフラインデータの作成
-
-<span style="color: red; ">※ArcGIS Pro をお持ちでない方は[ArcGIS Online の UI によるオフラインデータの作成](https://url)をご参照ください。</span>
+# ホスト フィーチャ レイヤーと Web マップの設定
 
 ## 演習の目的
-1. ArcGIS API for Python を使うことで、スクリプトからオフライン エリア作成ができることを理解する
-1. ArcGIS Pro SDK for .NET を使ったアドインでオフライン エリアを作成する
+- ここでは、Web マップにオフライン エリアを作成するための設定の方法を習得します
 
 ## ホスト フィーチャ レイヤーの設定
 
@@ -20,7 +17,7 @@
 
     <img src="./img/host_fl_setting_3.png" width="400px">
 
-    ホスト フィーチャ レイヤーの編集や同期が有効化され、Web マップでオフライン エリアを有効化することができるようになります。
+    ホスト フィーチャ レイヤーの編集や同期が有効化され、Web マップの設定でオフライン エリアを有効化することができるようになります。
 
 
 ## Web マップの設定
@@ -37,9 +34,10 @@
 
    <img src="./img/web_map_setting_3.png" width="400px">
 
+以上で Web マップにオフライン エリアを作成する準備が整いました。
 
-以上で Web マップでオフライン エリアを作成する準備が整いました。
+次のステップでは設定を終えた Web マップからオフライン エリアを作成します。
 
-ArcGIS Online で Web マップを作成した方は [ArcGIS Online の UI 操作によるオフライン エリアの作成](offline_area_agol.md) へ進んでください。
+ArcGIS Online で Web マップを作成した方 (ArcGIS Pro をお持ちでない方) は [ArcGIS Online の UI 操作によるオフライン エリアの作成](offline_area_agol.md) へ進んでください。
 
 ArcGIS Pro を使って Web マップを作成した方は [ArcGIS API for Python と ArcGIS Pro SDK for .NET を使用したオフライン エリアの作成](offline_area_python_prosdk.md) へ進んでください。
