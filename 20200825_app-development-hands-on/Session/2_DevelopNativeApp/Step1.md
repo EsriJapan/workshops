@@ -18,7 +18,7 @@
 ### ② コンフィグの設定
 アプリケーションの起動に必要な情報を「App.Config ファイル」に設定する必要があります。 App.Config ファイルの内容の確認と、設定に必要な情報を作成し、設定しましょう。
 
-1. ① でダウンロードしたフォルダ内にある「ESRIJOfflineApp.sln」を起動します。
+1. ① でダウンロードしたフォルダ内にある「ESRIJOfflineApp.sln」を起動します。  
 <img src="./img/solution_file.png" width="500px">
 
 2. ソリューションエクスプローラーから「App.Config ファイル」を開きます。  
