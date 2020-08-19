@@ -50,7 +50,7 @@
 
    <img src="./img/agol_content.png" width="500px">  
 
-5. 「作成した Web マップ と ArcGIS API for Python を使用して現地調査用データを作成」（1日目）、「ArcGIS API for Python を使用して作成した Web マップ を更新」（1日目）、「ArcGIS API for JavaScript を使用して Web アプリを開発してみよう！」(2日目) のセッションで使用するので、赤枠の部分をコピーして控えておいてください（=より後の部分をコピーしてください）。
+5. 「作成した Web マップ と ArcGIS API for Python を使用して現地調査用データを作成」（1日目）、「ArcGIS API for Python を使用して作成した Web マップ を更新」（2日目）、「ArcGIS API for JavaScript を使用して Web アプリを開発してみよう！」(2日目) のセッションで使用するので、赤枠の部分をコピーして控えておいてください（=より後の部分をコピーしてください）。
 
    <img src="./img/web_id.png" width="500px">  
 
