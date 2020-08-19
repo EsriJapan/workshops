@@ -90,12 +90,11 @@ ServerUrl の Value にポータルのURLを設定する。
 
 6. 「FeatureServiceUrl」を設定  
     - Web マップの概要画面に表示されているレイヤーから任意のモノをクリックする。  
-    <img src="./img/agol_webmap_layer.png" width="300px">  
+    <img src="./img/agol_webmap_layer.png" width="300px"><br>
 
     - FeatureLayer の概要ページが表示されるので、画面の右下にあるURLをコピーする。  
-    <img src="./img/agol_layer_url.png" width="300px">
-    <br><br>
-    FeatureLayer の URL を App.config ファイルの「FeatureServiceUrl」に設定する。  
+    <img src="./img/agol_layer_url.png" width="300px">  
+    FeatureLayer の URL を App.config ファイルの「FeatureServiceUrl」に設定する。<br>
     例：<br>
     ```xml
     <add key="FeatureServiceUrl" value="https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer"/>
