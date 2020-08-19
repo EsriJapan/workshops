@@ -3,7 +3,7 @@
 
 1. 環境構築時にダウンロードした[ハンズオンデータ](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/Environment/README.md#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E9%85%8D%E7%BD%AE)の EJWater\script\config フォルダにある「config.ini」をメモ帳で開きます。
     
-    <img src="../0825/img/dir.png" width="450px">
+    <img src="../0825/img/dir.png" width="700px">
 
 1. 次の画像のように設定を編集して保存します。
 
@@ -23,7 +23,7 @@
 ### アイテムIDの確認方法
 アイテム ID は Web GIS 上のアイテムを一意に識別する ID です。次の方法で確認できます。
 1. ArcGIS Online にサインインし、[コンテンツ] をクリックし、一覧から対象のアイテムをクリックし、アイテム ページを開きます。</br>
-    <img src="../0825/img/host_fl_setting.png" width="550px">
+    <img src="../0825/img/host_fl_setting.png" width="700px">
   
 1. アイテム ページの URL の`id=`以降の英数字がアイテム IDです。コピーして設定ファイルに貼り付けてください。</br>
     <img src="../0825/img/item-id.png" width="550px">
