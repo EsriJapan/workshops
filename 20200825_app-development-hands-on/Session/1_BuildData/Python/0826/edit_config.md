@@ -3,7 +3,7 @@
 
 1. 環境構築時にダウンロードした[ハンズオンデータ](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/Environment/README.md#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E9%85%8D%E7%BD%AE)の EJWater\script\config フォルダにある「config.ini」をメモ帳で開きます。
     
-    <img src="../0825/img/dir.png" width="4500px">
+    <img src="../0825/img/dir.png" width="450px">
 
 1. 次の画像のように設定を編集して保存します。
 
@@ -26,7 +26,7 @@
     <img src="../0825/img/host_fl_setting.png" width="400px">
   
 1. アイテム ページの URL の`id=`以降の英数字がアイテム IDです。コピーして設定ファイルに貼り付けてください。</br>
-    <img src="./img/item-id.png" width="400px">
+    <img src="../0825/img/item-id.png" width="400px">
 
     ※ Web マップ(①)、ホスト フィーチャ レイヤー(②)、ホスト フィーチャ レイヤーのサービス定義ファイル(③)を混同して貼り付けるアイテム ID を間違えないように注意してください。</br>
     <img src="../0825/img/items.png" width="400px">
