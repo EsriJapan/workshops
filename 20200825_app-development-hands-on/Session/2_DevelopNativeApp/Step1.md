@@ -24,15 +24,15 @@
 2. ソリューションエクスプローラーから「App.Config ファイル」を開きます。  
 <img src="./img/appconfig1.png" width="500px"><br>
 「App.config ファイル」には、以下のパラメータが定義してあります。<br>
-- ServerUrl：ポータルのURL
-- AppClientId：アプリケーションID
-- ClientSecret：アプリケーションの秘密キー
-- OAuthRedirectUrl：リダイレクトURL
-- WebMapId：WebマップのURL
-- FeatureServiceUrl：FeatureServiceのURL
-- OfflineDataFolder：オフラインデータの保存フォルダパス
-- Mode：起動時のアプリケーションのモード（Online/Offline）
-- OfflineDataName：アプリケーション終了時に表示していたオフラインデータの名前<br><br>
+  - ServerUrl：ポータルのURL
+  - AppClientId：アプリケーションID
+  - ClientSecret：アプリケーションの秘密キー
+  - OAuthRedirectUrl：リダイレクトURL
+  - WebMapId：WebマップのURL
+  - FeatureServiceUrl：FeatureServiceのURL
+  - OfflineDataFolder：オフラインデータの保存フォルダパス
+  - Mode：起動時のアプリケーションのモード（Online/Offline）
+  - OfflineDataName：アプリケーション終了時に表示していたオフラインデータの名前  
 以下より、パラメーターに必要な情報の作成と設定を行います。<br>
 
 3. 「ServerUrl」を設定  
