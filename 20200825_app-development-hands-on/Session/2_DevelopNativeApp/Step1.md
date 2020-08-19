@@ -93,7 +93,7 @@ ServerUrl の Value にポータルのURLを設定する。
     <img src="./img/agol_webmap_layer.png" width="300px"><br>
 
     - FeatureLayer の概要ページが表示されるので、画面の右下にあるURLをコピーする。  
-    <img src="./img/agol_layer_url.png" width="300px">  
+    <img src="./img/agol_layer_url.png" width="300px"><br>
     FeatureLayer の URL を App.config ファイルの「FeatureServiceUrl」に設定する。<br>
     例：<br>
     ```xml
