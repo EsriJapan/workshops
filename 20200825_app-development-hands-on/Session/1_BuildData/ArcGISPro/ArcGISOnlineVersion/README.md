@@ -3,7 +3,7 @@
 <span style="color: red; ">※ArcGIS Pro をお持ちの方は[ArcGIS Pro を使用した Web マップの作成](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro)をご参照ください。</span>
 
 ## 演習の目的
-1. FGDB をもとにした Web マップの作成方法の習得
+1. FGDB をもとにした ArcGIS 上での Web マップの作成方法の習得
 2. 作成した Web マップを ArcGIS Online で参照する方法の習得
 
 ## ArcGIS Online にアクセス
@@ -140,7 +140,7 @@ Web マップに格納するためのレイヤーを作成します。
    <img src="./img/agol_view.png" width="300px">
 
 ## まとめ
-マップにレイヤーが格納されているように、Web マップにも同じようにレイヤーを格納する必要があります、今回は Web マップにフィーチャレイヤーを格納しましたが、その他にも様々なレイヤーがあります。もし興味がありましたら、[こちら](https://esrijapan.github.io/arcgis-dev-resources/core-concepts/layers/)に詳細が記載してありますので、ぜひ読んでみてください。  
+ArcGIS Online 上で FGDB などから簡単に Web マップを作成することができます。そして、ArcGIS API for Python, ArcGIS Runtime SDK, ArcGIS API for JavaScript などの API を使用すれば作成した Web マップを参照することができます。
 
 次のセッションでは ArcGIS API for Python を使用して Web マップ を扱ってみようと思います。
 

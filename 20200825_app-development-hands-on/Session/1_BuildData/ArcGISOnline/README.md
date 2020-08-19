@@ -160,6 +160,6 @@
    <img src="./img/public.png" width="300px">
 
 ## まとめ
-ArcGIS Online を使用すれば、簡単に Web GIS 上にデータをアップロードしたり、パブリックに公開されているデータを自由に使用することができます。また、ArcGIS Online にアップロードしたデータを ArcGIS API for Python, ArcGIS Runtime SDK, ArcGIS API for JavaScript などを API で操作することもできます。  
+ArcGIS Online を使用すれば、簡単に Web GIS 上にデータをアップロードしたり、パブリックに公開されているデータを自由に使用することができます。また、保存した Web マップを ArcGIS API for Python, ArcGIS Runtime SDK, ArcGIS API for JavaScript などの API で操作することもできます。  
 
 次のセッションでは Web マップの作成を実際に行ってみようと思います。
