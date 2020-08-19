@@ -96,9 +96,9 @@ ServerUrl の Value にポータルのURLを設定する。
     <img src="./img/agol_layer_url.png" width="300px"><br>
     FeatureLayer の URL を App.config ファイルの「FeatureServiceUrl」に設定する。<br>
     例：<br>
-    ```xml
-    <add key="FeatureServiceUrl" value="https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer"/>
-    ```   
+        ```xml
+        <add key="FeatureServiceUrl" value="https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer"/>
+        ```   
 
 7. 「OfflineDataFolder」と「Mode」に以下を設定する  
     - OfflineDataFolder：任意のフォルダ (今回は事前に作成している D:/EJWater) を設定  
