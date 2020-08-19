@@ -38,7 +38,7 @@
 
    <img src="./img/agol.png" width="500px">
 
-2. ログイン情報を入力し、ArcGIS Onlineにログインしてください。
+2. ログイン情報を入力し、ArcGIS Online にログインしてください。
 
    <img src="./img/login.png" width="300px">
 

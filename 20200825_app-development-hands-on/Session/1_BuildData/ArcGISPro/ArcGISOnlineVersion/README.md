@@ -61,7 +61,7 @@ Web マップに格納するためのレイヤーを作成します。
    <img src="./img/create_featurelayer6.png" width="300px">
 
 ## フィーチャレイヤーにデータを追加
-1. [GDB](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/ArcGISOnlineVersion/data/EJWater.gdb.zip)をダウンロードします。
+1. [GDB](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/ArcGISOnlineVersion/data/EJWater.gdb.zip) をダウンロードします。
 
 2. 「データ更新」＞「データをレイヤーに追加」を押下します。
 
@@ -127,7 +127,7 @@ Web マップに格納するためのレイヤーを作成します。
 
    <img src="./img/agol_content.png" width="300px">  
 
-2. 「作成した Web マップ と ArcGIS API for Python を使用して現地調査用データを作成」（1日目）、「ArcGIS API for Python を使用して作成した Web マップ を更新」（1日目）、「ArcGIS API for JavaScript を使用して Web アプリを開発してみよう！」(2日目) のセッションで使用するので、赤枠の部分をコピーして控えておいてください（=より後の部分をコピーしてください）。
+2. 「作成した Web マップ と ArcGIS API for Python を使用して現地調査用データを作成」（1日目）、「ArcGIS API for Python を使用して作成した Web マップ を更新」（2日目）、「ArcGIS API for JavaScript を使用して Web アプリを開発してみよう！」(2日目) のセッションで使用するので、赤枠の部分をコピーして控えておいてください（=より後の部分をコピーしてください）。
 
    <img src="./img/web_id.png" width="500px">  
 
