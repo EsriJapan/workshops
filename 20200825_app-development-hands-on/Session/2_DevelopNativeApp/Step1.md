@@ -22,9 +22,8 @@
 <img src="./img/solution_file.png" width="500px"><br>
 
 2. ソリューションエクスプローラーから「App.Config ファイル」を開きます。  
-<img src="./img/appconfig1.png" width="500px"><br>
-
-「App.config ファイル」には、以下のパラメータが定義してあります。
+<img src="./img/appconfig1.png" width="500px">  
+「App.config ファイル」には、以下のパラメータが定義してあります。  
 - ServerUrl：ポータルのURL
 - AppClientId：アプリケーションID
 - ClientSecret：アプリケーションの秘密キー
