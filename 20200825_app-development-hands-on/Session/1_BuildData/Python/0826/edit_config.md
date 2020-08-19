@@ -3,11 +3,11 @@
 
 1. 環境構築時にダウンロードした[ハンズオンデータ](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/Environment/README.md#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E9%85%8D%E7%BD%AE)の EJWater\script\config フォルダにある「config.ini」をメモ帳で開きます。
     
-    <img src="./img/dir.png" width="300px">
+    <img src="../0825/img/dir.png" width="300px">
 
 1. 次の画像のように設定を編集して保存します。
 
-   <img src="./0825/img/config.png" width="550px">
+   <img src="../0825/img/config.png" width="550px">
 
     ①: ハンズオン データを配置したパス</br>
     ②: ArcGIS Online のユーザー名とパスワード</br>
@@ -23,19 +23,19 @@
 ### アイテムIDの確認方法
 アイテム ID は Web GIS 上のアイテムを一意に識別する ID です。次の方法で確認できます。
 1. ArcGIS Online にサインインし、[コンテンツ] をクリックし、一覧から対象のアイテムをクリックし、アイテム ページを開きます。</br>
-    <img src="./img/host_fl_setting.png" width="400px">
+    <img src="../0825/img/host_fl_setting.png" width="400px">
   
 1. アイテム ページの URL の`id=`以降の英数字がアイテム IDです。コピーして設定ファイルに貼り付けてください。</br>
     <img src="./img/item-id.png" width="400px">
 
     ※ Web マップ(①)、ホスト フィーチャ レイヤー(②)、ホスト フィーチャ レイヤーのサービス定義ファイル(③)を混同して貼り付けるアイテム ID を間違えないように注意してください。</br>
-    <img src="./img/items.png" width="400px">
+    <img src="../0825/img/items.png" width="400px">
 
 ### レイヤーのサービスURLの確認方法
 2つの図郭レイヤーのサービス URL は、次の方法でそれぞれコピー、ペーストしてください
 1. ArcGIS Online にサインインし、[コンテンツ] をクリックして、ホスト フィーチャ レイヤーをクリックします。</br>
-    <img src="./img/host_fl_setting.png" width="400px"></br>
+    <img src="../0825/img/host_fl_setting.png" width="400px"></br>
 1. ホスト フィーチャ レイヤーのアイテム ページを開き、画面をスクロールすると図郭_500と図郭_100レイヤーが表示されるので、クリックします。</br>
-    <img src="./img/layers.png" width="400px"></br>
+    <img src="../0825/img/layers.png" width="400px"></br>
 1. クリックしたレイヤーの詳細画面に切り替わるので、右側のサービス URL のコピーボタンをクリックし、設定ファイルに URL を貼り付けます。</br>
-    <img src="./img/copy-url.png" width="400px">
+    <img src="../0825/img/copy-url.png" width="400px">
