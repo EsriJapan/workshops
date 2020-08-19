@@ -77,8 +77,6 @@ ServerUrl の Value にポータルのURLを設定する。
 例：  
 ```xml
 <add key="AppClientId" value="pzXBDz3TutCDdA0C"/>
-```
-```xml
 <add key="OAuthRedirectUrl" value="esrijofflineapp://auth"/>
 ```
 
