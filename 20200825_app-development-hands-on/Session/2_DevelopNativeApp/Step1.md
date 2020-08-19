@@ -73,8 +73,6 @@ ServerUrl の Value にポータルのURLを設定する。
 <br><br>
 上記で発行した「アプリケーションID」と「リダイレクトURL」を App.Config ファイルの「AppClientID」、「OAuthRedirectUrl」に設定します。  
 例：  
-```<add key="ServerUrl" value="https://www.arcgis.com/sharing/rest"/>```  
-例：  
 ```<add key="AppClientId" value="pzXBDz3TutCDdA0C"/>```  
 ```<add key="OAuthRedirectUrl" value="esrijofflineapp://auth"/>```
 
