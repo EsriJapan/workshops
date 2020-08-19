@@ -72,13 +72,13 @@ ServerUrl の Value にポータルのURLを設定する。
 <img src="./img/agol_app_reg.png" width="300px">
 <br><br>
 上記で発行した「アプリケーションID」と「リダイレクトURL」を App.Config ファイルの「AppClientID」、「OAuthRedirectUrl」に設定します。<br>
-例：  
+例：<br>
 ```<add key="AppClientId" value="pzXBDz3TutCDdA0C"/>```  
 ```<add key="OAuthRedirectUrl" value="esrijofflineapp://auth"/>```
 
 5. 「WebMapId」を設定  
 作成済みのWebマップのURLを設定する。  
-コンテンツ画面より今回使用するWebマップをクリックする。  
+コンテンツ画面より今回使用する Web マップをクリックする。  
 <img src="./img/agol_webmap_id.png" width="300px">  
 例：  
 ```<add key="WebMapId" value="https://ej.maps.arcgis.com/home/item.html?id=8e285147abe044cb851fbec6a1bed5cd"/>```  
