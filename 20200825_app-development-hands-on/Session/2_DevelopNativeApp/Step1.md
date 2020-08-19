@@ -121,3 +121,6 @@ ServerUrl の Value にポータルのURLを設定する。
 <img src="./img/app.png" width="500px"><br>
 
 ※時間がある方は、実際にログインして動作を確認してみてください。
+
+## 次のステップ：
+[Step2：ダウンロード機能の実装](./Step2.md)
