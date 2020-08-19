@@ -38,9 +38,9 @@
 3. 「ServerUrl」を設定  
 ServerUrl の Value にポータルのURLを設定する。  
 例：<br>
-```xml
-<add key="ServerUrl" value="https://www.arcgis.com/sharing/rest"/>
-```  
+    ```xml
+    <add key="ServerUrl" value="https://www.arcgis.com/sharing/rest"/>
+    ```  
 
 4. 「AppClientID」、「OAuthRedirectUrl」を設定  
 まずは、アプリケーションID と リダイレクトURLを発行します。<br>
@@ -82,33 +82,33 @@ ServerUrl の Value にポータルのURLを設定する。
 5. 「WebMapId」を設定  
 作成済みのWebマップのURLを設定する。  
 コンテンツ画面より今回使用する Web マップをクリックする。  
-<img src="./img/agol_webmap_id.png" width="300px"><br>
+<img src="./img/agol_webmap_id.png" width="300px">
 例：<br>
-```xml
-<add key="WebMapId" value="https://ej.maps.arcgis.com/home/item.html?id=8e285147abe044cb851fbec6a1bed5cd"/>
-```
+    ```xml
+    <add key="WebMapId" value="https://ej.maps.arcgis.com/home/item.html?id=8e285147abe044cb851fbec6a1bed5cd"/>
+    ```
 
 6. 「FeatureServiceUrl」を設定  
-- Web マップの概要画面に表示されているレイヤーから任意のモノをクリックする。  
-<img src="./img/agol_webmap_layer.png" width="300px">  
+    - Web マップの概要画面に表示されているレイヤーから任意のモノをクリックする。  
+    <img src="./img/agol_webmap_layer.png" width="300px">  
 
-- FeatureLayer の概要ページが表示されるので、画面の右下にあるURLをコピーする。  
-<img src="./img/agol_layer_url.png" width="300px">
-<br><br>
-FeatureLayer の URL を App.config ファイルの「FeatureServiceUrl」に設定する。  
-例：<br>
-```xml
-<add key="FeatureServiceUrl" value="https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer"/>
-```   
+    - FeatureLayer の概要ページが表示されるので、画面の右下にあるURLをコピーする。  
+    <img src="./img/agol_layer_url.png" width="300px">
+    <br><br>
+    FeatureLayer の URL を App.config ファイルの「FeatureServiceUrl」に設定する。  
+    例：<br>
+    ```xml
+    <add key="FeatureServiceUrl" value="https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E5%90%89%E6%B0%B4%E9%81%93%E3%83%9E%E3%83%83%E3%83%97_WFL1/FeatureServer"/>
+    ```   
 
 7. 「OfflineDataFolder」と「Mode」に以下を設定する  
-- OfflineDataFolder：任意のフォルダ (今回は事前に作成している D:/EJWater) を設定  
-- Mode：Online を設定
-<br><br>
-すべて設定すると次のようなコンフィグになります。   
-<img src="./img/appconfig.png" width="500px">
+    - OfflineDataFolder：任意のフォルダ (今回は事前に作成している D:/EJWater) を設定  
+    - Mode：Online を設定
+    <br><br>
+    すべて設定すると次のようなコンフィグになります。   
+    <img src="./img/appconfig.png" width="500px">
 
-※「ClientSecret」、「OfflineDataName」は設定は不要です。
+    ※「ClientSecret」、「OfflineDataName」は設定は不要です。
 
 
 ### ③ アプリケーションの起動確認
