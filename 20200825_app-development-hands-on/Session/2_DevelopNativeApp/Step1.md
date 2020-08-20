@@ -84,9 +84,8 @@ ServerUrl の Value にポータルのURLを設定する。
     ```
 
 5. 「WebMapId」を設定  
-作成済みのWebマップのURLを設定します。  
-コンテンツ画面より今回使用する Web マップをクリックして、Web マップの概要ページを開き、URL をコピーします。  
-※この前のセッションで Web マップを作成できなかった方は、今回のハンズオン用に事前に作成済みの Web マップがあるので上記のURLをそのまま使用してください。  
+コンテンツ画面より今回使用する Web マップ (前のセッションで作成した Web マップ) をクリックして、Web マップの概要ページを開き、URL をコピー、「WebMapId」に設定します。  
+※この前のセッションで Web マップを作成できなかった方は、今回のハンズオン用に事前に作成済みの Web マップがあるので下記のURLをそのまま使用してください。  
 <img src="./img/agol_webmap_id.png" width="300px"><br>
 例：<br>
     ```xml
@@ -97,7 +96,8 @@ ServerUrl の Value にポータルのURLを設定する。
     - Web マップの概要画面に表示されているレイヤーから任意のモノをクリックする。  
     <img src="./img/agol_webmap_layer.png" width="300px"><br>
 
-    - FeatureLayer の概要ページが表示されるので、画面の右下にあるURLをコピーする。  
+    - FeatureLayer の概要ページが表示されるので、画面の右下にあるURLをコピーします。  
+    ※この前のセッションで Web マップを作成できなかった方は、今回のハンズオン用に事前に作成済みの FeatureLayer があるので下記のURLをそのまま使用してください。
     <img src="./img/agol_layer_url.png" width="300px"><br>
     FeatureLayer の URL を App.config ファイルの「FeatureServiceUrl」に設定する。<br>
     例：<br>
