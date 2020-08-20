@@ -23,7 +23,7 @@ private async Task DownloadMapAreaAsync(PreplannedMapArea mapArea, OfflineMapTas
 
 上記 DownloadMapAreaAsync メソッドにオフラインデータを扱うために必要な次のクラスを使用して処理を記述します。  
 - OfflineMapTask クラス：マップをオフラインにするために使用されるタスク  
-- DownloadPreplannedOfflineMapParameters クラス：ダウンロードJobで使用されるパラメータ  
+- DownloadPreplannedOfflineMapParameters クラス：ダウンロードジョブで使用されるパラメータ  
 - DownloadPreplannedOfflineMapJob クラス：オンラインマップからマップエリアをダウンロードするジョブ  
 
 ※DownloadMapAreaAsync メソッドの引数について 
