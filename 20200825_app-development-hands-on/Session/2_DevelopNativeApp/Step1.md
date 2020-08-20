@@ -77,10 +77,10 @@ ServerUrl の Value にポータルのURLを設定する。
     <img src="./img/agol_app_reg.png" width="500px"><br>
     上記で発行した「アプリケーションID」と「リダイレクトURL」を App.Config ファイルの「AppClientID」、「OAuthRedirectUrl」に設定します。<br>
     例：<br>
-    ```xml
-    <add key="AppClientId" value="pzXBDz3TutCDdA0C"/>
-    <add key="OAuthRedirectUrl" value="esrijofflineapp://auth"/>
-    ```
+        ```xml
+        <add key="AppClientId" value="pzXBDz3TutCDdA0C"/>
+        <add key="OAuthRedirectUrl" value="esrijofflineapp://auth"/>
+        ```
 
 5. 「WebMapId」を設定  
 コンテンツ画面より今回使用する Web マップ (前のセッションで作成した Web マップ) をクリックして、Web マップの概要ページを開き、URL をコピー、「WebMapId」に設定します。  
