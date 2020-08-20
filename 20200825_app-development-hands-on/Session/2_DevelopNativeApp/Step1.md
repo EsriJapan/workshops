@@ -84,13 +84,14 @@ ServerUrl の Value にポータルのURLを設定する。
     ```
 
 5. 「WebMapId」を設定  
-作成済みのWebマップのURLを設定する。  
+作成済みのWebマップのURLを設定します。  
 コンテンツ画面より今回使用する Web マップをクリックする。  
 <img src="./img/agol_webmap_id.png" width="300px"><br>
 例：<br>
     ```xml
     <add key="WebMapId" value="https://ej.maps.arcgis.com/home/item.html?id=8e285147abe044cb851fbec6a1bed5cd"/>
-    ```
+    ```  
+    ※この前のセッションで Web マップを作成できなかった方は、今回のハンズオン用に事前に作成済みの Web マップがあるので上記のURLをそのまま使用してください。
 
 6. 「FeatureServiceUrl」を設定  
     - Web マップの概要画面に表示されているレイヤーから任意のモノをクリックする。  
