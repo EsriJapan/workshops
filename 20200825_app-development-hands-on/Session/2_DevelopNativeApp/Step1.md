@@ -58,7 +58,7 @@ ServerUrl の Value にポータルのURLを設定する。
     <img src="./img/agol_menu.png" width="700px"><br>
 
     - 「アイテムの追加」 > 「アプリケーション」を押下します。  
-    <img src="./img/agol_item_add.png" width="300px"><br>
+    <img src="./img/agol_item_add.png" width="250px"><br>
 
     - 以下を入力し、「アイテムの追加」ボタンを押下します。  
       ・タイプ：アプリケーションにチェック  
@@ -85,7 +85,7 @@ ServerUrl の Value にポータルのURLを設定する。
 
 5. 「WebMapId」を設定  
 コンテンツ画面より今回使用する Web マップ (前のセッションで作成した Web マップ) をクリックして、Web マップの概要ページを開き、URL をコピー、「WebMapId」に設定します。  
-<img src="./img/agol_webmap_id.png" width="300px"><br>
+<img src="./img/agol_webmap_id.png" width="500px"><br>
 ※この前のセッションで Web マップを作成できなかった方は、今回のハンズオン用に事前に作成済みの Web マップがあるので下記のURLをそのまま使用してください。  
 例：<br>
     ```xml
