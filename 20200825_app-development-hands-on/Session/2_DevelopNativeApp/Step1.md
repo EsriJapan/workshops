@@ -75,8 +75,7 @@ ServerUrl の Value にポータルのURLを設定する。
 
     - 画面に「アプリケーションID」と「リダイレクトURL」が表示されます。  
     <img src="./img/agol_app_reg.png" width="500px"><br>
-
-    上記で発行した「アプリケーションID」と「リダイレクトURL」を App.Config ファイルの「AppClientID」、「OAuthRedirectUrl」に設定します。  
+    上記で発行した「アプリケーションID」と「リダイレクトURL」を App.Config ファイルの「AppClientID」、「OAuthRedirectUrl」に設定します。<br>
     例：<br>
     ```xml
     <add key="AppClientId" value="pzXBDz3TutCDdA0C"/>
@@ -111,7 +110,7 @@ ServerUrl の Value にポータルのURLを設定する。
     <br><br>
     すべて設定すると次のようなコンフィグになります。<br>
     <img src="./img/appconfig.png" width="500px"><br>
-
+    
     ※「ClientSecret」、「OfflineDataName」の設定は不要です。
 
 
