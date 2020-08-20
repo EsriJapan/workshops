@@ -55,7 +55,7 @@ ServerUrl の Value にポータルのURLを設定する。
     <img src="./img/agol_login.png" width="250px"><br>
 
     - 画面上部の「コンテンツ」を押下します。  
-    <img src="./img/agol_menu.png" width="500px"><br>
+    <img src="./img/agol_menu.png" width="700px"><br>
 
     - 「アイテムの追加」 > 「アプリケーション」を押下します。  
     <img src="./img/agol_item_add.png" width="250px"><br>
