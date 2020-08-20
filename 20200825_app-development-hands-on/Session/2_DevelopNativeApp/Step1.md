@@ -1,6 +1,6 @@
 # ステップ 1 ：コンフィグの設定と起動確認
 
-## はじめに
+## 演習の目的
 ステップ 1 では、ハンズオンで使用するアプリケーションが動作するために必要な AppConfig ファイルの設定とアプリケーションの起動の確認を行います。
 
 ## 手順
@@ -32,7 +32,8 @@
     - FeatureServiceUrl：FeatureServiceのURL
     - OfflineDataFolder：オフラインデータの保存フォルダパス
     - Mode：起動時のアプリケーションのモード（Online/Offline）
-    - OfflineDataName：アプリケーション終了時に表示していたオフラインデータの名前  
+    - OfflineDataName：アプリケーション終了時に表示していたオフラインデータの名前<br>
+    
 以下より、パラメーターに必要な情報の作成と設定を行います。<br>
 
 3. 「ServerUrl」を設定  
@@ -107,7 +108,7 @@ ServerUrl の Value にポータルのURLを設定する。
     すべて設定すると次のようなコンフィグになります。   
     <img src="./img/appconfig.png" width="500px">
 
-    ※「ClientSecret」、「OfflineDataName」は設定は不要です。
+    ※「ClientSecret」、「OfflineDataName」の設定は不要です。
 
 
 ### ③ アプリケーションの起動確認
@@ -120,4 +121,8 @@ ServerUrl の Value にポータルのURLを設定する。
 3. 以下画面が起動すれば完了です。  
 <img src="./img/app.png" width="500px"><br>
 
-※時間がある方は、実際にログインして動作を確認してみてください。
+※時間がある方は、実際にログインして動作を確認してみてください。  
+アプリケーションの機能については、[Step0：漏水調査アプリの機能説明](./Step0.md) に記載しています。
+
+## 次のステップ：
+[Step2：ダウンロード機能の実装](./Step2.md)
