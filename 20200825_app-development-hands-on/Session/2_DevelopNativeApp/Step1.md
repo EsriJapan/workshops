@@ -58,7 +58,7 @@ ServerUrl の Value にポータルのURLを設定する。
     <img src="./img/agol_menu.png" width="700px"><br>
 
     - 「アイテムの追加」 > 「アプリケーション」を押下します。  
-    <img src="./img/agol_item_add.png" width="3000px"><br>
+    <img src="./img/agol_item_add.png" width="300px"><br>
 
     - 以下を入力し、「アイテムの追加」ボタンを押下します。  
       ・タイプ：アプリケーションにチェック  
@@ -68,7 +68,7 @@ ServerUrl の Value にポータルのURLを設定する。
 
     - 登録したアプリ (漏水調査アプリ) の概要画面が開かれるので、設定タブを押下して設定画面に遷移する。  
     ※自動で移動しなかった場合はコンテンツ画面から漏水調査アプリのリンクをクリックする。  
-    <img src="./img/agol_app_gaiyou.png" width="500px"><br>
+    <img src="./img/agol_app_gaiyou.png" width="700px"><br>
 
     - 設定画面の「Application」枠の「登録情報」ボタンを押下する。  
     <img src="./img/agol_app_setting.png" width="500px"><br>
