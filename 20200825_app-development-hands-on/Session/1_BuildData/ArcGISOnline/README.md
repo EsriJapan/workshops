@@ -20,6 +20,8 @@
 
 1. [アップロードするデータ](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISOnline/data/%E5%90%84%E5%BA%97%E8%88%97%E5%A3%B2%E4%B8%8A.zip) をダウンロードして、解凍してください。
 
+※ごくまれにネットワークの状態によって、フィーチャ レイヤーの作成に時間がかかってしまうことがあります。万が一、本ハンズオン中にフィーチャ レイヤーの作成終わらなかった場合は後で本ハンズオンの続きを進めてください。
+
 2. 「アイテムの追加」 > 「コンピューターから」を押下します。
 
    <img src="./img/add_item.png" width="300px">
@@ -66,6 +68,10 @@
 5. フィルターが正しく設定されていることがわかります。
 
    <img src="./img/filter4.png" width="300px">
+
+6. 「コンテンツ」を押下します。
+
+   <img src="./img/press_content.png" width="150px">
 
 ## ②Living Atlas を使ってみよう
 ### Living Atlas へアクセス

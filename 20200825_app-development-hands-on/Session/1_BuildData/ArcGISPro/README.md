@@ -16,6 +16,10 @@
 
    <img src="./img/pro_initial_state.png" width="500px">
 
+3. サインインしていない場合はサインインしてください。
+
+   <img src="./img/signin.png" width="150">
+
 ## Web マップの作成
 
 1. 「共有」タブ内の「Webマップ」ボタンを押下します。
@@ -29,6 +33,8 @@
 
    <img src="./img/pro_webmap_upload.png" width="300px"></br>
 
+   ※同一組織内で同じアイテムを公開する場合は名前を変更する必要があります。
+   
 3. Web マップの作成が完了します。
 
    <img src="./img/pro_webmap_upload_finish.png" width="300px">

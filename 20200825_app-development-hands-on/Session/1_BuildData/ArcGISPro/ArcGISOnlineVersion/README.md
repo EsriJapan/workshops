@@ -40,12 +40,7 @@ Web マップに格納するためのレイヤーを作成します。
 
    <img src="./img/create_featurelayer3.png" width="500px">
 
-5. 以下を入力し「次へ」ボタンを押下します。
-
-   「左」・・・139.636  
-   「右」・・・139.652  
-   「上」・・・35.556  
-   「下」・・・35.552  
+5. 「次へ」ボタンを押下します。
 
    <img src="./img/create_featurelayer4.png" width="300px">
 
@@ -102,11 +97,15 @@ Web マップに格納するためのレイヤーを作成します。
 
    <img src="./img/select_thumnail.png" width="300px">
 
-2. 「名前を付けて保存」を押下します。
+2. 赤枠の箇所に「神奈川県横浜市港北区日吉駅」と入力してください。
+
+   <img src="./img/geocoding.png" width="500px">
+
+3. 「名前を付けて保存」を押下します。
 
    <img src="./img/save_webmap.png" width="300px">
 
-3. 以下を入力し、「マップの保存」を押下します。
+4. 以下を入力し、「マップの保存」を押下します。
 
    「タイトル」・・・日吉水道マップ    
    「タグ」・・・開発塾2020    
@@ -114,11 +113,11 @@ Web マップに格納するためのレイヤーを作成します。
 
    <img src="./img/save_map.png" width="300px">
 
-4. 「コンテンツ」を押下します。
+5. 「コンテンツ」を押下します。
 
    <img src="./img/home.png" width="300px">
 
-5. Web マップが作成されていることを確認します。
+6. Web マップが作成されていることを確認します。
 
    <img src="./img/webmap.png" width="300px">
 
