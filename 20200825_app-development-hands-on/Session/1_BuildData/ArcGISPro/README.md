@@ -20,6 +20,8 @@
 
    <img src="./img/signin.png" width="150">
 
+   ※もし、サインインができない場合は、[ArcGIS Online を使用した Web マップの作成](https://github.com/EsriJapan/workshops/tree/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/ArcGISOnlineVersion)の方で Web マップを作成してください。</span>
+
 ## Web マップの作成
 
 1. 「共有」タブ内の「Webマップ」ボタンを押下します。
@@ -34,7 +36,7 @@
    <img src="./img/pro_webmap_upload.png" width="300px"></br>
 
    ※同一組織内で同じアイテムを公開する場合は名前を変更する必要があります。
-   
+
 3. Web マップの作成が完了します。
 
    <img src="./img/pro_webmap_upload_finish.png" width="300px">
