@@ -109,8 +109,8 @@ ServerUrl の Value にポータルのURLを設定する。
     - OfflineDataFolder：任意のフォルダ (今回は事前に作成している D:/EJWater) を設定  
     - Mode：Online を設定
     <br><br>
-    すべて設定すると次のようなコンフィグになります。   
-    <img src="./img/appconfig.png" width="500px">
+    すべて設定すると次のようなコンフィグになります。<br>
+    <img src="./img/appconfig.png" width="500px"><br>
 
     ※「ClientSecret」、「OfflineDataName」の設定は不要です。
 
