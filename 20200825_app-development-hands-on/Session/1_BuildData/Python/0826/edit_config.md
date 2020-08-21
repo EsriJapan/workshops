@@ -7,7 +7,7 @@
 
 ## 設定ファイルの編集
 
-1. 環境構築時にダウンロードした[ハンズオンデータ](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/Environment/README.md#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E9%85%8D%E7%BD%AE)の EJWater\script\config フォルダにある「config.ini」をメモ帳で開きます (他のテキスト エディターで開く場合は文字コードが自動で変換されないように注意してください)。
+1. 環境構築時にダウンロードした[ハンズオンデータ](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/Environment/README.md#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E9%85%8D%E7%BD%AE)の EJWater\script\config フォルダにある「config.ini」をメモ帳やテキスト エディターで開きます (文字化けしないよう文字コードは Shift-JIS を指定してください)。
     
     <img src="../0825/img/dir.png" width="700px">
 
