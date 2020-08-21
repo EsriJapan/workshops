@@ -9,8 +9,8 @@
 - ② DeleteMapAreasAsync の実装
 
 ### ① 概要の説明
-このステップでは削除ボタン押下時に呼び出されるメソッドを実装します。
-ステップ 2 同様に「ESRIJOfflineApp」フォルダを開き、ソリューションファイル「ESRIJOfflineApp.sln」を起動します。  
+このステップでは削除ボタン押下時に呼び出されるメソッドを実装します。  
+ステップ 2 同様に「exercise」フォルダを開き、ソリューションファイル「ESRIJOfflineApp.sln」を起動します。  
 <img src="./img/solution_file.png" width="500px">  
 
 ソリューションエクスプローラーから「ESRIJOfflineApp」→「Modelsフォルダ」→「OfflineAreaPanelModel.cs」を開きます。  
