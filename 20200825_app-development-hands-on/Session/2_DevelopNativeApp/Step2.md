@@ -10,7 +10,7 @@
 
 ### ① 概要の説明
 このステップではダウンロードボタン押下時に呼び出されるメソッド実装します。  
-ステップ 1 で保存した「ESRIJOfflineApp」フォルダを開き、ソリューションファイル「ESRIJOfflineApp.sln」を起動します。  
+ステップ 1 で保存した「EJWater_NativeApp」フォルダを開き、ソリューションファイル「ESRIJOfflineApp.sln」を起動します。  
 <img src="./img/solution_file.png" width="500px">  
 
 ソリューションエクスプローラーから「ESRIJOfflineApp」→「Modelsフォルダ」→「OfflineAreaPanelModel.cs」を開きます。  
