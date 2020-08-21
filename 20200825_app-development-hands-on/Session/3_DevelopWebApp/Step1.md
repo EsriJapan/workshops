@@ -26,7 +26,7 @@ https://community.esri.com/docs/DOC-14692)をご参照ください。
 
 ### 2. アプリの配置
 
-[本ハンズオンで使用するアプリはこちらでダウンロードできます](https://github.com/tkamiya0625/workshops/raw/master/20200825_app-development-hands-on/Session/3_DevelopWebApp/EJWater_WebApp.zip)
+[本ハンズオンで使用するアプリはこちらでダウンロードできます](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Session/3_DevelopWebApp/EJWater_WebApp.zip)
 
 上記リンクでダウンロードする EJWater_WebApp.zip を任意の場所（例 C：\EJWater_WebApp）に配置して解凍してください。EJWater_WebApp.zip 内の calcite-maps フォルダがプロジェクトになります。 
 
