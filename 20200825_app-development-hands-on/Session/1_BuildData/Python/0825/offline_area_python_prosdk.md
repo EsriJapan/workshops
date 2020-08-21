@@ -11,7 +11,7 @@
 
 1. 環境構築時にダウンロードした[ハンズオンデータ](https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/Environment/README.md#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E9%85%8D%E7%BD%AE)の EJWater\script\config フォルダにある「config.ini」をメモ帳で開きます (他のテキスト エディターで開く場合は文字コードが自動で変換されないように注意してください)。
     
-    <img src="./img/dir.png" width="300px">
+    <img src="./img/dir.png" width="500px">
 
 1. 次の画像のように設定を編集して保存します。
 
@@ -75,40 +75,49 @@ ArcGIS Pro を ArcGIS Pro SDK for .NET を使って拡張し、[オフライン 
 
 Python スクリプト内では ArcGIS API for Python を使用して、渡されたパラメーターに基づいて ArcGIS Online へオフライン エリア作成のリクエストを送っています。
 
-ArcGIS Pro をカスタマイズすることで、ArcGIS Pro を業務ワークフローに合わせて拡張することができるほか、ArcGIS API for Python と組み合わせることで、ArcGIS Pro の UI 操作を介して ArcGIS Online の操作を実行することができます。
-
   <img src="./img/prosdk-pythonapi-agol.png" width="550px">
+
+使用している主な ArcGIS API for Python のモジュール、クラスは次のとおりです。
+
+* 使用しているモジュール：[arcgis.mapping](https://developers.arcgis.com/python/api-reference/arcgis.mapping.toc.html#arcgis-mapping-module) モジュール
+* 使用クラス:
+  * [WebMap](https://developers.arcgis.com/python/api-reference/arcgis.mapping.toc.html#webmap) クラス
+    * Web GIS 上の Web マップ アイテムを扱うためのクラス
+  * [OfflineMapAreaManager](https://developers.arcgis.com/python/api-reference/arcgis.mapping.toc.html#offlinemapareamanager) クラス
+    * Web マップのオフライン エリア管理用のヘルパー クラス
+    * WebMap オブジェクトの offline_areas プロパティからアクセス
+
+実装しているソース コードは少しもう少し複雑ですが、基本的には以下のようなコードでオフライン エリアを作成することが可能です。
+```python
+from arcgis.mapping import WebMap
+from arcgis.gis import GIS
+
+# Web GIS に接続して Web マップを取得
+gis = GIS(url, username, password)
+wm_item = gis.content.get('Web マップのアイテム ID')
+
+# WebMap オブジェクトを作成
+wm = WebMap(wm_item)
+
+# 作成するオフライン エリアのアイテム プロパティ
+item_prop = {'title': 'タイトル',
+             'snippet': 'アイテム説明のサマリー',
+             'tags': ['検索用のタグ1', '検索用のタグ2', '検索用のタグ3']}
+             
+# 作成するオフライン エリアのエクステント
+# ※ Web マップのブックマークがあればブックマーク名で指定可能
+target_area = wm.definition.bookmarks[-1]['name']
+
+# OfflineMapAreaManager の create メソッドで作成
+wm.offline_areas.create(area=target_area,
+                        item_properties=item_prop)
+```
+
+ArcGIS Pro をカスタマイズすることで、ArcGIS Pro を業務ワークフローに合わせて拡張することができるほか、ArcGIS API for Python と組み合わせることで、ArcGIS Pro の UI 操作を介して ArcGIS Online の操作を実行することができます。
 
 ## まとめ
 以上で ArcGIS API for Python と ArcGIS Pro SDK for .NET を使用したオフライン エリアの作成は終了です。
 
-時間がある方は EJWater\script\src の中の preplan.py ファイルを開き、以下のソース コードを確認してみましょう。
+このステップでは ArcGIS Pro SDK for .NET を使ったアドインを利用して、ArcGIS API for Python を使った
 
-## ソースコードの主要部分解説
-- 今回のサンプル用にクラスを作成
-  - インスタンス化の際に以下を実行
-  - Web GIS に接続
-  - Web マップのアイテムを取得
-  - WebMap オブジェクト作成
-
-```python
-class offlineAreaManager:
-    """オフライン エリアの作成、削除等を行うクラス"""
-    def __init__(self):
-        self.logging = Logging("オフライン エリア管理")
-        
-        # GISに接続
-        Config.read_config()
-        self.gis = GIS(Config.get_portal_url(),
-                       Config.get_username(),
-                       Config.get_password())
-        
-        # Web Map の ID を取得
-        Config.read_config()
-        self.web_map_id = Config.get_web_map_id()
-        
-        # 各処理共通で使う変数
-        self.web_map_item = self.gis.content.get(self.web_map_id)
-        self.web_map = WebMap(self.web_map_item)
-        self.offline_list = self.web_map.offline_areas.list()
-```
+時間がある方は、EJWater\script\src ディレクトリ内にある preplan.py を開き、ソース コードを確認してみましょう。
