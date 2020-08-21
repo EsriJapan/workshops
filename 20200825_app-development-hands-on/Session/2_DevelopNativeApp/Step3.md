@@ -9,8 +9,8 @@
 - ② OfflineMapUp の実装
 
 ### ① 概要の説明
-このステップではアップロードボタン押下時に呼び出されるメソッドを実装します。
-ステップ 3 同様に「ESRIJOfflineApp」フォルダを開き、ソリューションファイル「ESRIJOfflineApp.sln」を起動します。  
+このステップではアップロードボタン押下時に呼び出されるメソッドを実装します。  
+ステップ 3 同様に「exercise」フォルダを開き、ソリューションファイル「ESRIJOfflineApp.sln」を起動します。  
 <img src="./img/solution_file.png" width="500px">  
 
 ソリューションエクスプローラーから「ESRIJOfflineApp」→「Modelsフォルダ」→「OfflineAreaPanelModel.cs」を開きます。  
