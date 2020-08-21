@@ -71,4 +71,4 @@ ArcGIS Pro をお持ちの方は、時間があれば [ArcGIS API for Python と
 
     <img src="./img/save-webmap.png" width="500px">
 
-1. [再度オフライン エリアの作成画面に戻り](#ArcGIS-Online-の-UI-でオフライン エリアを作成)、オフライン エリアの作成をお試しください。
+1. [再度オフライン エリアの作成画面に戻り](#ArcGIS-Online-の-UI-でオフライン-エリアを作成)、オフライン エリアの作成をお試しください。
