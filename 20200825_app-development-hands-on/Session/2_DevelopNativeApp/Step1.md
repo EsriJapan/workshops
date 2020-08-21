@@ -78,8 +78,8 @@ ServerUrl の Value にポータルのURLを設定する。
     上記で発行した「アプリケーションID」と「リダイレクトURL」を App.Config ファイルの「AppClientID」、「OAuthRedirectUrl」に設定します。<br>
     例：<br>
         ```xml
-        <add key="AppClientId" value="pzXBDz3TutCDdA0C"/>
-        <add key="OAuthRedirectUrl" value="esrijofflineapp://auth"/>
+        <add key="AppClientId" value="M3R8sklRa37pnAUN"/>
+        <add key="OAuthRedirectUrl" value="urn:ietf:wg:oauth:2.0:oob"/>
         ```
 
 5. 「WebMapId」を設定  
@@ -105,7 +105,7 @@ ServerUrl の Value にポータルのURLを設定する。
         ```   
 
 7. 「OfflineDataFolder」と「Mode」に以下を設定する  
-    - OfflineDataFolder：任意のフォルダ (今回は事前に作成している D:/EJWater) を設定  
+    - OfflineDataFolder：任意のフォルダ (例： D:/temp)  
     - Mode：Online を設定
     <br><br>
     すべて設定すると次のようなコンフィグになります。<br>
@@ -121,7 +121,7 @@ ServerUrl の Value にポータルのURLを設定する。
 2. Visual Studio の画面「ビルド」タブから「ソリューションのビルド」を選択します。  
 <img src="./img/vs_build.png" width="500px"><br>
 
-3. 「実行」を選択して、アプリケーションを起動します。  
+3. 「開始」を選択して、アプリケーションを起動します。  
 <img src="./img/vs_jikkou.png" width="500px"><br>
 
 4. 以下画面が起動すれば完了です。  
