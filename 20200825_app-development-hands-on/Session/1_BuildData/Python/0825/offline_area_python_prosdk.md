@@ -117,7 +117,9 @@ wm.offline_areas.create(area=target_area,
 ## まとめ
 以上で ArcGIS API for Python と ArcGIS Pro SDK for .NET を使用したオフライン エリアの作成は終了です。
 
-このステップでは ArcGIS Pro SDK for .NET を使ったアドインを利用して、ArcGIS API for Python を使ったスクリプトを実行し、ArcGIS Online 上の Web マップにオフライン エリアを作成しました。
+このステップでは 設定ファイルの編集作業を通じて、Web GIS 上のアイテムを一意に識別するアイテム ID や、レイヤーのサービス URL についても確認する方法を学びました。
+
+さらに、ArcGIS Pro SDK for .NET を使ったアドインを利用して、ArcGIS API for Python を使ったスクリプトを実行し、ArcGIS Online 上の Web マップにオフライン エリアを作成しました。
 
 ArcGIS Pro をカスタマイズすることで、ArcGIS Pro を業務ワークフローに合わせて拡張することができるほか、ArcGIS API for Python と組み合わせることで、ArcGIS Pro の UI 操作を介して ArcGIS Online の操作を実行することができます。
 
