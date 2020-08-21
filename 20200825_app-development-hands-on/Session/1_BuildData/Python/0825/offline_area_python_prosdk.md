@@ -50,6 +50,7 @@
 
 ## ArcGIS Pro SDK for .NET で拡張したアドインを使用したオフライン エリアの作成
 1. 設定ファイルを編集・保存したら EJWater フォルダにある EJWater.aprx をダブルクリックして ArcGIS Pro のプロジェクトを開きます。
+
     <img src="https://github.com/EsriJapan/workshops/blob/master/20200825_app-development-hands-on/Session/1_BuildData/ArcGISPro/img/project.png" width="400px">
 
 1. ArcGIS Pro が開いたら画面上部の [オフラインデータ タブ] をクリックし、図郭_500 をコンボボックスから選択しましょう。
