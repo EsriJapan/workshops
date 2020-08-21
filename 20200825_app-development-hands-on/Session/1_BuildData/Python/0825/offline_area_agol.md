@@ -47,9 +47,12 @@
   
     <img src="./img/close.png" width="250px">
 
-ここではArcGIS Online の UI からオフライン エリアを作成する方法を学びました。
+## まとめ
+このステップでは ArcGIS Online の UI からオフライン エリアを作成する方法を学びました。
 
 ArcGIS Pro をお持ちの方は、時間があれば [ArcGIS API for Python と ArcGIS Pro SDK for .NET を使用したオフライン エリアの作成](offline_area_python_prosdk.md) へ進んで下さい。
+
+**※ 何らかの原因でオフライン エリアの作成ができなかった場合も、以降のハンズオンで全体に共有している Web マップを使ってご参加いただけます。**
 
 ## 背景地図が表示されない場合の対応方法
 1. オフライン エリア作成画面右上の ☓ ボタンをクリックし、作成画面を閉じます。
@@ -68,4 +71,4 @@ ArcGIS Pro をお持ちの方は、時間があれば [ArcGIS API for Python と
 
     <img src="./img/save-webmap.png" width="500px">
 
-1. 再度オフライン エリアの作成画面に戻り、オフライン エリアを作成してください。
+1. [再度オフライン エリアの作成画面に戻り](#ArcGIS-Online-の-UI-でオフライン-エリアを作成)、オフライン エリアの作成をお試しください。
