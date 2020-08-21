@@ -10,10 +10,10 @@
 
 ### ① アプリケーションのダウンロード
 1. ハンズオンで使用するアプリケーションを以下よりダウンロードしてください。  
-[Handson.zip](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Session/2_DevelopNativeApp/Handson.zip)
+[EJWater_NativeApp.zip](https://github.com/EsriJapan/workshops/raw/master/20200825_app-development-hands-on/Session/2_DevelopNativeApp/EJWater_NativeApp.zip)
 
 2. 任意の場所に配置して解凍する  
-例：D：\ESRIJOfflineApp<br><br>
+例：D：\EJWater_NativeApp<br><br>
 zip を解凍すると「answer」と「exercise」フォルダが格納されています。  
 ハンズオンでは、「exercise」フォルダにあるプロジェクトを使用します。  
 「answer」フォルダにはすでに完成したアプリケーションが格納されているので、コードや動作を確認する際にご利用ください。  
