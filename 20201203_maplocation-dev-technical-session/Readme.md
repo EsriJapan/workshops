@@ -9,5 +9,5 @@
 
 ### [3. ArcGIS API for JavaScript による Web アプリ開発](/20201203_maplocation-dev-technical-session/03_ArcGIS_API_for_JavaScript_による_Web_アプリ開発.pdf)
 
-### [4. まとめ](/20201203_maplocation-dev-technical-session/04_ArcGIS_Enterprise_の拡張と最新動向.pdf)
+### [4. ArcGIS Enterprise の拡張と最新動向](/20201203_maplocation-dev-technical-session/04_ArcGIS_Enterprise_の拡張と最新動向.pdf)
 
