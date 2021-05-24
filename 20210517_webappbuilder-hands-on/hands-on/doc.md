@@ -1,4 +1,4 @@
-# Web AppBuilder for ArcGIS (Developer Edition) を使用したカスタム ウィジェット開発ガイド
+# ArcGIS Web AppBuilder (Developer Edition) を使用したカスタム ウィジェット開発ガイド
 
 ## 概要
 
