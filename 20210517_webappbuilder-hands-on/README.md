@@ -7,7 +7,7 @@
 * [Web AppBuilder (Developer Edition)](https://developers.arcgis.com/web-appbuilder/)
 * [ArcGIS Developers](https://developers.arcgis.com/en/)
 
-ArcGIS の開発キットを使用して開発を行う場合は ArcGIS for Developers へのサインアップ（[ArcGIS Developers](https://developers.arcgis.com/en/)）が必要です。
+ArcGIS の開発キットを使用して開発を行う場合は ArcGIS Developers へのサインアップ（[ArcGIS Developers](https://developers.arcgis.com)）が必要です。
 
 ## 動作環境
 
