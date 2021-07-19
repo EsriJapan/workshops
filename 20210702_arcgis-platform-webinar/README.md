@@ -13,4 +13,4 @@
 
 ※ 「4. 開発を始めるまでのステップの理解」は [YouTube](https://www.youtube.com/watch?v=4WHjd9j0ku0) で動画を公開しています。
 
-※ 発表資料（PDF）は [こちら](https://github.com/EsriJapan/workshops/raw/main/20210702_arcgis-platform-webinar/ArcGIS_Platform_紹介ウェビナー.pdf) からダウンロードできます。
+※ 発表資料（PDF）は [こちら](https://github.com/EsriJapan/workshops/raw/master/20210702_arcgis-platform-webinar/ArcGIS_Platform_紹介ウェビナー.pdf) からダウンロードできます。
