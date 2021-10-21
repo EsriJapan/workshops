@@ -7,6 +7,7 @@
 * [ArcGIS Pro SDK for .NET](https://github.com/Esri/arcgis-pro-sdk/)  
 * [ArcGIS Pro SDK for .NET Community Samples](https://github.com/Esri/arcgis-pro-sdk-community-samples)
 * [ArcGIS Pro SDK for .NET API Reference](https://pro.arcgis.com/en/pro-app/sdk/api-reference/index.html#topic1.html)
+* [ArcGIS Pro SDK for .NET GitHub Wiki ページ](https://github.com/EsriJapan/arcgis-pro-sdk/wiki)
 
 ## データと資料
 * [ハンズオンデータ](https://github.com/EsriJapan/workshops/raw/master/20190913_arcgis-pro-sdk-hands-on/hands-on/%E6%BC%94%E7%BF%92%E3%83%87%E3%83%BC%E3%82%BF/Sample.zip)
@@ -42,6 +43,7 @@
 - ArcGIS Pro 2.0 ～ 2.4
 
 #### <span style="color: red; ">*本ハンズオン演習では ArcGIS Pro 2.4 が使用されています</span>
+#### <span style="color: red; ">※ArcGIS Pro 2.5 以上を利用されている場合は、[こちら](https://github.com/EsriJapan/workshops/tree/master/20211001_arcgis-pro-sdk-hands-on)のハンズオン資料をご覧ください。</span>
 
 ### OS
 - Windows 10 (Home, Pro, Enterprise) (64 bit)
