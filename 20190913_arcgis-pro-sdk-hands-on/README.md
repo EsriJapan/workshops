@@ -42,7 +42,7 @@
 ### ArcGIS
 - ArcGIS Pro 2.0 ～ 2.4
 
-#### <span style="color: red; ">*本ハンズオン演習では ArcGIS Pro 2.4 が使用されています</span>
+#### <span style="color: red; ">※本ハンズオン演習では ArcGIS Pro 2.4 が使用されています</span>
 #### <span style="color: red; ">※ArcGIS Pro 2.5 以上を利用されている場合は、[こちら](https://github.com/EsriJapan/workshops/tree/master/20211001_arcgis-pro-sdk-hands-on)のハンズオン資料をご覧ください。</span>
 
 ### OS
