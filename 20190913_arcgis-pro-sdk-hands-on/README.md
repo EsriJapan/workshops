@@ -1,7 +1,7 @@
 # ハンズオン - ArcGIS Pro SDK for .NET
 
 ## 概要
-これは、ArcGIS Pro SDK for .NET を使用してアドイン拡張などを体験するハンズオン資料です。  
+これは、ArcGIS Pro SDK for .NET を使用してアドイン拡張などを体験するハンズオン資料です。
 本ハンズオンは以下のリンクをベースにして進めていきます。  
 
 * [ArcGIS Pro SDK for .NET](https://github.com/Esri/arcgis-pro-sdk/)  
@@ -39,21 +39,23 @@
 ## 動作環境
 
 ### ArcGIS
-- ArcGIS Pro2.0以上
+- ArcGIS Pro 2.0 ～ 2.4
 
-#### <span style="color: red; ">*本ハンズオン演習では ArcGIS Pro2.4 が使用されています</span>
+#### <span style="color: red; ">*本ハンズオン演習では ArcGIS Pro 2.4 が使用されています</span>
 
 ### OS
 - Windows 10 (Home, Pro, Enterprise) (64 bit)
 - Windows 8.1 (Pro, and Enterprise) (64 bit)
-- Windows 7 SP1 (Ultimate, Professional and Enterprise) (64 bit)
 
 ### .NET framework
-- Microsoft .NET Framework 4.6.1以上
+- Microsoft .NET Framework 4.6.1
 
 ### 統合開発環境
 -  Visual Studio 2019 (Professional, Enterprise, and Community Editions)
 -  Visual Studio 2017 (Professional, Enterprise, and Community Editions)
 
 ## ライセンス
-ArcGIS Developer Subscription の [Professional](https://www.esrij.com/products/arcgis-for-developers/details/) 以上のライセンスが必要
+下記いずれかのライセンスが必要です。
+* ArcGIS Developer Subscription の [Professional](https://www.esrij.com/products/arcgis-for-developers/details/) 以上のライセンス
+* ArcGIS Desktop ライセンス
+* 指定ユーザー ライセンス (GIS Professional 以上)
