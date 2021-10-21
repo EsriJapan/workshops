@@ -1,0 +1,114 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Calcite Design Systemを用いたルート検索アプリ</title>
+
+  <!-- Calcite design system の取得 -->
+  <script type="module" src="https://js.arcgis.com/calcite-components/1.0.0-beta.63/calcite.esm.js"></script>
+  <script nomodule="" src="https://js.arcgis.com/calcite-components/1.0.0-beta.63/calcite.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/1.0.0-beta.63/calcite.css" />
+  
+   <!-- CDN から Leaflet の css と JS を取得 -->
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+ 
+   <!-- CDN から esri-Leaflet の js を取得 -->
+   <script src="https://unpkg.com/esri-leaflet@3.0.3/dist/esri-leaflet.js"></script>
+ 
+   <!-- ESRI のベクタータイルを使用するため CDN から esri-Leaflet-vector の js を取得 -->
+   <script src="https://unpkg.com/esri-leaflet-vector@3.1.0/dist/esri-leaflet-vector.js"></script>
+ 
+    <!-- CDN から esri-Leaflet-geocoder の css と js を取得 -->
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@3.1.1/dist/esri-leaflet-geocoder.css"
+    integrity="sha512-IM3Hs+feyi40yZhDH6kV8vQMg4Fh20s9OzInIIAc4nx7aMYMfo+IenRUekoYsHZqGkREUgx0VvlEsgm7nCDW9g=="
+    crossorigin="">
+     <script src="https://unpkg.com/esri-leaflet-geocoder@3.1.1/dist/esri-leaflet-geocoder.js"
+    integrity="sha512-enHceDibjfw6LYtgWU03hke20nVTm+X5CRi9ity06lGQNtC9GkBNl/6LoER6XzSudGiXy++avi1EbIg9Ip4L1w=="
+    crossorigin=""></script>
+ 
+    <!-- CDN から ArcGIS REST JS の js を取得 -->
+    <script src="https://unpkg.com/@esri/arcgis-rest-request@3.0.0/dist/umd/request.umd.js"></script>
+    <script src="https://unpkg.com/@esri/arcgis-rest-routing@3.0.0/dist/umd/routing.umd.js"></script>
+    <script src="https://unpkg.com/@esri/arcgis-rest-auth@3.0.0/dist/umd/auth.umd.js"></script>
+   
+  <style>
+    body { margin:0; padding:0; }
+    #map {
+        position: absolute;
+        top:0;
+        bottom:0;
+        right:0;
+        left:0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        color: #323232;
+        z-index:0;
+      }
+      /* calcite-accordion の位置を決める */
+      #menu {
+      position: absolute;
+      z-index: 1000;
+      width: 30%;
+      max-height: 50%;
+      left: 20px;
+      top: 20px;
+      overflow-y: auto; /* Show a scrollbar if needed */
+      background: white;
+      font-family: Arial, Helvetica, Verdana;
+      line-height: 1.5;
+      padding: 10px;
+      border-radius: 30px;
+    }
+    /* calcite-accordion の高さを決める */
+    calcite-accordion-item{
+      height:30%;
+    }
+    /* 検索バーとルート案内の結果の表示との間を設定 */
+    #geocode{
+      padding-bottom: 30%;
+    }
+    /* 検索バーの設定 */
+    input:focus {
+      border: 1px solid blue;
+    }
+    .geocoder-control{
+      margin-top: 5%;
+      margin-left: 3%;
+    }
+    .geocoder-control-input{
+      border-radius: 30px;
+      box-shadow: none;
+    }
+    /* icon のデザイン */
+    .divicon{
+      background-color: azure;
+      border-radius: 10px;
+    }
+  </style>
+
+</head>
+
+<body>
+  
+  <div id="map"></div>
+  <!-- ルート検索が読み込み終了するまで表示されるローダー -->
+  <calcite-loader text="ルート検索中"></calcite-loader>
+  <!-- アコーディオンメニューの追加 -->
+  <calcite-accordion id="menu">
+    <calcite-accordion-item icon="tour" item-title="ルート検索"
+      item-subtitle="住所または場所の名前を入力してルート検索ができます" active>
+      <div id="geocode"></div>
+      <div id="direction">ルート検索結果</div>
+    </calcite-accordion-item> 
+</calcite-accordion>
+<script type="text/javascript" src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>ルート検索アプリ</title>
+
+  <!-- CDN から Leaflet の css と JS を取得 -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin=""></script>
+
+  <!-- CDN から esri-Leaflet の js を取得 -->
+  <script src="https://unpkg.com/esri-leaflet@3.0.3/dist/esri-leaflet.js"></script>
+
+  <!-- ESRI のベクタータイルを使用するため CDN から esri-Leaflet-vector の js を取得 -->
+  <script src="https://unpkg.com/esri-leaflet-vector@3.1.0/dist/esri-leaflet-vector.js"></script>
+
+   <!-- CDN から esri-Leaflet-geocoder の css と js を取得 -->
+   <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@3.1.1/dist/esri-leaflet-geocoder.css"
+   integrity="sha512-IM3Hs+feyi40yZhDH6kV8vQMg4Fh20s9OzInIIAc4nx7aMYMfo+IenRUekoYsHZqGkREUgx0VvlEsgm7nCDW9g=="
+   crossorigin="">
+    <script src="https://unpkg.com/esri-leaflet-geocoder@3.1.1/dist/esri-leaflet-geocoder.js"
+   integrity="sha512-enHceDibjfw6LYtgWU03hke20nVTm+X5CRi9ity06lGQNtC9GkBNl/6LoER6XzSudGiXy++avi1EbIg9Ip4L1w=="
+   crossorigin=""></script>
+
+   <!-- CDN から ArcGIS REST JS の js を取得 -->
+   <script src="https://unpkg.com/@esri/arcgis-rest-request@3.0.0/dist/umd/request.umd.js"></script>
+   <script src="https://unpkg.com/@esri/arcgis-rest-routing@3.0.0/dist/umd/routing.umd.js"></script>
+   <script src="https://unpkg.com/@esri/arcgis-rest-auth@3.0.0/dist/umd/auth.umd.js"></script>
+
+  <style>
+    body { margin:0; padding:0; }
+    #map {
+        position: absolute;
+        top:0;
+        bottom:0;
+        right:0;
+        left:0;
+      }
+      #directions {
+      position: absolute;
+      z-index: 1000;
+      width: 30%;
+      max-height: 50%;
+      right: 20px;
+      top: 20px;
+      overflow-y: auto; 
+      background: white;
+      line-height: 1.5;
+      font-size: 14px;
+      padding: 10px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="map"></div>
+  <div id="directions">ルート検索をしたい場所をクリックまたは左の検索ボタンで追加してください</div>
+  <script type="text/javascript" src="main.js"></script>
+</body>
+
+</html>
