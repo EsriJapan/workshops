@@ -26,7 +26,7 @@ ArcGIS REST JS を使用し、地図上でクリックした二つの地点の�
 
 3.で導入した地名検索の結果を4.のルート検索に反映するコードを実装しています。
 
-6. [Calcite Design System によるアプリデザインの一例](#6-calcite-design-system-によるデザイン)
+6. [Calcite Design System によるアプリデザインの検討](#6-calcite-design-system-によるデザインの検討)
 
 Esri が提供している Calcite Design System を用いたアプリデザインの一例を紹介しています。
 
@@ -993,7 +993,7 @@ map.on("click", (e) => {
 これを実行することで、以下のように地名検索後、ルート検索を行うようにされます。
 ![地名検索でルート検索地点を追加](./images/route_geocode.gif)
 
-## 6. Calcite Design System によるデザイン
+## 6. Calcite Design System によるデザインの検討
 ここまで、ルート検索の基本的な機能を作ってきました。最後に発展形として [Calcite Design System](https://developers.arcgis.com/calcite-design-system/) を使ったアプリのデザインの例をご紹介します。
 Calcite Design System は、Esri が提供しているアプリのデザイン作成をサポートするものです。これらを使って以下のようなデザインをアプリに組み込んむことができます。今回は、[アコーディオンメニューのコンポーネント](https://developers.arcgis.com/calcite-design-system/components/accordion/)といくつかの [アイコン](https://developers.arcgis.com/calcite-design-system/icons/)を使用して、ルート検索結果の表示方法を変更しています。ここで使用している機能の詳細については、同リポジトリ内にある[calcite_design](./calcite_design)をご参照ください。
 
