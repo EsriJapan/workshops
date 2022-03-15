@@ -39,7 +39,7 @@
 
 #### <span style="color: bluck ">※ArcGIS Pro をまだインストールされていない場合は[こちら](https://doc.esrij.com/pro/get-started/setup/)をご覧ください。</span>
 
-## 動作環境
+## 開発要件
 
 ### ArcGIS
 * ArcGIS Pro 2.5 以上
@@ -48,11 +48,12 @@
 #### <span style="color: red; ">※ArcGIS Pro 2.0 ～ 2.4 を利用されている場合は、[こちら](https://github.com/EsriJapan/workshops/tree/master/20190913_arcgis-pro-sdk-hands-on)のハンズオン資料をご覧ください。</span>
 
 ### OS
+* Windows 11 (Home, Pro, Enterprise)
 * Windows 10 (Home, Pro, Enterprise) (64 bit)
 * Windows 8.1 (Pro, and Enterprise) (64 bit)
 
 ### .NET framework
-* Microsoft .NET Framework 4.8 以上
+* Microsoft .NET Framework 4.8 Developer Pack
 
 ### 統合開発環境
 * Visual Studio 2019 (Professional, Enterprise, and Community Editions)
@@ -65,5 +66,3 @@
 * ArcGIS Developer Subscription [Professional](https://www.esrij.com/products/arcgis-for-developers/details/) 以上のライセンス
 * ArcGIS Desktop ライセンス
 * 指定ユーザー ライセンス (GIS Professional 以上)
-
-
