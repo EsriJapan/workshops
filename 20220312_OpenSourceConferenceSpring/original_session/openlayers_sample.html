@@ -1,0 +1,192 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>OpenLayers Tutorials: Change the basemap layer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.7.0/css/ol.css"
+    type="text/css" />
+  <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.7.0/build/ol.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ol-mapbox-style@6.1.4/dist/olms.js" type="text/javascript"></script>
+
+  <style>
+    html,
+    body,
+    #map {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      color: #323232;
+    }
+
+    #basemaps {
+      padding: 4px 8px;
+      font-size: 16px;
+    }
+
+    #layer-wrapper {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 154px;
+      height: 65px;
+      background-color: #ffffff;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <div id="layer-wrapper">
+    <label><input type="checkbox" id="geoJSON" /> <b>GeoJSON</b></label>
+    </br>
+    <label><input type="checkbox" id="vector" /> <b>ベクター タイル</b></label>
+    </br>
+    <label><input type="checkbox" id="raster" /> <b>ラスター タイル</b></label>
+  </div>
+
+  <script>
+    const apiKey = "<YOUR-API-KEY>";
+    const map = new ol.Map({ target: "map" });
+    map.setView(
+      new ol.View({
+        center: ol.proj.fromLonLat([137.9530186, 35.008602]),
+        zoom: 10
+      })
+    );
+
+    const baseUrl = "https://basemaps-api.arcgis.com/arcgis/rest/services/styles";
+    const url = (name) => `${baseUrl}/${name}?type=style&token=${apiKey}`;
+    const rasterChk = document.getElementById("raster");
+    const vectorChk = document.getElementById("vector");
+    const geoJSONChk = document.getElementById("geoJSON");
+
+    const setBasemap = (name) => {
+      // Clear out existing layers.
+      map.setLayerGroup(new ol.layer.Group());
+
+      // Instantiate the given basemap layer.
+      olms(map, url(name));
+    };
+
+    setBasemap("ArcGIS:Streets");
+
+    /*
+     * ラスター タイル追加処理
+     */
+    // 使用するラスター タイルのサービス URL
+    const rasterTileURL = "https://tiles.arcgis.com/tiles/wlVTGRSYTzAbjjiC/arcgis/rest/services/jishin_max/MapServer/tile/{z}/{y}/{x}";
+    // 対象のラスター タイルのデータを取得
+    const rasterTileSource = new ol.source.XYZ({
+      url: rasterTileURL
+    });
+    // 取得したラスタータイルのデータをレイヤーに変換
+    const rasterTileLayer = new ol.layer.Tile({
+      source: rasterTileSource,
+      opacity: 0.3
+    });
+    rasterChk.addEventListener('change', (evt) => {
+      if (rasterChk.checked) {
+        // 画面上のラスター タイルのチェックボックスがオンになった時、
+        // ラスター タイルをマップ上に追加する。
+        map.getLayers().insertAt(1, rasterTileLayer);
+      } else {
+        // 画面上のラスター タイルのチェックボックスがオフになった時、
+        // ラスター タイルをマップ上から削除する。
+        map.removeLayer(rasterTileLayer);
+      }
+    });
+
+    /*
+     * ベクター タイル追加処理
+     */
+    // レイヤーの配色を設定
+    const woodZone = new ol.style.Style({
+      fill: new ol.style.Fill({
+        color: "#00FF7F"
+      })
+    });
+    // 使用するベクター タイルのサービス URL
+    const vectorTileURL = "https://tiles.arcgis.com/tiles/wlVTGRSYTzAbjjiC/arcgis/rest/services/%E6%97%A5%E6%9C%AC_%E4%BA%BA%E5%B7%A5%E6%9E%97/VectorTileServer/tile/{z}/{y}/{x}.pbf";
+    // 対象のベクター タイルのデータを取得
+    const vectorTileSource = new ol.source.VectorTile({
+      format: new ol.format.MVT(),
+      url: vectorTileURL
+    });
+    // 取得したベクター タイルのデータをレイヤーに変換
+    const vectorTileLayer = new ol.layer.VectorTile({
+      source: vectorTileSource
+      , style: woodZone
+    });
+    vectorChk.addEventListener('change', (evt) => {
+      console.log("vectorChk:", evt);
+      if (vectorChk.checked) {
+        // 画面上のベクター タイルのチェックボックスがオンになった時、
+        // ベクター タイルをマップ上に追加する。
+        map.getLayers().insertAt(2, vectorTileLayer);
+      } else {
+        // 画面上のベクター タイルのチェックボックスがオフになった時、
+        // ベクター タイルをマップ上から削除する。
+        map.removeLayer(vectorTileLayer);
+      }
+    });
+
+    /*
+     * GeoJSON データの追加処理
+     */
+    // レイヤーの配色を設定
+    const dangerZone = new ol.style.Style({
+      fill: new ol.style.Fill({
+        color: "#8B0000"
+      })
+    });
+    // 使用する GeoJSON のサービス URL
+    const geoJSONURL_S = "https://services3.arcgis.com/KkBYLs9TbeGO6RLL/arcgis/rest/services/A33_20_22Polygon/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=geojson"
+    // 対象の GeoJSON のデータを取得（今回はベクター形式にて表示）
+    const geoJSONSource_S = new ol.source.Vector({
+      format: new ol.format.GeoJSON(),
+      url: geoJSONURL_S
+    });
+    // 取得したベクター タイルのデータをレイヤーに変換
+    const geoJSONLayer_S = new ol.layer.Vector({
+      source: geoJSONSource_S
+      , style: dangerZone
+    });
+
+    // 使用する GeoJSON のサービス URL
+    const geoJSONURL_A = "https://services3.arcgis.com/KkBYLs9TbeGO6RLL/arcgis/rest/services/A33_20_23Polygon/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=geojson"
+    // 対象の GeoJSON のデータを取得（今回はベクター形式にて表示）
+    const geoJSONSource_A = new ol.source.Vector({
+      format: new ol.format.GeoJSON(),
+      url: geoJSONURL_A
+    });
+    // 取得したベクター タイルのデータをレイヤーに変換
+    const geoJSONLayer_A = new ol.layer.Vector({
+      source: geoJSONSource_A
+      , style: dangerZone
+    });
+    geoJSONChk.addEventListener('change', (evt) => {
+      console.log("geoJSONChk:", evt);
+      if (geoJSONChk.checked) {
+        // 画面上の GeoJSON のチェックボックスがオンになった時、
+        // GeoJSON のデータ（ベクター タイル）をマップ上に追加する
+        map.getLayers().insertAt(map.getLayers().getLength() + 1, geoJSONLayer_S);
+        map.getLayers().insertAt(map.getLayers().getLength() + 1, geoJSONLayer_A);
+      } else {
+        // 画面上の GeoJSON のチェックボックスがオフになった時、
+        // GeoJSON のデータ（ベクター タイル）をマップ上に削除する
+        map.removeLayer(geoJSONLayer_S);
+        map.removeLayer(geoJSONLayer_A);
+      }
+    });
+
+  </script>
+
+</body>
+
+</html>
