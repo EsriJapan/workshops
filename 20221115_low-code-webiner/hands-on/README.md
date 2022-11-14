@@ -26,10 +26,10 @@ Experience Builder のインストール方法に関しては、[ArcGIS Experine
 
 
 4. ウィジェットを作成するにあたって必要なメタデータとアイコン画像を配置します。  
-`<Experience Builder のインストール ディレクトリ>\client\your-extensions\widgets\simple` 直下にある `manifest.json` と `icon.svg` をコピーし、`buffer` フォルダーの直下に張り付けます。  
+`<Experience Builder のインストール ディレクトリ>\client\your-extensions\widgets\simple` 直下にある `manifest.json` と `icon.svg` をコピーし、`buffer-select` フォルダーの直下に張り付けます。  
 
 
-5. `buffer` フォルダー直下にある `manifest.json` ファイルを開きます。
+5. `buffer-select` フォルダー直下にある `manifest.json` ファイルを開きます。
 
 
 6. `name` 属性の値を `buffer-select`、`label` 属性の値を `BufferSelect` に変更します。
@@ -109,7 +109,7 @@ Experience Builder のインストール方法に関しては、[ArcGIS Experine
 
 
 11. Experience Builder のウィジェットの追加画面で表示されるウィジェット名をローカライズします。ウィジェットのローカライズは 2. で作成した `runtime` フォルダーの直下に `translations` フォルダーを作成し、`translations` フォルダーに設定していきます。  
-`buffer\src\runtime\transelations` フォルダーの直下に `ja.js` ファイルを作成し、以下のコードを入力し保存します。
+`buffer-select\src\runtime\transelations` フォルダーの直下に `ja.js` ファイルを作成し、以下のコードを入力し保存します。
 
 ```js
 define({
@@ -134,7 +134,7 @@ define({
 
 `config.json` は JSON 形式のオブジェクト格納ファイルです。ウィジェット初期化時のデフォルトの値を設定することができます。`config.json` に設定した値は構成画面やウィジェットから初期値として取得されます。  
 
-1. `buffer` フォルダーの直下に `config.json` ファイルを作成し、以下のコードを入力して保存します。
+1. `buffer-select` フォルダーの直下に `config.json` ファイルを作成し、以下のコードを入力して保存します。
 ```json
 {
 }
@@ -159,7 +159,7 @@ define({
 今回は、設定画面で、対象とするマップ ウィジェットとバッファーを作成する際の距離単位を設定します。
 
 
-1. `buffer\src\setting` フォルダーの `setting.tsx` ファイルを開き、以下のコードを入力します。  
+1. `buffer-select\src\setting` フォルダーの `setting.tsx` ファイルを開き、以下のコードを入力します。  
 
 ```tsx
 /** 3-1 設定画面用モジュールの設定 Start */
@@ -286,7 +286,7 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
 パネルには、マップ上にあるレイヤーから検索対象のレイヤーと、バッファーの半径を選択する画面を作成します。
 
 
-1. `buffer\src\runtime` フォルダーにある `widget.tsx` ファイルを開き編集します。  
+1. `buffer-select\src\runtime` フォルダーにある `widget.tsx` ファイルを開き編集します。  
 ウィジェットの設定画面を作成するにあたって必要なモジュールを必要に応じて読み込みます。
 
 ```tsx
