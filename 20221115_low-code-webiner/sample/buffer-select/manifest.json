@@ -1,0 +1,23 @@
+{
+  "name": "buffer-select",
+    "type": "widget",
+    "version": "1.8.0",
+    "exbVersion": "1.8.0",
+    "author": "EJ hiramatsu",
+    "description": "A buffer is created and the specified layer in it is marked.",
+    "copyright": "",
+    "license": "",
+    "properties": {},
+    "translatedLocales": [
+      "en",
+      "ja"
+    ],
+    "defaultSize": {
+      "width": 350,
+      "height": 200
+    },
+    "dependency": "jimu-arcgis",
+    "publishMessages": [
+      "DataRecordsSelectionChange"
+    ]
+  }
