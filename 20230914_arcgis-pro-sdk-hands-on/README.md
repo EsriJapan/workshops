@@ -186,7 +186,7 @@ https://github.com/EsriJapan/arcgis-pro-sdk-community-samples/tree/master/Framew
 
 5. ArcGIS Pro が開くので任意のプロジェクト ファイルか、新規のプロジェクト ファイルを開きます。
 
-6. アドインタブに Show Bookmarks ボタンが追加されているのでクリックすると ドックパネルが開きます。
+6. アドインタブに Show Bookmarks ボタンが追加されているのでクリックするとドックパネルが開きます。
 
 7. マップビューで新しくブックマークを作成したい任意の場所に移動し、ドックパネル下方の [New Bookmark] をクリックします。任意の名前を入力し OK をクリックします。
     
@@ -194,7 +194,7 @@ https://github.com/EsriJapan/arcgis-pro-sdk-community-samples/tree/master/Framew
 
 8. ドックパネルで [Get Maps] をクリックしてドロップダウンリストから [マップ] をクリックすると、作成したブックマークの一覧が表示されます。
 ブックマークをクリックすると、作成した位置に移動することができます。
-また、手順6、7 を繰り返し行うことでブックマークを複数作成することが可能です。
+また、手順7 を繰り返し行うことでブックマークを複数作成することが可能です。
     
     <img src="image/sample4.png" width="50%">
 
