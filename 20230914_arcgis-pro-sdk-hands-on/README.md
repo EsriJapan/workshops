@@ -108,7 +108,7 @@ Visual Studio のデバッガーでアドインを確認します。
     
     ```xml
     <button id="ProAppModule1_Button1" caption="ボタン" className="Button1" loadOnClick="true" smallImage="pack://application:,,,/ArcGIS.Desktop.Resources;component/Images/GenericButtonBlue16.png" largeImage="pack://application:,,,/ArcGIS.Desktop.Resources;component/Images/GenericButtonBlue32.png">
-          <tooltip heading="Tooltip Heading">プロジェクト ファイルのパスを表示します。<disabledText /></tooltip>
+          <tooltip heading="ツールチップ">プロジェクト ファイルのパスを表示します。<disabledText /></tooltip>
         </button>
     ```
     <img src="image/button.png" width="100%">
@@ -120,18 +120,19 @@ Visual Studio のデバッガーでアドインを確認します。
 
 
 
-4. プロジェクトに追加された Button1.cs という新しいファイルが追加され、Button1.cs が開きます。次のコードを OnClick メソッドに入力してください。
+4. Button1.cs を開き、次のコードを OnClick メソッドに入力してください。
 
     ```cs
     internal class Button1 : Button {
 
         protected override void OnClick() 
-        //追加
         {
+        //追加
         string uri = ArcGIS.Desktop.Core.Project.Current.URI;
             ArcGIS.Desktop.Framework.Dialogs.MessageBox.Show($"プロジェクト ファイルのパス： {uri}");
-        }
         //追加ここまで
+        }
+        
     }
     ```
 
