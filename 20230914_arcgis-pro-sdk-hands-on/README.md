@@ -129,7 +129,7 @@ Visual Studio のデバッガーでアドインを確認します。
         {
         //追加
         string uri = ArcGIS.Desktop.Core.Project.Current.URI;
-            ArcGIS.Desktop.Framework.Dialogs.MessageBox.Show($"プロジェクト ファイルのパス： {uri}");
+        ArcGIS.Desktop.Framework.Dialogs.MessageBox.Show($"プロジェクト ファイルのパス： {uri}");
         //追加ここまで
         }
         
