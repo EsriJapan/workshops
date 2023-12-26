@@ -31,25 +31,28 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
     // マップ ウィジェットが変更されたときにマップ情報とクリックイベントの設定
     activeViewChangeHandler = (jmv: JimuMapView) => {
         if (jmv) {
-            this.setState({
-                jimuMapView: jmv,
-                webmapLayers: this.setLayerList(jmv.view.layerViews)
-            });
-            // 対象のマップをクリック イベントを取得
-            jmv.view.on("click", (evt) => {
-                // バッファー処理はチェックがオンになっている時のみ実行
-                if (this.state.widgetEnable) {
-                    // 必須項目入力チェック
-                    let msg = this.eventErrorCheck();
-                    if (msg.length != 0) {
-                        // 必須項目が入力されていない場合はエラー
-                        alert(msg);
-                        return;
+            jmv.whenAllJimuLayerViewLoaded().then(() => {
+                this.setState({
+                    jimuMapView: jmv,
+                    webmapLayers: this.setLayerList(jmv.view.layerViews)
+                });
+                // console.log("this.setLayerList(jmv.view.layerViews)", this.setLayerList(jmv.view.layerViews))
+                // 対象のマップをクリック イベントを取得
+                jmv.view.on("click", (evt) => {
+                    // バッファー処理はチェックがオンになっている時のみ実行
+                    if (this.state.widgetEnable) {
+                        // 必須項目入力チェック
+                        let msg = this.eventErrorCheck();
+                        if (msg.length != 0) {
+                            // 必須項目が入力されていない場合はエラー
+                            alert(msg);
+                            return;
+                        }
+                        // バッファー検索の本処理を実行
+                        this.doBufferSerch(evt);
                     }
-                    // バッファー検索の本処理を実行
-                    this.doBufferSerch(evt);
-                }
-            });
+                });
+            })
         }
     };
     /** 4-6 マップ ウィジェット イベント追加 End */
@@ -145,7 +148,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
                     : '1=2';
             
             // データソースから対象のクエリを取得
-            dataSource.query({
+            dataSource?.query({
                 where: selectedQuery,
                 returnGeometry: true
             } as QueryParams)
