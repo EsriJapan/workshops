@@ -5,6 +5,9 @@
 このガイドは ArcGIS Experience Builder (Developer Edition) （以下、Experience Builder）で使用するカスタム ウィジェットを作成する方法を説明します。  
 Experience Builder のインストール方法に関しては、[ArcGIS Experinece Builder (Developer Edition) インストールガイド](https://esrijapan.github.io/arcgis-dev-resources/tips/experience-builder/install-guide/)をご参照ください。
 
+:::note warn
+本ハンズオンで作成するカスタム ウィジェットは ArcGIS Online の[クレジット](https://doc.esrij.com/online/users-guide/credits/)を消費します。  
+:::
 
 ## カスタム ウィジェットの開発
 
@@ -89,7 +92,7 @@ Experience Builder のインストール方法に関しては、[ArcGIS Experine
 
 
 10. `publishMessages` 属性を追加します。値は配列で設定します。配列内の値には `DATA_SOURCE_FILTER_CHANGE` を設定し、保存します。
-`publishMessages` 属性はウィジェット間で連携を行う場合に使用します。`DATA_SOURCE_FILTER_CHANGE` を設定することでフィルターしたフィーチャを他のウィジェットに連携することができます。`DATA_SOURCE_FILTER_CHANGE` の他の処理に応じた値が用意されています。その他の処理については、<a href="https://developers.arcgis.com/experience-builder/guide/core-concepts/message-action/" target="_blank">Message and action</a>をご参照ください。
+`publishMessages` 属性はウィジェット間で様々な情報や状態の連携を行う場合に使用します。`DATA_SOURCE_FILTER_CHANGE` を設定することでフィルターしたフィーチャを他のウィジェットに連携することができます。`DATA_SOURCE_FILTER_CHANGE` の他の処理に応じた値が用意されています。その他の処理については、<a href="https://developers.arcgis.com/experience-builder/guide/core-concepts/message-action/" target="_blank">Message and action</a> をご参照ください。
 
 
 ```json
@@ -105,10 +108,10 @@ Experience Builder のインストール方法に関しては、[ArcGIS Experine
 
 > #### manifest.json
 > 
-> ウィジェットの名前やバージョン等を設定するファイルです。`properties` 属性でカスタム ウィジェットのプロパティを構成できます。ウィジェットのプロパティについては、<a href="https://esrijapan.github.io/arcgis-dev-resources/tips/experience-builder/widget-development/widget-manifest/" target="_blank">Widget manifest</a>をご参照ください。
+> ウィジェットの名前やバージョン等を設定するファイルです。`properties` 属性でカスタム ウィジェットのプロパティを構成できます。ウィジェットのプロパティについては、<a href="https://esrijapan.github.io/arcgis-dev-resources/tips/experience-builder/widget-development/widget-manifest/" target="_blank">Widget manifest</a> をご参照ください。
 
 
-11. Experience Builder のウィジェットの追加画面で表示されるウィジェット名をローカライズします。ウィジェットのローカライズは 2. で作成した `runtime` フォルダーの直下に `translations` フォルダーを作成し、`translations` フォルダーに設定していきます。  
+11. Experience Builder のウィジェットの追加画面で表示されるウィジェット名をローカライズします。ウィジェットのローカライズは 手順 1-2. で作成した `runtime` フォルダーの直下に `translations` フォルダーを作成します。  
 `service-area-filter\src\runtime\transelations` フォルダーの直下に `ja.js` ファイルを作成し、以下のコードを入力し保存します。
 
 ```js
@@ -122,7 +125,7 @@ define({
 > カスタム ウィジェットを多言語化する場合に使用します。アクセスするブラウザーのロケールにより該当する言語が表示されます。`_widgetLabel` はウィジェット追加時に表示されるラベルをローカライズするための固有の属性です。
 
 
-12. Experience Builder を起動し、アプリケーションを作成します。ウィジェットの追加画面に「到達圏フィルター」というウィジェット名が表示されます。  
+12. Experience Builder の server、client サービスのそれぞれを起動し、アプリケーションを作成します。ウィジェットの追加画面に「到達圏フィルター」というウィジェット名が表示されます。  
 ![追加画面](./img/widgetPanel.png)
 
 > #### icon.svg
@@ -130,17 +133,7 @@ define({
 > カスタム ウィジェットのボタンのアイコンを変更したい場合は、このファイルを置き換えます。  
 > ![アイコン変更](./img/changeIcon.png)
 
-### 2. config.json の定義
-
-`config.json` は JSON 形式のオブジェクト格納ファイルです。ウィジェット初期化時のデフォルトの値を設定することができます。`config.json` に設定した値は構成画面やウィジェットから初期値として取得されます。  
-
-1. `service-area-filter` フォルダーの直下に `config.json` ファイルを作成し、以下のコードを入力して保存します。
-```json
-{
-}
-```
-
-### 3. ウィジェットの設定画面を作成する
+### 2. ウィジェットの設定画面を作成する
 
 ウィジェットで使用するパラメーターの設定を行う画面を作成します。  
 今回は、設定画面で、対象とするマップ ウィジェットと任意で自前のネットワーク解析サービスを設定します。
@@ -152,7 +145,7 @@ define({
 > Experience Builder でウィジェットの設定を行う画面と設定の処理を記述します。
 
 ```tsx
-/** 3-1 設定画面用モジュールの設定 Start */
+/** 2-1 設定画面用モジュールの設定 Start */
 /** @jsx jsx */
 import { React, jsx } from "jimu-core";
 import { AllWidgetSettingProps } from "jimu-for-builder";
@@ -162,7 +155,7 @@ import { MapWidgetSelector } from "jimu-ui/advanced/setting-components";
 export default class Setting extends React.PureComponent<AllWidgetSettingProps<any>, any> {
 
 }
-/** 3-1 設定画面用モジュールの設定 End */
+/** 2-1 設定画面用モジュールの設定 End */
 ```
 
 
@@ -177,7 +170,7 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
 // ...
 export default class Setting extends React.PureComponent<AllWidgetSettingProps<any>, any> {
     
-    /** 3-2 設定画面の画面構成追加 Start */
+    /** 2-2 設定画面の画面構成追加 Start */
     render() {
         return <div className="widget-setting-demo">
             使用マップ
@@ -194,9 +187,9 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
             </TextInput>
         </div>;
     }
-    /** 3-2 設定画面の画面構成追加 End */
+    /** 2-2 設定画面の画面構成追加 End */
 }
-/** 3-1 設定画面用モジュールの設定 End */
+/** 2-1 設定画面用モジュールの設定 End */
 ```
 
 
@@ -210,7 +203,7 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
 
 // ...
 export default class Setting extends React.PureComponent<AllWidgetSettingProps<any>, any> {
-    /** 3-3 コンポーネントのイベント処理追記 Start */
+    /** 2-3 コンポーネントのイベント処理追記 Start */
     // 対象のマップを設定
     onMapWidgetSelected = (useMapWidgetIds: string[]) => {
         this.props.onSettingChange({
@@ -226,21 +219,21 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
             config: this.props.config.set('serviceUrl', url.currentTarget.value)
         })
     };
-    /** 3-3 コンポーネントのイベント処理追記 End */
+    /** 2-3 コンポーネントのイベント処理追記 End */
 
-    /** 3-2 設定画面の画面構成追加 Start */
+    /** 2-2 設定画面の画面構成追加 Start */
 // ...
 ```
 
 
-> `onMapWidgetSelected`, `onNetworkAnalysisServiceUrlSet` の処理は、作成する Web アプリに対して設定画面で選択したパラメーターを設定します。
+> `onMapWidgetSelected`, `onNetworkAnalysisServiceUrlSet` の処理は、作成するウィジェットに対して設定画面で選択したパラメーターを利用できるようにします。
 
 
 4. ブラウザーで Experience Builder を更新後、ビルダー画面で到達圏フィルター ウィジェットを追加すると、設定画面に定義した構成が表示されます。  
 ![設定画面](./img/filterConfigPanel.png)
 
 
-### 4. ウィジェットの処理を実装する
+### 3. ウィジェットの処理を実装する
 
 ウィジェットの処理を実装します。
 
@@ -260,7 +253,7 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
 > ウィジェットの画面と実際の処理を記述します。 
 
 ```tsx
-/** 4-1 ウィジェットの画面用モジュールの設定 Start */
+/** 3-1 ウィジェットの画面用モジュールの設定 Start */
 /** @jsx jsx */
 import { React, AllWidgetProps, css, jsx, DataSourceManager, QueriableDataSource, MessageManager, DataSourceFilterChangeMessage } from "jimu-core";
 import { JimuMapViewComponent, JimuMapView } from "jimu-arcgis";
@@ -268,7 +261,7 @@ import { Label, Select, Option, NumericInput, Table, Button } from "jimu-ui";
 export default class Widget extends React.PureComponent<AllWidgetProps<any>, any> {
 
 }
-/** 4-1 ウィジェットの画面用モジュールの設定 End */
+/** 3-1 ウィジェットの画面用モジュールの設定 End */
 ```
 
 
@@ -283,7 +276,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 // ...
 export default class Widget extends React.PureComponent<AllWidgetProps<any>, any> {
 
-  /** 4-2 State の定義 Start */
+  /** 3-2 State の定義 Start */
   // 処理内で利用する変数を定義
     state = {
         jimuMapView: null, /** 対象 Webマップ */
@@ -297,10 +290,10 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
         selTravelMode: null, /** 選択した到達圏解析条件 */
         serviceAreaPolygon: null /** 到達圏解析の結果ポリゴン */
     };
-  /** 4-2 State の定義 End */
+  /** 3-2 State の定義 End */
 
 }
-/** 4-1 ウィジェットの画面用モジュールの設定 End */
+/** 3-1 ウィジェットの画面用モジュールの設定 End */
 ```
 
 
@@ -308,9 +301,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 
 ```tsx
 // ...
-  /** 4-2 State の定義 End */
+  /** 3-2 State の定義 End */
   
-    /** 4-3 画面構成の定義 Start */
+    /** 3-3 画面構成の定義 Start */
     // UI 情報レンダリング
     render() {
         // UI のデザインを設定
@@ -389,7 +382,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
             </div>
         );
     }
-    /** 4-3 画面構成の定義 End */
+    /** 3-3 画面構成の定義 End */
 }
 ```
 
@@ -403,7 +396,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 ```tsx
 // ...
 import { Label, Select, Option, NumericInput, Checkbox, Table } from "jimu-ui";
-/** 4-4 使用する ArcGIS API for JavaScript のモジュールをインポート Start */
+/** 3-4 使用する ArcGIS API for JavaScript のモジュールをインポート Start */
 import Polygon from "esri/geometry/Polygon";
 import SimpleFillSymbol from "esri/symbols/SimpleFillSymbol";
 import Graphic from "esri/Graphic";
@@ -419,7 +412,7 @@ import TravelMode  from "esri/rest/support/TravelMode"
 import FeatureSet from "esri/rest/support/FeatureSet";
 import Search from "esri/widgets/Search";
 import WebStyleSymbol from "esri/symbols/WebStyleSymbol";
-/** 4-4 使用する ArcGIS API for JavaScript のモジュールをインポート End */
+/** 3-4 使用する ArcGIS API for JavaScript のモジュールをインポート End */
 export default class Widget extends React.PureComponent<AllWidgetProps<any>, any> {
 // ...
 ```
@@ -431,11 +424,10 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 5. 各 UI コンポーネントに設定されているファンクションを記述します。  
 
 ```tsx
-  // ...
-  /** 4-2 State の定義 End */
+    // ...
+    /** 3-2 State の定義 End */
 
-  /** 4-5 UI コンポーネント用ファンクション Start */
-  // マーキング対象のレイヤーを設定
+    /** 3-5 UI コンポーネント用ファンクション Start */
     // マーキング対象のレイヤーを設定
     selLayer = (selected: React.FormEvent<HTMLInputElement>) => {
         this.setState({
@@ -461,7 +453,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
     doAction = () => {
         const msg = this.eventErrorCheck();
         if (!msg) {
-            this.doServiceAreaSerch();
+            this.doServiceAreaSearch();
         } else {
             alert(msg);
         }
@@ -476,11 +468,10 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
             this.doFilterAction(layer, "1=1");    
         })
     }
-    /** 4-5 UI コンポーネント用ファンクション End */
-  /** 4-5 UI コンポーネント用ファンクション End */
+    /** 3-5 UI コンポーネント用ファンクション End */
 
-  /** 4-3 画面構成の定義 Start */
-  // ...
+    /** 3-3 画面構成の定義 Start */
+    // ...
 ```
 
 
@@ -488,9 +479,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 
 ```tsx
     // ...
-    /** 4-2 State の定義 End */
+    /** 3-2 State の定義 End */
 
-    /** 4-6 マップ ウィジェット イベント追加 Start */
+    /** 3-6 マップ ウィジェット イベント追加 Start */
     // マップ ウィジェットが変更されたときにマップ情報と検索ウィジェットの設定
     activeViewChangeHandler = async (jmv: JimuMapView) => {
         if (jmv) {
@@ -516,9 +507,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
             } 
         }
     };
-    /** 4-6 マップ ウィジェット イベント追加 End */
+    /** 3-6 マップ ウィジェット イベント追加 End */
 
-    /** 4-5 UI コンポーネント用ファンクション Start */
+    /** 3-5 UI コンポーネント用ファンクション Start */
     // ...
 ```
 
@@ -531,7 +522,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 
 ```tsx
     // ...
-    /** 4-7 レイヤー情報の取得処理および移動条件情報の取得処理追加 Start */
+    /** 3-7 レイヤー情報の取得処理および移動条件情報の取得処理追加 Start */
     // マップ ウィジェットに設定されいてるレイヤー情報の取得
     setLayerList = (layers: Collection<LayerView>) => {
         const list = [];
@@ -550,9 +541,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
         }
         return list;
     }
-    /** 4-7 レイヤー情報の取得処理および移動条件情報の取得処理 End */
+    /** 3-7 レイヤー情報の取得処理および移動条件情報の取得処理 End */
 
-    /** 4-5 UI コンポーネント用ファンクション Start */
+    /** 3-5 UI コンポーネント用ファンクション Start */
     // ...
 ```
 
@@ -568,9 +559,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 
 ```tsx
     // ...
-    /** 4-6 マップ ウィジェット イベント追加 End */
+    /** 3-6 マップ ウィジェット イベント追加 End */
 
-    /** 4-8 必須項目チェック追加 Start */
+    /** 3-8 必須項目チェック追加 Start */
     // 必須項目入力チェック
     eventErrorCheck = () => {
         let requrirdMsg = ""; /** エラー メッセージ格納用 */
@@ -599,9 +590,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 
         return requrirdMsg;
     }
-    /** 4-8 必須項目チェック追加 End */
+    /** 3-8 必須項目チェック追加 End */
 
-    /** 4-7 レイヤー情報の取得処理追加 End */
+    /** 3-7 レイヤー情報の取得処理追加 End */
     // ...
 ```
 
@@ -609,11 +600,11 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 
 ``` tsx
     // ...
-    /** 4-8 必須項目チェック追加 End */
+    /** 3-8 必須項目チェック追加 End */
 
-    /** 4-9 到達圏フィルターの本処理追加 Start */
+    /** 3-9 到達圏フィルターの本処理追加 Start */
     // 到達圏フィルターの本処理
-    doServiceAreaSerch = async () => {
+    doServiceAreaSearch = async () => {
 
         // 前回の実行結果があれば削除する。
         if (this.state.serviceAreaPolygon) {
@@ -659,9 +650,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
         }
 
     }
-    /** 4-9 到達圏フィルターの本処理追加 End */
+    /** 3-9 到達圏フィルターの本処理追加 End */
 
-    /** 4-7 レイヤー情報の取得処理追加 End */
+    /** 3-7 レイヤー情報の取得処理追加 End */
     // ...
 ```
 
@@ -676,9 +667,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 
 ```tsx
     // ...
-    /** 4-9 到達圏フィルターの本処理追加 End */
+    /** 3-9 到達圏フィルターの本処理追加 End */
 
-    /** 4-10 到達圏内に含まれるレイヤーの取得およびフィルター連携処理の呼び出し追加 Start */
+    /** 3-10 到達圏内に含まれるレイヤーの取得およびフィルター連携処理の呼び出し追加 Start */
     // 到達圏内のレイヤー取得およびフィルター、連携の処理
     layerGetAndMarking = async (area: Polygon) => {
         // プルダウンで選択したレイヤーを Web マップから取得
@@ -723,14 +714,14 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
             this.state.beforTargetLayer = targetLayer;
         }
     }
-    /** 4-10 到達圏内に含まれるレイヤーの取得およびフィルタリング連携処理の呼び出し追加 End */
+    /** 3-10 到達圏内に含まれるレイヤーの取得およびフィルタリング連携処理の呼び出し追加 End */
 
-    /** 4-7 レイヤー情報の取得処理追加 End */
+    /** 3-7 レイヤー情報の取得処理追加 End */
     // ...
 ```
 
 > ここでは、以下の流れで処理を実行しています。
-> 1. ウェジェット画面で設定したフィーチャ レイヤーの情報をマップ ウィジェットに設定された Web マップから取得
+> 1. ウィジェット画面で設定したフィーチャ レイヤーの情報をマップ ウィジェットに設定された Web マップから取得
 > 2. 取得したフィーチャレイヤーの情報から作成した到達圏内にあるフィーチャを取得
 > 3. 取得したフィーチャより OBJECTID を元にフィルター条件の Where 句を作成
 > 4. フィルター処理の呼び出し
@@ -739,9 +730,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 11. フィルター処理を記述します。
 ```tsx
     // ...
-    /** 4-10 到達圏内に含まれるレイヤーの取得およびフィルタリング連携処理の呼び出し追加 End */
+    /** 3-10 到達圏内に含まれるレイヤーの取得およびフィルタリング連携処理の呼び出し追加 End */
 
-    /** 4-11 フィルター処理の追加  Start */
+    /** 3-11 フィルター処理の追加  Start */
     doFilterAction = async (targetLayer: any, wherePhrase: string) => {
         // フィルター条件の設定
         const featureFilter: FeatureFilter = new FeatureFilter({
@@ -776,9 +767,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
             MessageManager.getInstance().publishMessage(new DataSourceFilterChangeMessage(this.props.id, [dataSource.id]));
         }
     }
-    /** 4-11 フィルター処理の追加  End  */
+    /** 3-11 フィルター処理の追加  End  */
 
-    /** 4-7 レイヤー情報の取得処理および移動条件情報の取得処理追加 Start */
+    /** 3-7 レイヤー情報の取得処理および移動条件情報の取得処理追加 Start */
     // ...
 ```
 
@@ -791,8 +782,8 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 
 ```tsx
     // ...
-    /** 4-11 フィルター処理の追加  End  */
-    /** 4-12 到達圏用のシンボル定義を追加 Start */
+    /** 3-11 フィルター処理の追加  End  */
+    /** 3-12 到達圏用のシンボル定義を追加 Start */
     // 到達圏用のシンボル（ポリゴン）を定義
     setAreaSymbol = () => {
         return new SimpleFillSymbol({
@@ -804,9 +795,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
             }
         });
     }
-    /** 4-12 到達圏用のシンボル定義を追加 End */
+    /** 3-12 到達圏用のシンボル定義を追加 End */
 
-    /** 4-7 レイヤー情報の取得処理および移動条件情報の取得処理追加 Start */
+    /** 3-7 レイヤー情報の取得処理および移動条件情報の取得処理追加 Start */
     // ...
 ```
 
