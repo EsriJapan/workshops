@@ -1,0 +1,24 @@
+{
+  "name": "service-area-filter",
+  "label": "serviceAreaFilter",
+  "type": "widget",
+  "version": "1.14.0",
+  "exbVersion": "1.14.0",
+  "author": "EsriJapan",
+  "description": "This widget performs a location search, then performs a reachability search from that point using any criteria and filters only the layers of the target within that reachability search.",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {},
+  "translatedLocales": [
+    "en",
+    "ja"
+  ],
+  "defaultSize": {
+    "width": 350,
+    "height": 350
+  },
+  "dependency": "jimu-arcgis",
+  "publishMessages": [
+    "DATA_SOURCE_FILTER_CHANGE"
+  ]
+}
