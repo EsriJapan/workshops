@@ -74,7 +74,7 @@ Experience Builder のインストール方法に関しては、[ArcGIS Experine
 
 
 9. `dependency` 属性を追加します。値には `jimu-arcgis` を設定し、保存します。  
-`dependency` 属性に `jimu-arcgis` を設定することでウィジェット内で ArcGIS API for JavaScript を使用することができます。
+`dependency` 属性に `jimu-arcgis` を設定することでウィジェット内で ArcGIS Maps SDK for JavaScript を使用することができます。
 
 ```json
 {
@@ -156,8 +156,8 @@ define({
 /** @jsx jsx */
 import { React, jsx } from "jimu-core";
 import { AllWidgetSettingProps } from "jimu-for-builder";
+import { TextInput } from "jimu-ui";
 import { MapWidgetSelector } from "jimu-ui/advanced/setting-components";
-import { Select, Option } from 'jimu-ui';
 
 export default class Setting extends React.PureComponent<AllWidgetSettingProps<any>, any> {
 
@@ -168,7 +168,7 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
 
 > ウィジェットの設定画面を作成するにあたって必要なモジュールを必要に応じて読み込みます。
 > Experience Builder は React を使用しているため、React に関するモジュールと Experience Builder の設定画面用に用意されているコンポーネントである `AllWidgetSettingProps` を指定します。
-> また、Experience Builder には <a href="https://developers.arcgis.com/experience-builder/guide/storybook/" target="_blank">`Storybook`</a> というウィジェット構築用の UI コンポーネントが用意されています。今回は Web アプリ上に設定した Web マップを選択する `MapWidgetSelector` と距離単位を選択するためのセレクト ボックスを構成するための `Select`, `Option` を指定します。
+> また、Experience Builder には <a href="https://developers.arcgis.com/experience-builder/guide/storybook/" target="_blank">`Storybook`</a> というウィジェット構築用の UI コンポーネントが用意されています。今回は Web アプリ上に設定した Web マップを選択する `MapWidgetSelector` と任意のネットワーク解析サービス URL を入力する `TextInput` を指定します。
 
 
 2. `setting.tsx` ファイルに設定画面の画面構成を記述します。 
@@ -201,7 +201,7 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
 
 
 > `React` では `render` メソッドの戻り値に設定した画面構成要素をレンダリングします。
-> 今回の場合は、使用する Web マップを選択する要素と使用する距離単位を選択する要素を記述しています。
+> 今回の場合は、使用する Web マップを選択する要素と任意のネットワーク解析サービス URL を入力する要素を記述しています。
 
 
 3. 各コンポーネントには値を変更した際のイベントが設定されているため、イベントの処理を `setting.tsx` ファイルに記述し、保存します。
@@ -236,7 +236,7 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
 > `onMapWidgetSelected`, `onNetworkAnalysisServiceUrlSet` の処理は、作成する Web アプリに対して設定画面で選択したパラメーターを設定します。
 
 
-4. ブラウザーで Experience Builder を更新後、ビルダー画面でバッファー検索ウィジェットを追加すると、設定画面に定義した構成が表示されます。  
+4. ブラウザーで Experience Builder を更新後、ビルダー画面で到達圏フィルター ウィジェットを追加すると、設定画面に定義した構成が表示されます。  
 ![設定画面](./img/filterConfigPanel.png)
 
 
