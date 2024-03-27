@@ -5,9 +5,9 @@
 このガイドは ArcGIS Experience Builder (Developer Edition) （以下、Experience Builder）で使用するカスタム ウィジェットを作成する方法を説明します。  
 Experience Builder のインストール方法に関しては、[ArcGIS Experinece Builder (Developer Edition) インストールガイド](https://esrijapan.github.io/arcgis-dev-resources/tips/experience-builder/install-guide/)をご参照ください。
 
-:::note warn
-本ハンズオンで作成するカスタム ウィジェットは ArcGIS Online の[クレジット](https://doc.esrij.com/online/users-guide/credits/)を消費します。  
-:::
+> [!WARNING]
+> 本ハンズオンで作成するカスタム ウィジェットは ArcGIS Online の[クレジット](https://doc.esrij.com/online/users-guide/credits/)を消費します。  
+
 
 ## カスタム ウィジェットの開発
 
