@@ -37,7 +37,7 @@ Experience Builder のインストール方法に関しては、[ArcGIS Experine
 ```json
 {
     "name": "service-area-filter",
-    "label": "service-area-filter",
+    "label": "ServiceAreaFilter",
     "type": "widget",
     "version": "1.x.0",
   // ...
