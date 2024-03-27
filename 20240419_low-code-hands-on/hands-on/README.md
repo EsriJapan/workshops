@@ -142,7 +142,7 @@ define({
 
 1. `service-area-filter\src\setting` フォルダーの `setting.tsx` ファイルを開き、以下のコードを入力します。  
 
-> [!IMPORTANT]
+> [!NOTE]
 > #### setting\setting.tsx
 > Experience Builder でウィジェットの設定を行う画面と設定の処理を記述します。
 
@@ -160,7 +160,7 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
 /** 2-1 設定画面用モジュールの設定 End */
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > ウィジェットの設定画面を作成するにあたって必要なモジュールを必要に応じて読み込みます。
 > Experience Builder は React を使用しているため、React に関するモジュールと Experience Builder の設定画面用に用意されているコンポーネントである `AllWidgetSettingProps` を指定します。
 > また、Experience Builder には <a href="https://developers.arcgis.com/experience-builder/guide/storybook/" target="_blank">`Storybook`</a> というウィジェット構築用の UI コンポーネントが用意されています。今回は Web アプリ上に設定した Web マップを選択する `MapWidgetSelector` と任意のネットワーク解析サービス URL を入力する `TextInput` を指定します。
@@ -194,7 +194,7 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
 /** 2-1 設定画面用モジュールの設定 End */
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > `React` では `render` メソッドの戻り値に設定した画面構成要素をレンダリングします。
 > 今回の場合は、使用する Web マップを選択する要素と任意のネットワーク解析サービス URL を入力する要素を記述しています。
 
@@ -227,7 +227,7 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
 // ...
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > `onMapWidgetSelected`, `onNetworkAnalysisServiceUrlSet` の処理は、作成するウィジェットに対して設定画面で選択したパラメーターを利用できるようにします。
 
 
@@ -239,7 +239,7 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
 
 ウィジェットの処理を実装します。
 
-> [!IMPORTANT]
+> [!NOTE]
 > Experience Builder では、`<Experience Builder のインストール ディレクトリ>\client` を実行すると `<Experience Builder のインストール ディレクトリ>\client\your-extensions\widgets` フォルダーに配置されたウィジェットは `<Experience Builder のインストール ディレクトリ>\client\dist\widgets` フォルダーにコピーされ、ビルダーはそのフォルダーを参照して Web アプリを作成します。  
 > `client` が実行している間は実行時点で存在するファイルが更新された場合、都度 `<Experience Builder のインストール ディレクトリ>\client\dist\widgets` の内容も更新されるため、ブラウザーの更新をすることでビルダーにおいてもウィジェットの更新内容を反映する事ができます。
 
@@ -251,7 +251,7 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
 1. `service-area-filter\src\runtime` フォルダーにある `widget.tsx` ファイルを開き編集します。  
 ウィジェットの設定画面を作成するにあたって必要なモジュールを必要に応じて読み込みます。
 
-> [!IMPORTANT]
+> [!NOTE]
 > #### runtime\widget.tsx
 > ウィジェットの画面と実際の処理を記述します。 
 
@@ -267,7 +267,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 /** 3-1 ウィジェットの画面用モジュールの設定 End */
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > ウィジェットの画面を作成するにあたって必要なモジュールを必要に応じて読み込みます。
 > 設定画面と同様に、React に関するモジュールと Experience Builder のウィジェット画面用に用意されているコンポーネントである `AllWidgetProps` を指定します。  
 > また、UI のコンポーネントに関しても同様に <a href="https://developers.arcgis.com/experience-builder/guide/storybook/" target="_blank">`Storybook`</a> を用いて必要となるものを指定します。今回は、`Label`,`Select`,`Option`,`NumericInput`,`Table`,`Button` というコンポーネントを使用します。  
@@ -389,7 +389,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 }
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > マップ ウィジェットからマップの情報を設定する `JimuMapViewComponent` というコンポーネントを構成することによって、カスタム ウィジェットにマップ ウィジェットを紐づけることができます。今回はマップ ウィジェットに対して操作を実施した時に、到達圏フィルターの処理を実施するワークフローを設定します。
 > ウィジェット画面の UI は、到達圏の起点となる場所を決定する検索ウィジェット、検索対象のレイヤーを選択するセレクトボックス、到達圏を作成する条件を設定するセレクトボックスおよびインプット エリア、処理の実行およびクリアをする 4 つの UI コンポーネントにて構成しています。各コンポーネントでは入力値が変更されると `State` の値を変更するファンクションを設定しています。
 
@@ -420,7 +420,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 // ...
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > Experience Builder の GIS 処理は、Web アプリ上で ArcGIS Online および ArcGIS Enterprise で提供している GIS 機能を使用することができる、<a href="https://developers.arcgis.com/javascript/latest/" target="_blank">`ArcGIS Maps SDK for JavaScript`</a> という API を使用します。  
 
 
@@ -516,7 +516,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
     // ...
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > ここでは、マップ ウィジェットで設定されているマップ情報、ネットワーク解析サービスに必要な情報を `State` に設定しています。
 > また、到達圏を作成する際の起点とする検索ウィジェットと検索結果を表示するシンボルを設定しています。
 
@@ -550,7 +550,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
     // ...
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > この処理にてウィジェット画面のレイヤーリストに設定しているレイヤーを表示することができます。  
 > また、ウィジェット画面の解析条件のリストにネットワーク解析サービスに設定されている移動条件を表示することができます。
 > ここまでの内容でウィジェット画面の UI を Web ブラウザー上で確認することができます。
@@ -659,7 +659,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
     // ...
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > ここでは、以下の流れで処理を実行しています。
 > 1. マップ ウィジェット上にある前回の到達圏フィルター結果を削除する。
 > 2. 検索ウィジェットにて検索した位置情報とウィジェット画面で設定されている到達圏の作成条件を基に作成する。
@@ -723,7 +723,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
     // ...
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > ここでは、以下の流れで処理を実行しています。
 > 1. ウィジェット画面で設定したフィーチャ レイヤーの情報をマップ ウィジェットに設定された Web マップから取得
 > 2. 取得したフィーチャレイヤーの情報から作成した到達圏内にあるフィーチャを取得
@@ -777,7 +777,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
     // ...
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > ここでは、以下の流れで処理を実行しています。
 > 1. 前の手順で作成した Where 句で対象のフィーチャ レイヤーをフィルター
 > 2. フィルターした情報を他のウィジェットに連携
