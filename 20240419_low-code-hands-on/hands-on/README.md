@@ -112,7 +112,7 @@ Experience Builder のインストール方法に関しては、[ArcGIS Experine
 
 
 11. Experience Builder のウィジェットの追加画面で表示されるウィジェット名をローカライズします。ウィジェットのローカライズは 手順 1-2. で作成した `runtime` フォルダーの直下に `translations` フォルダーを作成します。  
-`service-area-filter\src\runtime\transelations` フォルダーの直下に `ja.js` ファイルを作成し、以下のコードを入力し保存します。
+`service-area-filter\src\runtime\translations` フォルダーの直下に `ja.js` ファイルを作成し、以下のコードを入力し保存します。
 
 ```js
 define({
