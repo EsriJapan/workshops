@@ -61,5 +61,5 @@
 ## ライセンス
 下記いずれかのライセンスが必要です。
 * ArcGIS Developer Subscription [Professional](https://www.esrij.com/products/arcgis-for-developers/details/) 以上のライセンス
-* ArcGIS Desktop ライセンス
+* ArcGIS Pro ライセンス
 * 指定ユーザー ライセンス (GIS Professional 以上)
