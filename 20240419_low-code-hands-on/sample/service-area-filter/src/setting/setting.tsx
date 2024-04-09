@@ -1,4 +1,4 @@
-/** 3-1 設定画面用モジュールの設定 Start */
+/** 2-1 設定画面用モジュールの設定 Start */
 /** @jsx jsx */
 import { React, jsx } from "jimu-core";
 import { AllWidgetSettingProps } from "jimu-for-builder";
@@ -6,7 +6,7 @@ import { TextInput } from "jimu-ui";
 import { MapWidgetSelector } from "jimu-ui/advanced/setting-components";
 
 export default class Setting extends React.PureComponent<AllWidgetSettingProps<any>, any> {
-    /** 3-3 コンポーネントのイベント処理追記 Start */
+    /** 2-3 コンポーネントのイベント処理追記 Start */
     // 対象のマップを設定
     onMapWidgetSelected = (useMapWidgetIds: string[]) => {
         this.props.onSettingChange({
@@ -22,9 +22,9 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
             config: this.props.config.set('serviceUrl', url.currentTarget.value)
         })
     };
-    /** 3-3 コンポーネントのイベント処理追記 End */
+    /** 2-3 コンポーネントのイベント処理追記 End */
 
-    /** 3-2 設定画面の画面構成追加 Start */
+    /** 2-2 設定画面の画面構成追加 Start */
     render() {
         return <div className="widget-setting-demo">
             使用マップ
@@ -41,6 +41,6 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
             </TextInput>
         </div>;
     }
-    /** 3-2 設定画面の画面構成追加 End */
+    /** 2-2 設定画面の画面構成追加 End */
 }
-/** 3-1 設定画面用モジュールの設定 End */
+/** 2-1 設定画面用モジュールの設定 End */

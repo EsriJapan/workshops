@@ -3,13 +3,13 @@
  * 　Web マップに FeatureLayer を設定する際に GroupLayer にしていると正しく動作しません。
  */
 
-/** 4-1 ウィジェットの画面用モジュールの設定 Start */
+/** 3-1 ウィジェットの画面用モジュールの設定 Start */
 /** @jsx jsx */
 import { React, AllWidgetProps, css, jsx, DataSourceManager, QueriableDataSource, MessageManager, DataSourceFilterChangeMessage } from "jimu-core";
 import { JimuMapViewComponent, JimuMapView } from "jimu-arcgis";
 import { Label, Select, Option, NumericInput, Table, Button } from "jimu-ui";
 
-/** 4-4 使用する ArcGIS Maps SDK for JavaScript のモジュールをインポート Start */
+/** 3-4 使用する ArcGIS Maps SDK for JavaScript のモジュールをインポート Start */
 import Polygon from "esri/geometry/Polygon";
 import SimpleFillSymbol from "esri/symbols/SimpleFillSymbol";
 import Graphic from "esri/Graphic";
@@ -25,11 +25,11 @@ import TravelMode  from "esri/rest/support/TravelMode"
 import FeatureSet from "esri/rest/support/FeatureSet";
 import Search from "esri/widgets/Search";
 import WebStyleSymbol from "esri/symbols/WebStyleSymbol";
-/** 4-4 使用する ArcGIS Maps SDK for JavaScript のモジュールをインポート End */
+/** 3-4 使用する ArcGIS Maps SDK for JavaScript のモジュールをインポート End */
 
 export default class Widget extends React.PureComponent<AllWidgetProps<any>, any> {
 
-    /** 4-2 State の定義 Start */
+    /** 3-2 State の定義 Start */
     // 処理内で利用する変数を定義
     state = {
         jimuMapView: null, /** 対象 Webマップ */
@@ -43,9 +43,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
         selTravelMode: null, /** 選択した到達圏解析条件 */
         serviceAreaPolygon: null /** 到達圏解析の結果ポリゴン */
     };
-    /** 4-2 State の定義 End */
+    /** 3-2 State の定義 End */
 
-    /** 4-6 マップ ウィジェット イベント追加 Start */
+    /** 3-6 マップ ウィジェット イベント追加 Start */
     // マップ ウィジェットが変更されたときにマップ情報と検索ウィジェットの設定
     activeViewChangeHandler = async (jmv: JimuMapView) => {
         if (jmv) {
@@ -71,9 +71,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
             } 
         }
     };
-    /** 4-6 マップ ウィジェット イベント追加 End */
+    /** 3-6 マップ ウィジェット イベント追加 End */
 
-    /** 4-8 必須項目チェック追加 Start */
+    /** 3-8 必須項目チェック追加 Start */
     // 必須項目入力チェック
     eventErrorCheck = () => {
         let requrirdMsg = ""; /** エラー メッセージ格納用 */
@@ -102,9 +102,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 
         return requrirdMsg;
     }
-    /** 4-8 必須項目チェック追加 End */
+    /** 3-8 必須項目チェック追加 End */
 
-    /** 4-9 到達圏フィルターの本処理追加 Start */
+    /** 3-9 到達圏フィルターの本処理追加 Start */
     // 到達圏フィルターの本処理
     doServiceAreaSerch = async () => {
 
@@ -152,9 +152,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
         }
 
     }
-    /** 4-9 到達圏フィルターの本処理追加 End */
+    /** 3-9 到達圏フィルターの本処理追加 End */
 
-    /** 4-10 到達圏内に含まれるレイヤーの取得およびフィルタリング連携処理の呼び出し追加 Start */
+    /** 3-10 到達圏内に含まれるレイヤーの取得およびフィルタリング連携処理の呼び出し追加 Start */
     // 到達圏内のレイヤー取得およびフィルタリング、連携の処理
     layerGetAndMarking = async (area: Polygon) => {
         // プルダウンで選択したレイヤーを Web マップから取得
@@ -199,9 +199,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
             this.state.beforTargetLayer = targetLayer;
         }
     }
-    /** 4-10 到達圏内に含まれるレイヤーの取得およびフィルタリング連携処理の呼び出し追加 End */
+    /** 3-10 到達圏内に含まれるレイヤーの取得およびフィルタリング連携処理の呼び出し追加 End */
 
-    /** 4-11 フィルター処理の追加  Start */
+    /** 3-11 フィルター処理の追加  Start */
     doFilterAction = async (targetLayer: any, wherePhrase: string) => {
         // フィルター条件の設定
         const featureFilter: FeatureFilter = new FeatureFilter({
@@ -236,9 +236,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
             MessageManager.getInstance().publishMessage(new DataSourceFilterChangeMessage(this.props.id, [dataSource.id]));
         }
     }
-    /** 4-11 フィルター処理の追加  End  */
+    /** 3-11 フィルター処理の追加  End  */
 
-    /** 4-12 到達圏用のシンボル定義を追加 Start */
+    /** 3-12 到達圏用のシンボル定義を追加 Start */
     // 到達圏用のシンボル（ポリゴン）を定義
     setAreaSymbol = () => {
         return new SimpleFillSymbol({
@@ -250,9 +250,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
             }
         });
     }
-    /** 4-12 到達圏用のシンボル定義を追加 End */
+    /** 3-12 到達圏用のシンボル定義を追加 End */
 
-    /** 4-7 レイヤー情報の取得処理および移動条件情報の取得処理追加 Start */
+    /** 3-7 レイヤー情報の取得処理および移動条件情報の取得処理追加 Start */
     // マップ ウィジェットに設定されいてるレイヤー情報の取得
     setLayerList = (layers: Collection<LayerView>) => {
         const list = [];
@@ -271,9 +271,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
         }
         return list;
     }
-    /** 4-7 レイヤー情報の取得処理および移動条件情報の取得処理 End */
+    /** 3-7 レイヤー情報の取得処理および移動条件情報の取得処理 End */
 
-    /** 4-5 UI コンポーネント用ファンクション Start */
+    /** 3-5 UI コンポーネント用ファンクション Start */
     // マーキング対象のレイヤーを設定
     selLayer = (selected: React.FormEvent<HTMLInputElement>) => {
         this.setState({
@@ -314,9 +314,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
             this.doFilterAction(layer, "1=1");    
         })
     }
-    /** 4-5 UI コンポーネント用ファンクション End */
+    /** 3-5 UI コンポーネント用ファンクション End */
 
-    /** 4-3 画面構成の定義 Start */
+    /** 3-3 画面構成の定義 Start */
     // UI 情報レンダリング
     render() {
         // UI のデザインを設定
@@ -395,6 +395,6 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
             </div>
         );
     }
-    /** 4-3 画面構成の定義 End */
+    /** 3-3 画面構成の定義 End */
 }
-/** 4-1 ウィジェットの画面用モジュールの設定 End */
+/** 3-1 ウィジェットの画面用モジュールの設定 End */
