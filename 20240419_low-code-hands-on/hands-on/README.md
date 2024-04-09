@@ -137,8 +137,10 @@ define({
 
 
 13. Experience Builder の server、client サービスのそれぞれを起動し、アプリケーションを作成します。ウィジェットの追加画面に「到達圏フィルター」というウィジェット名が表示されます。  
-server、client の起動するにはコマンドプロンプトを二つ起動し、server および client にパスを移動し以下のコマンドを実行することで起動されます。
+server、client の起動するにはコマンドプロンプトを 2 つ起動し、server および client にパスを移動し以下のコマンドを実行することで起動されます。
 > npm start
+
+server、client が起動したら `https://localhost:3001` をブラウザの URL バーに入力することで Experience Builder のビルダー画面を表示できます。
 
 ![追加画面](./img/widgetPanel.png)
 
