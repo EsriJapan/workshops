@@ -541,6 +541,8 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 
 ```tsx
     // ...
+    /** 3-6 マップ ウィジェット イベント追加 End */
+    
     /** 3-7 レイヤー情報の取得処理および移動条件情報の取得処理追加 Start */
     // マップ ウィジェットに設定されいてるレイヤー情報の取得
     setLayerList = (layers: Collection<LayerView>) => {
