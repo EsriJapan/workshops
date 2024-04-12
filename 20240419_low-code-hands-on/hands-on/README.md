@@ -7,6 +7,7 @@ Experience Builder のインストール方法に関しては、[ArcGIS Experine
 
 > [!WARNING]
 > 本ハンズオンで作成するカスタム ウィジェットは ArcGIS Online の[クレジット](https://doc.esrij.com/online/users-guide/credits/)を消費します。  
+> （[到達圏](https://doc.arcgis.com/ja/arcgis-online/analyze/credits-analysis-mv.htm#:~:text=%E3%81%AB%E3%81%A4%E3%81%8D%201%20%E3%82%AF%E3%83%AC%E3%82%B8%E3%83%83%E3%83%88-,%E7%A7%BB%E5%8B%95%E3%82%A8%E3%83%AA%E3%82%A2%E3%81%AE%E7%94%9F%E6%88%90,-(Map%20Viewer)を 1 つ作成するあたり 0.5 クレジット消費します。）  
 
 
 ## カスタム ウィジェットの開発
@@ -364,7 +365,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
                         />
                     )
                 }
-                <h3>到達圏検索</h3>
+                <h3>到達圏フィルター</h3>
                 <Table css={tableStyle}>
                     <tr>
                         <Label>
