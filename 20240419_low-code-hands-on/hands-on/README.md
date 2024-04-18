@@ -93,7 +93,7 @@ Experience Builder のインストール方法に関しては、[ArcGIS Experine
 
 
 10. `publishMessages` 属性を追加します。値は配列で設定します。配列内の値には `DATA_SOURCE_FILTER_CHANGE` を設定し、保存します。
-`publishMessages` 属性はウィジェット間で様々な情報や状態の連携を行う場合に使用します。`DATA_SOURCE_FILTER_CHANGE` を設定することでフィルターしたフィーチャを他のウィジェットに連携することができます。`DATA_SOURCE_FILTER_CHANGE` の他の処理に応じた値が用意されています。その他の処理については、<a href="https://developers.arcgis.com/experience-builder/guide/core-concepts/message-action/" target="_blank">Message and action</a> をご参照ください。
+`publishMessages` 属性はウィジェット間で様々な情報や状態の連携を行う場合に使用します。`DATA_SOURCE_FILTER_CHANGE` を設定することでフィルターしたフィーチャを他のウィジェットに連携することができます。`DATA_SOURCE_FILTER_CHANGE` の他にも処理に応じた値が用意されています。その他の処理については、<a href="https://developers.arcgis.com/experience-builder/guide/core-concepts/message-action/" target="_blank">Message and action</a> をご参照ください。
 
 
 ```json
@@ -138,7 +138,7 @@ define({
 
 
 13. Experience Builder の server、client サービスのそれぞれを起動し、アプリケーションを作成します。ウィジェットの追加画面に「到達圏フィルター」というウィジェット名が表示されます。  
-server、client の起動するにはコマンドプロンプトを 2 つ起動し、server および client にパスを移動し以下のコマンドを実行することで起動されます。
+server、client を起動するにはコマンドプロンプトを 2 つ起動し、server および client にパスを移動し以下のコマンドを実行することで起動されます。
 > npm start
 
 server、client が起動したら `https://localhost:3001` をブラウザーの URL バーに入力することで Experience Builder のビルダー画面を表示できます。  
