@@ -141,7 +141,17 @@ define({
 server、client の起動するにはコマンドプロンプトを 2 つ起動し、server および client にパスを移動し以下のコマンドを実行することで起動されます。
 > npm start
 
-server、client が起動したら `https://localhost:3001` をブラウザーの URL バーに入力することで Experience Builder のビルダー画面を表示できます。
+server、client が起動したら `https://localhost:3001` をブラウザーの URL バーに入力することで Experience Builder のビルダー画面を表示できます。  
+
+ビルダー画面が表示されたら画面右上にある`インポート` → `マイ アカウントからインポート`を選択してください。
+
+![インポート](./img/import.png)  
+
+画面が切り替わったら左上にある`マイ グループ`を選択し、一覧にある`2024_BPセミナーハンズオン`を選択します。ビルダーの Web エクスペリエンス一覧に`2024_BPセミナーハンズオン`が表示されるので、選択すると Web エクスペリエンスの編集画面に遷移します。  
+
+![グループからインポート](./img/importFromGroup.png)
+
+ウィジェット一覧の画面の一番下にスクロールすると ArcGIS Online の Experience Builder にはない`カスタム`というカテゴリがあり、その中に作成中の`到達圏フィルター`が追加されています。
 
 ![追加画面](./img/widgetPanel.png)
 
@@ -149,7 +159,11 @@ server、client が起動したら `https://localhost:3001` をブラウザー�
 > #### icon.svg
 > 
 > カスタム ウィジェットのボタンのアイコンを変更したい場合は、このファイルを置き換えます。  
-> ![アイコン変更](./img/changeIcon.png)
+> ![アイコン変更](./img/changeIcon.png)  
+
+キャンバスに`到達圏フィルター`をドラッグ & ドロップで追加します。追加すると追加したウィジェットおよび設定画面にエラー メッセージが表示されます。この後の手順で作成していくため無視をして Web エクスペリエンスを保存します。
+
+![エラー画面](./img/error.png)  
 
 ### 2. ウィジェットの設定画面を作成する
 
@@ -249,7 +263,7 @@ export default class Setting extends React.PureComponent<AllWidgetSettingProps<a
 > `onMapWidgetSelected`, `onNetworkAnalysisServiceUrlSet` の処理は、作成するウィジェットに対して設定画面で選択したパラメーターを利用できるようにします。
 
 
-4. ブラウザーで Experience Builder を更新後、ビルダー画面で到達圏フィルター ウィジェットを追加すると、設定画面に定義した構成が表示されます。  
+4. ブラウザーで Experience Builder を更新後、ビルダー画面で到達圏フィルター ウィジェットを追加すると、設定画面に定義した構成が表示されます。`使用マップ`のプルダウンを開くと`マップ`という選択肢があるので選択し、Web エクスペリエンスを保存します。  
 ![設定画面](./img/filterConfigPanel.png)
 
 
