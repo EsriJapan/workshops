@@ -23,7 +23,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
         selectLayer: null, /** 選択したレイヤー情報 */
         distance: 0, /** バッファーの半径距離 */
         widgetEnable: false, /** バッファー処理実行フラグ */
-        selLayerSource: null, /** 選択したレイヤーのデータソース */
+        selDataSource: null, /** 選択したレイヤーのデータソース */
     };
     /** 4-2 State の定義 End */
 
@@ -36,7 +36,6 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
                     jimuMapView: jmv,
                     webmapLayers: this.setLayerList(jmv.view.layerViews)
                 });
-                // console.log("this.setLayerList(jmv.view.layerViews)", this.setLayerList(jmv.view.layerViews))
                 // 対象のマップをクリック イベントを取得
                 jmv.view.on("click", (evt) => {
                     // バッファー処理はチェックがオンになっている時のみ実行
@@ -136,7 +135,7 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
                     console.log("targetLayer.queryFeatures error:", error.messagae);
                     return [];
                 });
-            
+
             // Where 句を作成
             const selectedQuery =
                 objList && objList.length > 0
@@ -146,9 +145,9 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
                         })
                         .join()})`
                     : '1=2';
-            
+
             // データソースから対象のクエリを取得
-            dataSource?.query({
+            dataSource.query({
                 where: selectedQuery,
                 returnGeometry: true
             } as QueryParams)
@@ -203,9 +202,14 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
 
     /** 4-5 UI コンポーネント用ファンクション Start */
     // マーキング対象のレイヤーを設定
-    selLayer = (selected: React.FormEvent<HTMLInputElement>) => {
+    selLayer = async (selected: React.FormEvent<HTMLInputElement>) => {
         // アプリに設定した Web マップ、FeatureLayer のデータソース一覧を取得
         let dsManager = DataSourceManager.getInstance();
+        // データソース一覧を取得
+        let ds = dsManager.getDataSource(this.state.jimuMapView.dataSourceId)
+        if (ds.isDataSourceSet && !ds.areChildDataSourcesCreated()) {
+            await ds.childDataSourcesReady()
+        }
         // マップ ウィジェットに設定した Web マップのレイヤー一覧を取得
         const layerViews = this.state.jimuMapView.jimuLayerViews;
         let dataSource = null;

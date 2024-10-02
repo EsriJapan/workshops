@@ -440,6 +440,11 @@ export default class Widget extends React.PureComponent<AllWidgetProps<any>, any
   selLayer = (selected: React.FormEvent<HTMLInputElement>) => {
       // アプリに設定した Web マップ、FeatureLayer のデータソース一覧を取得
       let dsManager = DataSourceManager.getInstance();
+      // データソース一覧を取得
+      let ds = dsManager.getDataSource(this.state.jimuMapView.dataSourceId)
+      if (ds.isDataSourceSet && !ds.areChildDataSourcesCreated()) {
+          await ds.childDataSourcesReady()
+      }
       // マップ ウィジェットに設定した Web マップのレイヤー一覧を取得
       const layerViews = this.state.jimuMapView.jimuLayerViews;
       let dataSource = null;
