@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>ArcGIS Maps SDK for JavaScript</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArcGIS Maps SDK for JavaScriptで累積影の解析</title>
     <style>
       html,
       body,
@@ -15,49 +14,79 @@
         width: 100%; /* ブラウザ横の表示範囲 */
       }
     </style>
-
     <!-- CSS ファイルと JS ライブラリへの参照を追加 -->
     <link rel="stylesheet" href="https://js.arcgis.com/4.31/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.31/"></script>
   </head>
   <body>
     <div id="arcgis"></div>
+    <!-- JavaScript のコードを記述 -->
     <script>
-      require(["esri/Map",
-               "esri/views/SceneView", 
-              "esri/layers/SceneLayer"], 
-              function ( Map,SceneView,SceneLayer) {
+       // 1-2-1. 各種クラスの追加の開始
+      require([
+        "esri/Map",
+        "esri/views/SceneView", 
+        "esri/layers/SceneLayer",
+        // SP2-1. 影解析のクラスの追加
+        "esri/widgets/ShadowCast"], 
+        function ( 
+          Map,
+          SceneView,
+          SceneLayer,
+          ShadowCast //  SP2-1. 影解析のクラスの追加
+        ) {
+          // 1-2-2. シーンを表示 の開始
 
-        // マップの作成
-        const map = new Map({
-          basemap:{
-            style:{
-             id:"arcgis/imagery/standard", // 表示したいマップの種類。ここでは衛星画像を使用
-            }
-          },
-          ground: "world-elevation" // 使用する標高サービスの指定。今回はデフォルトで用意されているものを使用
-        });
+          // マップの作成
+          const map = new Map({
+            basemap:{
+              style:{
+              id:"arcgis/imagery/standard", // 表示したいマップの種類。ここでは衛星画像を使用
+              }
+            },
+            ground: "world-elevation" // 使用する標高サービスの指定。今回はデフォルトで用意されているものを使用
+          });
 
-        // シーン ビューの作成
-        const view = new SceneView({
-          map: map, // 使用する地図情報を記述
-          camera: {
-            position: [139.74621414799225, 35.6412203881348, 1010], // カメラの位置と高さを指定
-            tilt: 63, // カメラの縦方向
-            heading: 0 // カメラの横方向
-          },
-          container: "arcgis", // MapView を表示する HTML 上の div タグの ID　属性を記述
-        });
+          // シーン ビューの作成
+          const view = new SceneView({
+            map: map, // 使用するマップ情報を記述
+            camera: {
+              position: [139.74621414799225, 35.6412203881348, 1010], // カメラの位置と高さを指定
+              tilt: 63, // カメラの縦方向
+              heading: 0 // カメラの横方向
+            },
+            container: "arcgis", // MapView を表示する HTML 上の div タグの ID　属性を記述
+          });
 
-        // 表示する PLATEAU データの参照
-        const plateau_layer= new SceneLayer({
-          url: "https://tiles.arcgis.com/tiles/wlVTGRSYTzAbjjiC/arcgis/rest/services/13100_13201_Tokyo-23ku_Minamiosawa_Building/SceneServer"
-        });
+          // 1-2-2. シーンを表示 の終了
 
-        // 地図に PLATEAU データを追加
-        view.map.add(plateau_layer);
+          // 1-3. PLATEAU データの追加の開始
+
+          // 表示する PLATEAU データの参照
+          const plateau_layer= new SceneLayer({
+            url: "https://tiles.arcgis.com/tiles/wlVTGRSYTzAbjjiC/arcgis/rest/services/13100_13201_Tokyo-23ku_Minamiosawa_Building/SceneServer"
+          });
+
+          // マップに PLATEAU データを追加
+          view.map.add(plateau_layer);
+
+          // 1-3. PLATEAU データの追加の終了
+
+          // SP2-2. 累積影のウィジェットを追加
+          // 累積影のウィジェットを追加
+          const shadowcast = new ShadowCast({
+            view:view // 対象とする Scene view を設定
+          });
+
+          // 影解析のウィジェットをマップ上のUIとして右上に追加
+          view.ui.add(shadowcast, "top-right");
+
+          shadowcast.viewModel.date = new Date(); // 今日のデータを参照
+          shadowcast.viewModel.visualizationType = "duration"; // 累積影のモードで確認
+          // SP2-2. 影解析のウィジェットを追加を終了
       });
 
+      // 1-2-1. 各種クラスの追加の終了
     </script>
   </body>
 </html>

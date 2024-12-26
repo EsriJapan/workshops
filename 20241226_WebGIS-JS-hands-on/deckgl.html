@@ -1,65 +1,94 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-      <style>
-        html,
-        body,
-        #deckgl {
-          margin: 0;
-          padding: 0;
-          width: 100%;
-          height: 100%;
-        }
-      </style>
-      <!-- deckgl の JS ライブラリを参照 -->
-      <script src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
-      <!-- loadergl の JS ライブラリを参照 -->
-      <script src="https://unpkg.com/@loaders.gl/i3s@4.3.3/dist/dist.min.js"></script>
-      <!-- MapLibre の CSS ファイルと JS ライブラリへの参照を追加 -->
-      <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@^4.7.1/dist/maplibre-gl.css" />
-      <script src="https://unpkg.com/maplibre-gl@^4.7.1/dist/maplibre-gl.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeckGL × ArcGIS</title>
+    <style>
+      html,
+      body,
+      #deckgl {
+        padding: 0;
+        margin: 0;
+        height: 100%; /* ブラウザ縦の表示範囲 */
+        width: 100%; /* ブラウザ横の表示範囲 */
+      }
+    </style>
+    <!-- 3-1-1. Deck GL JS の参照 -->
+    <script src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
+    <!-- 3-1-2. Loaders GL JS の参照 -->
+    <script src="https://unpkg.com/@loaders.gl/i3s@4.3.3/dist/dist.min.js"></script>
+    <!-- 3-1-3. MapLibre GL JS の参照 -->
+    <!-- MapLibre の CSS ファイルと JS ライブラリへの参照を追加 -->
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@^4.7.1/dist/maplibre-gl.css" />
+    <script src="https://unpkg.com/maplibre-gl@^4.7.1/dist/maplibre-gl.js"></script>
   </head>
   <body>
-      <div id="deckgl"></div>
-      <!-- JavaScript のコードを記述 -->
-      <script>
-        // DeckGL のモジュールを参照します
-        const {DeckGL, Tile3DLayer} = deck;
-        // LoadersGL のモジュールを参照します
-        const {I3SLoader} = loaders;
-        const arcgis_apiKey="";
+    <div id="deckgl"></div>
+    <!-- JavaScript のコードを記述 -->
+    <script>
+      // 3-3-1. 各クラスの参照を追加 を開始
+      
+      // DeckGL のモジュールを参照します
+      const {DeckGL, Tile3DLayer} = deck;
+      // LoadersGL のモジュールを参照します
+      const {I3SLoader} = loaders;
 
-    
-        // MapLibre GL の Map クラスを使って地図を参照
-        const map = new maplibregl.Map({
-          container: 'deckgl', // 表示したい タグの id 属性を参照
-        });
-        
-        // 表示する PLATEAU データの参照
-        const plateau_layer=new Tile3DLayer({
-          data:'https://tiles.arcgis.com/tiles/wlVTGRSYTzAbjjiC/arcgis/rest/services/13100_13201_Tokyo-23ku_Minamiosawa_Building/SceneServer/layers/0',
-          loader: I3SLoader // i3s のローダーを使用することを明記
-        });
-        
-        // deckgl の Viewer を設定
-        const deckgl_mainview = new DeckGL({
-          mapStyle: `https://basemapstyles-api.arcgis.com/arcgis/rest/services/styles/v2/styles/arcgis/imagery/standard?token=${arcgis_apiKey}`,
-          // //'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json', // 表示する地図の URL を参照
-          container:'deckgl', // 表示したい タグの id 属性を参照 
-          initialViewState:{ // シーンのビュー設定
-            longitude:  139.745723,
-            latitude:35.659041,
-            pitch: 60, // カメラの縦角度
-            maxPitch: 60, // カメラの最大縦角度
-            minZoom: 2, // 最小ズームレベル
-            maxZoom: 22,// 最大ズームレベル
-            zoom: 15.5, // 0~22 段階で設定
-            bearing: 0 // カメラの横角度
-          },
-          controller: true, // マウスによる操作の許可
-          layers: [plateau_layer] // 表示するレイヤーの配置
-        });
-      </script>
+      // 3-3-1. 各クラスの参照を追加 を終了
+      
+      // 3-2. MapLibre GL JS でマップを表示 を開始
+
+      // MapLibre GL の Map クラスを使ってマップを参照
+      const map = new maplibregl.Map({
+        container: 'deckgl', // 表示したい タグの id 属性を参照
+        style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json' // デフォルトで利用することができるマップを参照
+      });
+
+      // 3-2. MapLibre GL JS でマップを表示 を終了
+
+      // 3-3-3. PLATEAU データを表示 の開始
+
+      // 表示する PLATEAU データの参照
+      const plateau_layer=new Tile3DLayer({
+        data:'https://tiles.arcgis.com/tiles/wlVTGRSYTzAbjjiC/arcgis/rest/services/13100_13201_Tokyo-23ku_Minamiosawa_Building/SceneServer/layers/0',
+        loader: I3SLoader // i3s のローダーを使用することを明記
+      });
+      
+      // SP1-2-1. ArcGIS の API キーの設定 を開始
+      
+      // ArcGIS の API キーを設定
+      const arcgis_apiKey="ArcGIS の API キー";
+      
+      // SP1-2-1. ArcGIS の API キーの設定 を終了
+
+      // 3-3-2. Deck GL JS でマップを表示 の開始
+
+      // deckgl の Viewer を設定
+      const deckgl_mainview = new DeckGL({
+        // SP1-2-2. ArcGIS のマップを Deck GL JS のベースマップとして設定 を開始
+
+        mapStyle:`https://basemapstyles-api.arcgis.com/arcgis/rest/services/styles/v2/styles/arcgis/imagery/standard?token=${arcgis_apiKey}`, // 表示するマップの URL を参照
+
+        // SP1-2-2. ArcGIS のマップを Deck GL JS のベースマップとして設定 を終了
+
+        container:'deckgl', // 表示したい タグの id 属性を参照 
+        initialViewState:{ // シーンのビュー設定
+          longitude:  139.745723,
+          latitude:35.659041,
+          pitch: 60, // カメラの縦角度
+          maxPitch: 60, // カメラの最大縦角度
+          minZoom: 2, // 最小ズームレベル
+          maxZoom: 22,// 最大ズームレベル
+          zoom: 15.5, // 0~22 段階で設定
+          bearing: 0 // カメラの横角度
+        },
+        controller: true, // マウスによる操作の許可
+        layers: [plateau_layer] // 表示するレイヤーの配置
+      });
+
+      // 3-3-2. Deck GL JS でマップを表示 の終了
+
+      // 3-3-3. PLATEAU データを表示 の終了
+    </script>
   </body>
 </html>
