@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>ArcGIS Maps SDK for JavaScript</title>
+
+    <style>
+      html,
+      body,
+      #arcgis {
+        padding: 0;
+        margin: 0;
+        height: 100%; /* ブラウザ縦の表示範囲 */
+        width: 100%; /* ブラウザ横の表示範囲 */
+      }
+    </style>
+
+    <!-- CSS ファイルと JS ライブラリへの参照を追加 -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.31/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.31/"></script>
+  </head>
+  <body>
+    <div id="arcgis"></div>
+    <script>
+      require(["esri/Map",
+               "esri/views/SceneView", 
+              "esri/layers/SceneLayer"], 
+              function ( Map,SceneView,SceneLayer) {
+
+        // マップの作成
+        const map = new Map({
+          basemap:{
+            style:{
+             id:"arcgis/imagery/standard", // 表示したいマップの種類。ここでは衛星画像を使用
+            }
+          },
+          ground: "world-elevation" // 使用する標高サービスの指定。今回はデフォルトで用意されているものを使用
+        });
+
+        // シーン ビューの作成
+        const view = new SceneView({
+          map: map, // 使用する地図情報を記述
+          camera: {
+            position: [139.74621414799225, 35.6412203881348, 1010], // カメラの位置と高さを指定
+            tilt: 63, // カメラの縦方向
+            heading: 0 // カメラの横方向
+          },
+          container: "arcgis", // MapView を表示する HTML 上の div タグの ID　属性を記述
+        });
+
+        // 表示する PLATEAU データの参照
+        const plateau_layer= new SceneLayer({
+          url: "https://tiles.arcgis.com/tiles/wlVTGRSYTzAbjjiC/arcgis/rest/services/13100_13201_Tokyo-23ku_Minamiosawa_Building/SceneServer"
+        });
+
+        // 地図に PLATEAU データを追加
+        view.map.add(plateau_layer);
+      });
+
+    </script>
+  </body>
+</html>

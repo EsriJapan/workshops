@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cesium</title>
+  <style>
+    html,
+    body,
+    #cesium {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+  }
+  </style>
+        <!-- CSS ファイルと JS ライブラリへの参照を追加 -->
+        <script src="https://cesium.com/downloads/cesiumjs/releases/1.124/Build/Cesium/Cesium.js"></script>
+        <link href="https://cesium.com/downloads/cesiumjs/releases/1.124/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="cesium"></div>
+        <!-- モジュール形式のスクリプトで作成 -->
+        <script type="module">            
+            // Cesium ion の アクセストークン
+            const cesiumAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1YWEyMDc2Yy00MDZiLTQ5NGEtOWYxNi1hZGUzNDljNDZiMjAiLCJpZCI6MjYyNzQ3LCJpYXQiOjE3MzQzNDYzMzB9.6fMGvSzwxOBxzbCHi3dl0UJ-Ai1n9KmCgTCSmOgd4Vk";
+            Cesium.Ion.defaultAccessToken = cesiumAccessToken;
+            // ArcGIS の API キーの設定
+            const arcgis_apiKey="";
+            Cesium.ArcGisMapService.defaultAccessToken = arcgis_apiKey;
+
+            const arcGisImagery = Cesium.ArcGisMapServerImageryProvider.fromBasemapType(Cesium.ArcGisBaseMapType.SATELLITE);
+            
+            const viewer = new Cesium.Viewer('cesium', {
+                terrain: Cesium.Terrain.fromWorldTerrain(),
+                baseLayer:Cesium.ImageryLayer.fromProviderAsync(arcGisImagery),
+                timeline: false,
+                animation: false,
+                geocoder:false
+            });
+            
+            // ArcGIS のジオイドモデルを参照
+            const geoidService = await Cesium.ArcGISTiledElevationTerrainProvider.fromUrl("https://tiles.arcgis.com/tiles/z2tnIkrLQ2BRzr6P/arcgis/rest/services/EGM2008/ImageServer");
+            
+            // ArcGIS Online 上にある東京都の PLATEAU データの URL
+            const plateau_url = "https://tiles.arcgis.com/tiles/wlVTGRSYTzAbjjiC/arcgis/rest/services/13100_13201_Tokyo-23ku_Minamiosawa_Building/SceneServer/layers/0";
+            
+            // I3S 形式を Cesium　で読み込むメソッド
+            const plateau_layer = await Cesium.I3SDataProvider.fromUrl(plateau_url, {
+                geoidTiledTerrainProvider: geoidService, // 参照するジオイドを定義 
+                // token: arcgis_apiKey,
+            });
+            viewer.scene.primitives.add(plateau_layer);
+            
+            // カメラの位置、角度を設定
+            viewer.camera.setView({
+                destination : Cesium.Cartesian3.fromDegrees(139.74624895282653, 35.6446339299256, 1010),
+                orientation : {
+                    heading : Cesium.Math.toRadians(0.0),
+                    pitch : Cesium.Math.toRadians(-30),
+            
+                }
+            });
+          
+        </script>
+    </body>
+</html> 
