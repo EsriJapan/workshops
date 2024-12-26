@@ -1,6 +1,6 @@
 # WebGIS と連携した JavaScript によるプログラミング演習
 
-各ライブラリで ArcGIS Online にホストされている i3s 形式の東京都 PLATEAU データを表示します。
+各ライブラリで ArcGIS Online にホストされている I3S 形式の東京都 PLATEAU データを表示します。
 
 1. [ArcGIS Maps SDK for JavaScript](#1-arcgis-maps-sdk-for-javascript)
   

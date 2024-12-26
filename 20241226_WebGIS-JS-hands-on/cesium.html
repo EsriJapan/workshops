@@ -24,17 +24,18 @@
         <!-- モジュール形式のスクリプトで作成 -->
         <script type="module">            
             // Cesium ion の アクセストークン
-            const cesiumAccessToken = "Cesium アクセストークン";
+            const cesiumAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZmY1ZWIxMC04NjQ3LTQzODMtYTlkMi0yODVmNGQ3MDYwMzciLCJpZCI6MjYyNzQ3LCJpYXQiOjE3MzQzNDY1Mzh9.6pjfLLsK0WJkWUMyDa7M5Nx4sRC-5saIl19X0_xIIQo";
             Cesium.Ion.defaultAccessToken = cesiumAccessToken;
+            
             // ArcGIS の API キーの設定
-            const arcgis_apiKey="";
-            Cesium.ArcGisMapService.defaultAccessToken = arcgis_apiKey;
+            // const arcgis_apiKey="";
+            // Cesium.ArcGisMapService.defaultAccessToken = arcgis_apiKey;
 
-            const arcGisImagery = Cesium.ArcGisMapServerImageryProvider.fromBasemapType(Cesium.ArcGisBaseMapType.SATELLITE);
+            // const arcGisImagery = Cesium.ArcGisMapServerImageryProvider.fromBasemapType(Cesium.ArcGisBaseMapType.SATELLITE);
             
             const viewer = new Cesium.Viewer('cesium', {
                 terrain: Cesium.Terrain.fromWorldTerrain(),
-                baseLayer:Cesium.ImageryLayer.fromProviderAsync(arcGisImagery),
+                // baseLayer:Cesium.ImageryLayer.fromProviderAsync(arcGisImagery),
                 timeline: false,
                 animation: false,
                 geocoder:false
