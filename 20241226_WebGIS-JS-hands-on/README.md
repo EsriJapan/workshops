@@ -1000,7 +1000,7 @@ Cesium では、ArcGIS の API キーを設定するためのメソッドとし�
 
 #### 1-2. ArcGIS のマップを Cesium のベースマップとして設定する
 Cesium JS での ArcGIS のマップの参照には、[`ArcGisMapService`](https://cesium.com/learn/cesiumjs/ref-doc/ArcGisMapService.html) エンジンを用いますが、今回参照する衛星画像は Image Tile Layer のサービスであるため[`ArcGisMapServerImageryProvider`](https://cesium.com/learn/cesiumjs/ref-doc/ArcGisMapServerImageryProvider.html) エンジンの [`fromBasemapType`](https://cesium.com/learn/cesiumjs/ref-doc/ArcGisMapServerImageryProvider.html#.fromBasemapType) メソッドを使います。 
-Cesium で出力される Image のマップデータとして参照するために `baseLayer` プロパティに [`Cesium.ImageryLayer](https://cesium.com/learn/cesiumjs/ref-doc/ImageryLayer.html) エンジンの [`fromProviderAsync`](https://cesium.com/learn/cesiumjs/ref-doc/ImageryLayer.html#.fromProviderAsync) メソッドで設定します。
+Cesium で出力される Image のマップデータとして参照するために `baseLayer` プロパティに [`Cesium.ImageryLayer`](https://cesium.com/learn/cesiumjs/ref-doc/ImageryLayer.html) エンジンの [`fromProviderAsync`](https://cesium.com/learn/cesiumjs/ref-doc/ImageryLayer.html#.fromProviderAsync) メソッドで設定します。
 
 ``` HTML
 <html lang="ja">
