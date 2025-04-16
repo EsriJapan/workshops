@@ -4,8 +4,8 @@
 
 ## 事前準備
 - ArcGIS Pro バージョン 3.4 日本語版
-- [data.zip](https://github.com/ej-ambo/workshops/raw/refs/heads/main/20250418_arcpy-hands-on/HandsOn/data.zip) を解凍し、data フォルダーを C 直下へ配置
-- [演習テキスト](https://github.com/ej-ambo/workshops/blob/main/20250418_arcpy-hands-on/HandsOn/README.md) に沿って進めます
+- [data.zip](./HandsOn/data.zip) を解凍し、data フォルダーを C 直下へ配置
+- [演習テキスト](.//HandsOn/README.md) に沿って進めます
 
 
 ## リソース
