@@ -130,7 +130,7 @@ ArcPy のサンプル コードや Web ヘルプを見る時に ArcGIS Pro を�
 
 <table>
   <tr>
-    <td>breakCount：クラス</td> <td rowspan="4"	<p><img src="https://github.com/ej-ambo/workshops/blob/main/20250418_arcpy-hands-on/HandsOn/img/シンボル画面.png" height="390" width="420" alt="サンプル画像" align="top" ></p></td>
+    <td>breakCount：クラス</td> <td rowspan="4"	<p><img src="./img/シンボル画面.png" height="390" width="420" alt="サンプル画像" align="top" ></p></td>
   </tr>
   <tr>
     <td>classificationField：フィールド</td> 
