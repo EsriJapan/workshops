@@ -4,7 +4,7 @@
 このガイドは ArcPy を使用した、データの作成からマップのエクスポートまでの操作の流れを紹介します。
 
 ## プロジェクトの準備
-1. [ハンズオンで使用するデータ](https://github.com/ej-ambo/workshops/raw/refs/heads/main/20250418_arcpy-hands-on/HandsOn/data.zip) をダウンロード、解凍し、data フォルダーを任意の場所に配置してご活用ください。※スクリプト内では C ドライブ直下を指定しています。
+1. [ハンズオンで使用するデータ](https://github.com/EsriJapan/workshops/raw/refs/heads/master/20250418_arcpy-hands-on/HandsOn/data.zip) をダウンロード、解凍し、data フォルダーを任意の場所に配置してご活用ください。※スクリプト内では C ドライブ直下を指定しています。
 
 2. 1 でダウンロードした、data/ArcGISPro フォルダに格納されている arcpy.aprx を開きます。サイン イン画面が表示された場合はお手持ちのアカウントでサイン インしてください。開き終わったら「演習」マップが開いているか確認してください。
 
