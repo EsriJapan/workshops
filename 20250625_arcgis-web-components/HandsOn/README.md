@@ -1,15 +1,15 @@
 # ArcGIS における Web コンポーネント勉強会：Web コンポーネント ハンズオン
 
 # 概要
-このガイドは ArcGIS で使用できる Web コンポーネント（ArcGIS Maps SDK for JavaScript、Calcite Design System）を使用して、Web アプリケーションを作成する流れを紹介します。このハンズオンではコピー & ペーストで Web アプリケーションを作成できます。コメントアウトの「手順 x-x ～ Start 」から「手順 x-x ～ End 」までをコピーし、該当箇所にペーストしてください。
+このガイドは ArcGIS で使用できる Web コンポーネント（[ArcGIS Maps SDK for JavaScript](https://developers.arcgis.com/javascript/latest/)、[Calcite Design System](https://developers.arcgis.com/calcite-design-system/)）を使用して、Web アプリケーションを作成する流れを紹介します。このハンズオンではコピー & ペーストで Web アプリケーションを作成できます。コメントアウトの「手順 x-x ～ Start 」から「手順 x-x ～ End 」までをコピーし、該当箇所にペーストしてください。
 
 # 準備
 ## プロジェクトの準備
-1. [Web ページ テンプレート](https://github.com/EsriJapan/workshops/raw/refs/heads/master/20250625_arcgis-web-components/HandsOn/handson.zip) をダウンロード、解凍し、`handson` フォルダーを `C:\inetpub\wwwroot\` 配置してください。※ ご自身 IIS 上からアクセスできる場所であればどこでも大丈夫です。
+1. [Web ページ テンプレート](https://github.com/EsriJapan/workshops/raw/refs/heads/master/20250625_arcgis-web-components/HandsOn/handson.zip) をダウンロード、解凍し、`handson` フォルダーを任意の Web サーバーを用意し、Web サーバーのルート ディレクトリーに配置してください。※ ご自身の Webサーバー上からアクセスできる場所であればどこでも大丈夫です。
 
 2. 1.で配置した `handson` フォルダーを Visual Studio Code（以降 VSCode）で開きます。
 
-3. 開いたら Web ブラウザーで対象の Web ページにアクセスします。（手順1.で `C:\inetpub\wwwroot\` に配置した場合は `https://localhost/handson`）アクセスすると以下のような画面が表示されます。
+3. 開いたら Web ブラウザーで対象の Web ページにアクセスします。（手順1.で Web サーバーのルート ディレクトリーに配置した場合は `https://<マシン名>/handson` また、自環境の IIS のルート ディレクトリーに配置した場合は `https://localhost/handson`）アクセスすると以下のような画面が表示されます。
 
 ![テンプレート](./img/preparation.png)
 
@@ -58,13 +58,14 @@ ArcGIS で使用できる Web コンポーネントの `ArcGIS Maps SDK for Java
 </body>
 ```
 
+ここでは、[マップ コンポーネント](https://developers.arcgis.com/javascript/latest/references/map-components/)とマップ上に[拡大・縮小ボタン](https://developers.arcgis.com/javascript/latest/references/map-components/arcgis-zoom/)を設定しています。
 ブラウザーを更新すると以下のように日本列島を中心とするマップの画面が表示されます。
 
 ![手順 2 : 画面上にマップを表示](./img/step2.png)
 
 ## 手順 3 : マップ上にフィーチャ レイヤーを重ねる
 
-表示したマップ上にフィーチャ レイヤーを重ね、任意のフィーチャをクリックした際にアラートでクリックしたフィーチャ情報を表示する処理を追加します。
+表示したマップ上に[フィーチャ レイヤー](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-FeatureLayer.html)を重ね、任意のフィーチャをクリックした際にアラートでクリックしたフィーチャ情報を表示する処理を追加します。
 
 1. `js` フォルダー内にある `main.js` ファイルを開きます。
 
@@ -120,7 +121,7 @@ require([
 
 # Calcite Design System を使用して Web アプリケーションの UI を構築
 ## 手順 4 : Calcite コンポーネントで UI 構築およびイベント処理の追加
-1. `index.html` ファイルの `<body>` タグ内で `<arcgis-map>` タグを囲うように以下のコードを追記する。
+1. `index.html` ファイルの `<body>` タグ内で `<arcgis-map>` タグを囲うように以下のコードを追記します。
 
 ```html
 <body>
@@ -141,9 +142,9 @@ require([
 </body>
 ```
 
-ここでは、シェル コンポーネントを追加しています。シェル コンポーネント内にマップ コンポーネント以外の要素が無いため変化はありません。
+ここでは、[シェル コンポーネント](https://developers.arcgis.com/calcite-design-system/components/shell/)を追加しています。シェル コンポーネント内にマップ コンポーネント以外の要素が無いため変化はありません。
 
-2. `<calcite-shell>` タグ内で `<arcgis-map>` タグの上に以下のコードを追記する。
+2. `<calcite-shell>` タグ内で `<arcgis-map>` タグの上に以下のコードを追記します。
 
 ```html
   <!-- 手順 4-1-1 Calcite Design System の Shell コンポーネントを追加 Start -->
@@ -184,9 +185,9 @@ require([
     <!-- 手順 2-1 マップ コンポーネントで topo-vector ベースマップで日本を中心で表示。また、マップ上に拡大、縮小ボタンを表示 End -->
 ```
 
-ここでは、ヘッダーの要素と右側にシェル パネルと凡例アクション ボタン、シェル パネル上に表示する凡例が定義されています。
+ここでは、ヘッダーの要素と右側に[シェル パネル](https://developers.arcgis.com/calcite-design-system/components/shell-panel/)と凡例の表示・非表示をするための[アクション ボタン](https://developers.arcgis.com/calcite-design-system/components/action/)、シェル パネル上に表示する[パネル](https://developers.arcgis.com/calcite-design-system/components/panel/)、パネル上に表示する[凡例](https://developers.arcgis.com/javascript/latest/references/map-components/arcgis-legend/)が定義されています。
 
-ブラウザーを更新すると以下のように先ほどのマップだけのデザインに加えて、ヘッダーと右側にシェル パネルの要素が追加されるのが分かります。ヘッダーとシェル パネルにはそれぞれ slot プロパティが設定されており、その値によって表示位置が決まります。
+ブラウザーを更新すると以下のように先ほどのマップだけのデザインに加えて、ヘッダーと右側にシェル パネルの要素が追加されるのが分かります。ヘッダーとシェル パネルにはそれぞれ [slot](https://developers.arcgis.com/calcite-design-system/components/shell/#slots) プロパティが設定されており、その値によって表示位置が決まります。
 
 ![手順 4-2 : Calcite コンポーネントで UI を追加](./img/step4-2.png)
 
@@ -247,7 +248,7 @@ require([
 
 Calcite コンポーネントにイベント処理を追加することで凡例アクション ボタンをクリックすることで凡例が表示・非表示になります。また、凡例の上部にある閉じる（×）ボタンをクリックした際に非表示になります。
 
-凡例アクション ボタンのクリック イベントは一般的な HTML のイベントを取得していますが、凡例を表示している凡例パネルの閉じる（×）ボタンのクリック イベントは Calcite コンポーネント（パネル コンポーネント）独自のイベントを取得して処理をしています。
+凡例アクション ボタンのクリック イベントは一般的な HTML のイベントを取得していますが、凡例を表示している凡例パネルの閉じる（×）ボタンのクリック イベントは Calcite コンポーネント（[パネル コンポーネント](https://developers.arcgis.com/calcite-design-system/components/panel/#events)）独自のイベントを取得して処理をしています。
 
 # Calcite コンポーネントのデザインを変更する。
 
@@ -266,7 +267,7 @@ calcite-panel {
 
 ![オプション 1 : 凡例パネルのヘッダー デザインの変更](./img/option.png)
 
-パネル コンポーネントの要素に設定されている CSS 変数を用いることでコンポーネントのデザインを変更することができます。このように Calcite コンポーネントのデザインを CSS 変数を用いることで変更することができます。
+パネル コンポーネントの要素に設定されている [CSS 変数](https://developers.arcgis.com/calcite-design-system/components/panel/#styles)を用いることでコンポーネントのデザインを変更することができます。このように Calcite コンポーネントのデザインを CSS 変数を用いることで変更することができます。
 
 # さいごに
 お疲れ様です。  

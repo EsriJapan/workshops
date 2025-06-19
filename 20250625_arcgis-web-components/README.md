@@ -1,11 +1,12 @@
 # ArcGIS における Web コンポーネント勉強会：Web コンポーネント ハンズオン
 
-前半では ArcGIS で使用できる Web コンポーネントの概要を紹介し、後半では実際に ArcGIS で使用できる Web コンポーネントをコーディングする流れを体験するハンズオン資料です。  
+前半では ArcGIS で使用できる Web コンポーネントの概要を紹介し、後半では実際に ArcGIS の Web コンポーネントを使ってアプリケーションをコーディングする流れを体験するハンズオン資料です。  
 
 ## 事前準備
-- Web ページ テンプレート
-- [handson.zip](https://github.com/EsriJapan/workshops/raw/refs/heads/master/20250625_arcgis-web-components/HandsOn/handson.zip) を解凍し、handson フォルダーを `C:\inetpub\wwwroot\` 直下へ配置
+- Web ページ テンプレート  
+ [handson.zip](https://github.com/EsriJapan/workshops/raw/refs/heads/master/20250625_arcgis-web-components/HandsOn/handson.zip) を解凍し、handson フォルダーを任意の Web サーバーを用意し、Web サーバーのルート ディレクトリーに配置
 - [演習テキスト](.//HandsOn/README.md) に沿って進めます
+- 任意のテキスト エディター（このハンズオンでは Visual Studio Code を使用します。）
 
 
 ## リソース
