@@ -5,11 +5,11 @@
 
 # 準備
 ## プロジェクトの準備
-1. [Web ページ テンプレート](https://github.com/EsriJapan/workshops/raw/refs/heads/master/20250625_arcgis-web-components/HandsOn/handson.zip) をダウンロード、解凍し、`handson` フォルダーを任意の Web サーバーを用意し、Web サーバーのルート ディレクトリーに配置してください。※ ご自身の Webサーバー上からアクセスできる場所であればどこでも大丈夫です。
+1. [Web ページ テンプレート](https://github.com/EsriJapan/workshops/raw/refs/heads/master/20250625_arcgis-web-components/HandsOn/handson.zip) をダウンロード、解凍し、`handson` フォルダーを任意の Web サーバーを用意し、Web サーバーのルート ディレクトリーに配置してください。※ ご自身の Web サーバー上からアクセスできる場所であればどこでも大丈夫です。
 
 2. 1.で配置した `handson` フォルダーを Visual Studio Code（以降 VSCode）で開きます。
 
-3. 開いたら Web ブラウザーで対象の Web ページにアクセスします。（手順1.で Web サーバーのルート ディレクトリーに配置した場合は `https://<マシン名>/handson` また、自環境の IIS のルート ディレクトリーに配置した場合は `https://localhost/handson`）アクセスすると以下のような画面が表示されます。
+3. 開いたら Web ブラウザーで対象の Web ページにアクセスします。（手順1.で自環境の IIS のルート ディレクトリーに配置した場合は `https://localhost/handson`）アクセスすると以下のような画面が表示されます。
 
 ![テンプレート](./img/preparation.png)
 
@@ -248,7 +248,7 @@ require([
 
 Calcite コンポーネントにイベント処理を追加することで凡例アクション ボタンをクリックすることで凡例が表示・非表示になります。また、凡例の上部にある閉じる（×）ボタンをクリックした際に非表示になります。
 
-凡例アクション ボタンのクリック イベントは一般的な HTML のイベントを取得していますが、凡例を表示している凡例パネルの閉じる（×）ボタンのクリック イベントは Calcite コンポーネント（[パネル コンポーネント](https://developers.arcgis.com/calcite-design-system/components/panel/#events)）独自のイベントを取得して処理をしています。
+凡例アクション ボタンの[クリック イベント](https://developer.mozilla.org/ja/docs/Web/API/Element/click_event)は一般的な HTML のイベントを取得していますが、凡例を表示している凡例パネルの閉じる（×）ボタンのクリック イベントは Calcite コンポーネント（[パネル コンポーネント](https://developers.arcgis.com/calcite-design-system/components/panel/#events)）独自のイベントを取得して処理をしています。
 
 # Calcite コンポーネントのデザインを変更する。
 
