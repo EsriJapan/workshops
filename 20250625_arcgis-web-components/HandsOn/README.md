@@ -187,7 +187,7 @@ require([
 
 ここでは、ヘッダーの要素と右側に[シェル パネル](https://developers.arcgis.com/calcite-design-system/components/shell-panel/)と凡例の表示・非表示をするための[アクション ボタン](https://developers.arcgis.com/calcite-design-system/components/action/)、シェル パネル上に表示する[パネル](https://developers.arcgis.com/calcite-design-system/components/panel/)、パネル上に表示する[凡例](https://developers.arcgis.com/javascript/latest/references/map-components/arcgis-legend/)が定義されています。
 
-ブラウザーを更新すると以下のように先ほどのマップだけのデザインに加えて、ヘッダーと右側にシェル パネルの要素が追加されるのが分かります。ヘッダーとシェル パネルにはそれぞれ [slot](https://developers.arcgis.com/calcite-design-system/components/shell/#slots) プロパティが設定されており、その値によって表示位置が決まります。
+ブラウザーを更新すると以下のように先ほどのマップだけのデザインに加えて、ヘッダーと右側にシェル パネルの要素が追加されるのが分かります。ヘッダーとシェル パネルにはそれぞれ [slot](https://developers.arcgis.com/calcite-design-system/components/shell/#slots) プロパティが設定されており、その値によって表示位置が決まります。また、凡例のアクション ボタンには [icon](https://developers.arcgis.com/calcite-design-system/components/action/#api-reference-properties-icon) プロパティが設定されており Calcite Design System で用意されている[凡例のアイコン](https://developers.arcgis.com/calcite-design-system/icons/?query=legend)を表示しています。
 
 ![手順 4-2 : Calcite コンポーネントで UI を追加](./img/step4-2.png)
 
