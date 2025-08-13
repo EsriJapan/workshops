@@ -141,9 +141,8 @@ ArcGIS で使用できる Web コンポーネントの `ArcGIS Maps SDK for Java
 
 ブラウザーを更新すると以下のように都道府県レイヤーが表示され、任意の都道府県フィーチャをクリックすると画面上部にクリックしたフィーチャの情報が表示されます。
 
-[!WARNING]
-
-CDN にて ArcGIS Maps SDK for JavaScript のモジュールを利用する方法として、バージョン 4.32 までは AMD による require 関数を用いていましたが、バージョン 4.33 より ES モジュールのように利用する arcgis.import 関数による利用する方法が追加されました。
+> [!WARNING]  
+> CDN にて ArcGIS Maps SDK for JavaScript のモジュールを利用する方法として、バージョン 4.32 までは AMD による require 関数を用いていましたが、バージョン 4.33 より ES モジュールのように利用する arcgis.import 関数による利用する方法が追加されました。
 
 ![手順 3 : マップ上にフィーチャ レイヤーを重ねる](./img/step3.png)
 
