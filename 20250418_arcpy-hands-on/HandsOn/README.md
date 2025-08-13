@@ -115,13 +115,13 @@ for lyr in lyrs:
         sym = lyr.symbology
         sym.updateRenderer("GraduatedColorsRenderer") # 等級色
         sym.renderer.classificationField = "total"  #分類するフィールド名
-        sym.renderer.classificationMethod = "Quantile" # 等比間隔
+        sym.renderer.classificationMethod = "Quantile" # 等量分類
         sym.renderer.breakCount = 5 # クラス
         lyr.symbology = sym
 ```
 
 上記のコードでは、[Symbology クラス](https://pro.arcgis.com/ja/pro-app/latest/arcpy/mapping/symbology-class.htm) を使用して演習 2 で追加した total フィールドの属性値に応じてシンボルを設定しています。
-今回は等級色 (GraduatedColorsRenderer) を使用し、total フィールドに対して、5 段階の等比間隔 (Quantile) で分類をしています。
+今回は等級色 (GraduatedColorsRenderer) を使用し、total フィールドに対して、5 段階の等量分類 (Quantile) で分類をしています。
 
 ![alt text](./img/image-3.png)
 
