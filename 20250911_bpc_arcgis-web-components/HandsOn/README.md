@@ -50,8 +50,7 @@ ArcGIS で使用できる Web コンポーネントの `ArcGIS Maps SDK for Java
     <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css" />
     <script src="https://js.arcgis.com/4.33/"></script>
     <!-- マップ コンポーネントをロード -->
-    <script
-  type="module" src="https://js.arcgis.com/4.33/map-components/"></script>
+    <script type="module" src="https://js.arcgis.com/4.33/map-components/"></script>
     <!-- 手順 1-1 Calcite Design System と ArcGIS Maps SDK for JavaScript を使うために必要なライブラリーをロードする。 End -->
 
   </head>
