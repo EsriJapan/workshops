@@ -75,22 +75,24 @@ ArcGIS Maps SDK for JavaScript では、`<script type="module" src="https://js.a
   </body>
 ```
 
-ここでは、[Map コンポーネント](https://developers.arcgis.com/javascript/latest/references/map-components/)とマップ上に[拡大・縮小ボタン](https://developers.arcgis.com/javascript/latest/references/map-components/arcgis-zoom/)を設定しています。
+ここでは、[Map コンポーネント](https://developers.arcgis.com/javascript/latest/references/map-components/)とマップ上に [Zoom コンポーネント（拡大・縮小ボタン）](https://developers.arcgis.com/javascript/latest/references/map-components/arcgis-zoom/)を設定しています。
 ブラウザーを更新すると以下のように日本列島を中心とするマップの画面が表示されます。
 
 ![手順 2-1 : 画面上にベースマップを表示](./img/step2-1.png)
 
-2. 以下の URL にアクセスして、事前に作成した Web マップの情報を確認します。
-[https://esrij.maps.arcgis.com/home/item.html?id=b726ec313b324fc0af181896f9be6b1a](https://esrij.maps.arcgis.com/home/item.html?id=b726ec313b324fc0af181896f9be6b1a)
+2. 以下の URL にアクセスして、事前に作成した Web マップの情報を確認します。  
+[https://www.arcgis.com/home/item.html?id=b726ec313b324fc0af181896f9be6b1a](https://www.arcgis.com/home/item.html?id=b726ec313b324fc0af181896f9be6b1a)
 
 > [!NOTE]
 > ご自身のアカウントで Web マップを作成している場合は、その Web マップのアイテム詳細ページを開いてください。
 
 アイテム詳細ページには様々な情報が記述されていますが、URL バー上に表示されている URL パラメーターの `id` の値、もしくは、画面右側にある`アイテム ID`に表示されている値を使用します。
 
+![手順 2-2 : ArcGIS Online のアイテム詳細ページ](./img/step2-2.png)
+
 3. 手順 2-1. で追加した Map コンポーネントの `basemap`、`center`、`zoom` プロパティを削除し、`item-id="b726ec313b324fc0af181896f9be6b1a"` を追加します。
 > [!NOTE]
-> ご自身のデータを使用する場合は、`item-id` に設定している値を手順 2-2. で確認をした`アイテム ID` を設定してください。
+> ご自身のデータを使用する場合は、`item-id` に設定している値を手順 2-2. で確認をした`アイテム ID` を設定してください。このとき、Web マップや Web マップで使用しているフィーチャ サービスの共有レベルが「所有者」や「組織」の場合は、認証画面が表示されます。
 ```html
   <body>
     <!-- 手順 2-1 Map コンポーネントで topo-vector ベースマップで日本を中心で表示。また、マップ上に拡大、縮小ボタンを表示 Start -->
@@ -165,7 +167,7 @@ ArcGIS Maps SDK for JavaScript では、`<script type="module" src="https://js.a
     </script>
 ```
 
-ブラウザーを更新すると以下のように都道府県レイヤーが表示され、任意の都道府県フィーチャをクリックすると画面上部にクリックしたフィーチャの情報が表示されます。
+ブラウザーを更新すると以下のように指定緊急避難所レイヤーが表示され、任意の指定緊急避難所フィーチャをクリックすると画面上部にクリックしたフィーチャの情報が表示されます。
 
 > [!IMPORTANT]  
 > CDN にて ArcGIS Maps SDK for JavaScript のモジュールを利用する方法として、バージョン 4.32 までは AMD による require 関数を用いていましたが、バージョン 4.33 より ES モジュールのように利用する arcgis.import 関数による利用する方法が追加されました。
