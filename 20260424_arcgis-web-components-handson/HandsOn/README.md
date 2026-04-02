@@ -1,7 +1,7 @@
 # ArcGIS における Web コンポーネント勉強会：Web コンポーネント ハンズオン
 
 # 概要
-このガイドは ArcGIS で使用できる Web コンポーネント（[ArcGIS Maps SDK for JavaScript](https://developers.arcgis.com/javascript/latest/)、[Calcite Design System](https://developers.arcgis.com/calcite-design-system/)）を使用して、Web アプリケーションを作成する流れを紹介します。このハンズオンではコピー & ペーストで Web アプリケーションを作成できます。コメントアウトの「手順 x-x ～ Start 」から「手順 x-x ～ End 」までを選択、コピーし、該当箇所にペーストしてください。一部の手順では追加ではなく変更する箇所があります。その場合は、該当のコードに書き換えてください。
+このガイドは ArcGIS で使用できる Web コンポーネント（[ArcGIS Maps SDK for JavaScript](https://developers.arcgis.com/javascript/latest/)、[Calcite Design System](https://developers.arcgis.com/calcite-design-system/)）を使用して、Web アプリケーションを作成する流れを紹介します。このハンズオンではコピー & ペーストで Web アプリケーションを作成できます。コメントアウトの「手順 x-x ～ Start 」から「手順 x-x ～ End 」までを選択、コピーし、該当箇所にペーストしてください。一部の手順では、コードを追加するのではなく既存の記述を変更します。その場合は、該当のコードに書き換えてください。
 
 # 準備
 ## プロジェクトの準備
@@ -170,11 +170,11 @@ ArcGIS Maps SDK for JavaScript では、`<script type="module" src="https://js.a
 ブラウザーを更新すると以下のように指定緊急避難所レイヤーが表示され、任意の指定緊急避難所フィーチャをクリックすると画面上部にクリックしたフィーチャの情報が表示されます。
 
 > [!IMPORTANT]  
-> CDN にて ArcGIS Maps SDK for JavaScript のモジュールを利用する方法として、バージョン 4.32 までは AMD による require 関数を用いていましたが、バージョン 4.33 より ES モジュールのように利用する arcgis.import 関数による利用する方法が追加されました。
+> CDN にて ArcGIS Maps SDK for JavaScript のモジュールを利用する方法として、バージョン 4.32 までは AMD による require 関数を用いていましたが、バージョン 4.33 より ES モジュールのように利用できる arcgis.import 関数を用いる方法が追加されました。
 
 ![手順 3 : マップ上にフィーチャ レイヤーを重ねる](./img/step3.png)
 
-ここまでで `ArcGIS Maps SDK for JavaScript` の Web コンポーネントであるマップ コンポーネントを使用して地図を使用したアプリケーションを作成する手順を見てきました。  
+ここまでで `ArcGIS Maps SDK for JavaScript` の Web コンポーネントであるマップ コンポーネントを使用して地図を利用したアプリケーションを作成する手順を見てきました。  
 ここからは `Calcite Design System` を使用して Web アプリケーションの UI を追加していきます。
 
 # Calcite Design System を使用して Web アプリケーションの UI を構築
