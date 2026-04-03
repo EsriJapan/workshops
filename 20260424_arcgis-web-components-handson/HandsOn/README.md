@@ -1,10 +1,10 @@
-# ArcGIS における Web コンポーネント勉強会：Web コンポーネント ハンズオン
+# Web コンポーネントでつくるモダンな地図 Web アプリ開発入門（ハンズオン）
 
-# 概要
+## 概要
 このガイドは ArcGIS で使用できる Web コンポーネント（[ArcGIS Maps SDK for JavaScript](https://developers.arcgis.com/javascript/latest/)、[Calcite Design System](https://developers.arcgis.com/calcite-design-system/)）を使用して、Web アプリケーションを作成する流れを紹介します。このハンズオンではコピー & ペーストで Web アプリケーションを作成できます。コメントアウトの「手順 x-x ～ Start 」から「手順 x-x ～ End 」までを選択、コピーし、該当箇所にペーストしてください。一部の手順では、コードを追加するのではなく既存の記述を変更します。その場合は、該当のコードに書き換えてください。
 
-# 準備
-## プロジェクトの準備
+## 準備
+### プロジェクトの準備
 1. [CodePen](https://codepen.io/pen/?editors=1000) を任意の Web ブラウザーで開きます。
 
 2. `CodePen` の HTML エディターに以下のコードを記述します。
@@ -34,7 +34,7 @@
 
 ![テンプレート](./img/preparation.png)
 
-## 手順 1 ： 必要なライブラリーの追加
+### 手順 1 ： 必要なライブラリーの追加
 
 ArcGIS で使用できる Web コンポーネントの `ArcGIS Maps SDK for JavaScript` と `Calcite Design System` のライブラリーを追加します。
 
@@ -57,8 +57,8 @@ ArcGIS Maps SDK for JavaScript では、`<script type="module" src="https://js.a
 > [!NOTE]
 > ArcGIS Maps SDK for JavaScript のマップ コンポーネントには、地図を表示する機能をもった `<arcgis-map>` というタグを使用するコンポーネントがあります。このドキュメントでは地図に関連する機能を持ったコンポーネント群を`マップ コンポーネント`、地図を表示する機能を持ったコンポーネントを `Map コンポーネント`と記述します。
 
-# ArcGIS Maps SDK for JavaScript のマップ コンポーネントを使用してマップを表示する。
-## 手順 2  : 画面上にマップを表示する。
+## ArcGIS Maps SDK for JavaScript のマップ コンポーネントを使用してマップを表示する。
+### 手順 2  : 画面上にマップを表示する。
 
 `ArcGIS Maps SDK for JavaScript` のマップ コンポーネントを使用して画面上に地図を表示します。
 
@@ -105,7 +105,7 @@ ArcGIS Maps SDK for JavaScript では、`<script type="module" src="https://js.a
 
 ![手順 2-3 : 画面上に Web マップを表示](./img/step2-3.png)
 
-## 手順 3 : マップ上にフィーチャ レイヤーを重ねる
+### 手順 3 : マップ上にフィーチャ レイヤーを重ねる
 
 表示したマップ上に[フィーチャ レイヤー](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-FeatureLayer.html)を重ね、任意のフィーチャをクリックした際にアラートでクリックしたフィーチャ情報を表示する処理を追加します。
 
@@ -170,15 +170,15 @@ ArcGIS Maps SDK for JavaScript では、`<script type="module" src="https://js.a
 ブラウザーを更新すると以下のように指定緊急避難所レイヤーが表示され、任意の指定緊急避難所フィーチャをクリックすると画面上部にクリックしたフィーチャの情報が表示されます。
 
 > [!IMPORTANT]  
-> CDN にて ArcGIS Maps SDK for JavaScript のモジュールを利用する方法として、バージョン 4.32 までは AMD による require 関数を用いていましたが、バージョン 4.33 より ES モジュールのように利用できる arcgis.import 関数を用いる方法が追加されました。
+> CDN にて ArcGIS Maps SDK for JavaScript のモジュールを利用する方法として、バージョン 4.32 までは AMD による require 関数を用いていましたが、バージョン 4.33 より ES モジュールのように利用できる $arcgis.import 関数を用いる方法が追加されました。
 
 ![手順 3 : マップ上にフィーチャ レイヤーを重ねる](./img/step3.png)
 
 ここまでで `ArcGIS Maps SDK for JavaScript` の Web コンポーネントであるマップ コンポーネントを使用して地図を利用したアプリケーションを作成する手順を見てきました。  
 ここからは `Calcite Design System` を使用して Web アプリケーションの UI を追加していきます。
 
-# Calcite Design System を使用して Web アプリケーションの UI を構築
-## 手順 4 : Calcite コンポーネントで UI 構築およびイベント処理の追加
+## Calcite Design System を使用して Web アプリケーションの UI を構築
+### 手順 4 : Calcite コンポーネントで UI 構築およびイベント処理の追加
 1. `<body>` タグ内で `<arcgis-map>` タグを囲うように以下のコードを追記します。
 
 ```html
@@ -306,9 +306,9 @@ Calcite コンポーネントにイベント処理を追加することで凡例
 
 凡例アクション ボタンの[クリック イベント](https://developer.mozilla.org/ja/docs/Web/API/Element/click_event)は一般的な HTML のイベントを取得していますが、凡例を表示している凡例パネルの閉じる（×）ボタンのクリック イベントは Calcite コンポーネント（[パネル コンポーネント](https://developers.arcgis.com/calcite-design-system/components/panel/#events)）独自のイベントを取得して処理をしています。
 
-# Calcite コンポーネントのデザインを変更する。
+## Calcite コンポーネントのデザインを変更する。
 
-## オプション：ヘッダーの背景色を変更する。
+### オプション：ヘッダーの背景色を変更する。
 1. `<style>` タグ内に新しいスタイル ルールを追記します。
 
 ```html
@@ -474,7 +474,7 @@ Calcite コンポーネントにイベント処理を追加することで凡例
 </html>
 ```
 
-# さいごに
+## さいごに
 お疲れ様です。  
 以上で、ハンズオンは終わりです。  
 このように ArcGIS では GIS 要素の Web コンポーネントとデザイン要素の Web コンポーネントが用意されています。これらを使うことで比較的容易に独自の Web アプリケーションを作成できますので、独自の Web アプリケーション開発に興味のある方は是非 ArcGIS で使用できる Web コンポーネントを活用して開発をしてみてください！
