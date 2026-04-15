@@ -271,6 +271,10 @@ bear_map.save(webmap_properties)
 
 <img src="./image/19.png" width=90% />
 
+その他にも、プロンプトにコードとエラーメッセージを入力することで、間違っていた部分についての説明や修正されたコードを提案してくれます。
+
+<img src="./image/20.png" width=90% />
+
 ArcGIS Notebooks アシスタントの詳細については、ブログ記事「[ArcGIS Notebooks アシスタント (ベータ版) のご紹介](https://community.esri.com/t5/arcgis/arcgis-notebooks/ta-p/1690948)」もあわせてご参照ください。
 
 ## おわりに
