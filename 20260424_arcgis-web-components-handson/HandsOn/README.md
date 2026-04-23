@@ -75,7 +75,7 @@ ArcGIS Maps SDK for JavaScript では、`<script type="module" src="https://js.a
   </body>
 ```
 
-ここでは、[Map コンポーネント](https://developers.arcgis.com/javascript/latest/references/map-components/)とマップ上に [Zoom コンポーネント（拡大・縮小ボタン）](https://developers.arcgis.com/javascript/latest/references/map-components/arcgis-zoom/)を設定しています。
+ここでは、[Map コンポーネント](https://developers.arcgis.com/javascript/latest/references/map-components/components/arcgis-map/)とマップ上に [Zoom コンポーネント（拡大・縮小ボタン）](https://developers.arcgis.com/javascript/latest/references/map-components/arcgis-zoom/)を設定しています。
 ブラウザーを更新すると以下のように日本列島を中心とするマップの画面が表示されます。
 
 ![手順 2-1 : 画面上にベースマップを表示](./img/step2-1.png)
@@ -189,7 +189,7 @@ ArcGIS Maps SDK for JavaScript では、`<script type="module" src="https://js.a
     <!-- 手順 4-1-1 Calcite Design System の Shell コンポーネントを追加 End -->
 
       <!-- 手順 2-1 マップ コンポーネント： topo-vector ベースマップで日本を中心で表示。また、マップ上に拡大、縮小ボタンを表示 Start -->
-      <arcgis-map id="mapEl" basemap="topo-vector" center="138, 35.5" zoom="5">
+      <arcgis-map id="mapEl" item-id="b726ec313b324fc0af181896f9be6b1a">
         <arcgis-zoom slot="top-left"></arcgis-zoom>
       </arcgis-map>
       <!-- 手順 2-1 マップ コンポーネントで topo-vector ベースマップで日本を中心で表示。また、マップ上に拡大、縮小ボタンを表示 End -->
@@ -217,8 +217,7 @@ ArcGIS Maps SDK for JavaScript では、`<script type="module" src="https://js.a
     <!-- Nabigation コンポーネント -->
     <calcite-navigation slot="header">
       <!-- Nabigation Logo コンポーネント -->
-      <calcite-navigation-logo heading="Web コンポーネント ハンズオン デモ" heading-level="3" thumbnail="./img/js-sdk.svg"
-        slot="logo">
+      <calcite-navigation-logo heading="Web コンポーネント ハンズオン デモ" heading-level="3" slot="logo">
       </calcite-navigation-logo>
     </calcite-navigation>
     <!-- ヘッダー -->
@@ -364,8 +363,7 @@ Calcite コンポーネントにイベント処理を追加することで凡例
       <!-- Nabigation コンポーネント -->
       <calcite-navigation slot="header">
         <!-- Nabigation Logo コンポーネント -->
-        <calcite-navigation-logo heading="Web コンポーネント ハンズオン デモ" heading-level="3" thumbnail="./img/js-sdk.svg"
-          slot="logo">
+        <calcite-navigation-logo heading="Web コンポーネント ハンズオン デモ" heading-level="3" slot="logo">
         </calcite-navigation-logo>
       </calcite-navigation>
       <!-- ヘッダー -->
