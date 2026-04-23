@@ -99,6 +99,7 @@ ArcGIS Maps SDK for JavaScript では、`<script type="module" src="https://js.a
     <!-- Before -->
     <!-- <arcgis-map id="mapEl" basemap="topo-vector" center="138, 35.5" zoom="5"> -->
     <!-- After -->
+    <!-- 手順 2-3 Map コンポーネント上に Web マップを表示 -->
     <arcgis-map id="mapEl" item-id="b726ec313b324fc0af181896f9be6b1a">
 ```
 ここでは、Map コンポーネントの [itemId](https://developers.arcgis.com/javascript/latest/references/map-components/components/arcgis-map/#itemId) プロパティに手順 2-2 で確認をした Web マップの`アイテム ID` を設定することで、ArcGIS Online 上で設定したデザインのマップが画面上に表示されます。
@@ -188,7 +189,7 @@ ArcGIS Maps SDK for JavaScript では、`<script type="module" src="https://js.a
     <calcite-shell>
     <!-- 手順 4-1-1 Calcite Design System の Shell コンポーネントを追加 End -->
 
-      <!-- 手順 2-1 マップ コンポーネント： topo-vector ベースマップで日本を中心で表示。また、マップ上に拡大、縮小ボタンを表示 Start -->
+      <!-- 手順 2-3 Map コンポーネント上に Web マップを表示 -->
       <arcgis-map id="mapEl" item-id="b726ec313b324fc0af181896f9be6b1a">
         <arcgis-zoom slot="top-left"></arcgis-zoom>
       </arcgis-map>
@@ -237,7 +238,7 @@ ArcGIS Maps SDK for JavaScript では、`<script type="module" src="https://js.a
     <!-- メニュー -->
     <!-- 手順 4-2 Shell にヘッダーとメニューを追加 End -->
 
-    <!-- 手順 2-1 マップ コンポーネント： topo-vector ベースマップで日本を中心で表示。また、マップ上に拡大、縮小ボタンを表示 Start -->
+    <!-- 手順 2-3 Map コンポーネント上に Web マップを表示 -->
     <arcgis-map id="mapEl" item-id="b726ec313b324fc0af181896f9be6b1a">
       <arcgis-zoom slot="top-left"></arcgis-zoom>
     </arcgis-map>
@@ -383,7 +384,7 @@ Calcite コンポーネントにイベント処理を追加することで凡例
       <!-- メニュー -->
       <!-- 手順 4-2 Shell にヘッダーとメニューを追加 End -->
       
-      <!-- 手順 2-1 マップ コンポーネント： topo-vector ベースマップで日本を中心で表示。また、マップ上に拡大、縮小ボタンを表示 Start -->
+      <!-- 手順 2-3 Map コンポーネント上に Web マップを表示 -->
       <arcgis-map id="mapEl" item-id="b726ec313b324fc0af181896f9be6b1a">
         <arcgis-zoom slot="top-left"></arcgis-zoom>
       </arcgis-map>
