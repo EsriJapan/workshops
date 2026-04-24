@@ -57,10 +57,10 @@ ArcGIS Maps SDK for JavaScript では、`<script type="module" src="https://js.a
 > [!NOTE]
 > ArcGIS Maps SDK for JavaScript のマップ コンポーネントには、地図を表示する機能をもった `<arcgis-map>` というタグを使用するコンポーネントがあります。このドキュメントでは地図に関連する機能を持ったコンポーネント群を`マップ コンポーネント`、地図を表示する機能を持ったコンポーネントを `Map コンポーネント`と記述します。
 
-## ArcGIS Maps SDK for JavaScript のマップ コンポーネントを使用してマップを表示する。
+## ArcGIS Maps SDK for JavaScript の Map コンポーネントを使用してマップを表示する。
 ### 手順 2  : 画面上にマップを表示する。
 
-`ArcGIS Maps SDK for JavaScript` のマップ コンポーネントを使用して画面上に地図を表示します。
+`ArcGIS Maps SDK for JavaScript` のマップ コンポーネントを使用して画面上にマップを表示します。
 
 1. `<body>` タグ内の `Hello World!` という文字列を削除し、以下のコードを記入し保存します。
 
