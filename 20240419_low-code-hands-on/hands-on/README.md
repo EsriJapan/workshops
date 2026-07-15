@@ -116,9 +116,9 @@ Experience Builder のインストール方法に関しては、[ArcGIS Experine
 `service-area-filter\src\runtime\translations` フォルダーの直下に `ja.js` ファイルを作成し、以下のコードを入力し保存します。
 
 ```js
-define({
-  _widgetLabel:"到達圏フィルター"
-});
+System.register([],(function (e) {return {execute: function () {e({
+       _widgetLabel: "到達圏フィルター"
+})}}}));
 ```
 
 > #### translations フォルダー
