@@ -25,7 +25,7 @@
 - 背景地図（ベースマップ）にアクセスできる API キー
 
 > [!NOTE]
->API キーは [ArcGIS Location Platform](https://location.arcgis.com/) または ArcGIS Online の開発者の認証情報から作成できます。作成時には、ベースマップ（Basemap Styles service）にアクセスする権限を付与してください。
+>API キーは [ArcGIS Location Platform](https://location.arcgis.com/) または ArcGIS Online の開発者の認証情報から[作成できます](https://esrijapan.github.io/arcgis-dev-resources/guide/get-api-key/)。作成時には、ベースマップ（Basemap Styles service）にアクセスする権限を付与してください。
 
 ### 手順 0 : プロジェクトの準備（ハンズオンでは行いません）
 
@@ -325,7 +325,7 @@ Web マップには、ベースマップ、レイヤー、表示範囲、シン�
 
 ### 手順 5 : フィーチャの属性情報を編集する
 
-フォームで編集した属性を確定し、フィーチャ サービスへ反映します。ArcGIS Maps SDK での編集は、「① 編集内容をテーブル（ローカル）に保存」→「② サービスへ反映（Apply Edits）」の 2 段階で行います。
+フォームで編集した属性を確定し、フィーチャ サービスへ反映します。編集は、「① 編集内容をテーブル（ローカル）に保存」→「② サービスへ反映（Apply Edits）」の 2 段階で行います。
 
 #### 手順 5-1 : 編集可能なフィーチャの選択時にボタンを表示
 
