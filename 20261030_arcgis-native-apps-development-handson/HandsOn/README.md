@@ -459,28 +459,23 @@ ArcGIS Pro で作成したモバイル マップ パッケージ（MMPK）を読
             _mobileMapPackage = null;
 
             /*--手順6-2 モバイル マップ パッケージを表示する Start--*/
-            //モバイル マップ パッケージを開いて、ロードする
             _mobileMapPackage = await MobileMapPackage.OpenAsync(MmpkPath);
             await _mobileMapPackage.LoadAsync();
 
-            // エラー表示
             if (_mobileMapPackage.LoadStatus != LoadStatus.Loaded)
             {
                 throw _mobileMapPackage.LoadError ??
                       new InvalidOperationException("MMPK を読み込めませんでした。");
             }
 
-            //mmpk に含まれるマップを取得
             Map? offlineMap = _mobileMapPackage.Maps.FirstOrDefault();
 
-            // エラー表示
             if (offlineMap is null)
             {
                 throw new InvalidOperationException(
                     "MMPK に表示可能なマップが含まれていません。");
             }
 
-            //マップビューにオフライン マップを設定
             MyMapView.Map = offlineMap;
             /*--手順6-2 モバイル マップ パッケージを表示する End--*/
 
