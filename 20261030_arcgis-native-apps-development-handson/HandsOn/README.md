@@ -19,7 +19,7 @@
 ### 必要な環境
 
 - Windows 10 / 11
-- Visual Studio 2022（17.8 以降）と「.NET デスクトップ開発」ワークロード
+- Visual Studio 2022（17.8）以降と「.NET デスクトップ開発」ワークロード
 - .NET 8 または .NET 10
 - ArcGIS Location Platform アカウントまたは ArcGIS Online アカウント
 - 背景地図（ベースマップ）にアクセスできる API キー
